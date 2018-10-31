@@ -20,9 +20,6 @@ import org.springframework.stereotype.Component;
 @Component
 @Entity
 @Table(name = "LOOKUP_VALUES")
-//@XmlRootElement
-//@NamedQueries({
-//    @NamedQuery(name = "LookupValue.findAll", query = "SELECT l FROM LookupValue l")})
 public class LookupValue implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -30,11 +27,11 @@ public class LookupValue implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "LOOKUP_VALUE_ID", nullable = false)        
-    private Long lookupValueId;   
+    private int lookupValueId;   
 //    @JoinColumn(name = "LOOKUP_TYPE_ID", referencedColumnName = "LOOKUP_TYPE_ID")
 //    @ManyToOne(optional = false)
 //    private LookupType lookupTypeId;
-//    private Long lookupTypeId;
+//    private int lookupTypeId;
     @Basic(optional = false)
     @Column(name = "LOOKUP_CODE", nullable = false, length = 30)
     private String lookupCode;
@@ -56,17 +53,6 @@ public class LookupValue implements Serializable {
     public LookupValue() {
         this.active = 'Y';
     }
-
-//    public LookupValue(Long lookupValueId) {
-//        this.lookupValueId = lookupValueId;
-//    }
-//
-//    public LookupValue(Long lookupValueId, String lookupCode, Character active, Date startDate) {
-//        this.lookupValueId = lookupValueId;
-//        this.lookupCode = lookupCode;
-//        this.active = active;
-//        this.startDate = startDate;
-//    }
 
     public String getLookupCode() {
         return lookupCode;
@@ -116,11 +102,11 @@ public class LookupValue implements Serializable {
         this.endDate = endDate;
     }
 
-    public Long getLookupValueId() {
+    public int getLookupValueId() {
         return lookupValueId;
     }
 
-    public void setLookupValueId(Long lookupValueId) {
+    public void setLookupValueId(int lookupValueId) {
         this.lookupValueId = lookupValueId;
     }
 
@@ -131,32 +117,5 @@ public class LookupValue implements Serializable {
 //    public void setLookupTypeId(LookupType lookupTypeId) {
 //        this.lookupTypeId = lookupTypeId;
 //    }
-    
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (lookupValueId != null ? lookupValueId.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof LookupValue)) {
-            return false;
-        }
-        LookupValue other = (LookupValue) object;
-        if ((this.lookupValueId == null && other.lookupValueId != null) || (this.lookupValueId != null && !this.lookupValueId.equals(other.lookupValueId))) {
-            return false;
-        }
-        return true;
-    }
-
-//    @Override
-//    public String toString() {
-//        return "com.xem.py.pokyabmodel.dto.LookupValue[ lookupValueId=" + lookupValueId + " ]";
-//    }
-
-
     
 }

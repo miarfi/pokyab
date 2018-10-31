@@ -13,13 +13,14 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author arria
  */
-@Repository("PersonDAO")
+@Repository("personDAO")
 @Transactional
 public class PersonDAOImpl implements PersonDAO{
 
     @Autowired
     private SessionFactory sessionFactory;
-        
+    
+    @Override    
     public boolean Add(Person person) {
         
         try {
@@ -35,7 +36,7 @@ public class PersonDAOImpl implements PersonDAO{
         
     }
     
-    
+    @Override
     public List<Person> getActivePersons() {
         String query = "FROM Person WHERE active = 'Y'";
         return sessionFactory.getCurrentSession()
@@ -43,6 +44,7 @@ public class PersonDAOImpl implements PersonDAO{
                              .getResultList();
     }
     
+    @Override
     public List<Person> getAllPersons() {
         String query = "FROM Person";
         return sessionFactory.getCurrentSession()

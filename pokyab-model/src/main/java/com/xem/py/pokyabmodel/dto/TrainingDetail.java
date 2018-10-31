@@ -20,9 +20,7 @@ import org.springframework.stereotype.Component;
 @Component 
 @Entity
 @Table(name = "TRAINING_DETAILS")
-//@XmlRootElement
-//@NamedQueries({
-//    @NamedQuery(name = "TrainingDetail.findAll", query = "SELECT t FROM TrainingDetail t")})
+
 public class TrainingDetail implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -30,18 +28,18 @@ public class TrainingDetail implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "TRAIN_DET_ID")
-    private Long trainDetId;
+    private int trainDetId;
     @Basic(optional = false)
     @Column(name = "TEAM_ID")
     private long teamId;
     @Column(name = "PERSON_ID")
-    private Long personId;
+    private int personId;
     @Basic(optional = false)
     @Column(name = "TRAINING_ID")
-    private long trainingId;
+    private int trainingId;
     @Basic(optional = false)
     @Column(name = "ACTIVITY_ID")
-    private long activityId;
+    private int activityId;
     @Basic(optional = false)
     @Column(name = "WEEKS")
     private short weeks;
@@ -59,36 +57,21 @@ public class TrainingDetail implements Serializable {
     @Column(name = "END_TIME")
     private String endTime;
     @Column(name = "QUANTITY")
-    private Long quantity;
+    private int quantity;
     @Column(name = "COMMENTS")
     private String comments;
     @Column(name = "QUALIFICATION")
-    private Short qualification;
+    private short qualification;
 
     public TrainingDetail() {
     }
 
-//    public TrainingDetail(Long trainDetId) {
-//        this.trainDetId = trainDetId;
-//    }
-//
-//    public TrainingDetail(Long trainDetId, long teamId, long trainingId, long activityId, short weeks, short days, Date trainDate, String startTime, String endTime) {
-//        this.trainDetId = trainDetId;
-//        this.teamId = teamId;
-//        this.trainingId = trainingId;
-//        this.activityId = activityId;
-//        this.weeks = weeks;
-//        this.days = days;
-//        this.trainDate = trainDate;
-//        this.startTime = startTime;
-//        this.endTime = endTime;
-//    }
 
-    public Long getTrainDetId() {
+    public int getTrainDetId() {
         return trainDetId;
     }
 
-    public void setTrainDetId(Long trainDetId) {
+    public void setTrainDetId(int trainDetId) {
         this.trainDetId = trainDetId;
     }
 
@@ -100,27 +83,27 @@ public class TrainingDetail implements Serializable {
         this.teamId = teamId;
     }
 
-    public Long getPersonId() {
+    public int getPersonId() {
         return personId;
     }
 
-    public void setPersonId(Long personId) {
+    public void setPersonId(int personId) {
         this.personId = personId;
     }
 
-    public long getTrainingId() {
+    public int getTrainingId() {
         return trainingId;
     }
 
-    public void setTrainingId(long trainingId) {
+    public void setTrainingId(int trainingId) {
         this.trainingId = trainingId;
     }
 
-    public long getActivityId() {
+    public int getActivityId() {
         return activityId;
     }
 
-    public void setActivityId(long activityId) {
+    public void setActivityId(int activityId) {
         this.activityId = activityId;
     }
 
@@ -164,11 +147,11 @@ public class TrainingDetail implements Serializable {
         this.endTime = endTime;
     }
 
-    public Long getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Long quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
@@ -180,37 +163,12 @@ public class TrainingDetail implements Serializable {
         this.comments = comments;
     }
 
-    public Short getQualification() {
+    public short getQualification() {
         return qualification;
     }
 
-    public void setQualification(Short qualification) {
+    public void setQualification(short qualification) {
         this.qualification = qualification;
     }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (trainDetId != null ? trainDetId.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof TrainingDetail)) {
-            return false;
-        }
-        TrainingDetail other = (TrainingDetail) object;
-        if ((this.trainDetId == null && other.trainDetId != null) || (this.trainDetId != null && !this.trainDetId.equals(other.trainDetId))) {
-            return false;
-        }
-        return true;
-    }
-
-//    @Override
-//    public String toString() {
-//        return "com.xem.py.pokyabmodel.dto.TrainingDetail[ trainDetId=" + trainDetId + " ]";
-//    }
     
 }

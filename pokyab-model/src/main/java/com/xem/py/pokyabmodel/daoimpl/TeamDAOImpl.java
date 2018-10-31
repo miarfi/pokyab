@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author arria
  */
-@Repository("TeamDAO")
+@Repository("teamDAO")
 @Transactional
 public class TeamDAOImpl implements TeamDAO
 {
@@ -36,8 +36,20 @@ public class TeamDAOImpl implements TeamDAO
         return true;
     }
 
+    @Override
     public List<Team> getActiveTeams() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String query = "FROM Team WHERE active = 'Y'";
+        return sessionFactory.getCurrentSession()
+                .createQuery(query, Team.class)
+                .getResultList();
+    }
+
+    @Override
+    public List<Team> getAllTeams() {
+        String query = "FROM Team";
+        return sessionFactory.getCurrentSession()
+                .createQuery(query, Team.class)
+                .getResultList();
     }
     
 }

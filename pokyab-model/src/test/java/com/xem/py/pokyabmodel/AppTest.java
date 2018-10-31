@@ -1,4 +1,4 @@
-package com.xem.py.pokyab.model;
+package com.xem.py.pokyabmodel;
 
 import static org.junit.Assert.assertTrue;
 

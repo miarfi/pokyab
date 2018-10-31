@@ -20,9 +20,6 @@ import org.springframework.stereotype.Component;
 @Component
 @Entity
 @Table(name = "LOOKUP_TYPE_USES")
-//@XmlRootElement
-//@NamedQueries({
-//    @NamedQuery(name = "LookupTypeUse.findAll", query = "SELECT l FROM LookupTypeUse l")})
 public class LookupTypeUse implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -30,7 +27,7 @@ public class LookupTypeUse implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "LOOKUP_TYPE_USE_ID")
-    private Long lookupTypeUseId;
+    private int lookupTypeUseId;
     @Basic(optional = false)
     @Column(name = "TABLE_NAME")
     private String tableName;
@@ -44,21 +41,11 @@ public class LookupTypeUse implements Serializable {
     public LookupTypeUse() {
     }
 
-//    public LookupTypeUse(Long lookupTypeUseId) {
-//        this.lookupTypeUseId = lookupTypeUseId;
-//    }
-//
-//    public LookupTypeUse(Long lookupTypeUseId, String tableName, String columnName) {
-//        this.lookupTypeUseId = lookupTypeUseId;
-//        this.tableName = tableName;
-//        this.columnName = columnName;
-//    }
-
-    public Long getLookupTypeUseId() {
+    public int getLookupTypeUseId() {
         return lookupTypeUseId;
     }
 
-    public void setLookupTypeUseId(Long lookupTypeUseId) {
+    public void setLookupTypeUseId(int lookupTypeUseId) {
         this.lookupTypeUseId = lookupTypeUseId;
     }
 
@@ -86,29 +73,4 @@ public class LookupTypeUse implements Serializable {
         this.lookupTypeId = lookupTypeId;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (lookupTypeUseId != null ? lookupTypeUseId.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof LookupTypeUse)) {
-            return false;
-        }
-        LookupTypeUse other = (LookupTypeUse) object;
-        if ((this.lookupTypeUseId == null && other.lookupTypeUseId != null) || (this.lookupTypeUseId != null && !this.lookupTypeUseId.equals(other.lookupTypeUseId))) {
-            return false;
-        }
-        return true;
-    }
-
-//    @Override
-//    public String toString() {
-//        return "com.xem.py.pokyabmodel.dto.LookupTypeUse[ lookupTypeUseId=" + lookupTypeUseId + " ]";
-//    }
-    
 }

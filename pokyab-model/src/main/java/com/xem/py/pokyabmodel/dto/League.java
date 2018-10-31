@@ -25,9 +25,6 @@ import org.springframework.stereotype.Component;
 @Component
 @Entity
 @Table(name = "LEAGUES")
-//@XmlRootElement
-//@NamedQueries({
-//    @NamedQuery(name = "League.findAll", query = "SELECT l FROM League l")})
 public class League implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -35,7 +32,7 @@ public class League implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "LEAGUE_ID")
-    private Long leagueId;
+    private int leagueId;
     @Column(name = "LEAGUE_NAME")
     private String leagueName;
     @Column(name = "LEAGUE_TYPE")
@@ -45,9 +42,9 @@ public class League implements Serializable {
     @Column(name = "COUNTRY_CODE")
     private String countryCode;
     @Column(name = "MIN_AGE")
-    private Short minAge;
+    private short minAge;
     @Column(name = "MAX_AGE")
-    private Short maxAge;
+    private short maxAge;
     @Basic(optional = false)
     @Column(name = "ACTIVE")
     private Character active;
@@ -64,23 +61,15 @@ public class League implements Serializable {
     private Collection<Team> teamCollection;
 
     public League() {
+        this.setActive("Y".charAt(0));
+        this.setStartDate(new java.sql.Date(System.currentTimeMillis()));
     }
 
-//    public League(Long leagueId) {
-//        this.leagueId = leagueId;
-//    }
-//
-//    public League(Long leagueId, Character active, Date startDate) {
-//        this.leagueId = leagueId;
-//        this.active = active;
-//        this.startDate = startDate;
-//    }
-
-    public Long getLeagueId() {
+    public int getLeagueId() {
         return leagueId;
     }
 
-    public void setLeagueId(Long leagueId) {
+    public void setLeagueId(int leagueId) {
         this.leagueId = leagueId;
     }
 
@@ -116,19 +105,19 @@ public class League implements Serializable {
         this.countryCode = countryCode;
     }
 
-    public Short getMinAge() {
+    public short getMinAge() {
         return minAge;
     }
 
-    public void setMinAge(Short minAge) {
+    public void setMinAge(short minAge) {
         this.minAge = minAge;
     }
 
-    public Short getMaxAge() {
+    public short getMaxAge() {
         return maxAge;
     }
 
-    public void setMaxAge(Short maxAge) {
+    public void setMaxAge(short maxAge) {
         this.maxAge = maxAge;
     }
 
@@ -172,31 +161,5 @@ public class League implements Serializable {
 
     public void setTeamCollection(Collection<Team> teamCollection) {
         this.teamCollection = teamCollection;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (leagueId != null ? leagueId.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof League)) {
-            return false;
-        }
-        League other = (League) object;
-        if ((this.leagueId == null && other.leagueId != null) || (this.leagueId != null && !this.leagueId.equals(other.leagueId))) {
-            return false;
-        }
-        return true;
-    }
-
-//    @Override
-//    public String toString() {
-//        return "com.xem.py.pokyabmodel.dto.League[ leagueId=" + leagueId + " ]";
-//    }
-    
+    }   
 }

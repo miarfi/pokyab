@@ -40,7 +40,7 @@ public class HibernateConfig {
 	private static final String DATABASE_PASSWORD = "mariadb";*/
     
         //Mariadb
-	private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/pokyab";
+	private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/test";
 //	private static final String DATABASE_DRIVER = "com.mysql.jdbc.Driver";	
         private static final String DATABASE_DRIVER = "com.mysql.cj.jdbc.Driver";	        
         private static final String DATABASE_DIALECT = "org.hibernate.dialect.MySQL57InnoDBDialect";
@@ -75,9 +75,9 @@ public class HibernateConfig {
 		Properties properties = new Properties();
 		
 		properties.put("hibernate.dialect", DATABASE_DIALECT);
-		properties.put("hibernate.show_sql", "true");
+//		properties.put("hibernate.show_sql", "true");
 		properties.put("hibernate.format_sql", "true");		
-		//properties.put("hibernate.hbm2ddl.auto", "create");//create|update
+		properties.put("hibernate.hbm2ddl.auto", "update");//create|update
 		return properties;
 	}
 

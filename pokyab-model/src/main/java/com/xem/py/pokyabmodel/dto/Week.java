@@ -17,9 +17,6 @@ import org.springframework.stereotype.Component;
 @Component
 @Entity
 @Table(name = "WEEKS")
-//@XmlRootElement
-//@NamedQueries({
-//    @NamedQuery(name = "Week.findAll", query = "SELECT w FROM Week w")})
 public class Week implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -27,30 +24,21 @@ public class Week implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "WEEK_ID")
-    private Long weekId;
+    private int weekId;
     @Basic(optional = false)
     @Column(name = "WEEK_NUMBER")
     private short weekNumber;
     @Column(name = "SEASON_ID")
-    private Long seasonId;
+    private int seasonId;
 
     public Week() {
     }
 
-//    public Week(Long weekId) {
-//        this.weekId = weekId;
-//    }
-//
-//    public Week(Long weekId, short weekNumber) {
-//        this.weekId = weekId;
-//        this.weekNumber = weekNumber;
-//    }
-
-    public Long getWeekId() {
+    public int getWeekId() {
         return weekId;
     }
 
-    public void setWeekId(Long weekId) {
+    public void setWeekId(int weekId) {
         this.weekId = weekId;
     }
 
@@ -62,37 +50,12 @@ public class Week implements Serializable {
         this.weekNumber = weekNumber;
     }
 
-    public Long getSeasonId() {
+    public int getSeasonId() {
         return seasonId;
     }
 
-    public void setSeasonId(Long seasonId) {
+    public void setSeasonId(int seasonId) {
         this.seasonId = seasonId;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (weekId != null ? weekId.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Week)) {
-            return false;
-        }
-        Week other = (Week) object;
-        if ((this.weekId == null && other.weekId != null) || (this.weekId != null && !this.weekId.equals(other.weekId))) {
-            return false;
-        }
-        return true;
-    }
-
-//    @Override
-//    public String toString() {
-//        return "com.xem.py.pokyabmodel.dto.Week[ weekId=" + weekId + " ]";
-//    }
-    
 }

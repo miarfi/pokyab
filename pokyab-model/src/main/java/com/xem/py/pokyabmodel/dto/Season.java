@@ -24,9 +24,6 @@ import org.springframework.stereotype.Component;
 @Component
 @Entity
 @Table(name = "SEASONS")
-//@XmlRootElement
-//@NamedQueries({
-//    @NamedQuery(name = "Season.findAll", query = "SELECT s FROM Season s")})
 public class Season implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -34,7 +31,7 @@ public class Season implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "SEASON_ID")
-    private Long seasonId;
+    private int seasonId;
     @Basic(optional = false)
     @Column(name = "SEASON_NAME")
     private String seasonName;
@@ -58,26 +55,15 @@ public class Season implements Serializable {
     private Collection<Team> teamCollection;
 
     public Season() {
+        this.setStartDate(new java.sql.Date(System.currentTimeMillis()));
+        this.setEndDate(new java.sql.Date(System.currentTimeMillis()));
     }
 
-//    public Season(Long seasonId) {
-//        this.seasonId = seasonId;
-//    }
-//
-//    public Season(Long seasonId, String seasonName, String description, String seasonCode, Date startDate, Date endDate) {
-//        this.seasonId = seasonId;
-//        this.seasonName = seasonName;
-//        this.description = description;
-//        this.seasonCode = seasonCode;
-//        this.startDate = startDate;
-//        this.endDate = endDate;
-//    }
-
-    public Long getSeasonId() {
+    public int getSeasonId() {
         return seasonId;
     }
 
-    public void setSeasonId(Long seasonId) {
+    public void setSeasonId(int seasonId) {
         this.seasonId = seasonId;
     }
 
@@ -138,30 +124,4 @@ public class Season implements Serializable {
     public void setTeamCollection(Collection<Team> teamCollection) {
         this.teamCollection = teamCollection;
     }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (seasonId != null ? seasonId.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Season)) {
-            return false;
-        }
-        Season other = (Season) object;
-        if ((this.seasonId == null && other.seasonId != null) || (this.seasonId != null && !this.seasonId.equals(other.seasonId))) {
-            return false;
-        }
-        return true;
-    }
-
-//    @Override
-//    public String toString() {
-//        return "com.xem.py.pokyabmodel.dto.Season[ seasonId=" + seasonId + " ]";
-//    }
-    
 }

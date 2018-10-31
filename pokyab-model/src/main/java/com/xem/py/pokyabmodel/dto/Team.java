@@ -26,9 +26,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Entity
 @Table(name = "TEAMS")
-//@XmlRootElement
-//@NamedQueries({
-//    @NamedQuery(name = "Team.findAll", query = "SELECT t FROM Team t")})
+
 public class Team implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -36,29 +34,29 @@ public class Team implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "TEAM_ID")
-    private Long teamId;
+    private int teamId;
     @Basic(optional = false)
     @Column(name = "TRAINER_PER_ID")
-    private long trainerPerId;
+    private int trainerPerId;
     @Basic(optional = false)
     @Column(name = "TEAM_NAME")
     private String teamName;
     @Column(name = "GROUP_NUMBER")
-    private Short groupNumber;
+    private short groupNumber;
     @Column(name = "WINS")
-    private Short wins;
+    private short wins;
     @Column(name = "DRAWS")
-    private Short draws;
+    private short draws;
     @Column(name = "LOSTS")
-    private Short losts;
+    private short losts;
     @Column(name = "POINTS")
-    private Short points;
+    private short points;
     @Column(name = "SCORES")
-    private Short scores;
+    private short scores;
     @Column(name = "CONCEDED")
-    private Short conceded;
+    private short conceded;
     @Column(name = "MATCHES_PLAYED")
-    private Short matchesPlayed;
+    private short matchesPlayed;
     @Basic(optional = false)
     @Column(name = "ACTIVE")
     private Character active;
@@ -68,7 +66,7 @@ public class Team implements Serializable {
     private Date startDate;
     @Column(name = "END_DATE")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date endDate;
+    private Date endDate; 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "teamId")
     private Collection<TeamPerson> teamPersonCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "awayTeamId")
@@ -76,44 +74,37 @@ public class Team implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "homeTeamId")
     private Collection<Match> matchCollection1;
     @OneToMany(mappedBy = "winnerTeamId")
-    private Collection<Match> matchCollection2;
-    @JoinColumn(name = "LEAGUE_ID", referencedColumnName = "LEAGUE_ID")
-    @ManyToOne(optional = false)
-    private League leagueId;
-    @JoinColumn(name = "SEASON_ID", referencedColumnName = "SEASON_ID")
-    @ManyToOne(optional = false)
-    private Season seasonId;
+    private Collection<Match> matchCollection2;    
+//    @JoinColumn(name = "LEAGUE_ID", referencedColumnName = "LEAGUE_ID")
+//    @ManyToOne(optional = false)
+//    private League leagueId;
+//    @JoinColumn(name = "SEASON_ID", referencedColumnName = "SEASON_ID")
+//    @ManyToOne(optional = false)
+//    private Season seasonId;
+    @Column(name = "LEAGUE_ID")
+    private int leagueId;   
+    @Column(name = "SEASON_ID")
+    private int seasonId;    
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "teamId")
     private Collection<TrainingPerson> trainingPersonCollection;
 
     public Team() {
     }
 
-//    public Team(Long teamId) {
-//        this.teamId = teamId;
-//    }
-//
-//    public Team(Long teamId, long trainerPerId, String teamName, Character active, Date startDate) {
-//        this.teamId = teamId;
-//        this.trainerPerId = trainerPerId;
-//        this.teamName = teamName;
-//        this.active = active;
-//        this.startDate = startDate;
-//    }
-
-    public Long getTeamId() {
+    public int getTeamId() {
         return teamId;
     }
 
-    public void setTeamId(Long teamId) {
+    public void setTeamId(int teamId) {
         this.teamId = teamId;
     }
 
-    public long getTrainerPerId() {
+    public int getTrainerPerId() {
         return trainerPerId;
     }
 
-    public void setTrainerPerId(long trainerPerId) {
+    public void setTrainerPerId(int trainerPerId) {
         this.trainerPerId = trainerPerId;
     }
 
@@ -125,67 +116,67 @@ public class Team implements Serializable {
         this.teamName = teamName;
     }
 
-    public Short getGroup() {
+    public short getGroupNumber() {
         return groupNumber;
     }
 
-    public void setGroup(Short group) {
-        this.groupNumber = group;
+    public void setGroupNumber(short groupNumber) {
+        this.groupNumber = groupNumber;
     }
-
-    public Short getWins() {
+    
+    public short getWins() {
         return wins;
     }
 
-    public void setWins(Short wins) {
+    public void setWins(short wins) {
         this.wins = wins;
     }
 
-    public Short getDraws() {
+    public short getDraws() {
         return draws;
     }
 
-    public void setDraws(Short draws) {
+    public void setDraws(short draws) {
         this.draws = draws;
     }
 
-    public Short getLosts() {
+    public short getLosts() {
         return losts;
     }
 
-    public void setLosts(Short losts) {
+    public void setLosts(short losts) {
         this.losts = losts;
     }
 
-    public Short getPoints() {
+    public short getPoints() {
         return points;
     }
 
-    public void setPoints(Short points) {
+    public void setPoints(short points) {
         this.points = points;
     }
 
-    public Short getScores() {
+    public short getScores() {
         return scores;
     }
 
-    public void setScores(Short scores) {
+    public void setScores(short scores) {
         this.scores = scores;
     }
 
-    public Short getConceded() {
+    public short getConceded() {
         return conceded;
     }
 
-    public void setConceded(Short conceded) {
+    public void setConceded(short conceded) {
         this.conceded = conceded;
     }
 
-    public Short getMatchesPlayed() {
+    public short getMatchesPlayed() {
         return matchesPlayed;
     }
 
-    public void setMatchesPlayed(Short matchesPlayed) {
+    public void setMatchesPlayed(short matchesPlayed) {
         this.matchesPlayed = matchesPlayed;
     }
 
@@ -249,22 +240,38 @@ public class Team implements Serializable {
         this.matchCollection2 = matchCollection2;
     }
 
-    public League getLeagueId() {
+//    public League getLeagueId() {
+//        return leagueId;
+//    }
+//
+//    public void setLeagueId(League leagueId) {
+//        this.leagueId = leagueId;
+//    }
+//
+//    public Season getSeasonId() {
+//        return seasonId;
+//    }
+//
+//    public void setSeasonId(Season seasonId) {
+//        this.seasonId = seasonId;
+//    }
+
+    public int getLeagueId() {
         return leagueId;
     }
 
-    public void setLeagueId(League leagueId) {
+    public void setLeagueId(int leagueId) {
         this.leagueId = leagueId;
     }
-
-    public Season getSeasonId() {
+    
+    public int getSeasonId() {
         return seasonId;
     }
 
-    public void setSeasonId(Season seasonId) {
+    public void setSeasonId(int seasonId) {
         this.seasonId = seasonId;
     }
-
+    
     @XmlTransient
     public Collection<TrainingPerson> getTrainingPersonCollection() {
         return trainingPersonCollection;
@@ -274,29 +281,4 @@ public class Team implements Serializable {
         this.trainingPersonCollection = trainingPersonCollection;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (teamId != null ? teamId.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Team)) {
-            return false;
-        }
-        Team other = (Team) object;
-        if ((this.teamId == null && other.teamId != null) || (this.teamId != null && !this.teamId.equals(other.teamId))) {
-            return false;
-        }
-        return true;
-    }
-
-//    @Override
-//    public String toString() {
-//        return "com.xem.py.pokyabmodel.dto.Team[ teamId=" + teamId + " ]";
-//    }
-    
 }

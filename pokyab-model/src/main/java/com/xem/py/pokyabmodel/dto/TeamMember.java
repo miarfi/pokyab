@@ -20,9 +20,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Entity
 @Table(name = "TEAM_MEMBERS")
-//@XmlRootElement
-//@NamedQueries({
-//    @NamedQuery(name = "TeamMember.findAll", query = "SELECT t FROM TeamMember t")})
+
 public class TeamMember implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -30,13 +28,13 @@ public class TeamMember implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "TEAM_MEMBER_ID")
-    private Long teamMemberId;
+    private int teamMemberId;
     @Basic(optional = false)
     @Column(name = "TEAM_ID")
-    private long teamId;
+    private int teamId;
     @Basic(optional = false)
     @Column(name = "PERSON_ID")
-    private long personId;
+    private int personId;
     @Column(name = "MEMBER_TYPE_CODE")
     private String memberTypeCode;
     @Basic(optional = false)
@@ -53,39 +51,27 @@ public class TeamMember implements Serializable {
     public TeamMember() {
     }
 
-//    public TeamMember(Long teamMemberId) {
-//        this.teamMemberId = teamMemberId;
-//    }
-//
-//    public TeamMember(Long teamMemberId, long teamId, long personId, Character active, Date startDate) {
-//        this.teamMemberId = teamMemberId;
-//        this.teamId = teamId;
-//        this.personId = personId;
-//        this.active = active;
-//        this.startDate = startDate;
-//    }
-
-    public Long getTeamMemberId() {
+    public int getTeamMemberId() {
         return teamMemberId;
     }
 
-    public void setTeamMemberId(Long teamMemberId) {
+    public void setTeamMemberId(int teamMemberId) {
         this.teamMemberId = teamMemberId;
     }
 
-    public long getTeamId() {
+    public int getTeamId() {
         return teamId;
     }
 
-    public void setTeamId(long teamId) {
+    public void setTeamId(int teamId) {
         this.teamId = teamId;
     }
 
-    public long getPersonId() {
+    public int getPersonId() {
         return personId;
     }
 
-    public void setPersonId(long personId) {
+    public void setPersonId(int personId) {
         this.personId = personId;
     }
 
@@ -120,30 +106,5 @@ public class TeamMember implements Serializable {
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (teamMemberId != null ? teamMemberId.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof TeamMember)) {
-            return false;
-        }
-        TeamMember other = (TeamMember) object;
-        if ((this.teamMemberId == null && other.teamMemberId != null) || (this.teamMemberId != null && !this.teamMemberId.equals(other.teamMemberId))) {
-            return false;
-        }
-        return true;
-    }
-
-//    @Override
-//    public String toString() {
-//        return "com.xem.py.pokyabmodel.dto.TeamMember[ teamMemberId=" + teamMemberId + " ]";
-//    }
     
 }

@@ -1,6 +1,7 @@
 package com.xem.py.pokyabmodel.dao;
 
 import com.xem.py.pokyabmodel.dto.Message;
+import java.util.List;
 
 /**
  *
@@ -8,4 +9,6 @@ import com.xem.py.pokyabmodel.dto.Message;
  */
 public interface MessageDAO {
     boolean Add(Message message);
+    
+     List<Message> getAllMessages();
 }

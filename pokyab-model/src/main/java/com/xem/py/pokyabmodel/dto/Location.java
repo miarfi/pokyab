@@ -22,9 +22,6 @@ import org.springframework.stereotype.Component;
 @Component
 @Entity
 @Table(name = "LOCATIONS")
-//@XmlRootElement
-//@NamedQueries({
-//    @NamedQuery(name = "Locations.findAll", query = "SELECT l FROM Locations l")})
 public class Location implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -32,15 +29,15 @@ public class Location implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "LOCATION_ID")
-    private Long locationId;
+    private int locationId;
     @Column(name = "ORG_ID")
-    private Long orgId;
+    private int orgId;
     @Basic(optional = false)
     @Column(name = "OWNER_TABLE_NAME")
     private String ownerTableName;
     @Basic(optional = false)
     @Column(name = "OWNER_TABLE_ID")
-    private long ownerTableId;
+    private int ownerTableId;
     @Basic(optional = false)
     @Column(name = "LOCATION_TYPE")
     private String locationType;
@@ -54,7 +51,7 @@ public class Location implements Serializable {
     @Column(name = "EXTERNAL_NUMBER")
     private String externalNumber;
     @Column(name = "FLOOR")
-    private BigInteger floor;
+    private short floor;
     @Column(name = "STREET")
     private String street;
     @Column(name = "STATE")
@@ -68,7 +65,7 @@ public class Location implements Serializable {
     @Column(name = "COUNTRY")
     private String country;
     @Column(name = "PROVINCE_ID")
-    private Long provinceId;
+    private int provinceId;
     @Column(name = "BETWEEN_STREET1")
     private String betweenStreet1;
     @Column(name = "BETWEEN_STREET2")
@@ -95,35 +92,19 @@ public class Location implements Serializable {
     public Location() {
     }
 
-//    public Location(Long locationId) {
-//        this.locationId = locationId;
-//    }
-//
-//    public Location(Long locationId, String ownerTableName, long ownerTableId, String locationType, String name, Character validateSepomex, Character primaryPerType, Character active, Date startDate) {
-//        this.locationId = locationId;
-//        this.ownerTableName = ownerTableName;
-//        this.ownerTableId = ownerTableId;
-//        this.locationType = locationType;
-//        this.name = name;
-//        this.validateSepomex = validateSepomex;
-//        this.primaryPerType = primaryPerType;
-//        this.active = active;
-//        this.startDate = startDate;
-//    }
-
-    public Long getLocationId() {
+    public int getLocationId() {
         return locationId;
     }
 
-    public void setLocationId(Long locationId) {
+    public void setLocationId(int locationId) {
         this.locationId = locationId;
     }
 
-    public Long getOrgId() {
+    public int getOrgId() {
         return orgId;
     }
 
-    public void setOrgId(Long orgId) {
+    public void setOrgId(int orgId) {
         this.orgId = orgId;
     }
 
@@ -139,7 +120,7 @@ public class Location implements Serializable {
         return ownerTableId;
     }
 
-    public void setOwnerTableId(long ownerTableId) {
+    public void setOwnerTableId(int ownerTableId) {
         this.ownerTableId = ownerTableId;
     }
 
@@ -183,11 +164,11 @@ public class Location implements Serializable {
         this.externalNumber = externalNumber;
     }
 
-    public BigInteger getFloor() {
+    public short getFloor() {
         return floor;
     }
 
-    public void setFloor(BigInteger floor) {
+    public void setFloor(short floor) {
         this.floor = floor;
     }
 
@@ -239,11 +220,11 @@ public class Location implements Serializable {
         this.country = country;
     }
 
-    public Long getProvinceId() {
+    public int getProvinceId() {
         return provinceId;
     }
 
-    public void setProvinceId(Long provinceId) {
+    public void setProvinceId(int provinceId) {
         this.provinceId = provinceId;
     }
 
@@ -309,31 +290,6 @@ public class Location implements Serializable {
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (locationId != null ? locationId.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Location)) {
-            return false;
-        }
-        Location other = (Location) object;
-        if ((this.locationId == null && other.locationId != null) || (this.locationId != null && !this.locationId.equals(other.locationId))) {
-            return false;
-        }
-        return true;
-    }
-
-//    @Override
-//    public String toString() {
-//        return "com.xem.py.pokyabmodel.dto.Locations[ locationId=" + locationId + " ]";
-//    }
+    }   
     
 }

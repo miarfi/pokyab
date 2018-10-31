@@ -10,6 +10,7 @@ import java.util.List;
 public interface TeamDAO {
     boolean Add(Team team);
     
-    List<Team> getActiveTeams();    
+    List<Team> getActiveTeams(); 
+    List<Team> getAllTeams(); 
     
 }

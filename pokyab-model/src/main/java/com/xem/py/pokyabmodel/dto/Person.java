@@ -1,5 +1,6 @@
 package com.xem.py.pokyabmodel.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -20,20 +21,19 @@ import org.springframework.stereotype.Component;
 @Component
 @Entity
 @Table(name = "PERSONS")
-//@XmlRootElement
-//@NamedQueries({
-//    @NamedQuery(name = "Person.findAll", query = "SELECT p FROM Person p")})
 public class Person implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)    
     @Column(name = "PERSON_ID")
-    private Long personId;
+    private int personId;
     @Column(name = "ORG_ID")
-    private Long orgId;    
+    @JsonIgnore
+    private int orgId;    
     @Column(name = "HIRE_DATE")
     @Temporal(TemporalType.TIMESTAMP)
+    @JsonIgnore
     private Date hireDate;
     @Column(name = "EMPLOYEE_NUMBER")
     private String employeeNumber;
@@ -52,9 +52,11 @@ public class Person implements Serializable {
     @Basic(optional = false)
     @Column(name = "DATE_OF_BIRTH")
     @Temporal(TemporalType.TIMESTAMP)
+    @JsonIgnore
     private Date dateOfBirth;
     @Column(name = "DATE_OF_DEATH")
     @Temporal(TemporalType.TIMESTAMP)
+    @JsonIgnore
     private Date dateOfDeath;
     @Basic(optional = false)
     @Column(name = "GENDER_CODE")
@@ -64,7 +66,7 @@ public class Person implements Serializable {
     private String personType;
     @Column(name = "MARITAL_STATUS_CODE")
     private String maritalStatusCode;
-    //@Basic(optional = false)
+    //@Basic(optional = false) Modificar modelo
     @Column(name = "NATIONALITY_CODE")
     private String nationalityCode;
     @Column(name = "NATIONAL_IDENTIFIER")
@@ -79,43 +81,29 @@ public class Person implements Serializable {
     @Basic(optional = false)
     @Column(name = "START_DATE")
     @Temporal(TemporalType.TIMESTAMP)
+    @JsonIgnore
     private Date startDate;
     @Column(name = "END_DATE")
     @Temporal(TemporalType.TIMESTAMP)
+    @JsonIgnore
     private Date endDate;
 
     public Person() {
     }
 
-//    public Person(Long personId) {
-//        this.personId = personId;
-//    }
-//
-//    public Person(Long personId, Date hireDate, String firstName, String lastName, Date dateOfBirth, String genderCode, String personType, String nationalityCode, Date startDate) {
-//        this.personId = personId;
-//        this.hireDate = hireDate;
-//        this.firstName = firstName;
-//        this.lastName = lastName;
-//        this.dateOfBirth = dateOfBirth;
-//        this.genderCode = genderCode;
-//        this.personType = personType;
-//        this.nationalityCode = nationalityCode;
-//        this.startDate = startDate;
-//    }
-
-    public Long getPersonId() {
+    public int getPersonId() {
         return personId;
     }
 
-    public void setPersonId(Long personId) {
+    public void setPersonId(int personId) {
         this.personId = personId;
     }
 
-    public Long getOrgId() {
+    public int getOrgId() {
         return orgId;
     }
 
-    public void setOrgId(Long orgId) {
+    public void setOrgId(int orgId) {
         this.orgId = orgId;
     }
 
@@ -270,30 +258,5 @@ public class Person implements Serializable {
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (personId != null ? personId.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Person)) {
-            return false;
-        }
-        Person other = (Person) object;
-        if ((this.personId == null && other.personId != null) || (this.personId != null && !this.personId.equals(other.personId))) {
-            return false;
-        }
-        return true;
-    }
-
-//    @Override
-//    public String toString() {
-//        return "com.xem.py.pokyabmodel.dto.Person[ personId=" + personId + " ]";
-//    }
-    
+       
 }

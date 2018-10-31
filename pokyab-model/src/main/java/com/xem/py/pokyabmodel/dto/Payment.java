@@ -22,9 +22,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Entity
 @Table(name = "PAYMENTS")
-//@XmlRootElement
-//@NamedQueries({
-//    @NamedQuery(name = "Payment.findAll", query = "SELECT p FROM Payment p")})
+
 public class Payment implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -32,10 +30,10 @@ public class Payment implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "PAYMENT_ID")
-    private Long paymentId;
+    private int paymentId;
     @Basic(optional = false)
     @Column(name = "PERSON_ID")
-    private long personId;
+    private int personId;
     @Basic(optional = false)
     @Column(name = "DUE_DATE")
     @Temporal(TemporalType.TIMESTAMP)
@@ -54,29 +52,19 @@ public class Payment implements Serializable {
     public Payment() {
     }
 
-//    public Payment(Long paymentId) {
-//        this.paymentId = paymentId;
-//    }
-//
-//    public Payment(Long paymentId, long personId, Date dueDate) {
-//        this.paymentId = paymentId;
-//        this.personId = personId;
-//        this.dueDate = dueDate;
-//    }
-
-    public Long getPaymentId() {
+    public int getPaymentId() {
         return paymentId;
     }
 
-    public void setPaymentId(Long paymentId) {
+    public void setPaymentId(int paymentId) {
         this.paymentId = paymentId;
     }
 
-    public long getPersonId() {
+    public int getPersonId() {
         return personId;
     }
 
-    public void setPersonId(long personId) {
+    public void setPersonId(int personId) {
         this.personId = personId;
     }
 
@@ -120,29 +108,5 @@ public class Payment implements Serializable {
         this.paymentTypeId = paymentTypeId;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (paymentId != null ? paymentId.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Payment)) {
-            return false;
-        }
-        Payment other = (Payment) object;
-        if ((this.paymentId == null && other.paymentId != null) || (this.paymentId != null && !this.paymentId.equals(other.paymentId))) {
-            return false;
-        }
-        return true;
-    }
-
-//    @Override
-//    public String toString() {
-//        return "com.xem.py.pokyabmodel.dto.Payment[ paymentId=" + paymentId + " ]";
-//    }
-    
+   
 }

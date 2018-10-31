@@ -1,8 +1,15 @@
 package com.xem.py.pokyabview.controller;
 
+import com.xem.py.pokyabmodel.dao.ActivityDAO;
+import com.xem.py.pokyabmodel.dao.PersonDAO;
+import com.xem.py.pokyabmodel.dao.TeamDAO;
+import com.xem.py.pokyabmodel.dao.TrainingDAO;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
@@ -10,10 +17,20 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class PageController {
-
+    
+    Logger logger = LoggerFactory.getLogger(PageController.class);
+    
+    @Autowired
+    private PersonDAO personDAO;
+    @Autowired
+    private TeamDAO teamDAO;
+    @Autowired
+    private TrainingDAO trainingDAO;
+    @Autowired
+    private ActivityDAO activityDAO;
+    
     @RequestMapping(value = {"/", "/home"})
     public ModelAndView index() {
-
         ModelAndView mv = new ModelAndView("page");
         mv.addObject("greeting", "Welcome to Pokyab");
         return mv;
@@ -21,7 +38,6 @@ public class PageController {
 
     @RequestMapping(value = {"/about"})
     public ModelAndView about() {
-
         ModelAndView mv = new ModelAndView("page");
         mv.addObject("title", "About");
         mv.addObject("userClickAbout", true);
@@ -30,21 +46,48 @@ public class PageController {
 
     @RequestMapping(value = {"/contact"})
     public ModelAndView contact() {
-
         ModelAndView mv = new ModelAndView("page");
         mv.addObject("title", "Contact");
         mv.addObject("userClickContact", true);
         return mv;
     }
-
+    
     @RequestMapping(value = {"/players"})
     public ModelAndView showAllPersons() {
-
+        logger.info("info.Inside showAllPersons method");
+        logger.debug("debug.Inside showAllPersons method");
         ModelAndView mv = new ModelAndView("page");
         mv.addObject("title", "Players");
         mv.addObject("userClickPlayers", true);
-        //mv.addObject("categories", categoryDAO.list());
+        //ToDo Crear metodo getActivePlayers
+        mv.addObject("persons", personDAO.getActivePersons());
         return mv;
     }
+    
+    @RequestMapping(value = {"/teams"})
+    public ModelAndView showAllTeams() {
+        ModelAndView mv = new ModelAndView("page");
+        mv.addObject("title", "Teams");
+        mv.addObject("userClickTeams", true);
+        mv.addObject("teams", teamDAO.getAllTeams());
+        return mv;
+    }
+    
+    @RequestMapping(value = {"/activities"})
+    public ModelAndView showAllActivities() {
+        ModelAndView mv = new ModelAndView("page");
+        mv.addObject("title", "Activities");
+        mv.addObject("userClickActivities", true);
+        mv.addObject("activities", activityDAO.getAllActivities());
+        return mv;
+    }    
 
+    @RequestMapping(value = {"/trainings"})
+    public ModelAndView showAllTrainings() {
+        ModelAndView mv = new ModelAndView("page");
+        mv.addObject("title", "Trainings");
+        mv.addObject("userClickTrainings", true);
+        mv.addObject("trainings", trainingDAO.getAllTrainings());
+        return mv;
+    }     
 }

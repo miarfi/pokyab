@@ -1,6 +1,7 @@
 
 package com.xem.py.pokyabmodel.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -24,9 +25,6 @@ import org.springframework.stereotype.Component;
 @Component
 @Entity
 @Table(name = "ACTIVITIES")
-//@XmlRootElement
-//@NamedQueries({
-//    @NamedQuery(name = "Activitie.findAll", query = "SELECT a FROM Activitie a")})
 public class Activity implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -34,7 +32,7 @@ public class Activity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ACTIVITY_ID")
-    private Long activityId;
+    private int activityId;
     @Basic(optional = false)
     @Column(name = "ACTIVITY_TYPE")
     private String activityType;
@@ -45,17 +43,17 @@ public class Activity implements Serializable {
     private String activityName;
     @Basic(optional = false)
     @Column(name = "INSTRUCCIONS")
-    private String instruccions;
+    private String instructions;
     @Column(name = "INSTRUCTIONS_TRAINER")
     private String instructionsTrainer;
     @Column(name = "GOALS")
     private String goals;
     @Column(name = "PARTICIPANT_NUMBER")
-    private Short participantNumber;
+    private short participantNumber;
     @Column(name = "TOTAL_TIME")
-    private Short totalTime;
+    private long totalTime;
     @Column(name = "WAIT_TIME")
-    private Short waitTime;
+    private short waitTime;
     @Basic(optional = false)
     @Column(name = "REPETITIONS")
     private short repetitions;
@@ -66,7 +64,7 @@ public class Activity implements Serializable {
     @Column(name = "QUANTITY_MIN")
     private short quantityMin;
     @Column(name = "QUANTITY_MAX")
-    private Short quantityMax;
+    private short quantityMax;
     @Column(name = "REQUIRED_MATERIAL")
     private String requiredMaterial;
     @Column(name = "DIFICULTY_LEVEL")
@@ -81,33 +79,18 @@ public class Activity implements Serializable {
     @Column(name = "END_DATE")
     @Temporal(TemporalType.TIMESTAMP)
     private Date endDate;
+    @JsonIgnore
     @OneToMany(mappedBy = "activityId")
     private Collection<TrainingActivity> trainingActivitieCollection;
 
     public Activity() {
     }
 
-//    public Activity(Long activityId) {
-//        this.activityId = activityId;
-//    }
-//
-//    public Activity(Long activityId, String activityType, String activityName, String instruccions, short repetitions, String uomCode, short quantityMin, Character active, Date startDate) {
-//        this.activityId = activityId;
-//        this.activityType = activityType;
-//        this.activityName = activityName;
-//        this.instruccions = instruccions;
-//        this.repetitions = repetitions;
-//        this.uomCode = uomCode;
-//        this.quantityMin = quantityMin;
-//        this.active = active;
-//        this.startDate = startDate;
-//    }
-
-    public Long getActivityId() {
+    public int getActivityId() {
         return activityId;
     }
 
-    public void setActivityId(Long activityId) {
+    public void setActivityId(int activityId) {
         this.activityId = activityId;
     }
 
@@ -135,12 +118,12 @@ public class Activity implements Serializable {
         this.activityName = activityName;
     }
 
-    public String getInstruccions() {
-        return instruccions;
+    public String getInstructions() {
+        return instructions;
     }
 
-    public void setInstruccions(String instruccions) {
-        this.instruccions = instruccions;
+    public void setInstructions(String instruccions) {
+        this.instructions = instruccions;
     }
 
     public String getInstructionsTrainer() {
@@ -159,27 +142,27 @@ public class Activity implements Serializable {
         this.goals = goals;
     }
 
-    public Short getParticipantNumber() {
+    public short getParticipantNumber() {
         return participantNumber;
     }
 
-    public void setParticipantNumber(Short participantNumber) {
+    public void setParticipantNumber(short participantNumber) {
         this.participantNumber = participantNumber;
     }
 
-    public Short getTotalTime() {
+    public long getTotalTime() {
         return totalTime;
     }
 
-    public void setTotalTime(Short totalTime) {
+    public void setTotalTime(long totalTime) {
         this.totalTime = totalTime;
     }
 
-    public Short getWaitTime() {
+    public short getWaitTime() {
         return waitTime;
     }
 
-    public void setWaitTime(Short waitTime) {
+    public void setWaitTime(short waitTime) {
         this.waitTime = waitTime;
     }
 
@@ -207,11 +190,11 @@ public class Activity implements Serializable {
         this.quantityMin = quantityMin;
     }
 
-    public Short getQuantityMax() {
+    public short getQuantityMax() {
         return quantityMax;
     }
 
-    public void setQuantityMax(Short quantityMax) {
+    public void setQuantityMax(short quantityMax) {
         this.quantityMax = quantityMax;
     }
 
@@ -262,31 +245,5 @@ public class Activity implements Serializable {
 
     public void setTrainingActivitieCollection(Collection<TrainingActivity> trainingActivitieCollection) {
         this.trainingActivitieCollection = trainingActivitieCollection;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (activityId != null ? activityId.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Activity)) {
-            return false;
-        }
-        Activity other = (Activity) object;
-        if ((this.activityId == null && other.activityId != null) || (this.activityId != null && !this.activityId.equals(other.activityId))) {
-            return false;
-        }
-        return true;
-    }
-
-//    @Override
-//    public String toString() {
-//        return "com.xem.py.pokyabmodel.dto.Activitie[ activityId=" + activityId + " ]";
-//    }
-    
+    }    
 }

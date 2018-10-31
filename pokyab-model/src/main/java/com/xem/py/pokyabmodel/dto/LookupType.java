@@ -25,9 +25,6 @@ import org.springframework.stereotype.Component;
 @Component
 @Entity
 @Table(name = "LOOKUP_TYPES")
-//@XmlRootElement
-//@NamedQueries({
-//    @NamedQuery(name = "LookupType.findAll", query = "SELECT l FROM LookupType l")})
 public class LookupType implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -35,7 +32,7 @@ public class LookupType implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "LOOKUP_TYPE_ID")
-    private Long lookupTypeId;
+    private int lookupTypeId;
     @Basic(optional = false)
     @Column(name = "LOOKUP_TYPE")
     private String lookupType;
@@ -44,7 +41,7 @@ public class LookupType implements Serializable {
     @Column(name = "VALUE_TYPE")
     private Character valueType;
     @Column(name = "PARENT_LOOKUP_TYPE_ID")
-    private Long parentLookupTypeId;
+    private int parentLookupTypeId;
     @Basic(optional = false)
     @Column(name = "ACTIVE")
     private Character active;
@@ -64,22 +61,11 @@ public class LookupType implements Serializable {
         this.active = 'Y';
     }
 
-//    public LookupType(Long lookupTypeId) {
-//        this.lookupTypeId = lookupTypeId;
-//    }
-//
-//    public LookupType(Long lookupTypeId, String lookupType, Character active, Date startDate) {
-//        this.lookupTypeId = lookupTypeId;
-//        this.lookupType = lookupType;
-//        this.active = active;
-//        this.startDate = startDate;
-//    }
-
-    public Long getLookupTypeId() {
+    public int getLookupTypeId() {
         return lookupTypeId;
     }
 
-    public void setLookupTypeId(Long lookupTypeId) {
+    public void setLookupTypeId(int lookupTypeId) {
         this.lookupTypeId = lookupTypeId;
     }
 
@@ -107,11 +93,11 @@ public class LookupType implements Serializable {
         this.valueType = valueType;
     }
 
-    public Long getParentLookupTypeId() {
+    public int getParentLookupTypeId() {
         return parentLookupTypeId;
     }
 
-    public void setParentLookupTypeId(Long parentLookupTypeId) {
+    public void setParentLookupTypeId(int parentLookupTypeId) {
         this.parentLookupTypeId = parentLookupTypeId;
     }
 
@@ -157,29 +143,4 @@ public class LookupType implements Serializable {
         this.lookupTypeUseCollection = lookupTypeUseCollection;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (lookupTypeId != null ? lookupTypeId.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof LookupType)) {
-            return false;
-        }
-        LookupType other = (LookupType) object;
-        if ((this.lookupTypeId == null && other.lookupTypeId != null) || (this.lookupTypeId != null && !this.lookupTypeId.equals(other.lookupTypeId))) {
-            return false;
-        }
-        return true;
-    }
-
-//    @Override
-//    public String toString() {
-//        return "com.xem.py.pokyabmodel.dto.LookupType[ lookupTypeId=" + lookupTypeId + " ]";
-//    }
-    
 }

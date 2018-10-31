@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import com.xem.py.pokyabmodel.dao.MessageDAO;
+import java.util.List;
 
 /**
  *
@@ -27,9 +28,18 @@ public class MessageDAOImpl implements MessageDAO{
             sessionFactory.getCurrentSession().persist(messages);			
             return true;
         } catch (Exception ex) {
+               ex.printStackTrace();
               return false;
         }
       
+    }
+
+    @Override
+    public List<Message> getAllMessages() {
+         String query = "FROM Message";
+        return sessionFactory.getCurrentSession()
+                             .createQuery(query, Message.class)                                     
+                             .getResultList();
     }
     
 }

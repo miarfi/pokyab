@@ -21,9 +21,6 @@ import org.springframework.stereotype.Component;
 @Component
 @Entity
 @Table(name = "PAYMENT_TYPES")
-//@XmlRootElement
-//@NamedQueries({
-//    @NamedQuery(name = "PaymentType.findAll", query = "SELECT p FROM PaymentType p")})
 public class PaymentType implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -31,36 +28,27 @@ public class PaymentType implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "PAYMENT_TYPE_ID")
-    private Long paymentTypeId;
+    private int paymentTypeId;
     @Basic(optional = false)
     @Column(name = "PAYMENT_TYPE_NAME")
     private String paymentTypeName;
     @Column(name = "DESCRIPTION")
     private String description;
     @Column(name = "NOTIF_DELAY_DAYS")
-    private Short notifDelayDays;
+    private short notifDelayDays;
     @Column(name = "NOTIF_DELAY_DAYS2")
-    private Short notifDelayDays2;
+    private short notifDelayDays2;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "paymentTypeId")
     private Collection<Payment> paymentCollection;
 
     public PaymentType() {
     }
 
-//    public PaymentType(Long paymentTypeId) {
-//        this.paymentTypeId = paymentTypeId;
-//    }
-//
-//    public PaymentType(Long paymentTypeId, String paymentTypeName) {
-//        this.paymentTypeId = paymentTypeId;
-//        this.paymentTypeName = paymentTypeName;
-//    }
-
-    public Long getPaymentTypeId() {
+    public int getPaymentTypeId() {
         return paymentTypeId;
     }
 
-    public void setPaymentTypeId(Long paymentTypeId) {
+    public void setPaymentTypeId(int paymentTypeId) {
         this.paymentTypeId = paymentTypeId;
     }
 
@@ -80,19 +68,19 @@ public class PaymentType implements Serializable {
         this.description = description;
     }
 
-    public Short getNotifDelayDays() {
+    public short getNotifDelayDays() {
         return notifDelayDays;
     }
 
-    public void setNotifDelayDays(Short notifDelayDays) {
+    public void setNotifDelayDays(short notifDelayDays) {
         this.notifDelayDays = notifDelayDays;
     }
 
-    public Short getNotifDelayDays2() {
+    public short getNotifDelayDays2() {
         return notifDelayDays2;
     }
 
-    public void setNotifDelayDays2(Short notifDelayDays2) {
+    public void setNotifDelayDays2(short notifDelayDays2) {
         this.notifDelayDays2 = notifDelayDays2;
     }
 
@@ -105,29 +93,4 @@ public class PaymentType implements Serializable {
         this.paymentCollection = paymentCollection;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (paymentTypeId != null ? paymentTypeId.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof PaymentType)) {
-            return false;
-        }
-        PaymentType other = (PaymentType) object;
-        if ((this.paymentTypeId == null && other.paymentTypeId != null) || (this.paymentTypeId != null && !this.paymentTypeId.equals(other.paymentTypeId))) {
-            return false;
-        }
-        return true;
-    }
-
-//    @Override
-//    public String toString() {
-//        return "com.xem.py.pokyabmodel.dto.PaymentType[ paymentTypeId=" + paymentTypeId + " ]";
-//    }
-    
 }

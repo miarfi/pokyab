@@ -26,9 +26,6 @@ import org.springframework.stereotype.Component;
 @Component
 @Entity
 @Table(name = "MATCHS")
-//@XmlRootElement
-//@NamedQueries({
-//    @NamedQuery(name = "Match.findAll", query = "SELECT m FROM Match m")})
 public class Match implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -36,7 +33,7 @@ public class Match implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "MATCH_ID")
-    private Long matchId;
+    private int matchId;
     @Column(name = "ROUND_CODE")
     private String roundCode;
     @Column(name = "MATCH_TYPE_CODE")
@@ -47,16 +44,16 @@ public class Match implements Serializable {
     @Column(name = "MATCH_TIME")
     private String matchTime;
     @Column(name = "REFEREE_PERSON_ID")
-    private Long refereePersonId;
+    private int refereePersonId;
     @Basic(optional = false)
     @Column(name = "STATUS")
     private String status;
     @Column(name = "MATCH_LOCATION")
     private String matchLocation;
     @Column(name = "HOME_SCORE")
-    private Short homeScore;
+    private short homeScore;
     @Column(name = "AWAY_SCORE")
-    private Short awayScore;
+    private short awayScore;
     @JoinColumn(name = "LEAGUE_ID", referencedColumnName = "LEAGUE_ID")
     @ManyToOne(optional = false)
     private League leagueId;
@@ -78,20 +75,20 @@ public class Match implements Serializable {
     public Match() {
     }
 
-//    public Match(Long matchId) {
+//    public Match(int matchId) {
 //        this.matchId = matchId;
 //    }
 //
-//    public Match(Long matchId, String status) {
+//    public Match(int matchId, String status) {
 //        this.matchId = matchId;
 //        this.status = status;
 //    }
 
-    public Long getMatchId() {
+    public int getMatchId() {
         return matchId;
     }
 
-    public void setMatchId(Long matchId) {
+    public void setMatchId(int matchId) {
         this.matchId = matchId;
     }
 
@@ -127,11 +124,11 @@ public class Match implements Serializable {
         this.matchTime = matchTime;
     }
 
-    public Long getRefereePersonId() {
+    public int getRefereePersonId() {
         return refereePersonId;
     }
 
-    public void setRefereePersonId(Long refereePersonId) {
+    public void setRefereePersonId(int refereePersonId) {
         this.refereePersonId = refereePersonId;
     }
 
@@ -151,19 +148,19 @@ public class Match implements Serializable {
         this.matchLocation = matchLocation;
     }
 
-    public Short getHomeScore() {
+    public short getHomeScore() {
         return homeScore;
     }
 
-    public void setHomeScore(Short homeScore) {
+    public void setHomeScore(short homeScore) {
         this.homeScore = homeScore;
     }
 
-    public Short getAwayScore() {
+    public short getAwayScore() {
         return awayScore;
     }
 
-    public void setAwayScore(Short awayScore) {
+    public void setAwayScore(short awayScore) {
         this.awayScore = awayScore;
     }
 
@@ -214,31 +211,6 @@ public class Match implements Serializable {
 
     public void setMatchPlayerCollection(Collection<MatchPlayer> matchPlayerCollection) {
         this.matchPlayerCollection = matchPlayerCollection;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (matchId != null ? matchId.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Match)) {
-            return false;
-        }
-        Match other = (Match) object;
-        if ((this.matchId == null && other.matchId != null) || (this.matchId != null && !this.matchId.equals(other.matchId))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "com.xem.py.pokyabmodel.dto.Match[ matchId=" + matchId + " ]";
-    }
+    }   
     
 }

@@ -25,9 +25,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Entity
 @Table(name = "TEAM_PERSONS")
-//@XmlRootElement
-//@NamedQueries({
-//    @NamedQuery(name = "TeamPerson.findAll", query = "SELECT t FROM TeamPerson t")})
+
 public class TeamPerson implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -35,9 +33,9 @@ public class TeamPerson implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "TEAM_PERSON_ID")
-    private Long teamPersonId;
+    private int teamPersonId;
     @Column(name = "PERSON_ID")
-    private Long personId;
+    private int personId;
     @Column(name = "MEMBER_TYPE")
     private String memberType;
     @Basic(optional = false)
@@ -60,13 +58,13 @@ public class TeamPerson implements Serializable {
     @Column(name = "STATUS_CODE")
     private String statusCode;
     @Column(name = "AGE")
-    private Short age;
+    private short age;
     @Column(name = "HEIGHT")
-    private Short height;
+    private short height;
     @Column(name = "WEIGHT")
-    private Short weight;
+    private short weight;
     @Column(name = "PLAYER_NUMBER")
-    private Short playerNumber;
+    private short playerNumber;
     @Basic(optional = false)
     @Column(name = "ACTIVE")
     private Character active;
@@ -86,33 +84,19 @@ public class TeamPerson implements Serializable {
     public TeamPerson() {
     }
 
-//    public TeamPerson(Long teamPersonId) {
-//        this.teamPersonId = teamPersonId;
-//    }
-//
-//    public TeamPerson(Long teamPersonId, String fullName, Date birthDate, String positionCode, String statusCode, Character active, Date startDate) {
-//        this.teamPersonId = teamPersonId;
-//        this.fullName = fullName;
-//        this.birthDate = birthDate;
-//        this.positionCode = positionCode;
-//        this.statusCode = statusCode;
-//        this.active = active;
-//        this.startDate = startDate;
-//    }
-
-    public Long getTeamPersonId() {
+    public int getTeamPersonId() {
         return teamPersonId;
     }
 
-    public void setTeamPersonId(Long teamPersonId) {
+    public void setTeamPersonId(int teamPersonId) {
         this.teamPersonId = teamPersonId;
     }
 
-    public Long getPersonId() {
+    public int getPersonId() {
         return personId;
     }
 
-    public void setPersonId(Long personId) {
+    public void setPersonId(int personId) {
         this.personId = personId;
     }
 
@@ -180,35 +164,35 @@ public class TeamPerson implements Serializable {
         this.statusCode = statusCode;
     }
 
-    public Short getAge() {
+    public short getAge() {
         return age;
     }
 
-    public void setAge(Short age) {
+    public void setAge(short age) {
         this.age = age;
     }
 
-    public Short getHeight() {
+    public short getHeight() {
         return height;
     }
 
-    public void setHeight(Short height) {
+    public void setHeight(short height) {
         this.height = height;
     }
 
-    public Short getWeight() {
+    public short getWeight() {
         return weight;
     }
 
-    public void setWeight(Short weight) {
+    public void setWeight(short weight) {
         this.weight = weight;
     }
 
-    public Short getPlayerNumber() {
+    public short getPlayerNumber() {
         return playerNumber;
     }
 
-    public void setPlayerNumber(Short playerNumber) {
+    public void setPlayerNumber(short playerNumber) {
         this.playerNumber = playerNumber;
     }
 
@@ -253,29 +237,5 @@ public class TeamPerson implements Serializable {
         this.trainingPersonCollection = trainingPersonCollection;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (teamPersonId != null ? teamPersonId.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof TeamPerson)) {
-            return false;
-        }
-        TeamPerson other = (TeamPerson) object;
-        if ((this.teamPersonId == null && other.teamPersonId != null) || (this.teamPersonId != null && !this.teamPersonId.equals(other.teamPersonId))) {
-            return false;
-        }
-        return true;
-    }
-
-//    @Override
-//    public String toString() {
-//        return "com.xem.py.pokyabmodel.dto.TeamPerson[ teamPersonId=" + teamPersonId + " ]";
-//    }
     
 }

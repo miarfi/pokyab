@@ -20,9 +20,6 @@ import org.springframework.stereotype.Component;
 @Component
 @Entity
 @Table(name = "SESSIONS")
-//@XmlRootElement
-//@NamedQueries({
-//    @NamedQuery(name = "Session.findAll", query = "SELECT s FROM Session s")})
 public class Session implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -30,10 +27,10 @@ public class Session implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "SESSION_ID")
-    private Long sessionId;
+    private int sessionId;
     @Basic(optional = false)
     @Column(name = "USER_ID")
-    private long userId;
+    private int userId;
     @Basic(optional = false)
     @Column(name = "START_DATE")
     @Temporal(TemporalType.TIMESTAMP)
@@ -44,32 +41,23 @@ public class Session implements Serializable {
     private Date endDate;
 
     public Session() {
+//        this.setStartDate(new java.sql.Date(System.currentTimeMillis()));
+//        this.setEndDate(new java.sql.Date(System.currentTimeMillis()+360*1000));
     }
 
-//    public Session(Long sessionId) {
-//        this.sessionId = sessionId;
-//    }
-//
-//    public Session(Long sessionId, long userId, Date startDate, Date endDate) {
-//        this.sessionId = sessionId;
-//        this.userId = userId;
-//        this.startDate = startDate;
-//        this.endDate = endDate;
-//    }
-
-    public Long getSessionId() {
+    public int getSessionId() {
         return sessionId;
     }
 
-    public void setSessionId(Long sessionId) {
+    public void setSessionId(int sessionId) {
         this.sessionId = sessionId;
     }
 
-    public long getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
@@ -88,30 +76,5 @@ public class Session implements Serializable {
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (sessionId != null ? sessionId.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Session)) {
-            return false;
-        }
-        Session other = (Session) object;
-        if ((this.sessionId == null && other.sessionId != null) || (this.sessionId != null && !this.sessionId.equals(other.sessionId))) {
-            return false;
-        }
-        return true;
-    }
-
-//    @Override
-//    public String toString() {
-//        return "com.xem.py.pokyabmodel.dto.Session[ sessionId=" + sessionId + " ]";
-//    }
-    
+   
 }

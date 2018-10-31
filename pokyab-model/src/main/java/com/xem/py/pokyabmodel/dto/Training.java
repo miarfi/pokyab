@@ -1,6 +1,6 @@
-
 package com.xem.py.pokyabmodel.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -24,9 +24,6 @@ import org.springframework.stereotype.Component;
 @Component 
 @Entity
 @Table(name = "TRAININGS")
-//@XmlRootElement
-//@NamedQueries({
-//    @NamedQuery(name = "Training.findAll", query = "SELECT t FROM Training t")})
 public class Training implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -34,7 +31,7 @@ public class Training implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "TRAINING_ID")
-    private Long trainingId;
+    private int trainingId;
     @Basic(optional = false)
     @Column(name = "TRAINING_NAME")
     private String trainingName;
@@ -57,9 +54,9 @@ public class Training implements Serializable {
     @Column(name = "REJECTED_REASON")
     private String rejectedReason;
     @Column(name = "CREATOR_PER_ID")
-    private Long creatorPerId;
+    private int creatorPerId;
     @Column(name = "APPROVER_PER_ID")
-    private Long approverPerId;
+    private int approverPerId;
     @Basic(optional = false)
     @Column(name = "ACTIVE")
     private Character active;
@@ -70,32 +67,18 @@ public class Training implements Serializable {
     @Column(name = "END_DATE")
     @Temporal(TemporalType.TIMESTAMP)
     private Date endDate;
+    @JsonIgnore
     @OneToMany(mappedBy = "trainingId")
     private Collection<TrainingActivity> trainingActivitieCollection;
 
     public Training() {
     }
 
-//    public Training(Long trainingId) {
-//        this.trainingId = trainingId;
-//    }
-//
-//    public Training(Long trainingId, String trainingName, String goals, short weeks, short days, String statusCode, Character active, Date startDate) {
-//        this.trainingId = trainingId;
-//        this.trainingName = trainingName;
-//        this.goals = goals;
-//        this.weeks = weeks;
-//        this.days = days;
-//        this.statusCode = statusCode;
-//        this.active = active;
-//        this.startDate = startDate;
-//    }
-
-    public Long getTrainingId() {
+    public int getTrainingId() {
         return trainingId;
     }
 
-    public void setTrainingId(Long trainingId) {
+    public void setTrainingId(int trainingId) {
         this.trainingId = trainingId;
     }
 
@@ -163,19 +146,19 @@ public class Training implements Serializable {
         this.rejectedReason = rejectedReason;
     }
 
-    public Long getCreatorPerId() {
+    public int getCreatorPerId() {
         return creatorPerId;
     }
 
-    public void setCreatorPerId(Long creatorPerId) {
+    public void setCreatorPerId(int creatorPerId) {
         this.creatorPerId = creatorPerId;
     }
 
-    public Long getApproverPerId() {
+    public int getApproverPerId() {
         return approverPerId;
     }
 
-    public void setApproverPerId(Long approverPerId) {
+    public void setApproverPerId(int approverPerId) {
         this.approverPerId = approverPerId;
     }
 
@@ -211,30 +194,5 @@ public class Training implements Serializable {
     public void setTrainingActivitieCollection(Collection<TrainingActivity> trainingActivitieCollection) {
         this.trainingActivitieCollection = trainingActivitieCollection;
     }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (trainingId != null ? trainingId.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Training)) {
-            return false;
-        }
-        Training other = (Training) object;
-        if ((this.trainingId == null && other.trainingId != null) || (this.trainingId != null && !this.trainingId.equals(other.trainingId))) {
-            return false;
-        }
-        return true;
-    }
-
-//    @Override
-//    public String toString() {
-//        return "com.xem.py.pokyabmodel.dto.Training[ trainingId=" + trainingId + " ]";
-//    }
     
 }

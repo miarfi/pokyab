@@ -22,9 +22,6 @@ import org.springframework.stereotype.Component;
 @Component 
 @Entity
 @Table(name = "TRAINING_PERSONS")
-//@XmlRootElement
-//@NamedQueries({
-//    @NamedQuery(name = "TrainingPerson.findAll", query = "SELECT t FROM TrainingPerson t")})
 public class TrainingPerson implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -32,7 +29,7 @@ public class TrainingPerson implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "TRAIN_PER_ID")
-    private Long trainPerId;
+    private int trainPerId;
     @Basic(optional = false)
     @Column(name = "ACTIVITY_ID")
     private long activityId;
@@ -49,11 +46,11 @@ public class TrainingPerson implements Serializable {
     @Column(name = "END_TIME")
     private String endTime;
     @Column(name = "REAL_QUANTITY")
-    private Short realQuantity;
+    private short realQuantity;
     @Column(name = "COMMENTS")
     private String comments;
     @Column(name = "QUALIFICATION")
-    private Short qualification;
+    private short qualification;
     @JoinColumn(name = "PERSON_ID", referencedColumnName = "TEAM_PERSON_ID")
     @ManyToOne
     private TeamPerson personId;
@@ -67,23 +64,11 @@ public class TrainingPerson implements Serializable {
     public TrainingPerson() {
     }
 
-//    public TrainingPerson(Long trainPerId) {
-//        this.trainPerId = trainPerId;
-//    }
-//
-//    public TrainingPerson(Long trainPerId, long activityId, Date trainDate, String startTime, String endTime) {
-//        this.trainPerId = trainPerId;
-//        this.activityId = activityId;
-//        this.trainDate = trainDate;
-//        this.startTime = startTime;
-//        this.endTime = endTime;
-//    }
-
-    public Long getTrainPerId() {
+    public int getTrainPerId() {
         return trainPerId;
     }
 
-    public void setTrainPerId(Long trainPerId) {
+    public void setTrainPerId(int trainPerId) {
         this.trainPerId = trainPerId;
     }
 
@@ -127,11 +112,11 @@ public class TrainingPerson implements Serializable {
         this.endTime = endTime;
     }
 
-    public Short getRealQuantity() {
+    public short getRealQuantity() {
         return realQuantity;
     }
 
-    public void setRealQuantity(Short realQuantity) {
+    public void setRealQuantity(short realQuantity) {
         this.realQuantity = realQuantity;
     }
 
@@ -143,11 +128,11 @@ public class TrainingPerson implements Serializable {
         this.comments = comments;
     }
 
-    public Short getQualification() {
+    public short getQualification() {
         return qualification;
     }
 
-    public void setQualification(Short qualification) {
+    public void setQualification(short qualification) {
         this.qualification = qualification;
     }
 
@@ -175,29 +160,4 @@ public class TrainingPerson implements Serializable {
         this.trainActId = trainActId;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (trainPerId != null ? trainPerId.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof TrainingPerson)) {
-            return false;
-        }
-        TrainingPerson other = (TrainingPerson) object;
-        if ((this.trainPerId == null && other.trainPerId != null) || (this.trainPerId != null && !this.trainPerId.equals(other.trainPerId))) {
-            return false;
-        }
-        return true;
-    }
-
-//    @Override
-//    public String toString() {
-//        return "com.xem.py.pokyabmodel.dto.TrainingPerson[ trainPerId=" + trainPerId + " ]";
-//    }
-    
 }

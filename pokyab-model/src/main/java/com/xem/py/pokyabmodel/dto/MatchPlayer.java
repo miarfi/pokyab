@@ -19,9 +19,6 @@ import org.springframework.stereotype.Component;
 @Component
 @Entity
 @Table(name = "MATCH_PLAYERS")
-//@XmlRootElement
-//@NamedQueries({
-//    @NamedQuery(name = "MatchPlayer.findAll", query = "SELECT m FROM MatchPlayer m")})
 public class MatchPlayer implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -29,9 +26,9 @@ public class MatchPlayer implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "MATCH_PLAYER_ID")
-    private Long matchPlayerId;
+    private int matchPlayerId;
     @Column(name = "TEAM_PERSON_ID")
-    private Long teamPersonId;
+    private int teamPersonId;
     @Column(name = "POSITION_CODE")
     private String positionCode;
     @Column(name = "TIME_ENTER")
@@ -39,29 +36,29 @@ public class MatchPlayer implements Serializable {
     @Column(name = "TIME_OUT")
     private String timeOut;
     @Column(name = "TIME_PLAYED")
-    private Short timePlayed;
+    private short timePlayed;
     @Column(name = "SCORE1")
-    private Short score1;
+    private short score1;
     @Column(name = "SCORE2")
-    private Short score2;
+    private short score2;
     @Column(name = "SCORE3")
-    private Short score3;
+    private short score3;
     @Column(name = "SCORE4")
-    private Short score4;
+    private short score4;
     @Column(name = "SCORE5")
-    private Short score5;
+    private short score5;
     @Column(name = "AMONESTATIONS1")
-    private Short amonestations1;
+    private short amonestations1;
     @Column(name = "AMONESTATIONS2")
-    private Short amonestations2;
+    private short amonestations2;
     @Column(name = "AMONESTATIONS3")
-    private Short amonestations3;
+    private short amonestations3;
     @Column(name = "ASSISTANCES1")
-    private Short assistances1;
+    private short assistances1;
     @Column(name = "ASSISTANCES2")
-    private Short assistances2;
+    private short assistances2;
     @Column(name = "ASSISTANCES3")
-    private Short assistances3;
+    private short assistances3;
     @JoinColumn(name = "MATCH_ID", referencedColumnName = "MATCH_ID")
     @ManyToOne(optional = false)
     private Match matchId;
@@ -69,23 +66,23 @@ public class MatchPlayer implements Serializable {
     public MatchPlayer() {
     }
 
-//    public MatchPlayer(Long matchPlayerId) {
+//    public MatchPlayer(int matchPlayerId) {
 //        this.matchPlayerId = matchPlayerId;
 //    }
 
-    public Long getMatchPlayerId() {
+    public int getMatchPlayerId() {
         return matchPlayerId;
     }
 
-    public void setMatchPlayerId(Long matchPlayerId) {
+    public void setMatchPlayerId(int matchPlayerId) {
         this.matchPlayerId = matchPlayerId;
     }
 
-    public Long getTeamPersonId() {
+    public int getTeamPersonId() {
         return teamPersonId;
     }
 
-    public void setTeamPersonId(Long teamPersonId) {
+    public void setTeamPersonId(int teamPersonId) {
         this.teamPersonId = teamPersonId;
     }
 
@@ -113,99 +110,99 @@ public class MatchPlayer implements Serializable {
         this.timeOut = timeOut;
     }
 
-    public Short getTimePlayed() {
+    public short getTimePlayed() {
         return timePlayed;
     }
 
-    public void setTimePlayed(Short timePlayed) {
+    public void setTimePlayed(short timePlayed) {
         this.timePlayed = timePlayed;
     }
 
-    public Short getScore1() {
+    public short getScore1() {
         return score1;
     }
 
-    public void setScore1(Short score1) {
+    public void setScore1(short score1) {
         this.score1 = score1;
     }
 
-    public Short getScore2() {
+    public short getScore2() {
         return score2;
     }
 
-    public void setScore2(Short score2) {
+    public void setScore2(short score2) {
         this.score2 = score2;
     }
 
-    public Short getScore3() {
+    public short getScore3() {
         return score3;
     }
 
-    public void setScore3(Short score3) {
+    public void setScore3(short score3) {
         this.score3 = score3;
     }
 
-    public Short getScore4() {
+    public short getScore4() {
         return score4;
     }
 
-    public void setScore4(Short score4) {
+    public void setScore4(short score4) {
         this.score4 = score4;
     }
 
-    public Short getScore5() {
+    public short getScore5() {
         return score5;
     }
 
-    public void setScore5(Short score5) {
+    public void setScore5(short score5) {
         this.score5 = score5;
     }
 
-    public Short getAmonestations1() {
+    public short getAmonestations1() {
         return amonestations1;
     }
 
-    public void setAmonestations1(Short amonestations1) {
+    public void setAmonestations1(short amonestations1) {
         this.amonestations1 = amonestations1;
     }
 
-    public Short getAmonestations2() {
+    public short getAmonestations2() {
         return amonestations2;
     }
 
-    public void setAmonestations2(Short amonestations2) {
+    public void setAmonestations2(short amonestations2) {
         this.amonestations2 = amonestations2;
     }
 
-    public Short getAmonestations3() {
+    public short getAmonestations3() {
         return amonestations3;
     }
 
-    public void setAmonestations3(Short amonestations3) {
+    public void setAmonestations3(short amonestations3) {
         this.amonestations3 = amonestations3;
     }
 
-    public Short getAssistances1() {
+    public short getAssistances1() {
         return assistances1;
     }
 
-    public void setAssistances1(Short assistances1) {
+    public void setAssistances1(short assistances1) {
         this.assistances1 = assistances1;
     }
 
-    public Short getAssistances2() {
+    public short getAssistances2() {
         return assistances2;
     }
 
-    public void setAssistances2(Short assistances2) {
+    public void setAssistances2(short assistances2) {
         this.assistances2 = assistances2;
     }
 
-    public Short getAssistances3() {
+    public short getAssistances3() {
         return assistances3;
     }
 
-    public void setAssistances3(Short assistances3) {
+    public void setAssistances3(short assistances3) {
         this.assistances3 = assistances3;
     }
 
@@ -215,31 +212,6 @@ public class MatchPlayer implements Serializable {
 
     public void setMatchId(Match matchId) {
         this.matchId = matchId;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (matchPlayerId != null ? matchPlayerId.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof MatchPlayer)) {
-            return false;
-        }
-        MatchPlayer other = (MatchPlayer) object;
-        if ((this.matchPlayerId == null && other.matchPlayerId != null) || (this.matchPlayerId != null && !this.matchPlayerId.equals(other.matchPlayerId))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "com.xem.py.pokyabmodel.dto.MatchPlayer[ matchPlayerId=" + matchPlayerId + " ]";
-    }
+    } 
     
 }

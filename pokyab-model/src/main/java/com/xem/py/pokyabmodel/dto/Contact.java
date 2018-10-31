@@ -18,9 +18,6 @@ import org.springframework.stereotype.Component;
 @Component
 @Entity
 @Table(name = "CONTACTS")
-//@XmlRootElement
-//@NamedQueries({
-//    @NamedQuery(name = "Contact.findAll", query = "SELECT c FROM Contact c")})
 public class Contact implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -28,13 +25,13 @@ public class Contact implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "CONTACT_ID")
-    private Long contactId;
+    private int contactId;
     @Basic(optional = false)
     @Column(name = "OWNER_TABLE_NAME")
     private String ownerTableName;
     @Basic(optional = false)
     @Column(name = "OWNER_TABLE_ID")
-    private long ownerTableId;
+    private int ownerTableId;
     @Basic(optional = false)
     @Column(name = "CONTACT_TYPE")
     private String contactType;
@@ -69,11 +66,11 @@ public class Contact implements Serializable {
 //        this.primaryByType = primaryByType;
 //    }
 
-    public Long getContactId() {
+    public int getContactId() {
         return contactId;
     }
 
-    public void setContactId(Long contactId) {
+    public void setContactId(int contactId) {
         this.contactId = contactId;
     }
 
@@ -89,7 +86,7 @@ public class Contact implements Serializable {
         return ownerTableId;
     }
 
-    public void setOwnerTableId(long ownerTableId) {
+    public void setOwnerTableId(int ownerTableId) {
         this.ownerTableId = ownerTableId;
     }
 
@@ -139,31 +136,5 @@ public class Contact implements Serializable {
 
     public void setPrimaryByType(Character primaryByType) {
         this.primaryByType = primaryByType;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (contactId != null ? contactId.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Contact)) {
-            return false;
-        }
-        Contact other = (Contact) object;
-        if ((this.contactId == null && other.contactId != null) || (this.contactId != null && !this.contactId.equals(other.contactId))) {
-            return false;
-        }
-        return true;
-    }
-
-//    @Override
-//    public String toString() {
-//        return "com.xem.py.pokyabmodel.dto.Contact[ contactId=" + contactId + " ]";
-//    }
-    
+    }  
 }
