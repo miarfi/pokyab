@@ -1,4 +1,3 @@
-
 package com.xem.py.pokyabmodel.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;

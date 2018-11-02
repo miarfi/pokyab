@@ -57,6 +57,12 @@ public class TrainingActivity implements Serializable {
     private Character fridayFlag;
     @Column(name = "SATURDAY_FLAG")
     private Character saturdayFlag;
+    @Basic(optional = false)
+    @Column(name = "START_TIME")
+    private String startTime;
+    @Basic(optional = false)
+    @Column(name = "END_TIME")
+    private String endTime;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "trainActId")
     private Collection<TrainingPerson> trainingPersonCollection;
 //    @JoinColumn(name = "ACTIVITY_ID", referencedColumnName = "ACTIVITY_ID")
@@ -168,7 +174,22 @@ public class TrainingActivity implements Serializable {
     public void setSaturdayFlag(Character saturdayFlag) {
         this.saturdayFlag = saturdayFlag;
     }
+    public String getStartTime() {
+        return startTime;
+    }
 
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+    
     @XmlTransient
     public Collection<TrainingPerson> getTrainingPersonCollection() {
         return trainingPersonCollection;
