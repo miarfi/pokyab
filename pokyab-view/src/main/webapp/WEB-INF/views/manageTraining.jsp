@@ -74,7 +74,7 @@
                         </div>                                                                          
                         <div class="form-group">
                             <div class="col-md-offset-4 col-md-8">
-                                <input type="submit" name="submit" value="Save" class="btn btn-primary"/>
+                                <input type="submit" name="submit" value="<spring:message code="common.btn.save"/>" class="btn btn-primary"/>
                             </div>
                         </div>                                        
                     </sf:form>                    

@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -29,21 +30,40 @@ public class PageController {
     @Autowired
     private ActivityDAO activityDAO;
     
+    @RequestMapping(value = {"/login"})
+    public ModelAndView login(@RequestParam(name="error", required=false)String error) {
+        ModelAndView mv = new ModelAndView("login");
+        mv.addObject("title", "Login");
+        if (error != null) {
+             mv.addObject("message", "Invalido username/password");
+        }
+        return mv;
+    }
+    
     @RequestMapping(value = {"/", "/home"})
     public ModelAndView index() {
         ModelAndView mv = new ModelAndView("page");
-        mv.addObject("greeting", "Welcome to Pokyab");
+        mv.addObject("greeting", "Bienvenido a Pokyab");
         return mv;
     }
 
     @RequestMapping(value = {"/about"})
     public ModelAndView about() {
         ModelAndView mv = new ModelAndView("page");
-        mv.addObject("title", "About");
+        mv.addObject("title", "Acerca de");
         mv.addObject("userClickAbout", true);
         return mv;
     }
 
+    @RequestMapping(value = {"/access-denied"})
+    public ModelAndView accessDenied() {
+        ModelAndView mv = new ModelAndView("error");
+        mv.addObject("title", "403 - Acceso denegado");
+        mv.addObject("errorTitle", "No permitido!!!");
+        mv.addObject("errorDescription", "No esta autorizado a ver esta pagina");
+        return mv;
+    }
+    
     @RequestMapping(value = {"/contact"})
     public ModelAndView contact() {
         ModelAndView mv = new ModelAndView("page");

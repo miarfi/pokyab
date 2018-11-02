@@ -22,7 +22,7 @@
                         action="${contextRoot}/manage/trainingActivity" 
                         method="POST"
                         class="form-horizonal">
-                        <div class="form-group">
+                        <div class="form-group row">
                             <label class="control-label col-md-4" for="activityNumber">
                                 <spring:message code="trainActiv.table.activityNumber"/>
                             </label>
@@ -45,7 +45,15 @@
                             <div class="col-md-8">
                                 <sf:input type="text" id="weeks" path="weeks" class="form-control" /> 
                             </div>
-                        </div>                                              
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="weeks">
+                                <spring:message code="trainActiv.table.weeks"/>
+                            </label>
+                            <div class="col-md-8">
+                                <sf:input type="text" id="weeks" path="weeks" class="form-control" /> 
+                            </div>
+                        </div>                              
                         <div class="form-group">
                             <label class="control-label col-md-4" for="days">
                                 <spring:message code="trainActiv.table.days"/>
@@ -56,7 +64,22 @@
                                 <sf:hidden path="trainingId"/>
                             </div>
                         </div> 
-                                
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="startTime">
+                                <spring:message code="trainActiv.table.startTime"/>
+                            </label>
+                            <div class="col-md-8">
+                                <sf:input type="text" id="startTime" path="startTime" class="form-control" /> 
+                            </div>
+                        </div>   
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="endTime">
+                                <spring:message code="trainActiv.table.endTime"/>
+                            </label>
+                            <div class="col-md-8">
+                                <sf:input type="text" id="endTime" path="endTime" class="form-control" /> 
+                            </div>
+                        </div>                             
                         <div class="form-group col-md-12">
 <div class="form-check form-check-inline disabled">
   <label class="form-check-label">
@@ -98,7 +121,7 @@
                         </div>       
                         <div class="form-group">
                             <div class="col-md-offset-4 col-md-8">
-                                <input type="submit" name="submit" value="Save" class="btn btn-primary"/>
+                                <input type="submit" name="submit" value="<spring:message code="common.btn.save"/>" class="btn btn-primary"/>
                             </div>
                         </div>                                        
                     </sf:form>                    

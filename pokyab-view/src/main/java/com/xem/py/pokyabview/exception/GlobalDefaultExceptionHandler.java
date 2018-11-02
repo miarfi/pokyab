@@ -16,9 +16,9 @@ public class GlobalDefaultExceptionHandler {
 	public ModelAndView handlerNoHandlerFoundException () {
 		ModelAndView mv = new ModelAndView("error");
 		
-		mv.addObject("errorTitle", "The page is not constructed");
-		mv.addObject("errorDescription", "The page you are looking for is not constructed");
-		mv.addObject("title", "404 Error Page");
+		mv.addObject("errorTitle", "La pagina no esta construida");
+		mv.addObject("errorDescription", "La pagina que esta buscando no esta construida");
+		mv.addObject("title", "404 - No encontrado");
 	
 		return mv;
 	}
@@ -44,7 +44,7 @@ public class GlobalDefaultExceptionHandler {
 		
 		ModelAndView mv = new ModelAndView("error");
 		
-		mv.addObject("errorTitle", "Contact Your Administrator!!");
+		mv.addObject("errorTitle", "Contactar al administrador!!");
 		
 		
 		/* only for debugging your application*/

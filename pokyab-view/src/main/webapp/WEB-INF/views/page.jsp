@@ -3,7 +3,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %> 
 <%@taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
-<%--<%@ taglib prefix="st" uri="http://www.springframework.org/tags" %>--%>
 
 <spring:url var="css" value="/resources/css"/>
 <spring:url var="js" value="/resources/js"/>
@@ -19,6 +18,8 @@
         <meta http-equiv="x-ua-compatible" content="ie-edge" >    
         <meta name="description" content="">
         <meta name="author" content="">
+        <meta name="_csrf" content="${_csrf.token}">
+        <meta name="_csrf_header" content="${_csrf.headerName}">
         <title>Pokyab - ${title}</title>
         <script>
             window.menu = '${title}';
@@ -65,8 +66,7 @@
                 <!--Load trainings content-->
                 <c:if test="${userClickTrainings == true }">
                    <%@include file="trainings.jsp"%>
-                </c:if>
-}                
+                </c:if>            
                 <!--Management content-->              
                 <!--Load team content-->
                 <c:if test="${userClickTeam == true }">
