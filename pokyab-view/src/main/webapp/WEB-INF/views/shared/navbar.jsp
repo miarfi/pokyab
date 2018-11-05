@@ -44,8 +44,8 @@
                 </a>
             </li>    
             <li class="nav-item">
-                <a class="nav-link" href="${contextRoot}/manage/trainingActivity">
-                <spring:message code="menu.navbar.trainActiv"/>
+                <a class="nav-link" href="${contextRoot}/lookupTypes">
+                <spring:message code="menu.navbar.lookupTypes"/>
                 </a>
             </li>              
         </ul>

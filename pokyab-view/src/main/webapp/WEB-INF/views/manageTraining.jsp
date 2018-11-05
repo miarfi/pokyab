@@ -83,4 +83,23 @@
         </div>
     </div>
     
-
+    <c:if test="${training.trainingId > 0 }">
+    <!--Button Row-->
+    <div class="row">
+        <div class="text-right">
+            <div class="text-right">
+                <br/>										
+                <button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#myTrainActivModal">
+                    <spring:message code="training.table.btn.addTrainActiv"/>
+                </button>
+            </div>      
+        </div>
+    </div>
+                
+    <!--Training activity table row-->
+    <%@include file="trainActivities.jsp" %>
+    
+    <!--Training activity modal row-->
+    <%@include file="trainActivModal.jsp" %>
+    </c:if>
+</div>

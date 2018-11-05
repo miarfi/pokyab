@@ -174,7 +174,7 @@
     </div>
 
     
-     <!--Season Modal Row-->    
+    <!--Season Modal Row-->    
     <div class="row">
         <div class="modal fade" id="mySeasonModal" role="dialog">
             <div class="modal-dialog" role="document">
@@ -214,8 +214,7 @@
                                 <div class="col-md-8">
                                     <sf:textarea id="description" path="description" class="form-control"/> 
                                 </div>
-                            </div>  
-                            
+                            </div>                              
                                 
                             <div class="form-group">								
                                 <div class="col-offset-4 col-md-8">                                   
@@ -271,9 +270,7 @@
                                     <sf:input path="genderCode" id="genderCode" type="text" class="form-control"/>
                                 </div>
                             </div>   
-
-
-                                
+                              
                             <div class="form-group">								
                                 <div class="col-offset-4 col-md-8">
                                     <sf:hidden path="maritalStatusCode" value="SINGLE"/>

@@ -80,9 +80,9 @@
                 <c:if test="${userClickActivity == true }">
                    <%@include file="manageActivity.jsp"%>
                 </c:if>                
-                <!--Load training_activity content-->
-                <c:if test="${userClickTrainActivity == true }">
-                   <%@include file="mngTrainingActivity.jsp"%>
+                <!--Load lookup_types content-->
+                <c:if test="${userClickLookupTypes == true }">
+                   <%@include file="lookupTypes.jsp"%>
                 </c:if> 
             </div>
                 

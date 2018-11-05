@@ -80,7 +80,7 @@ public class PageController {
         mv.addObject("title", "Players");
         mv.addObject("userClickPlayers", true);
         //ToDo Crear metodo getActivePlayers
-        mv.addObject("persons", personDAO.getActivePersons());
+//        mv.addObject("persons", personDAO.getActivePersons());
         return mv;
     }
     
@@ -89,7 +89,7 @@ public class PageController {
         ModelAndView mv = new ModelAndView("page");
         mv.addObject("title", "Teams");
         mv.addObject("userClickTeams", true);
-        mv.addObject("teams", teamDAO.getAllTeams());
+//        mv.addObject("teams", teamDAO.getAllTeams());
         return mv;
     }
     
@@ -98,7 +98,7 @@ public class PageController {
         ModelAndView mv = new ModelAndView("page");
         mv.addObject("title", "Activities");
         mv.addObject("userClickActivities", true);
-        mv.addObject("activities", activityDAO.getAllActivities());
+//        mv.addObject("activities", activityDAO.getAllActivities());
         return mv;
     }    
 
@@ -107,7 +107,16 @@ public class PageController {
         ModelAndView mv = new ModelAndView("page");
         mv.addObject("title", "Trainings");
         mv.addObject("userClickTrainings", true);
-        mv.addObject("trainings", trainingDAO.getAllTrainings());
+//        mv.addObject("trainings", trainingDAO.getAllTrainings());
+        return mv;
+    }  
+    
+    @RequestMapping(value = {"/lookupTypes"})
+    public ModelAndView showAllLookuptypes() {
+        ModelAndView mv = new ModelAndView("page");
+        mv.addObject("title", "Lookup Types");
+        mv.addObject("userClickLookupTypes", true);
+//        mv.addObject("l", trainingDAO.getAllTrainings());
         return mv;
     }     
 }

@@ -20,6 +20,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -50,12 +51,8 @@ public class ManagementController {
     @Autowired
     private TrainingActivityDAO trainingActivityDAO; 
     
-    //Form Databind
-//    @ModelAttribute("team")
-//    public Team getTeam() {
-//        return new Team();
-//    }
-
+    
+    //Bean Modal
     @ModelAttribute("person")
     public Person getPerson() {
         return new Person();
@@ -70,6 +67,7 @@ public class ManagementController {
     public Season getSeason() {
         return new Season();
     }
+
     
     //Form Lists
     @ModelAttribute("trainers")
@@ -87,6 +85,10 @@ public class ManagementController {
         return seasonDAO.getActiveSeasons();
     }
 
+    @ModelAttribute("activities")
+    public List<Activity> getActivities() {
+        return activityDAO.getActiveActivities();
+    }
 
      //URl Mappings - POST
     @RequestMapping(value = {"/team"}, method = RequestMethod.POST)
@@ -129,7 +131,9 @@ public class ManagementController {
         //ToDo Quitar este valor
         training.setStartDate(new java.sql.Date(System.currentTimeMillis()));        
         trainingDAO.Add(training);
-        return "redirect:/home";
+//        training = trainingDAO.getTrainingByName(training.getTrainingName());
+        return "redirect:/trainings";
+//        return "/manage/"+training.getTrainingId()+"/training";
     }
          
     @RequestMapping(value="/activity", method=RequestMethod.POST)
@@ -172,7 +176,13 @@ public class ManagementController {
         //ToDo definir en constructor
         nTraining.setActive('Y');
         nTraining.setStatusCode("CREADO");
-        mv.addObject("training", nTraining);                
+        mv.addObject("training", nTraining);
+         //Init new TrainingActivity
+//        TrainingActivity nTrainingActivity = new TrainingActivity();
+//        ToDo definir en constructor
+//        nTrainingActivity.setActivityId(1);
+//        nTrainingActivity.setTrainingId(1);
+//        mv.addObject("trainingActivity", nTrainingActivity); 
         return mv;
     }
     
@@ -202,4 +212,23 @@ public class ManagementController {
         mv.addObject("trainingActivity", nTrainingActivity);                
         return mv;
     }  
+    
+    //URL Mapping - Manage by id
+    @RequestMapping(value = {"/{id}/training"})
+    public ModelAndView showManageTrainingEdit(@PathVariable int id) {
+        ModelAndView mv = new ModelAndView("page");
+        mv.addObject("title", "Training");
+        mv.addObject("userClickTraining", true);        
+        //Init new Training
+        Training training = trainingDAO.getTrainingById(id);
+        mv.addObject("training", training);  
+         //Init new TrainingActivity
+        TrainingActivity nTrainingActivity = new TrainingActivity();
+        //ToDo definir en constructor
+        //nTrainingActivity.setActivityId(1);
+        nTrainingActivity.setTrainingId(id);
+        mv.addObject("trainingActivity", nTrainingActivity); 
+        return mv;
+    }
+    
 }

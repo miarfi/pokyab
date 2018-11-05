@@ -43,7 +43,17 @@ $(function(){
             },
             columns: [
                 {
-                    data: 'personId'
+                    data: 'personId',
+                    bSortable: false,
+                    mRender: function (data, type, row) {
+                        var str = '';
+                        str += '<a href="'
+                                + window.contextRoot
+                                + '/manage/'
+                                + data
+                                + '/person" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a> &#160;';
+                        return str;
+                    }
                 },
                 {
                     data: 'firstName'
@@ -81,7 +91,17 @@ $(function(){
             },
             columns: [
                 {
-                    data: 'activityId'
+                    data: 'activityId',
+                    bSortable: false,
+                    mRender: function (data, type, row) {
+                        var str = '';
+                        str += '<a href="'
+                                + window.contextRoot
+                                + '/manage/'
+                                + data
+                                + '/activity" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a> &#160;';
+                        return str;
+                    }
                 },
                 {
                     data: 'activityName'
@@ -112,7 +132,7 @@ $(function(){
     }
 
 
-    //trainings.jsp table
+   //trainings.jsp table
     $table = $('#trainingsListTable');
 
     if ($table.length) {
@@ -131,7 +151,17 @@ $(function(){
             },
             columns: [
                 {
-                    data: 'trainingId'
+                    data: 'trainingId',
+                    bSortable: false,
+                    mRender: function (data, type, row) {
+                        var str = '';
+                        str += '<a href="'
+                                + window.contextRoot
+                                + '/manage/'
+                                + data
+                                + '/training" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a> &#160;';
+                        return str;
+                    }
                 },
                 {
                     data: 'trainingName'
@@ -163,4 +193,108 @@ $(function(){
     }
 
 
+    //trainActivities.jsp table
+    $table = $('#trainActivListTable');
+
+    if ($table.length) {
+
+        var jsonUrl = '';
+        jsonUrl = window.contextRoot + '/json/data/admin/all/trainActivities';
+
+        console.log('Inside js trainActivListTable');
+        console.log('jsonUrl: ' + jsonUrl);
+        $table.DataTable({
+            lengthMenu: [[3, 5, 10, -1], ['3 records', '5 records', '10 records', 'All']],
+            pageLength: 5,
+            ajax: {
+                url: jsonUrl,
+                dataSrc: ''
+            },
+            columns: [
+                {
+                    data: 'trainActId'
+                },
+                {
+                    data: 'activityNumber'
+                },
+                {
+                    data: 'weeks'
+                },
+                {
+                    data: 'days'
+                },
+                {
+                    data: 'startTime'
+                },                
+                {
+                    data: 'endTime'
+                },
+                {
+                    data: 'mondayFlag'
+                },                
+                {
+                    data: 'thursdayFlag'
+                },                
+                {
+                    data: 'wednesdayFlag'
+                },                
+                {
+                    data: 'tuesdayFlag'
+                },                
+                {
+                    data: 'fridayFlag'
+                },                
+                {
+                    data: 'saturdayFlag'
+                }
+            ]
+        })
+    }
+
+    //lookupTypes.jsp table
+    $table = $('#lookupTypesListTable');
+
+    if ($table.length) {
+
+        var jsonUrl = '';
+        jsonUrl = window.contextRoot + '/json/data/admin/all/lookupTypes';
+
+        console.log('Inside js lookupTypesListTable');
+        console.log('jsonUrl: ' + jsonUrl);
+        $table.DataTable({
+            lengthMenu: [[3, 5, 10, -1], ['3 records', '5 records', '10 records', 'All']],
+            pageLength: 5,
+            ajax: {
+                url: jsonUrl,
+                dataSrc: ''
+            },
+            columns: [
+                {
+                    data: 'lookupTypeId',
+                    bSortable: false,
+                    mRender: function (data, type, row) {
+                        var str = '';
+                        str += '<a href="'
+                                + window.contextRoot
+                                + '/manage/'
+                                + data
+                                + '/lookupType" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a> &#160;';
+                        return str;
+                    }
+                },
+                {
+                    data: 'lookupType'
+                },
+                {
+                    data: 'description'
+                },
+                {
+                    data: 'systemFlag'
+                },
+                {
+                    data: 'active'
+                }
+            ]
+        })
+    }
 });
