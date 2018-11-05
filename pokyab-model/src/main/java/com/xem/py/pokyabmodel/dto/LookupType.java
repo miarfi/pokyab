@@ -45,6 +45,8 @@ public class LookupType implements Serializable {
     @Basic(optional = false)
     @Column(name = "ACTIVE")
     private Character active;
+    @Column(name = "SYSTEM_FLAG")
+    private Character systemFlag;
     @Basic(optional = false)
     @Column(name = "START_DATE")
     @Temporal(TemporalType.TIMESTAMP)
@@ -107,6 +109,14 @@ public class LookupType implements Serializable {
 
     public void setActive(Character active) {
         this.active = active;
+    }
+
+    public Character getSystemFlag() {
+        return systemFlag;
+    }
+
+    public void setSystemFlag(Character systemFlag) {
+        this.systemFlag = systemFlag;
     }
 
     public Date getStartDate() {

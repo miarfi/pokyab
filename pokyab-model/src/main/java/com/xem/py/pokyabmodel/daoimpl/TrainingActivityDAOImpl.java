@@ -42,7 +42,7 @@ public class TrainingActivityDAOImpl implements TrainingActivityDAO{
     }
 
     @Override
-    public List<TrainingActivity> getAllTrainActivitiess() {
+    public List<TrainingActivity> getAllTrainActivities() {
         String query = "FROM TrainingActivity";
         return sessionFactory.getCurrentSession()
                 .createQuery(query, TrainingActivity.class)

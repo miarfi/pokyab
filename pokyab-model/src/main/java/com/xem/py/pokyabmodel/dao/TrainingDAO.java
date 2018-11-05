@@ -12,4 +12,6 @@ public interface TrainingDAO {
     
     List<Training> getActiveTrainings();
     List<Training> getAllTrainings(); 
+
+    public Training getTrainingById(int id);
 }

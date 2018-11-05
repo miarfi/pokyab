@@ -46,5 +46,14 @@ public class TrainingDAOImpl implements TrainingDAO{
                 .createQuery(query, Training.class)
                 .getResultList();
     }
+
+    @Override
+    public Training getTrainingById(int id) {
+        String query = "FROM Training WHERE trainingId = :id";
+        return sessionFactory.getCurrentSession()
+                .createQuery(query, Training.class)
+                .setParameter("id", id)
+                .getSingleResult();
+    }
     
 }

@@ -11,5 +11,5 @@ public interface LookupValueDAO {
     boolean Add(LookupValue lookupValue);
 //    boolean update(LookupValue lookupValue);
 //    boolean delete(LookupValue lookupValue);
-    List<LookupValue> getLkpValuesByLkpType(String lookupValue);
+    List<LookupValue> getLkpValuesByTypeId(int lookupTypeId);
 }

@@ -40,6 +40,8 @@ public class HibernateConfig {
 	private static final String DATABASE_PASSWORD = "mariadb";*/
     
         //Mariadb
+//        SET GLOBAL time_zone = '+00:00';
+//        SELECT @@global.time_zone, @@session.time_zone
 	private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/test";
 //	private static final String DATABASE_DRIVER = "com.mysql.jdbc.Driver";	
         private static final String DATABASE_DRIVER = "com.mysql.cj.jdbc.Driver";	        

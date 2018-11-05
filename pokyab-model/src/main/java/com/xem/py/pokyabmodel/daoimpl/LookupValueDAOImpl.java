@@ -32,8 +32,15 @@ public class LookupValueDAOImpl implements LookupValueDAO{
         return true;
     }
 
-    public List<LookupValue> getLkpValuesByLkpType(String lookupType) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    @Override
+    public List<LookupValue> getLkpValuesByTypeId(int lookupTypeId) {
+        String query = "FROM LookupValue WHERE lookupTypeId = :lookupTypeId";
+        return sessionFactory.getCurrentSession()
+                .createQuery(query, LookupValue.class)
+                .setParameter("lookupTypeId", lookupTypeId)
+                .getResultList();
     }
+
+
     
 }

@@ -31,7 +31,8 @@ public class LookupValue implements Serializable {
 //    @JoinColumn(name = "LOOKUP_TYPE_ID", referencedColumnName = "LOOKUP_TYPE_ID")
 //    @ManyToOne(optional = false)
 //    private LookupType lookupTypeId;
-//    private int lookupTypeId;
+    @Column(name = "LOOKUP_TYPE_ID")
+    private int lookupTypeId;
     @Basic(optional = false)
     @Column(name = "LOOKUP_CODE", nullable = false, length = 30)
     private String lookupCode;
@@ -109,7 +110,6 @@ public class LookupValue implements Serializable {
     public void setLookupValueId(int lookupValueId) {
         this.lookupValueId = lookupValueId;
     }
-
 //    public LookupType getLookupTypeId() {
 //        return lookupTypeId;
 //    }
@@ -117,5 +117,12 @@ public class LookupValue implements Serializable {
 //    public void setLookupTypeId(LookupType lookupTypeId) {
 //        this.lookupTypeId = lookupTypeId;
 //    }
-    
+    public int getLookupTypeId() {
+        return lookupTypeId;
+    }
+
+    public void setLookupTypeId(int lookupTypeId) {
+        this.lookupTypeId = lookupTypeId;
+    }
+  
 }
