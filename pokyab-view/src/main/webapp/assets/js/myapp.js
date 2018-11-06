@@ -1,23 +1,23 @@
-$(function(){	
-	
-	
+$(function(){
+
+
 /*-------------------------------------------------------------*/
 //Header menu
 //	switch(menu){
-//	
-//	case 'About': 
+//
+//	case 'About':
 //		$('#about').addClass('active');
 //		break;
-//	case 'Contact': 
+//	case 'Contact':
 //		$('#contact').addClass('active');
 //		break;
-////	case 'All Products': 
+////	case 'All Products':
 ////		$('#listProducts').addClass('active');
-////		break;		
-////	case 'Manage Products': 
+////		break;
+////	case 'Manage Products':
 ////		$('#manageProducts').addClass('active');
-////		break;	
-//	default: 
+////		break;
+//	default:
 //		$('#home').addClass('active');
 //		$('#a_'+menu).addClass('active');
 //	break;
@@ -55,18 +55,60 @@ $(function(){
                         return str;
                     }
                 },
+                {   data: 'firstName'   },
+                {   data: 'lastName'    },
+                {   data: 'dateOfBirth'    },
+                {   data: 'genderCode'    },
+                {   data: 'personType'  },
+                {   data: 'startDate'    },
+                {   data: 'endDate'    },
+                {   data: 'active'    }
+            ]
+        })
+    }
+
+    //teams.jsp table
+    $table = $('#teamsListTable');
+
+    if ($table.length) {
+
+        var jsonUrl = '';
+        jsonUrl = window.contextRoot + '/json/data/admin/all/teams';
+
+        console.log('Inside js teamsListTable');
+        console.log('jsonUrl: ' + jsonUrl);
+        $table.DataTable({
+            lengthMenu: [[3, 5, 10, -1], ['3 records', '5 records', '10 records', 'All']],
+            pageLength: 5,
+            ajax: {
+                url: jsonUrl,
+                dataSrc: ''
+            },
+            columns: [
                 {
-                    data: 'firstName'
+                    data: 'teamId',
+                    bSortable: false,
+                    mRender: function (data, type, row) {
+                        var str = '';
+                        str += '<a href="'
+                                + window.contextRoot
+                                + '/manage/'
+                                + data
+                                + '/team" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a> &#160;';
+                        return str;
+                    }
                 },
-                {
-                    data: 'lastName'
-                },
-                {
-                    data: 'personType'
-                },
-                {
-                    data: 'emailAddress'
-                }
+                {   data: 'teamName'    },
+                {   data: 'groupNumber' },
+                {   data: 'seasonId'    },
+                {   data: 'leagueId'    },
+                {   data: 'trainerPerId'    },
+                {   data: 'matchesPlayed'  },
+                {   data: 'wins'  },
+                {   data: 'draws'  },
+                {   data: 'losts'  },      
+                {   data: 'points'  },
+                {   data: 'active'  }
             ]
         })
     }
@@ -103,30 +145,14 @@ $(function(){
                         return str;
                     }
                 },
-                {
-                    data: 'activityName'
-                },
-                {
-                    data: 'activityType'
-                },
-                {
-                    data: 'metricType'
-                },
-                {
-                    data: 'totalTime'
-                },
-                {
-                    data: 'uomCode'
-                },
-                {
-                    data: 'quantityMin'
-                },
-                {
-                    data: 'quantityMax'
-                },
-                {
-                    data: 'active'
-                }
+                {   data: 'activityName'   },
+                {   data: 'activityType'    },
+                {   data: 'metricType'  },
+                {   data: 'totalTime'   },
+                {   data: 'uomCode' },
+                {   data: 'quantityMin' },
+                {   data: 'quantityMax' },
+                {   data: 'active'  }
             ]
         })
     }
@@ -163,31 +189,14 @@ $(function(){
                         return str;
                     }
                 },
-                {
-                    data: 'trainingName'
-                },
-                {
-                    data: 'categoryCode'
-                },
-                {
-                    data: 'weeks'
-                },
-                {
-                    data: 'days'
-                },
-                {
-                    data: 'creatorPerId'
-                },
-                {
-                    data: 'statusCode'
-                },                
-                {
-                    data: 'approverPerId'
-                }
-                ,
-                {
-                    data: 'active'
-                }
+                {   data: 'trainingName'    },
+                {   data: 'categoryCode'    },
+                {   data: 'weeks'   },
+                {   data: 'days'    },
+                {   data: 'creatorPerId'    },
+                {   data: 'statusCode'  },
+                {   data: 'approverPerId'   },
+                {   data: 'active'  }
             ]
         })
     }
@@ -211,42 +220,20 @@ $(function(){
                 dataSrc: ''
             },
             columns: [
-                {
+                {   
                     data: 'trainActId'
                 },
-                {
-                    data: 'activityNumber'
-                },
-                {
-                    data: 'weeks'
-                },
-                {
-                    data: 'days'
-                },
-                {
-                    data: 'startTime'
-                },                
-                {
-                    data: 'endTime'
-                },
-                {
-                    data: 'mondayFlag'
-                },                
-                {
-                    data: 'thursdayFlag'
-                },                
-                {
-                    data: 'wednesdayFlag'
-                },                
-                {
-                    data: 'tuesdayFlag'
-                },                
-                {
-                    data: 'fridayFlag'
-                },                
-                {
-                    data: 'saturdayFlag'
-                }
+                {   data: 'activityNumber'},
+                {   data: 'weeks'},
+                {   data: 'days'},
+                {   data: 'startTime'},
+                {   data: 'endTime'},
+                {   data: 'mondayFlag'},
+                {   data: 'thursdayFlag'},
+                {   data: 'wednesdayFlag'},
+                {   data: 'tuesdayFlag'},
+                {   data: 'fridayFlag'},
+                {   data: 'saturdayFlag'}
             ]
         })
     }
@@ -282,18 +269,12 @@ $(function(){
                         return str;
                     }
                 },
-                {
-                    data: 'lookupType'
-                },
-                {
-                    data: 'description'
-                },
-                {
-                    data: 'systemFlag'
-                },
-                {
-                    data: 'active'
-                }
+                {   data: 'lookupType'  },
+                {   data: 'description' },
+                {   data: 'systemFlag'  },
+                {   data: 'startDate'  },
+                {   data: 'endDate'  },
+                {   data: 'active'  }
             ]
         })
     }

@@ -2,6 +2,8 @@ package com.xem.py.pokyabview.controller;
 
 import com.xem.py.pokyabmodel.dao.ActivityDAO;
 import com.xem.py.pokyabmodel.dao.LeagueDAO;
+import com.xem.py.pokyabmodel.dao.LookupTypeDAO;
+import com.xem.py.pokyabmodel.dao.LookupValueDAO;
 import com.xem.py.pokyabmodel.dao.PersonDAO;
 import com.xem.py.pokyabmodel.dao.SeasonDAO;
 import com.xem.py.pokyabmodel.dao.TeamDAO;
@@ -9,6 +11,8 @@ import com.xem.py.pokyabmodel.dao.TrainingActivityDAO;
 import com.xem.py.pokyabmodel.dao.TrainingDAO;
 import com.xem.py.pokyabmodel.dto.Activity;
 import com.xem.py.pokyabmodel.dto.League;
+import com.xem.py.pokyabmodel.dto.LookupType;
+import com.xem.py.pokyabmodel.dto.LookupValue;
 import com.xem.py.pokyabmodel.dto.Person;
 import com.xem.py.pokyabmodel.dto.Season;
 import com.xem.py.pokyabmodel.dto.Team;
@@ -50,9 +54,12 @@ public class ManagementController {
     private ActivityDAO activityDAO;      
     @Autowired
     private TrainingActivityDAO trainingActivityDAO; 
+    @Autowired
+    private LookupTypeDAO lookupTypeDAO;  
+    @Autowired
+    private LookupValueDAO lookupValueDAO;     
     
-    
-    //Bean Modal
+    //Beans Modal
     @ModelAttribute("person")
     public Person getPerson() {
         return new Person();
@@ -66,9 +73,15 @@ public class ManagementController {
     @ModelAttribute("season")
     public Season getSeason() {
         return new Season();
-    }
+    }    
 
+//La modal esta en pagController    
+//    @ModelAttribute("lookupType")
+//    public LookupType getLookupType() {
+//        return new LookupType();
+//    }    
     
+
     //Form Lists
     @ModelAttribute("trainers")
     public List<Person> getTrainers() {
@@ -91,6 +104,16 @@ public class ManagementController {
     }
 
      //URl Mappings - POST
+
+    @RequestMapping(value = {"/lookupType"}, method = RequestMethod.POST)
+    public String handleLookupTypeSub(@ModelAttribute LookupType lookupType) {
+        lookupType.setStartDate(new java.sql.Date(System.currentTimeMillis()));
+        logger.info("En handleLookupTypeSub");
+         
+        lookupTypeDAO.Add(lookupType);
+        return "redirect:/home";
+    }    
+
     @RequestMapping(value = {"/team"}, method = RequestMethod.POST)
     public String handleTeamSubmission(@ModelAttribute Team team) {
         team.setStartDate(new java.sql.Date(System.currentTimeMillis()));
@@ -99,11 +122,20 @@ public class ManagementController {
         teamDAO.Add(team);
         return "redirect:/home";
     }
-        
+    @RequestMapping(value = {"/lookupValue"}, method = RequestMethod.POST)
+    public String handleLookupTypeSubmission(@ModelAttribute LookupValue lookupValue) {
+        lookupValue.setStartDate(new java.sql.Date(System.currentTimeMillis()));
+        logger.info("En handleLookupTypeSubmission");
+//        logger.info("leagueId"+lookupType);     
+        lookupValueDAO.Add(lookupValue);
+        return "redirect:/home";
+    }
+    
     @RequestMapping(value="/person", method=RequestMethod.POST)
     public String handlePersonSubmission(@ModelAttribute Person person) {
         //ToDo Quitar este valor
         person.setDateOfBirth(new java.sql.Date(System.currentTimeMillis()));
+        person.setStartDate(new java.sql.Date(System.currentTimeMillis()));
         personDAO.Add(person);
         return "redirect:/home";
     }
@@ -166,6 +198,22 @@ public class ManagementController {
         return mv;
     }
     
+    @RequestMapping(value={"/person"})
+    public ModelAndView showManagePerson() {
+        //ToDo Quitar este valor
+//        person.setDateOfBirth(new java.sql.Date(System.currentTimeMillis()));
+//        personDAO.Add(person);
+//        return "redirect:/home";
+        ModelAndView mv = new ModelAndView("page");
+        mv.addObject("title", "Player");
+        mv.addObject("userClickPerson", true);        
+        //Init new Person
+        Person nPerson = new Person();
+        nPerson.setActive('Y');
+        mv.addObject("person", nPerson);                
+        return mv;
+    }
+    
     @RequestMapping(value = {"/training"})
     public ModelAndView showManageTraining() {
         ModelAndView mv = new ModelAndView("page");
@@ -214,18 +262,31 @@ public class ManagementController {
     }  
     
     //URL Mapping - Manage by id
+    @RequestMapping(value = {"/{id}/lookupType"})
+    public ModelAndView showManageLookupTypeEdit(@PathVariable int id) {
+        ModelAndView mv = new ModelAndView("page");
+        mv.addObject("title", "Lookup Type");
+        mv.addObject("userClickManageLookupType", true);        
+        //Get LookupType object
+        LookupType lookupType = lookupTypeDAO.getLookupTypeById(id);
+        mv.addObject("lookupType", lookupType);  
+        //Init new lookupValue
+        LookupValue nLookupValue = new LookupValue();        
+        nLookupValue.setLookupTypeId(id);
+        mv.addObject("lookupValue", nLookupValue); 
+        return mv;
+    }
+    
     @RequestMapping(value = {"/{id}/training"})
     public ModelAndView showManageTrainingEdit(@PathVariable int id) {
         ModelAndView mv = new ModelAndView("page");
         mv.addObject("title", "Training");
         mv.addObject("userClickTraining", true);        
-        //Init new Training
+        //Get Training object
         Training training = trainingDAO.getTrainingById(id);
         mv.addObject("training", training);  
          //Init new TrainingActivity
         TrainingActivity nTrainingActivity = new TrainingActivity();
-        //ToDo definir en constructor
-        //nTrainingActivity.setActivityId(1);
         nTrainingActivity.setTrainingId(id);
         mv.addObject("trainingActivity", nTrainingActivity); 
         return mv;

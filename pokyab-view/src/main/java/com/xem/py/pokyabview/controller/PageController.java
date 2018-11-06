@@ -4,12 +4,14 @@ import com.xem.py.pokyabmodel.dao.ActivityDAO;
 import com.xem.py.pokyabmodel.dao.PersonDAO;
 import com.xem.py.pokyabmodel.dao.TeamDAO;
 import com.xem.py.pokyabmodel.dao.TrainingDAO;
+import com.xem.py.pokyabmodel.dto.LookupType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -29,6 +31,12 @@ public class PageController {
     private TrainingDAO trainingDAO;
     @Autowired
     private ActivityDAO activityDAO;
+    
+    //Beans Modal
+    @ModelAttribute("lookupType")
+    public LookupType getLookupType() {
+        return new LookupType();
+    }    
     
     @RequestMapping(value = {"/login"})
     public ModelAndView login(@RequestParam(name="error", required=false)String error) {

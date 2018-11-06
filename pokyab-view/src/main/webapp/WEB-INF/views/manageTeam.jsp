@@ -1,11 +1,9 @@
-<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %> 
-<%@taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 
 <div class="container">
     
     <!--Breadcrumb row-->
     <div class="row">            
-            Current Locale : ${pageContext.response.locale}            
+<!--            Current Locale : ${pageContext.response.locale}            -->
             <hr/>
     </div>
  

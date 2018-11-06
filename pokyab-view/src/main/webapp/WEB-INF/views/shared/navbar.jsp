@@ -28,7 +28,7 @@
                 </a>
             </li>  
             
-            <li class="nav-item">
+<!--            <li class="nav-item">
                 <a class="nav-link" href="${contextRoot}/manage/team">
                 <spring:message code="menu.navbar.team"/>
                 </a>
@@ -42,7 +42,7 @@
                 <a class="nav-link" href="${contextRoot}/manage/activity">
                 <spring:message code="menu.navbar.activity"/>
                 </a>
-            </li>    
+            </li>    -->
             <li class="nav-item">
                 <a class="nav-link" href="${contextRoot}/lookupTypes">
                 <spring:message code="menu.navbar.lookupTypes"/>

@@ -27,8 +27,8 @@
                         </div>	
                     </div>
 
-                    <div class="form-group row">
-                        <label class="control-label col-md-4" for="activityNumber">
+                    <div class="form-group">
+                        <label class="control-label col-md-8" for="activityNumber">
                             <spring:message code="trainActiv.table.activityNumber"/>
                         </label>
                         <div class="col-md-8">

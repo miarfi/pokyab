@@ -1,4 +1,5 @@
-<%@taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
+<!--Borrar jsp probable ya no se utilizara-->
+
 
 <div class="container">
     

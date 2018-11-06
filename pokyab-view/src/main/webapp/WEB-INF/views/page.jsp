@@ -4,6 +4,7 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %> 
 <%@taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 
+
 <spring:url var="css" value="/resources/css"/>
 <spring:url var="js" value="/resources/js"/>
 <spring:url var="images" value="/resources/images"/>
@@ -66,8 +67,17 @@
                 <!--Load trainings content-->
                 <c:if test="${userClickTrainings == true }">
                    <%@include file="trainings.jsp"%>
-                </c:if>            
-                <!--Management content-->              
+                </c:if>           
+                
+                
+                <!--Management content-->     
+                <!--Load person content-->
+                <c:if test="${userClickPerson == true }">
+                   <%@include file="managePerson.jsp"%>
+                </c:if>         
+                <c:if test="${userClickManageLookupType == true }">
+                   <%@include file="manageLookupType.jsp"%>
+                </c:if>                   
                 <!--Load team content-->
                 <c:if test="${userClickTeam == true }">
                    <%@include file="manageTeam.jsp"%>

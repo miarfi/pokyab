@@ -4,12 +4,14 @@ import com.xem.py.pokyabmodel.dao.ActivityDAO;
 import com.xem.py.pokyabmodel.dao.LookupTypeDAO;
 import com.xem.py.pokyabmodel.dao.MessageDAO;
 import com.xem.py.pokyabmodel.dao.PersonDAO;
+import com.xem.py.pokyabmodel.dao.TeamDAO;
 import com.xem.py.pokyabmodel.dao.TrainingActivityDAO;
 import com.xem.py.pokyabmodel.dao.TrainingDAO;
 import com.xem.py.pokyabmodel.dto.Activity;
 import com.xem.py.pokyabmodel.dto.LookupType;
 import com.xem.py.pokyabmodel.dto.Message;
 import com.xem.py.pokyabmodel.dto.Person;
+import com.xem.py.pokyabmodel.dto.Team;
 import com.xem.py.pokyabmodel.dto.Training;
 import com.xem.py.pokyabmodel.dto.TrainingActivity;
 import java.util.List;
@@ -35,6 +37,8 @@ public class JsonDataController {
         @Autowired
         private LookupTypeDAO lookupTypeDAO;
 	@Autowired
+        private TeamDAO teamDAO;
+        @Autowired
         private PersonDAO personDAO;
         @Autowired
 	private ActivityDAO activityDAO;
@@ -65,6 +69,14 @@ public class JsonDataController {
             logger.info("info.Inside getAdminPersons method");
             logger.debug("debug.Inside getAdminPersons method");
             return personDAO.getAllPersons();
+	}
+
+        @RequestMapping("/admin/all/teams")
+	@ResponseBody
+	public List<Team> getAdminTeams(){
+            logger.info("info.Inside getAdminTeams method");
+            logger.debug("debug.Inside getAdminTeams method");
+            return teamDAO.getAllTeams();
 	}
         
         @RequestMapping("/admin/all/trainings")

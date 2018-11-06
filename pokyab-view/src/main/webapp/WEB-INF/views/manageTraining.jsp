@@ -1,4 +1,3 @@
-<%@taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 
 <div class="container">
     
@@ -26,15 +25,15 @@
                             <label class="control-label col-md-4" for="trainingName">
                                 <spring:message code="training.table.trainingName"/>
                             </label>
-                            <div class="col-md-8">
-                                <sf:input type="text" id="trainingName" path="trainingName" class="form-control"/> 
+                            <div class="col-md-8 disabled">
+                                <sf:input type="text " id="trainingName" path="trainingName" class="form-control"/> 
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="description" class="control-label col-md-4">
                                 <spring:message code="training.table.description"/>
                             </label>
-                            <div class="col-md-8">
+                            <div class="col-md-8 disabled">
                                 <sf:textarea id="description" path="description" class="form-control"/> 
                             </div>
                         </div>                              
@@ -42,7 +41,7 @@
                             <label class="control-label col-md-4" for="categoryCode">
                                 <spring:message code="training.table.categoryCode"/>
                             </label>
-                            <div class="col-md-8">
+                            <div class="col-md-8 disabled">
                                 <sf:input type="text" id="categoryCode" path="categoryCode" class="form-control"/> 
                             </div>
                         </div>
@@ -50,7 +49,7 @@
                             <label for="goals" class="control-label col-md-4">
                                 <spring:message code="training.table.goals"/>
                             </label>
-                            <div class="col-md-8">
+                            <div class="col-md-8 disabled">
                                 <sf:textarea id="goals" path="goals" class="form-control"/> 
                             </div>
                         </div>                              
@@ -58,7 +57,7 @@
                             <label class="control-label col-md-4" for="weeks">
                                 <spring:message code="training.table.weeks"/>
                             </label>
-                            <div class="col-md-8">
+                            <div class="col-md-8 disabled">
                                 <sf:input type="text" id="weeks" path="weeks" class="form-control" /> 
                             </div>
                         </div>                                              
@@ -66,17 +65,17 @@
                             <label class="control-label col-md-4" for="days">
                                 <spring:message code="training.table.days"/>
                             </label>
-                            <div class="col-md-8">
+                            <div class="col-md-8 disabled">
                                 <sf:input type="text" id="days" path="days" class="form-control" placeholder="Days" /> 
                                 <sf:hidden path="active"/>
                                 <sf:hidden path="statusCode"/>
                             </div>
                         </div>                                                                          
-                        <div class="form-group">
+<!--                        <div class="form-group">
                             <div class="col-md-offset-4 col-md-8">
                                 <input type="submit" name="submit" value="<spring:message code="common.btn.save"/>" class="btn btn-primary"/>
                             </div>
-                        </div>                                        
+                        </div>                                        -->
                     </sf:form>                    
                 </div>                
             </div>
@@ -84,22 +83,22 @@
     </div>
     
     <c:if test="${training.trainingId > 0 }">
-    <!--Button Row-->
-    <div class="row">
-        <div class="text-right">
-            <div class="text-right">
-                <br/>										
-                <button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#myTrainActivModal">
-                    <spring:message code="training.table.btn.addTrainActiv"/>
-                </button>
-            </div>      
+        <!--Button Row-->
+        <div class="row">
+            <div class="col-12 col-md-8">
+                <div class="text-right">
+                    <br/>										
+                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myTrainActivModal">
+                        <spring:message code="training.table.btn.addTrainActiv"/>
+                    </button>
+                </div>      
+            </div>
         </div>
-    </div>
-                
-    <!--Training activity table row-->
-    <%@include file="trainActivities.jsp" %>
-    
-    <!--Training activity modal row-->
-    <%@include file="trainActivModal.jsp" %>
+
+        <!--Training activity table row-->
+        <%@include file="trainActivities.jsp" %>
+
+        <!--Training activity modal row-->
+        <%@include file="trainActivModal.jsp" %>
     </c:if>
 </div>
