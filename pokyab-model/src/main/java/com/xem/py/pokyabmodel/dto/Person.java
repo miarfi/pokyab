@@ -1,5 +1,6 @@
 package com.xem.py.pokyabmodel.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
@@ -33,6 +34,7 @@ public class Person implements Serializable {
     private int orgId;    
     @Column(name = "HIRE_DATE")
     @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     @JsonIgnore
     private Date hireDate;
     @Column(name = "EMPLOYEE_NUMBER")
@@ -52,11 +54,11 @@ public class Person implements Serializable {
     @Basic(optional = false)
     @Column(name = "DATE_OF_BIRTH")
     @Temporal(TemporalType.TIMESTAMP)
-    @JsonIgnore
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date dateOfBirth;
     @Column(name = "DATE_OF_DEATH")
     @Temporal(TemporalType.TIMESTAMP)
-    @JsonIgnore
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date dateOfDeath;
     @Basic(optional = false)
     @Column(name = "GENDER_CODE")
@@ -81,11 +83,10 @@ public class Person implements Serializable {
     @Basic(optional = false)
     @Column(name = "START_DATE")
     @Temporal(TemporalType.TIMESTAMP)
-    @JsonIgnore
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date startDate;
     @Column(name = "END_DATE")
     @Temporal(TemporalType.TIMESTAMP)
-    @JsonIgnore
     private Date endDate;
 
     public Person() {

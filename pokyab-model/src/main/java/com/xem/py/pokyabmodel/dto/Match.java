@@ -1,5 +1,6 @@
 package com.xem.py.pokyabmodel.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -40,6 +41,7 @@ public class Match implements Serializable {
     private String matchTypeCode;
     @Column(name = "MATCH_DATE")
     @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date matchDate;
     @Column(name = "MATCH_TIME")
     private String matchTime;

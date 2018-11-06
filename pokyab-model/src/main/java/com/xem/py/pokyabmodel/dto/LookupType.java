@@ -1,6 +1,8 @@
 
 package com.xem.py.pokyabmodel.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -8,6 +10,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -50,13 +53,17 @@ public class LookupType implements Serializable {
     @Basic(optional = false)
     @Column(name = "START_DATE")
     @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date startDate;
     @Column(name = "END_DATE")
     @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date endDate;
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "lookupType")
-//    private Collection<LookupValue> lookupValueCollection;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "lookupTypeId")
+    @JsonIgnore
+    private Collection<LookupValue> lookupValueCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "lookupTypeId")
+    @JsonIgnore
     private Collection<LookupTypeUse> lookupTypeUseCollection;
 
     public LookupType() {
@@ -135,14 +142,14 @@ public class LookupType implements Serializable {
         this.endDate = endDate;
     }
 
-//    @XmlTransient
-//    public Collection<LookupValue> getLookupValueCollection() {
-//        return lookupValueCollection;
-//    }
-//
-//    public void setLookupValueCollection(Collection<LookupValue> lookupValueCollection) {
-//        this.lookupValueCollection = lookupValueCollection;
-//    }
+    @XmlTransient
+    public Collection<LookupValue> getLookupValueCollection() {
+        return lookupValueCollection;
+    }
+
+    public void setLookupValueCollection(Collection<LookupValue> lookupValueCollection) {
+        this.lookupValueCollection = lookupValueCollection;
+    }
 
     @XmlTransient
     public Collection<LookupTypeUse> getLookupTypeUseCollection() {

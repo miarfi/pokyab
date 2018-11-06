@@ -1,4 +1,3 @@
-
 package com.xem.py.pokyabmodel.daoimpl;
 
 import com.xem.py.pokyabmodel.dao.LookupTypeDAO;
@@ -29,19 +28,24 @@ public class LookupTypeDAOImpl implements LookupTypeDAO  {
         } catch (HibernateException e) {
             e.printStackTrace();
             return false;
-        }
-        
+        }        
         return true;
     }
 
     @Override
     public List<LookupType> getAllLkpTypes() {
-        String query = "FROM lookupTypes";
+        String query = "FROM LookupType";
         return sessionFactory.getCurrentSession()
                 .createQuery(query, LookupType.class)
                 .getResultList();
     }
 
-
-    
+    @Override
+    public LookupType getLookupTypeById(int id) {
+          String query = "FROM LookupType WHERE lookupTypeId = :id ";
+        return sessionFactory.getCurrentSession()
+                .createQuery(query, LookupType.class)
+                .setParameter("id", id)
+                .getSingleResult();
+    }    
 }

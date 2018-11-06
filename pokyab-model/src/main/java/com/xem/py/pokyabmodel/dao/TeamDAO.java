@@ -11,6 +11,5 @@ public interface TeamDAO {
     boolean Add(Team team);
     
     List<Team> getActiveTeams(); 
-    List<Team> getAllTeams(); 
-    
+    List<Team> getAllTeams();     
 }

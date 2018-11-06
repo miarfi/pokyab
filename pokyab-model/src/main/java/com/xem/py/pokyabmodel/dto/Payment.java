@@ -1,5 +1,6 @@
 package com.xem.py.pokyabmodel.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -37,9 +38,11 @@ public class Payment implements Serializable {
     @Basic(optional = false)
     @Column(name = "DUE_DATE")
     @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date dueDate;
     @Column(name = "PAYMENT_DATE")
     @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date paymentDate;
     @Column(name = "PAYMENT_METHOD")
     private String paymentMethod;

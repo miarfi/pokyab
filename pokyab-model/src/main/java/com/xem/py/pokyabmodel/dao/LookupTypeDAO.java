@@ -12,4 +12,6 @@ public interface LookupTypeDAO {
 //    boolean update(LookupType lookupType);
 //    boolean delete(LookupType lookupType);
     List<LookupType> getAllLkpTypes();
+
+    public LookupType getLookupTypeById(int id);
 }
