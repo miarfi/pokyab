@@ -3,7 +3,7 @@ package com.xem.py.pokyabmodel.daoimpl;
 import com.xem.py.pokyabmodel.dao.PersonDAO;
 import com.xem.py.pokyabmodel.dto.Person;
 import java.util.List;
-import org.hibernate.HibernateException;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -21,19 +21,45 @@ public class PersonDAOImpl implements PersonDAO{
     private SessionFactory sessionFactory;
     
     @Override    
-    public boolean Add(Person person) {
-        
+    public boolean add(Person person) {        
         try {
-            person.setActive("Y".charAt(0));
             sessionFactory.getCurrentSession()
                           .persist(person);            
-        } catch (HibernateException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
         
         return true;
         
+    }
+
+    @Override
+    public boolean update(Person person) {
+        try {            
+            sessionFactory.getCurrentSession()
+                          .update(person);            
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        
+        return true;
+    }
+
+    @Override
+    public boolean delete(Person person) {
+        try { 
+            person.setActive('N');
+            person.setEndDate(new java.sql.Date(System.currentTimeMillis()));
+            sessionFactory.getCurrentSession()
+                          .update(person);            
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        
+        return true;
     }
     
     @Override
@@ -50,5 +76,14 @@ public class PersonDAOImpl implements PersonDAO{
         return sessionFactory.getCurrentSession()
                              .createQuery(query, Person.class)                                     
                              .getResultList();
+    }
+
+    @Override
+    public Person getPersonById(int id) {
+        String query = "FROM Person WHERE personId = :id";
+        return sessionFactory.getCurrentSession()
+                .createQuery(query, Person.class)
+                .setParameter("id", id)
+                .getSingleResult();
     }
 }

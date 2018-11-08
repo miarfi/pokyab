@@ -18,7 +18,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlTransient;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 /**
@@ -27,7 +29,9 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Entity
-@Table(name = "TEAMS")
+@Table(name = "TEAMS"
+    ,uniqueConstraints={@UniqueConstraint(columnNames={"TEAM_NAME"})}
+)
 
 public class Team implements Serializable {
 
@@ -65,10 +69,12 @@ public class Team implements Serializable {
     @Basic(optional = false)
     @Column(name = "START_DATE")
     @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date startDate;
     @Column(name = "END_DATE")
     @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date endDate; 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "teamId")
@@ -99,6 +105,8 @@ public class Team implements Serializable {
     private Collection<TrainingPerson> trainingPersonCollection;
 
     public Team() {
+        this.active = 'Y';
+        this.startDate = new java.sql.Date(System.currentTimeMillis());
     }
 
     public int getTeamId() {

@@ -4,7 +4,7 @@ package com.xem.py.pokyabmodel.daoimpl;
 import com.xem.py.pokyabmodel.dao.TeamDAO;
 import com.xem.py.pokyabmodel.dto.Team;
 import java.util.List;
-import org.hibernate.HibernateException;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -22,20 +22,45 @@ public class TeamDAOImpl implements TeamDAO
     @Autowired
     private SessionFactory sessionFactory;
 
-    public boolean Add(Team team) {
-
+    public boolean add(Team team) {
         try {
-            team.setActive("Y".charAt(0));
+            team.setActive('Y');
             sessionFactory.getCurrentSession()
                     .persist(team);
-        } catch (HibernateException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
-
         return true;
     }
 
+    
+    @Override
+    public boolean update(Team team) {        
+        try {            
+            sessionFactory.getCurrentSession()
+                    .update(team);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean delete(Team team) {
+        try {     
+            team.setActive('N');
+            team.setEndDate(new java.sql.Date(System.currentTimeMillis()));
+            sessionFactory.getCurrentSession()
+                    .update(team);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+    
     @Override
     public List<Team> getActiveTeams() {
         String query = "FROM Team WHERE active = 'Y'";
@@ -50,6 +75,15 @@ public class TeamDAOImpl implements TeamDAO
         return sessionFactory.getCurrentSession()
                 .createQuery(query, Team.class)
                 .getResultList();
+    }
+
+    @Override
+    public Team getTeamById(int id) {
+        String query = "FROM Team WHERE teamId = :id";
+        return sessionFactory.getCurrentSession()
+                .createQuery(query, Team.class)
+                .setParameter("id", id)
+                .getSingleResult();
     }
     
 }

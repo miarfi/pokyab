@@ -17,11 +17,14 @@ import javax.persistence.Id;
 //import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.persistence.UniqueConstraint;
 
 //import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
-@Table(name = "user_detail")
+@Table(name = "user_detail"
+        ,uniqueConstraints={@UniqueConstraint(columnNames={"EMAIL"})}
+)
 public class User implements Serializable{
 
 	/**
@@ -38,7 +41,8 @@ public class User implements Serializable{
 //	@NotBlank(message = "Please enter last name!")
 	@Column(name = "LAST_NAME")
 	private String lastName;
-//	@NotBlank(message = "Please enter email address!")	
+//	@NotBlank(message = "Please enter email address!")
+        @Column(name = "EMAIL")
 	private String email;
 //	@NotBlank(message = "Please enter contact number!")
 	@Column(name = "CONTACT_NUMBER")

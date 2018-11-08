@@ -8,10 +8,9 @@ import java.util.List;
  * @author arria
  */
 public interface LookupTypeDAO {
-    boolean Add(LookupType lookupType);
-//    boolean update(LookupType lookupType);
-//    boolean delete(LookupType lookupType);
+    boolean add(LookupType lookupType);
+    boolean update(LookupType lookupType);
+    boolean delete(LookupType lookupType);
     List<LookupType> getAllLkpTypes();
-
-    public LookupType getLookupTypeById(int id);
+    LookupType getLookupTypeById(int id);    
 }

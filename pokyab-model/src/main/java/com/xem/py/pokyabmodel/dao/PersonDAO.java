@@ -8,7 +8,10 @@ import java.util.List;
  * @author arria
  */
 public interface PersonDAO {
-    boolean Add(Person person);
+    boolean add(Person person);
+    boolean update(Person person);
+    boolean delete(Person person);
     List<Person> getActivePersons();
-    List<Person> getAllPersons();
+    List<Person> getAllPersons();   
+    Person getPersonById(int id);
 }

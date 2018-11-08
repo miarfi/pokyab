@@ -50,7 +50,7 @@ public class PersonTestCase {
             
             
            
-            assertEquals("Failed to add person!", true,  personDAO.Add(person));
+            assertEquals("Failed to add person!", true,  personDAO.add(person));
         }
 
 }

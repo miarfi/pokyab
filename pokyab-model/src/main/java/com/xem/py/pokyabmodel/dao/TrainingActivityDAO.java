@@ -8,8 +8,12 @@ import java.util.List;
  * @author arria
  */
 public interface TrainingActivityDAO {
-    boolean Add(TrainingActivity trainingActivity);
+    boolean add(TrainingActivity trainingActivity);
+    boolean update(TrainingActivity trainingActivity);
+    boolean delete(TrainingActivity trainingActivity);
     
-    List<TrainingActivity> getActiveTrainActivities();
-    List<TrainingActivity> getAllTrainActivities(); 
+    List<TrainingActivity> getActiveTrainActivities(int id);
+    List<TrainingActivity> getAllTrainActivByTrainId(int id); 
+    TrainingActivity getTrainActivityById(int id);
+
 }

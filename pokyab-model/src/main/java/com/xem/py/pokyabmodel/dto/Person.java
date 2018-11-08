@@ -3,6 +3,9 @@ package com.xem.py.pokyabmodel.dto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -13,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 /**
@@ -54,10 +58,12 @@ public class Person implements Serializable {
     @Basic(optional = false)
     @Column(name = "DATE_OF_BIRTH")
     @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date dateOfBirth;
     @Column(name = "DATE_OF_DEATH")
     @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date dateOfDeath;
     @Basic(optional = false)
@@ -83,13 +89,19 @@ public class Person implements Serializable {
     @Basic(optional = false)
     @Column(name = "START_DATE")
     @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date startDate;
     @Column(name = "END_DATE")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date endDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    private Date endDate;    
+    transient int currentAge;
 
     public Person() {
+        this.active = 'Y';
+        this.startDate = new java.sql.Date(System.currentTimeMillis());
     }
 
     public int getPersonId() {
@@ -259,5 +271,16 @@ public class Person implements Serializable {
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
-       
+    
+    public int getCurrentAge() {
+        LocalDate currentDate = LocalDate.now();
+        LocalDate birthDate = getDateOfBirth().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();;                
+        return Period.between(birthDate, currentDate).getYears();
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" + "personId=" + personId + ", orgId=" + orgId + ", hireDate=" + hireDate + ", employeeNumber=" + employeeNumber + ", firstName=" + firstName + ", lastName=" + lastName + ", middleName=" + middleName + ", preName=" + preName + ", fullName=" + fullName + ", dateOfBirth=" + dateOfBirth + ", dateOfDeath=" + dateOfDeath + ", genderCode=" + genderCode + ", personType=" + personType + ", maritalStatusCode=" + maritalStatusCode + ", nationalityCode=" + nationalityCode + ", nationalIdentifier=" + nationalIdentifier + ", emailAddress=" + emailAddress + ", phoneNumber=" + phoneNumber + ", active=" + active + ", startDate=" + startDate + ", endDate=" + endDate + '}';
+    }
+    
 }

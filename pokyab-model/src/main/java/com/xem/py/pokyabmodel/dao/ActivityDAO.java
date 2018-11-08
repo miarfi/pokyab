@@ -9,8 +9,12 @@ import java.util.List;
  * @author arria
  */
 public interface ActivityDAO {
-    boolean Add(Activity activity);
+    boolean add(Activity activity);
+    boolean update(Activity activity);
+    boolean delete(Activity activity);
     
     List<Activity> getActiveActivities();
     List<Activity> getAllActivities();
+    Activity getActivityById(int id);
+
 }

@@ -15,7 +15,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlTransient;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 /**
@@ -24,7 +26,9 @@ import org.springframework.stereotype.Component;
  */
 @Component 
 @Entity
-@Table(name = "TRAININGS")
+@Table(name = "TRAININGS"
+        ,uniqueConstraints={@UniqueConstraint(columnNames={"TRAINING_NAME"})}
+)
 public class Training implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -64,10 +68,12 @@ public class Training implements Serializable {
     @Basic(optional = false)
     @Column(name = "START_DATE")
     @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date startDate;
     @Column(name = "END_DATE")
     @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date endDate;
     @JsonIgnore
@@ -75,6 +81,9 @@ public class Training implements Serializable {
     private Collection<TrainingActivity> trainingActivitieCollection;
 
     public Training() {
+        this.active = 'Y';
+        this.startDate = new java.sql.Date(System.currentTimeMillis());
+        this.statusCode = "NEW";
     }
 
     public int getTrainingId() {

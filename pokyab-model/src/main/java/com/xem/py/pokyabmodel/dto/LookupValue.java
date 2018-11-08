@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 /**
@@ -20,7 +22,9 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Entity
-@Table(name = "LOOKUP_VALUES")
+@Table(name = "LOOKUP_VALUES"
+        ,uniqueConstraints={@UniqueConstraint(columnNames={"LOOKUP_TYPE_ID", "LOOKUP_CODE"})}
+)
 public class LookupValue implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -47,15 +51,18 @@ public class LookupValue implements Serializable {
     @Basic(optional = false)
     @Column(name = "START_DATE", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date startDate;
     @Column(name = "END_DATE")
     @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date endDate;    
 
     public LookupValue() {
         this.active = 'Y';
+        this.startDate = new java.sql.Date(System.currentTimeMillis());
     }
 
     public String getLookupCode() {

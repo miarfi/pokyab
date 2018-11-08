@@ -15,7 +15,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlTransient;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 /**
@@ -24,7 +26,9 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Entity
-@Table(name = "ACTIVITIES")
+@Table(name = "ACTIVITIES"
+    ,uniqueConstraints={@UniqueConstraint(columnNames={"ACTIVITY_NAME"})}
+)
 public class Activity implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -54,10 +58,10 @@ public class Activity implements Serializable {
     private long totalTime;
     @Column(name = "WAIT_TIME")
     private short waitTime;
-    @Basic(optional = false)
+//    @Basic(optional = false)
     @Column(name = "REPETITIONS")
     private short repetitions;
-    @Basic(optional = false)
+//    @Basic(optional = false)
     @Column(name = "UOM_CODE")
     private String uomCode;
     @Basic(optional = false)
@@ -75,10 +79,12 @@ public class Activity implements Serializable {
     @Basic(optional = false)
     @Column(name = "START_DATE")
     @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date startDate;
     @Column(name = "END_DATE")
     @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date endDate;
     @JsonIgnore
@@ -86,6 +92,8 @@ public class Activity implements Serializable {
     private Collection<TrainingActivity> trainingActivitieCollection;
 
     public Activity() {
+        this.active = 'Y';
+        this.startDate = new java.sql.Date(System.currentTimeMillis());
     }
 
     public int getActivityId() {
@@ -248,4 +256,10 @@ public class Activity implements Serializable {
     public void setTrainingActivitieCollection(Collection<TrainingActivity> trainingActivitieCollection) {
         this.trainingActivitieCollection = trainingActivitieCollection;
     }    
+    
+    
+    @Override
+    public String toString() {
+        return "Activity{" + "activityId=" + activityId + ", activityType=" + activityType + ", metricType=" + metricType + ", activityName=" + activityName + ", instructions=" + instructions + ", instructionsTrainer=" + instructionsTrainer + ", goals=" + goals + ", participantNumber=" + participantNumber + ", totalTime=" + totalTime + ", waitTime=" + waitTime + ", repetitions=" + repetitions + ", uomCode=" + uomCode + ", quantityMin=" + quantityMin + ", quantityMax=" + quantityMax + ", requiredMaterial=" + requiredMaterial + ", dificultyLevel=" + dificultyLevel + ", active=" + active + ", startDate=" + startDate + ", endDate=" + endDate  + '}';
+    }
 }

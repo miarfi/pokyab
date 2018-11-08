@@ -78,7 +78,7 @@ public class TrainingActivity implements Serializable {
     @Column(name = "TRAINING_ID")
     private int trainingId;
 
-    public TrainingActivity() {
+    public TrainingActivity() {     
     }
 
     public int getTrainActId() {

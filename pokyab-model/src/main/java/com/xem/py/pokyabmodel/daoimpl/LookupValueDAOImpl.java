@@ -4,7 +4,7 @@ import com.xem.py.pokyabmodel.dao.LookupValueDAO;
 import com.xem.py.pokyabmodel.dto.LookupType;
 import com.xem.py.pokyabmodel.dto.LookupValue;
 import java.util.List;
-import org.hibernate.HibernateException;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -21,18 +21,45 @@ public class LookupValueDAOImpl implements LookupValueDAO{
     @Autowired
     private SessionFactory sessionFactory;
         
-    public boolean Add(LookupValue lookupValue) {
+    public boolean add(LookupValue lookupValue) {
         try {
-            lookupValue.setActive("Y".charAt(0));
+            lookupValue.setActive('Y');
             sessionFactory.getCurrentSession()
                           .persist(lookupValue);            
-        } catch (HibernateException e) {
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }    
+        return true;
+    }
+    
+    @Override
+    public boolean update(LookupValue lookupValue) {
+        try {
+            sessionFactory.getCurrentSession()
+                          .update(lookupValue);            
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }    
         return true;
     }
 
+    @Override
+    public boolean delete(LookupValue lookupValue) {
+        
+        try {
+            lookupValue.setActive('N');
+            lookupValue.setEndDate(new java.sql.Date(System.currentTimeMillis()));
+            sessionFactory.getCurrentSession()
+                          .update(lookupValue);            
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }    
+        return true;
+    }
+    
     @Override
     public List<LookupValue> getLkpValuesByTypeId(int lookupTypeId) {
         String query = "FROM LookupValue WHERE lookupTypeId = :lookupTypeId";

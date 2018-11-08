@@ -8,10 +8,10 @@ import java.util.List;
  * @author arria
  */
 public interface LookupValueDAO {
-    boolean Add(LookupValue lookupValue);
-//    boolean update(LookupValue lookupValue);
-//    boolean delete(LookupValue lookupValue);
-    List<LookupValue> getLkpValuesByTypeId(int lookupTypeId);
-    
+    boolean add(LookupValue lookupValue);
+    boolean update(LookupValue lookupValue);
+    boolean delete(LookupValue lookupValue);
+    List<LookupValue> getLkpValuesByTypeId(int lookupTypeId);    
     List<LookupValue> getLkpValuesByType(String lookupType);
+
 }

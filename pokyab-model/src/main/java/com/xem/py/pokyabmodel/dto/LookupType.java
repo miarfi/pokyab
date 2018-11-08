@@ -18,7 +18,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlTransient;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 /**
@@ -27,7 +29,9 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Entity
-@Table(name = "LOOKUP_TYPES")
+@Table(name = "LOOKUP_TYPES"
+        ,uniqueConstraints={@UniqueConstraint(columnNames={"LOOKUP_TYPE"})}
+        )
 public class LookupType implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -37,7 +41,8 @@ public class LookupType implements Serializable {
     @Column(name = "LOOKUP_TYPE_ID")
     private int lookupTypeId;
     @Basic(optional = false)
-    @Column(name = "LOOKUP_TYPE")
+    @Column(name = "LOOKUP_TYPE")//, unique=true) 
+//    @UniqueConstraint(columnNames={"lookup_type"})
     private String lookupType;
     @Column(name = "DESCRIPTION")
     private String description;
@@ -53,10 +58,12 @@ public class LookupType implements Serializable {
     @Basic(optional = false)
     @Column(name = "START_DATE")
     @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date startDate;
     @Column(name = "END_DATE")
     @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date endDate;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "lookupTypeId")
@@ -65,9 +72,11 @@ public class LookupType implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "lookupTypeId")
     @JsonIgnore
     private Collection<LookupTypeUse> lookupTypeUseCollection;
-
+    
+    
     public LookupType() {
         this.active = 'Y';
+        this.startDate = new java.sql.Date(System.currentTimeMillis());
     }
 
     public int getLookupTypeId() {

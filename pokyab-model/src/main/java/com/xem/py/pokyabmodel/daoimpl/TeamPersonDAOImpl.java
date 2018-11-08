@@ -3,7 +3,7 @@ package com.xem.py.pokyabmodel.daoimpl;
 import com.xem.py.pokyabmodel.dao.TeamPersonDAO;
 import com.xem.py.pokyabmodel.dto.TeamPerson;
 import java.util.List;
-import org.hibernate.HibernateException;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -26,7 +26,7 @@ public class TeamPersonDAOImpl implements TeamPersonDAO{
             teamPerson.setActive("Y".charAt(0));
             sessionFactory.getCurrentSession()
                     .persist(teamPerson);
-        } catch (HibernateException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }

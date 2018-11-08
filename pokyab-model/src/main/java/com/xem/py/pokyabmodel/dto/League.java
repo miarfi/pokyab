@@ -16,7 +16,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlTransient;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 /**
@@ -25,7 +27,9 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Entity
-@Table(name = "LEAGUES")
+@Table(name = "LEAGUES"
+    ,uniqueConstraints={@UniqueConstraint(columnNames={"LEAGUE_NAME"})}
+)
 public class League implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -52,10 +56,12 @@ public class League implements Serializable {
     @Basic(optional = false)
     @Column(name = "START_DATE")
     @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date startDate;
     @Column(name = "END_DATE")
     @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date endDate;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "leagueId")
@@ -64,8 +70,8 @@ public class League implements Serializable {
     private Collection<Team> teamCollection;
 
     public League() {
-        this.setActive("Y".charAt(0));
-        this.setStartDate(new java.sql.Date(System.currentTimeMillis()));
+        this.active = 'Y';
+        this.startDate = new java.sql.Date(System.currentTimeMillis());
     }
 
     public int getLeagueId() {
@@ -165,4 +171,10 @@ public class League implements Serializable {
     public void setTeamCollection(Collection<Team> teamCollection) {
         this.teamCollection = teamCollection;
     }   
+
+    @Override
+    public String toString() {
+        return "League{" + "leagueId=" + leagueId + ", leagueName=" + leagueName + ", leagueType=" + leagueType + ", categoryCode=" + categoryCode + ", countryCode=" + countryCode + ", minAge=" + minAge + ", maxAge=" + maxAge + ", active=" + active + ", startDate=" + startDate + ", endDate=" + endDate + '}';
+    }
+    
 }

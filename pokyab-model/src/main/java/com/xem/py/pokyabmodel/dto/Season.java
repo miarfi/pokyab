@@ -15,7 +15,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlTransient;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 /**
@@ -24,7 +26,9 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Entity
-@Table(name = "SEASONS")
+@Table(name = "SEASONS"
+        ,uniqueConstraints={@UniqueConstraint(columnNames={"SEASON_NAME"})}
+)
 public class Season implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -45,11 +49,13 @@ public class Season implements Serializable {
     @Basic(optional = false)
     @Column(name = "START_DATE")
     @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date startDate;
     @Basic(optional = false)
     @Column(name = "END_DATE")
     @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date endDate;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "seasonId")
@@ -57,9 +63,8 @@ public class Season implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "seasonId")
     private Collection<Team> teamCollection;
 
-    public Season() {
-        this.setStartDate(new java.sql.Date(System.currentTimeMillis()));
-        this.setEndDate(new java.sql.Date(System.currentTimeMillis()));
+    public Season() {        
+        this.startDate = new java.sql.Date(System.currentTimeMillis());
     }
 
     public int getSeasonId() {
@@ -127,4 +132,10 @@ public class Season implements Serializable {
     public void setTeamCollection(Collection<Team> teamCollection) {
         this.teamCollection = teamCollection;
     }
+
+    @Override
+    public String toString() {
+        return "Season{" + "seasonId=" + seasonId + ", seasonName=" + seasonName + ", description=" + description + ", seasonCode=" + seasonCode + ", startDate=" + startDate + ", endDate=" + endDate +  '}';
+    }
+    
 }
