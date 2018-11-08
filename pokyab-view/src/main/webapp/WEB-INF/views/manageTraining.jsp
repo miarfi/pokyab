@@ -1,11 +1,11 @@
 
 <div class="container">
-    
+
     <!--Breadcrumb row-->
     <div class="row">
 
     </div>
- 
+
     <!--Training row-->
     <div class="row">
         <div class="col-12 col-md-8">
@@ -14,7 +14,7 @@
                     <h4><spring:message code="training.manage.title"/></h4>
                 </div>
                 <div class="panel-body">
-                    
+
                     <sf:form
                         id="trainingForm"                            
                         modelAttribute="training" 
@@ -23,9 +23,10 @@
                         class="form-horizonal">
                         <div class="form-group">
                             <label class="control-label col-md-4" for="trainingName">
-                                <spring:message code="training.table.trainingName"/>
+                                <spring:message code="training.table.trainingName"/>                        
                             </label>
                             <div class="col-md-8 disabled">
+                                <sf:input id="trainingId" path="trainingId" type="hidden"/>
                                 <sf:input type="text " id="trainingName" path="trainingName" class="form-control"/> 
                             </div>
                         </div>
@@ -57,7 +58,7 @@
                             <label class="control-label col-md-4" for="weeks">
                                 <spring:message code="training.table.weeks"/>
                             </label>
-                            <div class="col-md-8 disabled">
+                            <div class="col-md-4 disabled">
                                 <sf:input type="text" id="weeks" path="weeks" class="form-control" /> 
                             </div>
                         </div>                                              
@@ -65,24 +66,41 @@
                             <label class="control-label col-md-4" for="days">
                                 <spring:message code="training.table.days"/>
                             </label>
-                            <div class="col-md-8 disabled">
+                            <div class="col-md-4 disabled">
                                 <sf:input type="text" id="days" path="days" class="form-control" placeholder="Days" /> 
-                                <sf:hidden path="active"/>
-                                <sf:hidden path="statusCode"/>
                             </div>
-                        </div>                                                                          
-<!--                        <div class="form-group">
-                            <div class="col-md-offset-4 col-md-8">
-                                <input type="submit" name="submit" value="<spring:message code="common.btn.save"/>" class="btn btn-primary"/>
+                        </div>   
+                        <div class="form-group">
+                            <label for="startDate" class="control-label col-md-4"><spring:message code="common.field.startDate"/>:</label>
+                            <div class="col-md-4">
+                                <sf:input id="startDate" path="startDate" type="date"/>
                             </div>
-                        </div>                                        -->
+                        </div> 
+                        <c:if test="${training.trainingId > 0 }">
+                            <div class="form-group">
+                                <label for="endDate" class="control-label col-md-4"><spring:message code="common.field.endDate"/>:</label>
+                                <div class="col-md-4">
+                                    <sf:input id="endDate" path="endDate" type="date"/>
+                                </div>
+                            </div>   
+                        </c:if>                        
+
+                            <div class="form-group">
+                                <div class="col-md-offset-4 col-md-8">
+                                    <input type="submit" name="submit" value="<spring:message code="common.btn.save"/>" class="btn btn-primary"/>
+                                </div>
+                            </div> 
+
                     </sf:form>                    
                 </div>                
             </div>
         </div>
     </div>
-    
+
     <c:if test="${training.trainingId > 0 }">
+        <script>
+            window.trainingId = '${training.trainingId}';
+        </script>
         <!--Button Row-->
         <div class="row">
             <div class="col-12 col-md-8">

@@ -26,6 +26,7 @@
                                 <spring:message code="activity.table.activityName"/>
                             </label>
                             <div class="col-md-8">
+                                <sf:input id="activityId" path="activityId" type="hidden"/>
                                 <sf:input type="text" id="activityName" path="activityName" class="form-control" /> 
                             </div>
                         </div>
@@ -49,7 +50,7 @@
                             <label class="control-label col-md-4" for="totalTime">
                                 <spring:message code="activity.table.totalTime"/>
                             </label>
-                            <div class="col-md-8">
+                            <div class="col-md-4">
                                 <sf:input type="text" id="totalTime" path="totalTime" class="form-control" /> 
                             </div>
                         </div>
@@ -81,7 +82,7 @@
                             <label class="control-label col-md-4" for="quantityMin">
                                 <spring:message code="activity.table.quantityMin"/>
                             </label>
-                            <div class="col-md-8">
+                            <div class="col-md-4">
                                 <sf:input type="text" id="quantityMin" path="quantityMin" class="form-control"/> 
                             </div>
                         </div>                                              
@@ -89,11 +90,25 @@
                             <label class="control-label col-md-4" for="quantityMax">
                                 <spring:message code="activity.table.quantityMax"/>
                             </label>
-                            <div class="col-md-8">
+                            <div class="col-md-4">
                                 <sf:input type="text" id="quantityMax" path="quantityMax" class="form-control"/> 
-                                <sf:hidden path="active"/>
+                                <!--<sf:hidden path="active"/>-->
                             </div>
-                        </div>                                                                          
+                        </div>  
+                        <div class="form-group">
+                            <label for="startDate" class="control-label col-md-4"><spring:message code="common.field.startDate"/>:</label>
+                            <div class="col-md-4">
+                                <sf:input id="startDate" path="startDate" type="date"/>
+                            </div>
+                        </div> 
+                        <c:if test="${activity.activityId > 0 }">
+                            <div class="form-group">
+                                <label for="endDate" class="control-label col-md-4"><spring:message code="common.field.endDate"/>:</label>
+                                <div class="col-md-4">
+                                    <sf:input id="endDate" path="endDate" type="date"/>
+                                </div>
+                            </div>  
+                        </c:if>                         
                         <div class="form-group">
                             <div class="col-md-offset-4 col-md-8">
                                 <input type="submit" name="submit" value="<spring:message code="common.btn.save"/>" class="btn btn-primary"/>

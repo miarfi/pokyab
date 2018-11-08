@@ -1,17 +1,16 @@
 package com.xem.py.pokyabview.controller;
 
-import com.xem.py.pokyabmodel.dao.ActivityDAO;
-import com.xem.py.pokyabmodel.dao.PersonDAO;
-import com.xem.py.pokyabmodel.dao.TeamDAO;
-import com.xem.py.pokyabmodel.dao.TrainingDAO;
-import com.xem.py.pokyabmodel.dto.LookupType;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.web.bind.ServletRequestDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -22,22 +21,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class PageController {
     
     Logger logger = LoggerFactory.getLogger(PageController.class);
-    
-    @Autowired
-    private PersonDAO personDAO;
-    @Autowired
-    private TeamDAO teamDAO;
-    @Autowired
-    private TrainingDAO trainingDAO;
-    @Autowired
-    private ActivityDAO activityDAO;
-    
-    //Beans Modal
-    @ModelAttribute("lookupType")
-    public LookupType getLookupType() {
-        return new LookupType();
-    }    
-    
+       
+    @InitBinder
+    protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        dateFormat.setLenient(false);
+        binder.registerCustomEditor(Date.class, null, new CustomDateEditor(dateFormat, true));
+    }
+
     @RequestMapping(value = {"/login"})
     public ModelAndView login(@RequestParam(name="error", required=false)String error) {
         ModelAndView mv = new ModelAndView("login");
@@ -78,53 +69,5 @@ public class PageController {
         mv.addObject("title", "Contact");
         mv.addObject("userClickContact", true);
         return mv;
-    }
-    
-    @RequestMapping(value = {"/players"})
-    public ModelAndView showAllPersons() {
-        logger.info("info.Inside showAllPersons method");
-        logger.debug("debug.Inside showAllPersons method");
-        ModelAndView mv = new ModelAndView("page");
-        mv.addObject("title", "Players");
-        mv.addObject("userClickPlayers", true);
-        //ToDo Crear metodo getActivePlayers
-//        mv.addObject("persons", personDAO.getActivePersons());
-        return mv;
-    }
-    
-    @RequestMapping(value = {"/teams"})
-    public ModelAndView showAllTeams() {
-        ModelAndView mv = new ModelAndView("page");
-        mv.addObject("title", "Teams");
-        mv.addObject("userClickTeams", true);
-//        mv.addObject("teams", teamDAO.getAllTeams());
-        return mv;
-    }
-    
-    @RequestMapping(value = {"/activities"})
-    public ModelAndView showAllActivities() {
-        ModelAndView mv = new ModelAndView("page");
-        mv.addObject("title", "Activities");
-        mv.addObject("userClickActivities", true);
-//        mv.addObject("activities", activityDAO.getAllActivities());
-        return mv;
-    }    
-
-    @RequestMapping(value = {"/trainings"})
-    public ModelAndView showAllTrainings() {
-        ModelAndView mv = new ModelAndView("page");
-        mv.addObject("title", "Trainings");
-        mv.addObject("userClickTrainings", true);
-//        mv.addObject("trainings", trainingDAO.getAllTrainings());
-        return mv;
-    }  
-    
-    @RequestMapping(value = {"/lookupTypes"})
-    public ModelAndView showAllLookuptypes() {
-        ModelAndView mv = new ModelAndView("page");
-        mv.addObject("title", "Lookup Types");
-        mv.addObject("userClickLookupTypes", true);
-//        mv.addObject("l", trainingDAO.getAllTrainings());
-        return mv;
-    }     
+    } 
 }

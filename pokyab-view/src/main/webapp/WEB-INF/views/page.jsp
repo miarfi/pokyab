@@ -1,6 +1,7 @@
 <%--<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>--%>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %> 
 <%@taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 
@@ -29,7 +30,7 @@
         
         <link href="${css}/bs/bootstrap.css" rel="stylesheet" type="text/css"/>
         <link href="${css}/bs/dataTables.bootstrap4.css" rel="stylesheet" type="text/css"/>
-        <link href="${css}/myapp.css" rel="stylesheet" type="text/css"/>
+        <link href="${css}/myapp.css" rel="stylesheet" type="text/css"/>        
     </head>
     
     <body>
@@ -53,7 +54,7 @@
                                     
                 <!--Table content-->                    
                 <!--Load players content-->
-                <c:if test="${userClickPlayers == true }">
+                <c:if test="${userClickPersons == true }">
                    <%@include file="persons.jsp"%>
                 </c:if>
                 <!--Load teams content-->

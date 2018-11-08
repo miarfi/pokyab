@@ -6,7 +6,10 @@
 <!--            Current Locale : ${pageContext.response.locale}            -->
             <hr/>
     </div>
- 
+    
+    <!--Alert Message Row-->
+    <%@include file="alertMessage.jsp" %>
+            
     <!--Team row-->
     <div class="row">
         <div class="col-12 col-md-8">
@@ -25,9 +28,10 @@
 
                         <div class="form-group">
                             <label class="control-label col-md-4" for="teamName">
-                                <spring:message code="team.table.teamName"/>
+                                <spring:message code="team.table.teamName"/>                           
                             </label>
                             <div class="col-md-8">
+                                <sf:input id="teamId" path="teamId" type="hidden"/>
                                 <sf:input type="text" id="teamName" path="teamName" class="form-control"/> 
                             </div>
                         </div>
@@ -103,12 +107,26 @@
                                 </div>					
                             </div>	
                         </div>
-
+                        <div class="form-group">
+                            <label for="startDate" class="control-label col-md-4"><spring:message code="common.field.startDate"/>:</label>
+                            <div class="col-md-4">
+                                <sf:input id="startDate" path="startDate" type="date"/>
+                            </div>
+                        </div> 
+                        <c:if test="${team.teamId > 0 }">
+                            <div class="form-group">
+                                <label for="endDate" class="control-label col-md-4"><spring:message code="common.field.endDate"/>:</label>
+                                <div class="col-md-4">
+                                    <sf:input id="endDate" path="endDate" type="date"/>
+                                </div>
+                            </div>   
+                        </c:if>
                         <div class="form-group">
                             <div class="col-md-offset-4 col-md-8">
                                 <input type="submit" name="submit" value="<spring:message code="common.btn.save"/>" class="btn btn-primary"/>
                             </div>
-                        </div>                                        
+                        </div>   
+
                     </sf:form>                    
                 </div>                
             </div>
@@ -148,17 +166,17 @@
                                 </div>
                             </div>                              
                             <div class="form-group">
-                                <label for="categoryCode" class="control-label col-md-4"><spring:message code="team.modal.league.leagueType"/>:</label>
+                                <label for="categoryCode" class="control-label col-md-4"><spring:message code="team.modal.league.category"/>:</label>
                                 <div class="col-md-8">
                                     <sf:input path="categoryCode" id="categoryCode" type="text" class="form-control"/>
                                 </div>
                             </div>                               
-                            <div class="form-group">
+<!--                            <div class="form-group">
                                 <label for="countryCode " class="control-label col-md-4"><spring:message code="team.modal.league.country"/>:</label>
                                 <div class="col-md-8">
                                     <sf:input path="countryCode" id="countryCode " type="text" class="form-control"/>
                                 </div>
-                            </div>                                   
+                            </div>                                   -->
                             <div class="form-group">								
                                 <div class="col-offset-4 col-md-8">
                                     <input type="submit" value="<spring:message code="team.table.btn.addLeague"/>" class="btn btn-primary">
@@ -192,28 +210,36 @@
                             action="${contextRoot}/manage/season" 
                             method="POST"
                             class="form-group">
-
                             <div class="form-group">
                                 <label for="seasonName" class="control-label col-md-4"><spring:message code="team.modal.seasson.seasonName"/>:</label>
                                 <div class="col-md-8">
                                     <sf:input path="seasonName" id="seasonName" type="text" class="form-control"/>
                                 </div>
-                            </div>
-                                
+                            </div>                                
                             <div class="form-group">
                                 <label for="seasonCode" class="control-label col-md-4"><spring:message code="team.modal.seasson.seasonCode"/>:</label>
                                 <div class="col-md-8">
                                     <sf:input path="seasonCode" id="seasonCode" type="text" class="form-control"/>
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 <label for="description" class="control-label col-md-4"><spring:message code="team.modal.seasson.description"/>:</label>
                                 <div class="col-md-8">
                                     <sf:textarea id="description" path="description" class="form-control"/> 
                                 </div>
-                            </div>                              
-                                
+                            </div>   
+                            <div class="form-group">
+                                <label for="startDate" class="control-label col-md-4"><spring:message code="common.field.startDate"/>:</label>
+                                <div class="col-md-4">
+                                    <sf:input id="startDate" path="startDate" type="date"/>
+                                </div>
+                            </div> 
+                            <div class="form-group">
+                                <label for="endDate" class="control-label col-md-4"><spring:message code="common.field.endDate"/>:</label>
+                                <div class="col-md-4">
+                                    <sf:input id="endDate" path="endDate" type="date"/>
+                                </div>
+                            </div>                            
                             <div class="form-group">								
                                 <div class="col-offset-4 col-md-8">                                   
                                     <input type="submit" value="<spring:message code="team.table.btn.addSeason"/>" class="btn btn-primary">
@@ -254,24 +280,27 @@
                                     <sf:input path="firstName" id="firstName" type="text" class="form-control"/>
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 <label for="lastName" class="control-label col-md-4"><spring:message code="person.table.lastName"/>:</label>
                                 <div class="col-md-8">
                                     <sf:input path="lastName" id="lastName" type="text" class="form-control"/>
                                 </div>
-                            </div>  
-                            
+                            </div>    
+                            <div class="form-group">
+                                <label for="dateOfBirth" class="control-label col-md-4"><spring:message code="person.table.dateOfBirth"/>:</label>
+                                <div class="col-md-4">
+                                    <sf:input id="dateOfBirth" path="dateOfBirth" type="date"/>
+                                </div>
+                            </div>                             
                             <div class="form-group">
                                 <label for="genderCode" class="control-label col-md-4"><spring:message code="person.table.genderCode"/>:</label>
                                 <div class="col-md-8">
                                     <sf:input path="genderCode" id="genderCode" type="text" class="form-control"/>
                                 </div>
-                            </div>   
-                              
+                            </div>                                                     
                             <div class="form-group">								
-                                <div class="col-offset-4 col-md-8">
-                                    <sf:hidden path="maritalStatusCode" value="SINGLE"/>
+                                <div class="col-offset-4 col-md-8">                                    
+                                    <sf:hidden path="personType" value="TRAINER"/>
                                     <input type="submit" value="<spring:message code="team.table.btn.addTrainer"/>" class="btn btn-primary">
                                 </div>
                             </div>

@@ -21,7 +21,7 @@
                         <div class="form-group">
                             <label for="lookupType" class="control-label col-md-4"><spring:message code="lookupType.table.lookupType"/>:</label>
                             <div class="col-md-8">
-                                <sf:input path="lookupType" id="lookupType" type="text" class="form-control"/>
+                                <sf:input id="lookupType" path="lookupType" type="text" class="form-control"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -31,13 +31,23 @@
                             </div>
                         </div> 
                         <div class="form-group">
-                            <div class="form-check form-check-inline disabled">
-                                <label class="form-check-label">
-                                    <sf:checkbox id="systemFlag" path="systemFlag" value="Y" />
-                                    <spring:message code="lookupType.table.system"/>
-                                </label>
+                            <label for="systemFlag" class="form-check-label col-md-4"><spring:message code="lookupType.table.system"/>:</label>
+                            <div class="form-check">
+                                <sf:checkbox id="systemFlag" path="systemFlag" value="Y" />                                                                                     
                             </div> 
-                        </div>                                                        
+                        </div> 
+                        <div class="form-group">
+                            <label for="startDate" class="control-label col-md-4"><spring:message code="common.field.startDate"/>:</label>
+                            <div class="col-md-4">
+                                <sf:input id="startDate" path="startDate" type="date"/>
+                            </div>
+                        </div>
+<!--                        <div class="form-group">
+                            <label for="endDate" class="control-label col-md-4"><spring:message code="common.field.endDate"/>:</label>
+                            <div class="col-md-4">
+                                <sf:input id="endDate" path="endDate" type="date"/>
+                            </div>
+                        </div>                                                -->
                         <div class="form-group">								
                             <div class="col-offset-4 col-md-8">                                   
                                 <input type="submit" value="<spring:message code="lookupType.table.btn.addLookupType"/>" class="btn btn-primary">

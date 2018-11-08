@@ -36,7 +36,19 @@
                                 <sf:textarea id="description" path="description" class="form-control"/> 
                                 <sf:hidden path="lookupTypeId"/>
                             </div>
-                        </div>                                                       
+                        </div> 
+                        <div class="form-group">
+                            <label for="startDate" class="control-label col-md-4"><spring:message code="common.field.startDate"/>:</label>
+                            <div class="col-md-4">
+                                <sf:input id="startDate" path="startDate" type="date"/>
+                            </div>
+                        </div>
+<!--                        <div class="form-group">
+                            <label for="endDate" class="control-label col-md-4"><spring:message code="common.field.endDate"/>:</label>
+                            <div class="col-md-4">
+                                <sf:input id="endDate" path="endDate" type="date"/>
+                            </div>
+                        </div>                        -->
                         <div class="form-group">								
                             <div class="col-offset-4 col-md-8">                                   
                                 <input type="submit" value="<spring:message code="lookupType.table.btn.addLookupValue"/>" class="btn btn-primary">

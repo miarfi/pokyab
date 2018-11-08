@@ -1,3 +1,15 @@
+<!--AlertMessage Row-->
+<c:if test="${not empty message}">
+    <div class="row">
+        <div class="col-12 col-md-8">
+            <div class="alert alert-sucess alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                ${message}
+            </div>
+        </div>
+    </div>
+</c:if>	
+
 <!--Button Row-->
 <div class="row">
     <div class="col-12 col-md-8">
@@ -20,8 +32,7 @@
                     <th><spring:message code="lookupType.table.description"/></th>
                     <th><spring:message code="lookupType.table.system"/></th>
                     <th><spring:message code="common.field.startDate"/></th>
-                    <th><spring:message code="common.field.endDate"/></th>
-                    
+                    <th><spring:message code="common.field.endDate"/></th>                    
                     <th></th>	
                 </tr>
             </thead>
@@ -33,7 +44,5 @@
         </table>
     </div>			
 </div>
-
-
 
 <%@include file="lookupTypeModal.jsp" %>

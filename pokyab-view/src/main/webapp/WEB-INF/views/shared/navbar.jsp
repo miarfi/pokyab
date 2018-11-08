@@ -13,8 +13,8 @@
                 <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="${contextRoot}/players">
-                    <spring:message code="menu.navbar.players"/>
+                <a class="nav-link" href="${contextRoot}/persons">
+                    <spring:message code="menu.navbar.persons"/>
                 </a>
             </li>  
             <li class="nav-item">

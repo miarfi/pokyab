@@ -23,6 +23,14 @@ $(function(){
 //	break;
 //	}
 
+    //dismissing the alert after 3 seconds
+    var $alert = $('.alert');
+    if($alert.length) {
+            setTimeout(function() {
+            $alert.fadeOut('slow');
+               }, 5000
+            );		
+    }
 
     //persons.jsp table
     var $table = $('#personsListTable');
@@ -35,8 +43,23 @@ $(function(){
         console.log('Inside js personsListTable');
         console.log('jsonUrl: ' + jsonUrl);
         $table.DataTable({
-            lengthMenu: [[3, 5, 10, -1], ['3 records', '5 records', '10 records', 'All']],
-            pageLength: 5,
+            "language": {
+                "loadingRecords": "Cargando...",
+                "lengthMenu": "Mostrar _MENU_ por p&aacute;gina",
+                "zeroRecords": "No se encontraron datos",
+                "info": "Mostrar p&aacute;gina _PAGE_ de _PAGES_",
+                "infoEmpty": "Ning&uacute;n registro disponible",
+                "infoFiltered": "(filtro de _MAX_ total registros)",
+                "search": "Buscar",
+                "paginate": {
+                    "first": "Primero",
+                    "last": "Ultimo",
+                    "next": "Siguiente",
+                    "previous": "Anterior"
+                }
+            },
+            lengthMenu: [[10, 20, 50, -1], ['10 registros', '20 registros', '50 registros', 'Todos']],
+            pageLength: 10,
             ajax: {
                 url: jsonUrl,
                 dataSrc: ''
@@ -57,7 +80,7 @@ $(function(){
                 },
                 {   data: 'firstName'   },
                 {   data: 'lastName'    },
-                {   data: 'dateOfBirth'    },
+                {   data: 'currentAge'    },
                 {   data: 'genderCode'    },
                 {   data: 'personType'  },
                 {   data: 'startDate'    },
@@ -78,8 +101,23 @@ $(function(){
         console.log('Inside js teamsListTable');
         console.log('jsonUrl: ' + jsonUrl);
         $table.DataTable({
-            lengthMenu: [[3, 5, 10, -1], ['3 records', '5 records', '10 records', 'All']],
-            pageLength: 5,
+            "language": {
+                "loadingRecords": "Cargando...",
+                "lengthMenu": "Mostrar _MENU_ por p&aacute;gina",
+                "zeroRecords": "No se encontraron datos",
+                "info": "Mostrar p&aacute;gina _PAGE_ de _PAGES_",
+                "infoEmpty": "Ning&uacute;n registro disponible",
+                "infoFiltered": "(filtro de _MAX_ total registros)",
+                "search": "Buscar",
+                "paginate": {
+                    "first": "Primero",
+                    "last": "Ultimo",
+                    "next": "Siguiente",
+                    "previous": "Anterior"
+                }
+            },
+            lengthMenu: [[10, 20, 50, -1], ['10 registros', '20 registros', '50 registros', 'Todos']],
+            pageLength: 10,
             ajax: {
                 url: jsonUrl,
                 dataSrc: ''
@@ -125,8 +163,23 @@ $(function(){
         console.log('Inside js activitiesListTable');
         console.log('jsonUrl: ' + jsonUrl);
         $table.DataTable({
-            lengthMenu: [[3, 5, 10, -1], ['3 records', '5 records', '10 records', 'All']],
-            pageLength: 5,
+            "language": {
+                "loadingRecords": "Cargando...",
+                "lengthMenu": "Mostrar _MENU_ por p&aacute;gina",
+                "zeroRecords": "No se encontraron datos",
+                "info": "Mostrar p&aacute;gina _PAGE_ de _PAGES_",
+                "infoEmpty": "Ning&uacute;n registro disponible",
+                "infoFiltered": "(filtro de _MAX_ total registros)",
+                "search": "Buscar",
+                "paginate": {
+                    "first": "Primero",
+                    "last": "Ultimo",
+                    "next": "Siguiente",
+                    "previous": "Anterior"
+                }
+            },
+            lengthMenu: [[10, 20, 50, -1], ['10 registros', '20 registros', '50 registros', 'Todos']],
+            pageLength: 10,
             ajax: {
                 url: jsonUrl,
                 dataSrc: ''
@@ -169,8 +222,23 @@ $(function(){
         console.log('Inside js trainingsListTable');
         console.log('jsonUrl: ' + jsonUrl);
         $table.DataTable({
-            lengthMenu: [[3, 5, 10, -1], ['3 records', '5 records', '10 records', 'All']],
-            pageLength: 5,
+            "language": {
+                "loadingRecords": "Cargando...",
+                "lengthMenu": "Mostrar _MENU_ por p&aacute;gina",
+                "zeroRecords": "No se encontraron datos",
+                "info": "Mostrar p&aacute;gina _PAGE_ de _PAGES_",
+                "infoEmpty": "Ning&uacute;n registro disponible",
+                "infoFiltered": "(filtro de _MAX_ total registros)",
+                "search": "Buscar",
+                "paginate": {
+                    "first": "Primero",
+                    "last": "Ultimo",
+                    "next": "Siguiente",
+                    "previous": "Anterior"
+                }
+            },
+            lengthMenu: [[10, 20, 50, -1], ['10 registros', '20 registros', '50 registros', 'Todos']],
+            pageLength: 10,
             ajax: {
                 url: jsonUrl,
                 dataSrc: ''
@@ -208,20 +276,45 @@ $(function(){
     if ($table.length) {
 
         var jsonUrl = '';
-        jsonUrl = window.contextRoot + '/json/data/admin/all/trainActivities';
+        jsonUrl = window.contextRoot + '/json/data/admin/all/'+window.trainingId+'/trainActivities';
 
         console.log('Inside js trainActivListTable');
         console.log('jsonUrl: ' + jsonUrl);
         $table.DataTable({
-            lengthMenu: [[3, 5, 10, -1], ['3 records', '5 records', '10 records', 'All']],
-            pageLength: 5,
+            "language": {
+                "loadingRecords": "Cargando...",
+                "lengthMenu": "Mostrar _MENU_ por p&aacute;gina",
+                "zeroRecords": "No se encontraron datos",
+                "info": "Mostrar p&aacute;gina _PAGE_ de _PAGES_",
+                "infoEmpty": "Ning&uacute;n registro disponible",
+                "infoFiltered": "(filtro de _MAX_ total registros)",
+                "search": "Buscar",
+                "paginate": {
+                    "first": "Primero",
+                    "last": "Ultimo",
+                    "next": "Siguiente",
+                    "previous": "Anterior"
+                }
+            },
+            lengthMenu: [[10, 20, 50, -1], ['10 registros', '20 registros', '50 registros', 'Todos']],
+            pageLength: 10,
             ajax: {
                 url: jsonUrl,
                 dataSrc: ''
             },
             columns: [
                 {   
-                    data: 'trainActId'
+                    data: 'trainActId',
+                    bSortable: false,
+                    mRender: function (data, type, row) {
+                        var str = '';
+                        str += '<a href="'
+                                + window.contextRoot
+                                + '/manage/'
+                                + data
+                                + '/trainActiv" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a> &#160;';
+                        return str;
+                    }
                 },
                 {   data: 'activityNumber'},
                 {   data: 'weeks'},
@@ -249,8 +342,23 @@ $(function(){
         console.log('Inside js lookupTypesListTable');
         console.log('jsonUrl: ' + jsonUrl);
         $table.DataTable({
-            lengthMenu: [[3, 5, 10, -1], ['3 records', '5 records', '10 records', 'All']],
-            pageLength: 5,
+            "language": {
+                "loadingRecords": "Cargando...",
+                "lengthMenu": "Mostrar _MENU_ por p&aacute;gina",
+                "zeroRecords": "No se encontraron datos",
+                "info": "Mostrar p&aacute;gina _PAGE_ de _PAGES_",
+                "infoEmpty": "Ning&uacute;n registro disponible",
+                "infoFiltered": "(filtro de _MAX_ total registros)",
+                "search": "Buscar",
+                "paginate": {
+                    "first": "Primero",
+                    "last": "Ultimo",
+                    "next": "Siguiente",
+                    "previous": "Anterior"
+                }
+            },
+            lengthMenu: [[10, 20, 50, -1], ['10 registros', '20 registros', '50 registros', 'Todos']],
+            pageLength: 10,
             ajax: {
                 url: jsonUrl,
                 dataSrc: ''

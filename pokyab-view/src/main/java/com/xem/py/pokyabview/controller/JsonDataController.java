@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.PathVariable;
 
 /**
  *
@@ -95,11 +96,11 @@ public class JsonDataController {
             return activityDAO.getAllActivities();
 	} 
         
-        @RequestMapping("/admin/all/trainActivities")
+        @RequestMapping("/admin/all/{id}/trainActivities")
 	@ResponseBody
-	public List<TrainingActivity> getAdminTrainActivities(){
+	public List<TrainingActivity> getAdminTrainActivities(@PathVariable int id){
             logger.info("info.Inside getAdminTrainActivities method");
             logger.debug("debug.Inside getAdminTrainActivities method");
-            return trainingActivityDAO.getAllTrainActivities();
+            return trainingActivityDAO.getAllTrainActivByTrainId(id);
 	}        
 }

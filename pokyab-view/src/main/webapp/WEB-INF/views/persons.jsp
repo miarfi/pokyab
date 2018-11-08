@@ -19,7 +19,7 @@
                     <th>#</th>	
                     <th><spring:message code="person.table.firstName"/></th>
                     <th><spring:message code="person.table.lastName"/></th>
-                    <th><spring:message code="person.table.dateOfBirth"/></th>
+                    <th><spring:message code="person.table.currentAge"/></th>
                     <th><spring:message code="person.table.genderCode"/></th>	
                     <th><spring:message code="person.table.personType"/></th>	
                     <th><spring:message code="common.field.startDate"/></th>   
