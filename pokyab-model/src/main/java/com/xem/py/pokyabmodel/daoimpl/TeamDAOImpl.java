@@ -3,6 +3,7 @@ package com.xem.py.pokyabmodel.daoimpl;
 
 import com.xem.py.pokyabmodel.dao.TeamDAO;
 import com.xem.py.pokyabmodel.dto.Team;
+import com.xem.py.pokyabmodel.view.TeamV;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -77,6 +78,14 @@ public class TeamDAOImpl implements TeamDAO
                 .getResultList();
     }
 
+    @Override
+    public List<TeamV> getAllTeamsV() {
+        String query = "FROM TeamV";
+        return sessionFactory.getCurrentSession()
+                .createQuery(query, TeamV.class)
+                .getResultList();
+    }
+    
     @Override
     public Team getTeamById(int id) {
         String query = "FROM Team WHERE teamId = :id";

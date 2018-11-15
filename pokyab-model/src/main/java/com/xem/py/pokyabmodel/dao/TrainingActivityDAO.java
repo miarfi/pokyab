@@ -1,6 +1,7 @@
 package com.xem.py.pokyabmodel.dao;
 
 import com.xem.py.pokyabmodel.dto.TrainingActivity;
+import com.xem.py.pokyabmodel.view.TrainingActivityV;
 import java.util.List;
 
 /**
@@ -14,6 +15,7 @@ public interface TrainingActivityDAO {
     
     List<TrainingActivity> getActiveTrainActivities(int id);
     List<TrainingActivity> getAllTrainActivByTrainId(int id); 
+    List<TrainingActivityV> getAllTrainActivVByTrainId(int id);
     TrainingActivity getTrainActivityById(int id);
 
 }

@@ -48,14 +48,17 @@ public class LookupTypeDAOImpl implements LookupTypeDAO  {
     @Override
     public boolean delete(LookupType lookupType) {
         try {  
-//            if (!lookupType.getSystemFlag().equals("Y")){
+            
+            if (lookupType.getSystemFlag() != null 
+                && lookupType.getSystemFlag() == 'Y'){
                 lookupType.setActive('N');
                 lookupType.setEndDate(new java.sql.Date(System.currentTimeMillis()));
-//            } else {
-//                return false;
-//            }
-            sessionFactory.getCurrentSession()
+                sessionFactory.getCurrentSession()
                           .update(lookupType);
+            } else {
+                sessionFactory.getCurrentSession()
+                          .delete(lookupType);
+            }           
         } catch (Exception e) {
             e.printStackTrace();
             return false;

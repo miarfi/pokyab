@@ -45,6 +45,8 @@ public class LookupValue implements Serializable {
     private String meaning;
     @Column(name = "DESCRIPTION", length = 250)
     private String description;
+    @Column(name = "LANGUAGE_CODE", length = 30)
+    private String languageCode;        
     @Basic(optional = false)    
     @Column(name = "ACTIVE", nullable = false)
     private Character active;
@@ -63,6 +65,7 @@ public class LookupValue implements Serializable {
     public LookupValue() {
         this.active = 'Y';
         this.startDate = new java.sql.Date(System.currentTimeMillis());
+        this.languageCode = "ESA";
     }
 
     public String getLookupCode() {
@@ -89,6 +92,14 @@ public class LookupValue implements Serializable {
         this.description = description;
     }
 
+    public String getLanguageCode() {
+        return languageCode;
+    }
+
+    public void setLanguageCode(String languageCode) {
+        this.languageCode = languageCode;
+    }
+    
     public Character getActive() {
         return active;
     }
@@ -134,5 +145,10 @@ public class LookupValue implements Serializable {
     public void setLookupTypeId(int lookupTypeId) {
         this.lookupTypeId = lookupTypeId;
     }
-  
+
+    @Override
+    public String toString() {
+        return "LookupValue{" + "lookupValueId=" + lookupValueId + ", lookupTypeId=" + lookupTypeId + ", lookupCode=" + lookupCode + ", meaning=" + meaning + ", description=" + description + ", languageCode=" + languageCode + ", active=" + active + ", startDate=" + startDate + ", endDate=" + endDate + '}';
+    }
+        
 }

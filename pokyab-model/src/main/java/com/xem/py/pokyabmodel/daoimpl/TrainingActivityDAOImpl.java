@@ -2,6 +2,7 @@ package com.xem.py.pokyabmodel.daoimpl;
 
 import com.xem.py.pokyabmodel.dao.TrainingActivityDAO;
 import com.xem.py.pokyabmodel.dto.TrainingActivity;
+import com.xem.py.pokyabmodel.view.TrainingActivityV;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -76,6 +77,15 @@ public class TrainingActivityDAOImpl implements TrainingActivityDAO {
                 .getResultList();
     }
 
+    @Override
+    public List<TrainingActivityV> getAllTrainActivVByTrainId(int id) {
+        String query = "FROM TrainingActivityV WHERE trainingId = :id";
+        return sessionFactory.getCurrentSession()
+                .createQuery(query, TrainingActivityV.class)
+                .setParameter("id", id)
+                .getResultList();
+    }
+    
     @Override
     public TrainingActivity getTrainActivityById(int id) {
           String query = "FROM TrainingActivity WHERE trainActId = :id";

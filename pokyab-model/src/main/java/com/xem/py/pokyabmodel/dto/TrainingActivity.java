@@ -14,6 +14,7 @@ import javax.persistence.Id;
 //import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
@@ -21,7 +22,9 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author arria
  */
 @Entity
-@Table(name = "TRAINING_ACTIVITIES")
+@Table(name = "TRAINING_ACTIVITIES"
+        ,uniqueConstraints={@UniqueConstraint(columnNames={"TRAINING_ID", "ACTIVITY_NUMBER"})}
+)
 public class TrainingActivity implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -50,10 +50,10 @@ public class PersonDAOImpl implements PersonDAO{
     @Override
     public boolean delete(Person person) {
         try { 
-            person.setActive('N');
-            person.setEndDate(new java.sql.Date(System.currentTimeMillis()));
+//            person.setActive('N');
+//            person.setEndDate(new java.sql.Date(System.currentTimeMillis()));
             sessionFactory.getCurrentSession()
-                          .update(person);            
+                          .delete(person);            
         } catch (Exception e) {
             e.printStackTrace();
             return false;

@@ -1,6 +1,7 @@
 package com.xem.py.pokyabmodel.dao;
 
 import com.xem.py.pokyabmodel.dto.Team;
+import com.xem.py.pokyabmodel.view.TeamV;
 import java.util.List;
 
 /**
@@ -13,6 +14,7 @@ public interface TeamDAO {
     boolean delete(Team team);
     
     List<Team> getActiveTeams(); 
-    List<Team> getAllTeams();     
+    List<Team> getAllTeams();    
+    List<TeamV> getAllTeamsV(); 
     Team getTeamById(int id);
 }

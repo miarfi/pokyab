@@ -49,10 +49,10 @@ public class LookupValueDAOImpl implements LookupValueDAO{
     public boolean delete(LookupValue lookupValue) {
         
         try {
-            lookupValue.setActive('N');
-            lookupValue.setEndDate(new java.sql.Date(System.currentTimeMillis()));
+//            lookupValue.setActive('N');
+//            lookupValue.setEndDate(new java.sql.Date(System.currentTimeMillis()));
             sessionFactory.getCurrentSession()
-                          .update(lookupValue);            
+                          .delete(lookupValue);            
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -85,6 +85,15 @@ public class LookupValueDAOImpl implements LookupValueDAO{
                 .createQuery(query, LookupValue.class)
                 .setParameter("lookupTypeId", lookupTypeId)
                 .getResultList();
+    }
+
+    @Override
+    public LookupValue getLookupValueById(int id) {
+        String query = "FROM LookupValue WHERE lookupValueId = :id";
+        return sessionFactory.getCurrentSession()
+                .createQuery(query, LookupValue.class)
+                .setParameter("id", id)
+                .getSingleResult();
     }
     
 }

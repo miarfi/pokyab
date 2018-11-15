@@ -19,7 +19,7 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@ComponentScan(basePackages={"com.xem.py.pokyabmodel.dto"})
+@ComponentScan(basePackages={"com.xem.py.pokyabmodel.dto","com.xem.py.pokyabmodel.view"})
 @EnableTransactionManagement
 public class HibernateConfig {
 
@@ -67,7 +67,7 @@ public class HibernateConfig {
 		
 		LocalSessionFactoryBuilder builder = new LocalSessionFactoryBuilder(dataSource);
 		builder.addProperties(getHibernateProperties());
-		builder.scanPackages("com.xem.py.pokyabmodel.dto");
+		builder.scanPackages("com.xem.py.pokyabmodel.dto","com.xem.py.pokyabmodel.view");
 		return builder.buildSessionFactory();
 	}
 

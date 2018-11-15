@@ -151,6 +151,11 @@ public class LookupType implements Serializable {
         this.endDate = endDate;
     }
 
+    @Override
+    public String toString() {
+        return "LookupType{" + "lookupTypeId=" + lookupTypeId + ", lookupType=" + lookupType + ", description=" + description + ", valueType=" + valueType + ", parentLookupTypeId=" + parentLookupTypeId + ", active=" + active + ", systemFlag=" + systemFlag + ", startDate=" + startDate + ", endDate=" + endDate + '}';
+    }
+    
     @XmlTransient
     public Collection<LookupValue> getLookupValueCollection() {
         return lookupValueCollection;
