@@ -62,14 +62,14 @@
                                 <sf:input type="text" id="weeks" path="weeks" class="form-control" /> 
                             </div>
                         </div>                                              
-                        <div class="form-group">
+<!--                        <div class="form-group">
                             <label class="control-label col-md-4" for="days">
                                 <spring:message code="training.table.days"/>
                             </label>
                             <div class="col-md-4 disabled">
                                 <sf:input type="text" id="days" path="days" class="form-control" placeholder="Days" /> 
                             </div>
-                        </div>   
+                        </div>   -->
                         <div class="form-group">
                             <label for="startDate" class="control-label col-md-4"><spring:message code="common.field.startDate"/>:</label>
                             <div class="col-md-4">

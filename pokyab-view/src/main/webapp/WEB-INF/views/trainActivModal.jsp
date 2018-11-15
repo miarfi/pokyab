@@ -43,7 +43,7 @@
                             <sf:input type="text" id="positionCode" path="positionCode" class="form-control"/> 
                         </div>
                     </div>                          
-                    <div class="form-group">
+<!--                    <div class="form-group">
                         <label class="control-label col-md-4" for="weeks">
                             <spring:message code="trainActiv.table.weeks"/>
                         </label>
@@ -59,7 +59,7 @@
                             <sf:input type="text" id="days" path="days" class="form-control"/>                             
                             <sf:hidden path="trainingId"/>
                         </div>
-                    </div> 
+                    </div> -->
                     <div class="form-group">
                         <label class="control-label col-md-4" for="startTime">
                             <spring:message code="trainActiv.table.startTime"/>

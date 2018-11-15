@@ -28,7 +28,7 @@ import org.springframework.web.servlet.ModelAndView;
 //@RequestMapping("/team")
 public class TeamController {
         
-    Logger logger = LoggerFactory.getLogger(PageController.class);
+    Logger logger = LoggerFactory.getLogger(TeamController.class);
     
     @Autowired
     private PersonDAO personDAO;

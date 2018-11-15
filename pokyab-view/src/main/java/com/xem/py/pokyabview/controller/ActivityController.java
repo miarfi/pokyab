@@ -20,7 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 //@RequestMapping("/activity")
 public class ActivityController {
-    Logger logger = LoggerFactory.getLogger(PageController.class);
+    Logger logger = LoggerFactory.getLogger(ActivityController.class);
     
     @Autowired
     private ActivityDAO activityDAO;          

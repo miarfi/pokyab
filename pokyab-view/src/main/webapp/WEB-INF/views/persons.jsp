@@ -1,3 +1,5 @@
+
+<%@include file="alertMessage.jsp" %>
 <!--Button Row-->
 <div class="row">
     <div class="col-12 col-md-8">
@@ -16,7 +18,8 @@
         <table id="personsListTable" class="table table-striped table-borderd">										
             <thead>
                 <tr>
-                    <th>#</th>	
+                    <th></th>
+                    <th></th>
                     <th><spring:message code="person.table.firstName"/></th>
                     <th><spring:message code="person.table.lastName"/></th>
                     <th><spring:message code="person.table.currentAge"/></th>

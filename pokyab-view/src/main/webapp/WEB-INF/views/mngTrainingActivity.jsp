@@ -40,16 +40,8 @@
                             <div class="col-md-8">
                                 <sf:input type="text" id="positionCode" path="positionCode" class="form-control"/> 
                             </div>
-                        </div>                          
-                        <div class="form-group">
-                            <label class="control-label col-md-4" for="weeks">
-                                <spring:message code="trainActiv.table.weeks"/>
-                            </label>
-                            <div class="col-md-8">
-                                <sf:input type="text" id="weeks" path="weeks" class="form-control" /> 
-                            </div>
-                        </div>
-                        <div class="form-group">
+                        </div>                                                  
+<!--                        <div class="form-group">
                             <label class="control-label col-md-4" for="weeks">
                                 <spring:message code="trainActiv.table.weeks"/>
                             </label>
@@ -64,13 +56,13 @@
                             <div class="col-md-8">
                                 <sf:input type="text" id="days" path="days" class="form-control"/> 
                             </div>
-                        </div> 
+                        </div> -->
                         <div class="form-group">
                             <label class="control-label col-md-4" for="startTime">
                                 <spring:message code="trainActiv.table.startTime"/>
                             </label>
                             <div class="col-md-8">
-                                <sf:input type="text" id="startTime" path="startTime" class="form-control" /> 
+                                <sf:input type="time" id="startTime" path="startTime" class="form-control" /> 
                             </div>
                         </div>   
                         <div class="form-group">

@@ -4,11 +4,18 @@
             <thead>
                 <tr> 
                     <th></th>
-                    <th><spring:message code="trainActiv.table.activityNumber"/></th>
-                    <th><spring:message code="trainActiv.table.weeks"/></th>
-                    <th><spring:message code="trainActiv.table.days"/></th>
+                    
                     <th><spring:message code="trainActiv.table.startTime"/></th>
-                    <th><spring:message code="trainActiv.table.endTime"/></th>
+                    <th><spring:message code="trainActiv.table.endTime"/></th>                    
+                    <th><spring:message code="trainActiv.table.activityNumber.short"/></th>
+                    <!---->
+                    <th><spring:message code="activity.table.activityName"/></th>                  
+                    <th><spring:message code="activity.table.metricType"/></th>
+                    <th><spring:message code="activity.table.totalTime"/></th>
+                    <th><spring:message code="activity.table.uomCode"/></th>
+                    <th><spring:message code="activity.table.quantityMin"/></th>
+                    <th><spring:message code="activity.table.quantityMax"/></th>
+                    <!---->
                     <th><spring:message code="trainActiv.table.monday.short"/></th>
                     <th><spring:message code="trainActiv.table.tuesday.short"/></th>
                     <th><spring:message code="trainActiv.table.wednesday.short"/></th>

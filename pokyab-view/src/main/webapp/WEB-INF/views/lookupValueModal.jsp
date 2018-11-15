@@ -44,9 +44,9 @@
                             </div>
                         </div>
 <!--                        <div class="form-group">
-                            <label for="endDate" class="control-label col-md-4"><spring:message code="common.field.endDate"/>:</label>
+                            <label for="languageCode" class="control-label col-md-4"><spring:message code="common.field.language"/>:</label>
                             <div class="col-md-4">
-                                <sf:input id="endDate" path="endDate" type="date"/>
+                                <sf:input id="languageCode" path="languageCode" type="text"/>
                             </div>
                         </div>                        -->
                         <div class="form-group">								

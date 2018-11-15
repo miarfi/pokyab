@@ -11,9 +11,9 @@ import com.xem.py.pokyabmodel.dto.Activity;
 import com.xem.py.pokyabmodel.dto.LookupType;
 import com.xem.py.pokyabmodel.dto.Message;
 import com.xem.py.pokyabmodel.dto.Person;
-import com.xem.py.pokyabmodel.dto.Team;
 import com.xem.py.pokyabmodel.dto.Training;
-import com.xem.py.pokyabmodel.dto.TrainingActivity;
+import com.xem.py.pokyabmodel.view.TrainingActivityV;
+import com.xem.py.pokyabmodel.view.TeamV;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -52,7 +52,6 @@ public class JsonDataController {
 	@ResponseBody
 	public List<Message> getAdminMessages(){
             logger.info("info.Inside getAdminMessages method");
-            logger.debug("debug.Inside getAdminMessages method");
             return messageDAO.getAllMessages();
 	}
         
@@ -60,7 +59,6 @@ public class JsonDataController {
 	@ResponseBody
 	public List<LookupType> getAdminLookupTypes(){
             logger.info("info.Inside getAdminLookupTypes method");
-            logger.debug("debug.Inside getAdminLookupTypes method");
             return lookupTypeDAO.getAllLkpTypes();
 	}   
 	
@@ -68,23 +66,20 @@ public class JsonDataController {
 	@ResponseBody
 	public List<Person> getAdminPersons(){
             logger.info("info.Inside getAdminPersons method");
-            logger.debug("debug.Inside getAdminPersons method");
             return personDAO.getAllPersons();
 	}
 
         @RequestMapping("/admin/all/teams")
 	@ResponseBody
-	public List<Team> getAdminTeams(){
-            logger.info("info.Inside getAdminTeams method");
-            logger.debug("debug.Inside getAdminTeams method");
-            return teamDAO.getAllTeams();
+	public List<TeamV> getAdminTeams(){
+            logger.info("info.Inside getAdminTeamsV method");
+            return teamDAO.getAllTeamsV();
 	}
         
         @RequestMapping("/admin/all/trainings")
 	@ResponseBody
 	public List<Training> getAdminTrainings(){
             logger.info("info.Inside getAdminTrainings method");
-            logger.debug("debug.Inside getAdminTrainings method");
             return trainingDAO.getAllTrainings();
 	}
         
@@ -92,15 +87,14 @@ public class JsonDataController {
 	@ResponseBody
 	public List<Activity> getAdminActivities(){
             logger.info("info.Inside getAdminActivities method");
-            logger.debug("debug.Inside getAdminActivities method");
+
             return activityDAO.getAllActivities();
 	} 
         
         @RequestMapping("/admin/all/{id}/trainActivities")
 	@ResponseBody
-	public List<TrainingActivity> getAdminTrainActivities(@PathVariable int id){
+	public List<TrainingActivityV> getAdminTrainActivities(@PathVariable int id){
             logger.info("info.Inside getAdminTrainActivities method");
-            logger.debug("debug.Inside getAdminTrainActivities method");
-            return trainingActivityDAO.getAllTrainActivByTrainId(id);
+            return trainingActivityDAO.getAllTrainActivVByTrainId(id);
 	}        
 }

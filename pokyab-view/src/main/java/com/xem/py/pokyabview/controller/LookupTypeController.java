@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -30,6 +31,7 @@ public class LookupTypeController {
     //Beans Modal
     @ModelAttribute("lookupType")
     public LookupType getLookupType() {
+        logger.info("En getLookupType");
         return new LookupType();
     }
 
@@ -43,11 +45,13 @@ public class LookupTypeController {
         return mv;
     }    
 
-    @RequestMapping(value = {"/manage/{id}/lookupType"})
-    public ModelAndView showManageLookupTypeEdit(@PathVariable int id) {
+    @RequestMapping(value = {"/manage/lookupType/{id}"})
+    public ModelAndView showManageLookupTypeEdit(@PathVariable int id
+        ,@RequestParam(name="alertMessage", required=false)String alertMessage) {
         logger.info("En showManageLookupTypeEdit");
         ModelAndView mv = new ModelAndView("page");
         mv.addObject("title", "Lookup Type");
+        mv.addObject("alertMessage", alertMessage);
         mv.addObject("userClickManageLookupType", true);
         
         //Get LookupType object
@@ -77,5 +81,42 @@ public class LookupTypeController {
             if (daoResult) alertMessage = "Catalogo actualizado";
         }
         return "redirect:/lookupTypes?alertMessage=" + alertMessage;
-    }    
+    }  
+    
+    @RequestMapping(value="/manage/lookupType/{id}/delete", method=RequestMethod.GET)
+    public String handleLookupTypeDelete(@PathVariable int id) {
+        logger.info("info.Inside handleLookupTypeDelete method");
+        String alertMessage = "";
+        boolean daoResult = false;
+        LookupType lookupType = lookupTypeDAO.getLookupTypeById(id);
+        if (lookupType != null) {
+            logger.info("lookupType: "+lookupType.toString());
+            daoResult = lookupTypeDAO.delete(lookupType);
+            if (daoResult) alertMessage = "Catalogo borrado";                   
+        } else {
+            alertMessage = "Catalogo no encontrado"; 
+        }
+        logger.info("daoResult: "+daoResult);
+        return "redirect:/lookupTypes?alertMessage=" + alertMessage;
+    }
+   
+    @RequestMapping(value="/manage/lookupType/{id}/activation", method=RequestMethod.GET)
+    @ResponseBody
+    public String handleLookupTypeActivation(@PathVariable int id) {
+        logger.info("info.Inside handleLookupTypeActivation method");
+        String alertMessage = "";
+        boolean daoResult = false;
+        LookupType lookupType = lookupTypeDAO.getLookupTypeById(id);
+        logger.info("lookupType:"+lookupType.toString()); 
+
+        if (lookupType != null) {
+            if (lookupType.getActive() == 'Y') lookupType.setActive('N');
+            else lookupType.setActive('Y');
+            daoResult = lookupTypeDAO.update(lookupType);
+            if (daoResult) alertMessage = "Catalogo actualizado satisfactoriamente";
+        } else {
+            alertMessage = "Catalogo no encontrado"; 
+        }
+        return alertMessage;
+    }
 }

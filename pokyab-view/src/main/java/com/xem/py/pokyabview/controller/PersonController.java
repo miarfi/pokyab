@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -21,16 +22,10 @@ import org.springframework.web.servlet.ModelAndView;
 //@RequestMapping("/person")
 public class PersonController {
 
-    Logger logger = LoggerFactory.getLogger(PageController.class);
+    Logger logger = LoggerFactory.getLogger(PersonController.class);
     
     @Autowired
     private PersonDAO personDAO;  
-    
-//    //Beans Modal
-//    @ModelAttribute("person")
-//    public Person getPerson() {
-//        return new Person();
-//    }
     
     @RequestMapping(value = {"/persons"})
     public ModelAndView showAllPersons() {
@@ -80,6 +75,43 @@ public class PersonController {
             if (daoResult) alertMessage = "Persona modificada"; 
         }
         return "redirect:/persons?alertMessage=" + alertMessage;
+    }
+    
+    @RequestMapping(value="/manage/{id}/person/delete", method=RequestMethod.GET)
+    public String handlePersonDelete(@PathVariable int id) {
+        logger.info("info.Inside handlePersonDelete method");
+        String alertMessage = "";
+        boolean daoResult = false;
+        Person person = personDAO.getPersonById(id);
+        if (person != null) {
+            logger.info("person: "+person.toString());
+            daoResult = personDAO.delete(person);
+            if (daoResult) alertMessage = "Persona borrada";                   
+        } else {
+            alertMessage = "Persona no encontrada"; 
+        }
+        logger.info("daoResult: "+daoResult);
+        return "redirect:/persons?alertMessage=" + alertMessage;
+    }
+   
+    @RequestMapping(value="/manage/person/{id}/activation", method=RequestMethod.GET)
+    @ResponseBody
+    public String handlePersonActivation(@PathVariable int id) {
+        logger.info("info.Inside handlePersonActivation method");
+        String alertMessage = "";
+        boolean daoResult = false;
+        Person person = personDAO.getPersonById(id);
+        logger.info("person:"+person.toString()); 
+
+        if (person != null) {
+            if (person.getActive() == 'Y') person.setActive('N');
+            else person.setActive('Y');
+            daoResult = personDAO.update(person);
+            if (daoResult) alertMessage = "Persona actualizada satisfactoriamente";
+        } else {
+            alertMessage = "Persona no encontrada"; 
+        }
+        return alertMessage;
     }
 
 }

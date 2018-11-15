@@ -24,7 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class TrainingController {
-    Logger logger = LoggerFactory.getLogger(PageController.class);
+    Logger logger = LoggerFactory.getLogger(TrainingController.class);
     
     @Autowired  
     private TrainingDAO trainingDAO;

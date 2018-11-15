@@ -6,6 +6,7 @@
             <thead>
                 <tr> 
                     <th></th>
+                    <th></th>
                     <th><spring:message code="lookupValue.table.lookupCode"/></th>
                     <th><spring:message code="lookupValue.table.meaning"/></th>
                     <th><spring:message code="lookupValue.table.description"/></th>
@@ -20,10 +21,14 @@
                         <c:forEach items="${lookupType.lookupValueCollection}" var="lookupValue">
                             <tr>
                                 <td>
-                                    <a href="${contextRoot}/manage/${lookupValue.lookupValueId}/lookupValue" class="btn btn-primary">
-                                        <span class="glyphicon glyphicon-pencil"></span>                                       
-                                    </a> &#160; 
-                                    <span class="oi oi-icon-name" title="icon name" aria-hidden="true"></span>
+                                    <a href="${contextRoot}/manage/lookupValue/${lookupValue.lookupValueId}">
+                                        <i class="fas fa-edit"></i>                                       
+                                    </a>                                    
+                                </td>
+                                <td>
+                                    <a href="${contextRoot}/manage/lookupValue/${lookupValue.lookupValueId}/delete" class="confirmation">
+                                        <i class="fas fa-trash"></i>                                        
+                                    </a>                                    
                                 </td>
                                 <td>${lookupValue.lookupCode}</td>
                                 <td>${lookupValue.meaning}</td>
@@ -36,14 +41,14 @@
                                     <c:choose>
                                         <c:when test="${lookupValue.active eq 'Y'.charAt(0)}">                                            
                                             <label class="switch">
-                                                <input type="checkbox" value="${lookupValue.active}" checked="checked" disabled="disabled"/>
-                                                <div class="slider"></div>
+                                                <input type="checkbox" value="${lookupValue.lookupValueId}" checked="checked"/>
+                                                <div class="slider round"></div>
                                             </label>
                                         </c:when>
                                         <c:otherwise>
                                             <label class="switch">
-                                                <input type="checkbox" value="${lookupValue.active}" disabled="disabled"/>
-                                                <div class="slider"></div>
+                                                <input type="checkbox" value="${lookupValue.lookupValueId}"/>
+                                                <div class="slider round"></div>
                                             </label>
                                         </c:otherwise>
                                     </c:choose>                                

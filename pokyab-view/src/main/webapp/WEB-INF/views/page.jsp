@@ -11,6 +11,7 @@
 <spring:url var="images" value="/resources/images"/>
 
 <c:set var="contextRoot" value="${pageContext.request.contextPath}"/> 
+    
 
 <!DOCTYPE html>
 <html>
@@ -30,7 +31,9 @@
         
         <link href="${css}/bs/bootstrap.css" rel="stylesheet" type="text/css"/>
         <link href="${css}/bs/dataTables.bootstrap4.css" rel="stylesheet" type="text/css"/>
-        <link href="${css}/myapp.css" rel="stylesheet" type="text/css"/>        
+        <!--<link href="${css}/fa/fontawesome.min.css" rel="stylesheet" type="text/css"/>-->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+        <link href="${css}/myapp.css" rel="stylesheet" type="text/css"/>                 
     </head>
     
     <body>
@@ -114,9 +117,18 @@
             <!-- DataTables JavaScript -->
             <script src="${js}/bs/jquery.dataTables.js" type="text/javascript"></script>
             <script src="${js}/bs/dataTables.bootstrap.js" type="text/javascript"></script>            
+             
+            <!-- Bootbox JavaScript -->
+            <script src="${js}/bs/bootbox.min.js" type="text/javascript"></script>
             <!--Project Javascrip-->
             <script src="${js}/myapp.js" type="text/javascript"></script>
-        
+            
+            <c:if test="${userClickLookupTypes == true }">
+                <script src="${js}/lookupType.js" type="text/javascript"></script>
+            </c:if> 
+            <c:if test="${userClickPersons == true }">
+               <script src="${js}/person.js" type="text/javascript"></script>
+            </c:if>
         </div>
     </body>
 </html>

@@ -25,7 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 //@RequestMapping("/trainingActivity")
 public class TrainingActivityController {
-    Logger logger = LoggerFactory.getLogger(PageController.class);
+    Logger logger = LoggerFactory.getLogger(TrainingActivityController.class);
      
     @Autowired
     private ActivityDAO activityDAO;
@@ -85,6 +85,6 @@ public class TrainingActivityController {
             if (daoResult) alertMessage = "Actividad actualizada";   
         }
                      
-        return "redirect:/trainings";
+        return "redirect:/manage/"+trainingActivity.getTrainingId()+"/training";
     }
 }

@@ -1,5 +1,6 @@
 
 <div class="container">
+    <%@include file="alertMessage.jsp" %>
     
     <!--Breadcrumb row-->
     <div class="row">
@@ -54,7 +55,7 @@
                         </div>
                         <div class="form-group">								
                             <div class="col-offset-4 col-md-8">                                   
-                                <input type="submit" value="<spring:message code="lookupType.table.btn.addLookupType"/>" class="btn btn-primary">
+                                <input type="submit" value="<spring:message code="common.btn.save"/>" class="btn btn-primary">
                             </div>
                         </div>
                     </sf:form>
