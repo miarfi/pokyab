@@ -24,53 +24,41 @@
                         method="POST"
                         class="form-horizonal">
                         <div class="form-group row">
-                            <label class="control-label col-md-4" for="activityNumber">
+                            <label  for="activityNumber" class="col-form-label col-md-4">
                                 <spring:message code="trainActiv.table.activityNumber"/>
                             </label>
                             <div class="col-md-8">
                                 <sf:hidden path="activityId"/>
                                 <sf:hidden path="trainingId"/>
-                                <sf:input type="text" id="activityNumber" path="activityNumber" class="form-control" /> 
+                                <sf:input path="activityNumber" id="activityNumber" type="text" class="form-control" /> 
+                                <sf:errors path="activityNumber" cssClass="text-danger" element="div" />
                             </div>
                         </div>                             
                         <div class="form-group">
-                            <label class="control-label col-md-4" for="positionCode">
+                            <label class="col-form-label col-md-4" for="positionCode">
                                 <spring:message code="trainActiv.table.positionType"/>
                             </label>
                             <div class="col-md-8">
-                                <sf:input type="text" id="positionCode" path="positionCode" class="form-control"/> 
+                                <sf:input path="positionCode" id="positionCode" type="text" class="form-control"/> 
+                                <sf:errors path="positionCode" cssClass="text-danger" element="div" />
                             </div>
-                        </div>                                                  
-<!--                        <div class="form-group">
-                            <label class="control-label col-md-4" for="weeks">
-                                <spring:message code="trainActiv.table.weeks"/>
-                            </label>
-                            <div class="col-md-8">
-                                <sf:input type="text" id="weeks" path="weeks" class="form-control" /> 
-                            </div>
-                        </div>                              
+                        </div>                                                 
                         <div class="form-group">
-                            <label class="control-label col-md-4" for="days">
-                                <spring:message code="trainActiv.table.days"/>
-                            </label>
-                            <div class="col-md-8">
-                                <sf:input type="text" id="days" path="days" class="form-control"/> 
-                            </div>
-                        </div> -->
-                        <div class="form-group">
-                            <label class="control-label col-md-4" for="startTime">
+                            <label for="startTime" class="col-form-label col-md-4">
                                 <spring:message code="trainActiv.table.startTime"/>
                             </label>
                             <div class="col-md-8">
-                                <sf:input type="time" id="startTime" path="startTime" class="form-control" /> 
+                                <sf:input path="startTime" id="startTime" type="time" class="form-control"/>
+                                <sf:errors path="startTime" cssClass="text-danger" element="div" />
                             </div>
                         </div>   
                         <div class="form-group">
-                            <label class="control-label col-md-4" for="endTime">
+                            <label for="endTime" class="col-form-label col-md-4">
                                 <spring:message code="trainActiv.table.endTime"/>
                             </label>
                             <div class="col-md-8">
-                                <sf:input type="text" id="endTime" path="endTime" class="form-control" /> 
+                                <sf:input path="endTime" id="endTime" type="time" class="form-control-time" /> 
+                                <sf:errors path="endTime" cssClass="text-danger" element="div" />
                             </div>
                         </div>                             
                         <div class="form-group col-md-12">
@@ -110,6 +98,7 @@
                                 <spring:message code="trainActiv.table.saturday"/>
                               </label>
                             </div> 
+                            <sf:errors path="daysFlag" cssClass="text-danger" element="div" />
                         </div>       
                         <div class="form-group">
                             <div class="col-md-offset-4 col-md-8">

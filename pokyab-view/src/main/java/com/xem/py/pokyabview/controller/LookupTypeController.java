@@ -3,10 +3,14 @@ package com.xem.py.pokyabview.controller;
 import com.xem.py.pokyabmodel.dao.LookupTypeDAO;
 import com.xem.py.pokyabmodel.dto.LookupType;
 import com.xem.py.pokyabmodel.dto.LookupValue;
+import com.xem.py.pokyabmodel.validator.LookupTypeValidator;
+import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +31,15 @@ public class LookupTypeController {
 
     @Autowired
     private LookupTypeDAO lookupTypeDAO;
+//    @Autowired
+//    @Qualifier("lookupTypeValidator")
+//    private Validator lookupTypeValidator;
 
+//    @InitBinder
+//    protected void initBinder(WebDataBinder binder) {
+//        binder.setValidator(lookupTypeValidator);
+//    }
+    
     //Beans Modal
     @ModelAttribute("lookupType")
     public LookupType getLookupType() {
@@ -67,20 +79,36 @@ public class LookupTypeController {
     
     //Url Mappings - POST
     @RequestMapping(value = {"/manage/lookupType"}, method = RequestMethod.POST)
-    public String handleLookupTypeSub(@ModelAttribute LookupType lookupType) {
+    public String handleLookupTypeSub(@Valid @ModelAttribute("lookupType")  LookupType lookupType,
+            BindingResult result, Model model) {
+        
         logger.info("En handleLookupTypeSub");
         String alertMessage = "";
         boolean daoResult = false;
-
+        String returnUrl;
+        
+        //Spring Validator        
+        new LookupTypeValidator().validate(lookupType, result);
+        
+        if (result.hasErrors()) {
+            model.addAttribute("title", "LookupType");
+            model.addAttribute("userClickManageLookupType", true);             
+            return "page";
+        }
+        
         if (lookupType.getLookupTypeId() == 0) {
-            lookupType.setStartDate(new java.sql.Date(System.currentTimeMillis()));
             daoResult = lookupTypeDAO.add(lookupType);
             if (daoResult) alertMessage = "Catalogo agregado";
         } else {
             daoResult = lookupTypeDAO.update(lookupType);
             if (daoResult) alertMessage = "Catalogo actualizado";
         }
-        return "redirect:/lookupTypes?alertMessage=" + alertMessage;
+        
+        if (daoResult) returnUrl = "redirect:/manage/lookupType/"+lookupType.getLookupTypeId();
+        else returnUrl = "redirect:/lookupTypes?alertMessage="+alertMessage;
+        
+        logger.info("daoResult: "+daoResult+" alertMessage: "+alertMessage);
+        return returnUrl;
     }  
     
     @RequestMapping(value="/manage/lookupType/{id}/delete", method=RequestMethod.GET)
@@ -89,6 +117,7 @@ public class LookupTypeController {
         String alertMessage = "";
         boolean daoResult = false;
         LookupType lookupType = lookupTypeDAO.getLookupTypeById(id);
+        
         if (lookupType != null) {
             logger.info("lookupType: "+lookupType.toString());
             daoResult = lookupTypeDAO.delete(lookupType);
@@ -96,7 +125,7 @@ public class LookupTypeController {
         } else {
             alertMessage = "Catalogo no encontrado"; 
         }
-        logger.info("daoResult: "+daoResult);
+        logger.info("daoResult: "+daoResult+" alertMessage: "+alertMessage);
         return "redirect:/lookupTypes?alertMessage=" + alertMessage;
     }
    
@@ -117,6 +146,8 @@ public class LookupTypeController {
         } else {
             alertMessage = "Catalogo no encontrado"; 
         }
+        
+        logger.info("daoResult: "+daoResult+" alertMessage: "+alertMessage);
         return alertMessage;
     }
 }

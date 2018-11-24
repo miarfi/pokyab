@@ -3,6 +3,8 @@ package com.xem.py.pokyabview.controller;
 
 import com.xem.py.pokyabmodel.dao.PersonDAO;
 import com.xem.py.pokyabmodel.dto.Person;
+import com.xem.py.pokyabview.util.FileUploadUtility;
+import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +50,7 @@ public class PersonController {
         return mv;
     }
     
-    @RequestMapping(value = {"/manage/{id}/person"})
+    @RequestMapping(value = {"/manage/person/{id}"})
     public ModelAndView showManagePersonEdit(@PathVariable int id) {
         logger.info("En showManagePersonEdit");
         ModelAndView mv = new ModelAndView("page");
@@ -62,7 +64,8 @@ public class PersonController {
     }    
     
     @RequestMapping(value="/manage/person", method=RequestMethod.POST)
-    public String handlePersonSubmission(@ModelAttribute Person person) {
+    public String handlePersonSubmission(@ModelAttribute Person person
+            ,HttpServletRequest request) {
         logger.info("info.Inside handlePersonSubmission method");
         String alertMessage = "";
         boolean daoResult = false;
@@ -74,10 +77,15 @@ public class PersonController {
             daoResult = personDAO.update(person);
             if (daoResult) alertMessage = "Persona modificada"; 
         }
+        
+        if (!person.getFile().getOriginalFilename().equals("")) {
+            FileUploadUtility.uploadFile(request, person.getFile(), String.valueOf(person.getPersonId()));
+        }
+        
         return "redirect:/persons?alertMessage=" + alertMessage;
     }
     
-    @RequestMapping(value="/manage/{id}/person/delete", method=RequestMethod.GET)
+    @RequestMapping(value="/manage/person/{id}/delete", method=RequestMethod.GET)
     public String handlePersonDelete(@PathVariable int id) {
         logger.info("info.Inside handlePersonDelete method");
         String alertMessage = "";

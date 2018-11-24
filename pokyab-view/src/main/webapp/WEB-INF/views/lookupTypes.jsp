@@ -1,3 +1,5 @@
+<%@include file="alertMessage.jsp" %>
+
 <!--AlertMessage Row-->
 <c:if test="${not empty message}">
     <div class="row">

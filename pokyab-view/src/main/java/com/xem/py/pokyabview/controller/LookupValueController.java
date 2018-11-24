@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
@@ -26,7 +25,7 @@ public class LookupValueController {
     private LookupValueDAO lookupValueDAO;   
 
 
-//    @RequestMapping(value = {"/manage/{id}/person"})
+//    @RequestMapping(value = {"/manage/person/{id}"})
 //    public ModelAndView showManageLookupValueEdit(@PathVariable int id) {
 //        logger.info("En showManageLookupValueEdit");
 //        ModelAndView mv = new ModelAndView("page");
@@ -54,6 +53,7 @@ public class LookupValueController {
             if (daoResult)  alertMessage = "Valor actualizado";
         }
         
+        logger.info("daoResult: "+daoResult+" alertMessage: "+alertMessage);
         return "redirect:/manage/lookupType/"+lookupValue.getLookupTypeId()+"?alertMessage="+alertMessage;
     }      
     
@@ -66,11 +66,12 @@ public class LookupValueController {
         if (lookupValue != null) {
             logger.info("lookupValue: "+lookupValue.toString());
             daoResult = lookupValueDAO.delete(lookupValue);
-            if (daoResult) alertMessage = "Valor borrada";                   
+            if (daoResult) alertMessage = "Valor borrado";                   
         } else {
             alertMessage = "Valor no encontrado"; 
         }
-        logger.info("daoResult: "+daoResult);
+        
+        logger.info("daoResult: "+daoResult+" alertMessage: "+alertMessage);
         return "redirect:/manage/lookupType/"+lookupValue.getLookupTypeId()+"?alertMessage="+alertMessage;
     }
    
@@ -91,6 +92,8 @@ public class LookupValueController {
         } else {
             alertMessage = "Valor no encontrada"; 
         }
+        
+        logger.info("daoResult: "+daoResult+" alertMessage: "+alertMessage);
         return alertMessage;
     }
 }

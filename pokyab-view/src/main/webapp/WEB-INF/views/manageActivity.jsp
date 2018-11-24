@@ -1,4 +1,5 @@
 
+
 <div class="container">
     
     <!--Breadcrumb row-->
@@ -22,90 +23,93 @@
                         method="POST"
                         class="form-horizonal">
                         <div class="form-group">
-                            <label class="control-label col-md-4" for="activityName">
-                                <spring:message code="activity.table.activityName"/>
-                            </label>
+                            <label for="activityName" class="col-form-label col-md-4">
+                                <spring:message code="activity.table.activityName"/></label>
                             <div class="col-md-8">
-                                <sf:input id="activityId" path="activityId" type="hidden"/>
-                                <sf:input type="text" id="activityName" path="activityName" class="form-control" /> 
+                                <sf:input path="activityId" id="activityId" type="hidden"/>
+                                <sf:input path="activityName" id="activityName" type="text" class="form-control" />
+                                <sf:errors path="activityName" cssClass="text-danger" element="div"/>
                             </div>
                         </div>
-                       <div class="form-group">
-                           <label class="control-label col-md-4" for="activityType">
-                               <spring:message code="activity.table.activityType"/>
-                           </label>
+                        <div class="form-group">
+                           <label for="activityType" class="col-form-label col-md-4">
+                               <spring:message code="activity.table.activityType"/></label>
                             <div class="col-md-8">
-                                <sf:input type="text" id="activityType" path="activityType" class="form-control" /> 
+                                <sf:input path="activityType" id="activityType" type="text" class="form-control" />
+                                <sf:errors path="activityType" cssClass="text-danger" element="div"/>
                             </div>
                         </div>                            
                         <div class="form-group">
-                            <label for="instructions" class="control-label col-md-4">
-                                <spring:message code="activity.table.instructions"/>    
-                            </label>
+                            <label for="instructions" class="col-form-label col-md-4">
+                                <spring:message code="activity.table.instructions"/></label>
                             <div class="col-md-8">
-                                <sf:textarea id="instructions" path="instructions" class="form-control" /> 
+                                <sf:textarea path="instructions" id="instructions" class="form-control" />
+                                <sf:errors path="instructions" cssClass="text-danger" element="div"/>
                             </div>
                         </div>                              
                         <div class="form-group">
-                            <label class="control-label col-md-4" for="totalTime">
-                                <spring:message code="activity.table.totalTime"/>
-                            </label>
+                            <label for="totalTime" class="col-form-label col-md-4">
+                                <spring:message code="activity.table.totalTime"/></label>
                             <div class="col-md-4">
-                                <sf:input type="text" id="totalTime" path="totalTime" class="form-control" /> 
+                                <sf:input path="totalTime" id="totalTime" type="text" class="form-control" /> 
+                                <sf:errors path="totalTime" cssClass="text-danger" element="div"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="goals" class="control-label col-md-4">
-                                <spring:message code="activity.table.goals"/>
-                            </label>
+                            <label for="goals" class="col-form-label col-md-4">
+                                <spring:message code="activity.table.goals"/></label>
                             <div class="col-md-8">
-                                <sf:textarea id="goals" path="goals" class="form-control" /> 
+                                <sf:textarea path="goals" id="goals" class="form-control" />
+                                <sf:errors path="goals" cssClass="text-danger" element="div"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-4" for="metricType">
-                                <spring:message code="activity.table.metricType"/>    
-                            </label>
+                            <label  for="metricType" class="col-form-label col-md-4">
+                                <spring:message code="activity.table.metricType"/></label>
                             <div class="col-md-8">
-                                <sf:input type="text" id="metricType" path="metricType" class="form-control" /> 
+                                <sf:input path="metricType" id="metricType" type="text" class="form-control" /> 
+                                <sf:errors path="metricType" cssClass="text-danger" element="div"/>
                             </div>
                         </div>         
                         <div class="form-group">
-                            <label class="control-label col-md-4" for="uomCode">
-                                <spring:message code="activity.table.uomCode"/>
-                            </label>
+                            <label for="uomCode" class="col-form-label col-md-4">
+                                <spring:message code="activity.table.uomCode"/></label>
                             <div class="col-md-8">
-                                <sf:input type="text" id="uomCode" path="uomCode" class="form-control"/> 
+                                <sf:input path="uomCode" id="uomCode" type="text" class="form-control"/>
+                                <sf:errors path="uomCode" cssClass="text-danger" element="div"/>
                             </div>
                         </div>                              
                         <div class="form-group">
-                            <label class="control-label col-md-4" for="quantityMin">
-                                <spring:message code="activity.table.quantityMin"/>
-                            </label>
+                            <label for="quantityMin" class="col-form-label col-md-4">
+                                <spring:message code="activity.table.quantityMin"/></label>
                             <div class="col-md-4">
-                                <sf:input type="text" id="quantityMin" path="quantityMin" class="form-control"/> 
+                                <sf:input path="quantityMin" id="quantityMin" type="text" class="form-control"/> 
+                                <sf:errors path="quantityMin" cssClass="text-danger" element="div"/>
                             </div>
                         </div>                                              
                         <div class="form-group">
-                            <label class="control-label col-md-4" for="quantityMax">
-                                <spring:message code="activity.table.quantityMax"/>
-                            </label>
+                            <label for="quantityMax" class="col-form-label col-md-4">
+                                <spring:message code="activity.table.quantityMax"/></label>
                             <div class="col-md-4">
-                                <sf:input type="text" id="quantityMax" path="quantityMax" class="form-control"/> 
-                                <!--<sf:hidden path="active"/>-->
+                                <sf:input path="quantityMax" id="quantityMax" type="text" class="form-control"/>
+                                <sf:errors path="quantityMax" cssClass="text-danger" element="div"/>
                             </div>
                         </div>  
                         <div class="form-group">
-                            <label for="startDate" class="control-label col-md-4"><spring:message code="common.field.startDate"/>:</label>
+                            <label for="startDate" class="col-form-label col-md-4">
+                                <spring:message code="common.field.startDate"/>:</label>
                             <div class="col-md-4">
-                                <sf:input id="startDate" path="startDate" type="date"/>
+                                <sf:input path="startDate" id="startDate" type="date"/>
+                                <sf:errors path="startDate" cssClass="text-danger" element="div"/>
                             </div>
                         </div> 
                         <c:if test="${activity.activityId > 0 }">
                             <div class="form-group">
-                                <label for="endDate" class="control-label col-md-4"><spring:message code="common.field.endDate"/>:</label>
+                                <label for="endDate" class="col-form-label col-md-4">
+                                    <spring:message code="common.field.endDate"/>:</label>
                                 <div class="col-md-4">
-                                    <sf:input id="endDate" path="endDate" type="date"/>
+                                    <sf:input path="endDate" id="endDate" type="date"/>
+                                    <sf:errors path="endDate" cssClass="text-danger" element="div"/>
                                 </div>
                             </div>  
                         </c:if>                         

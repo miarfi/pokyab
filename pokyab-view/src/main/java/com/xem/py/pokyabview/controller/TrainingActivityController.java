@@ -3,9 +3,7 @@ package com.xem.py.pokyabview.controller;
 
 import com.xem.py.pokyabmodel.dao.ActivityDAO;
 import com.xem.py.pokyabmodel.dao.TrainingActivityDAO;
-import com.xem.py.pokyabmodel.dao.TrainingDAO;
 import com.xem.py.pokyabmodel.dto.Activity;
-//import com.xem.py.pokyabmodel.dto.Training;
 import com.xem.py.pokyabmodel.dto.TrainingActivity;
 import java.util.List;
 import org.slf4j.Logger;
@@ -13,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -28,9 +25,7 @@ public class TrainingActivityController {
     Logger logger = LoggerFactory.getLogger(TrainingActivityController.class);
      
     @Autowired
-    private ActivityDAO activityDAO;
-//    @Autowired
-//    private TrainingDAO trainingDAO;    
+    private ActivityDAO activityDAO; 
     @Autowired
     private TrainingActivityDAO trainingActivityDAO; 
     
@@ -53,23 +48,7 @@ public class TrainingActivityController {
         return mv;
     }
 
-//    @RequestMapping(value = {"/manage/{id}/training"})
-//    public ModelAndView showManageTrainingEdit(@PathVariable int id) {
-//        logger.info("info.Inside showManageTrainingEdit method");
-//        ModelAndView mv = new ModelAndView("page");
-//        mv.addObject("title", "Training");
-//        mv.addObject("userClickTraining", true);
-//
-//        //Get Training object
-//        Training training = trainingDAO.getTrainingById(id);
-//        mv.addObject("training", training);
-//
-//        //Init new TrainingActivity
-//        TrainingActivity trainingActivity = new TrainingActivity();
-//        trainingActivity.setTrainingId(id);
-//        mv.addObject("trainingActivity", trainingActivity);
-//        return mv;
-//    }    
+       
 
     @RequestMapping(value = "/manage/trainingActivity", method = RequestMethod.POST)
     public String handleTrainActivitySubm(@ModelAttribute TrainingActivity trainingActivity) {

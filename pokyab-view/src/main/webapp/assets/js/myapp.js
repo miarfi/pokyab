@@ -37,40 +37,40 @@ $(function () {
         console.log('confirmation');
         e.preventDefault();
         href = $(this).attr('href');
-        return bootbox.confirm('Are you sure?', function (result) {
+        return bootbox.confirm('Está seguro de borrar el registro?', function (result) {
             if (result) {
                 window.location = href
             }
         });
     });
     
-    function activateFn (confirmed, activationUrl) {
-       console.log('value: '+confirmed);
-       console.log('value: '+activationUrl);
-        if (confirmed) {
-
-
-            //Post update person
-            //var activationUrl = window.contextRoot + '/manage/person/' + value + '/activation';
-            console.log('activationUrl: '+activationUrl);
-            $.ajax({
-                type: 'GET',
-                url: activationUrl,
-                timeout: 100000,
-                success: function (data) {
-                    console.log('ajax success');
-                    bootbox.alert(data);
-                },
-                error: function (e) {
-                    console.log('ajax error');
-                    bootbox.alert('ERROR: ' + e);
-//                                        display(e);
-                }
-            });
-        } else {
-            checkbox.prop('checked', !checked);
-        }
-    }
+//    function activateFn (confirmed, activationUrl) {
+//       console.log('value: '+confirmed);
+//       console.log('value: '+activationUrl);
+//        if (confirmed) {
+//
+//
+//            //Post update person
+//            //var activationUrl = window.contextRoot + '/manage/person/' + value + '/activation';
+//            console.log('activationUrl: '+activationUrl);
+//            $.ajax({
+//                type: 'GET',
+//                url: activationUrl,
+//                timeout: 100000,
+//                success: function (data) {
+//                    console.log('ajax success');
+//                    bootbox.alert(data);
+//                },
+//                error: function (e) {
+//                    console.log('ajax error');
+//                    bootbox.alert('ERROR: ' + e);
+////                                        display(e);
+//                }
+//            });
+//        } else {
+//            checkbox.prop('checked', !checked);
+//        }
+//    }
     //bootbox class=switch
     $('.switch input[type="checkbox"]').on('change', function () {
             var checkbox = $(this);
@@ -90,7 +90,7 @@ $(function () {
                          if (confirmed) {
 
                              //Post update person
-                             var activationUrl = window.contextRoot + '/manage/lookupType/' + value + '/activation';
+                             var activationUrl = window.contextRoot + '/manage/lookupValue/' + value + '/activation';
                              console.log('activationUrl: '+activationUrl);
                              $.ajax({
                                  type: 'GET',
@@ -153,9 +153,9 @@ $(function () {
                         var str = '';
                         str += '<a href="'
                                 + window.contextRoot
-                                + '/manage/'
+                                + '/manage/team/'
                                 + data
-                                + '/team"><i class="fas fa-edit"></i></a>';
+                                + '"><i class="fas fa-edit"></i></a>';
                         return str;
                     }
                 },
@@ -234,9 +234,9 @@ $(function () {
                         var str = '';
                         str += '<a href="'
                                 + window.contextRoot
-                                + '/manage/'
+                                + '/manage/activity/'
                                 + data
-                                + '/activity"><i class="fas fa-edit"></i></a>';
+                                + '"><i class="fas fa-edit"></i></a>';
                         return str;
                     }
                 },
@@ -309,9 +309,9 @@ $(function () {
                         var str = '';
                         str += '<a href="'
                                 + window.contextRoot
-                                + '/manage/'
+                                + '/manage/training/'
                                 + data
-                                + '/training"><i class="fas fa-edit"></i></a>';
+                                + '"><i class="fas fa-edit"></i></a>';
                         return str;
                     }
                 },
@@ -384,9 +384,9 @@ $(function () {
                         var str = '';
                         str += '<a href="'
                                 + window.contextRoot
-                                + '/manage/'
+                                + '/manage/trainActiv/'
                                 + data
-                                + '/trainActiv"><i class="fas fa-edit"></i></a>';
+                                + '"><i class="fas fa-edit"></i></a>';
                         return str;
                     }
                 },

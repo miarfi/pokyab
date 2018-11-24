@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -39,7 +40,7 @@ public class TeamController {
     @Autowired
     private LeagueDAO leagueDAO;  
     
-     //Beans Modals Team
+     //Beans Modal
     @ModelAttribute("person")
     public Person getPerson() {
         return new Person();
@@ -92,7 +93,7 @@ public class TeamController {
         return mv;
     }
 
-    @RequestMapping(value = {"/manage/{id}/team"})
+    @RequestMapping(value = {"/manage/team/{id}"})
     public ModelAndView showManageTeamEdit(@PathVariable int id) {
         logger.info("info.Inside showManageTeamEdit method");
         ModelAndView mv = new ModelAndView("page");
@@ -121,7 +122,46 @@ public class TeamController {
         
         return "redirect:/teams?alertMessage="+alertMessage;
     }
-       
+    
+    @RequestMapping(value="/manage/team/{id}/delete", method=RequestMethod.GET)
+    public String handleTeamDelete(@PathVariable int id) {
+        logger.info("info.Inside handleTeamDelete method");
+        String alertMessage = "";
+        boolean daoResult = false;
+        Team team = teamDAO.getTeamById(id);
+        if (team != null) {
+            logger.info("team: "+team.toString());
+            daoResult = teamDAO.delete(team);
+            if (daoResult) alertMessage = "Equipo borrado";                   
+        } else {
+            alertMessage = "Equipo no encontrado"; 
+        }
+        logger.info("daoResult: "+daoResult);
+        return "redirect:/teams?alertMessage=" + alertMessage;
+    }
+   
+    @RequestMapping(value="/manage/team/{id}/activation", method=RequestMethod.GET)
+    @ResponseBody
+    public String handleTeamActivation(@PathVariable int id) {
+        logger.info("info.Inside handleTeamActivation method");
+        String alertMessage = "";
+        boolean daoResult = false;
+        Team team = teamDAO.getTeamById(id);
+        logger.info("team:"+team.toString()); 
+
+        if (team != null) {
+            if (team.getActive() == 'Y') team.setActive('N');
+            else team.setActive('Y');
+            daoResult = teamDAO.update(team);
+            if (daoResult) alertMessage = "Equipo actualizada satisfactoriamente";
+        } else {
+            alertMessage = "Equipo no encontrado"; 
+        }
+        return alertMessage;
+    }
+        
+    //
+    //
     //ToDo Revisar donde dejar estos metodos y corregir
     @RequestMapping(value="/manage/league", method=RequestMethod.POST)
     public String handleLeagueSubmission(@ModelAttribute League league) {
@@ -132,7 +172,8 @@ public class TeamController {
         if (daoResult) alertMessage = "Liga Agregada";
         return "redirect:/manage/team?alertMessage="+alertMessage;
     }
-    
+    //
+    //
     //ToDo Revisar donde dejar estos metodos y corregir
     @RequestMapping(value="/manage/season", method=RequestMethod.POST)
     public String handleSeasonSubmission(@ModelAttribute Season season) {
@@ -143,5 +184,4 @@ public class TeamController {
         if (daoResult) alertMessage = "Temporada Agregada";
         return "redirect:/manage/team?alertMessage="+alertMessage;
     }    
-
 }

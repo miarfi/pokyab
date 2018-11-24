@@ -1,4 +1,4 @@
-
+<%@include file="alertMessage.jsp" %>
 
 <!--Button Row-->
 <div class="row">

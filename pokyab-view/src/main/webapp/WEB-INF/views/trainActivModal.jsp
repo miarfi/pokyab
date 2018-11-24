@@ -19,7 +19,7 @@
                         class="form-group">
 
                     <div class="form-group">
-                        <label class="control-label col-md-4" for="activityId">
+                        <label class="col-form-label col-md-4" for="activityId">
                             <spring:message code="trainActiv.table.activity"/>
                         </label>
                         <div class="col-md-8">
@@ -28,7 +28,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-md-8" for="activityNumber">
+                        <label class="col-form-label col-md-8" for="activityNumber">
                             <spring:message code="trainActiv.table.activityNumber"/>
                         </label>
                         <div class="col-md-8">
@@ -36,7 +36,7 @@
                         </div>
                     </div>                             
                     <div class="form-group">
-                        <label class="control-label col-md-4" for="positionCode">
+                        <label class="col-form-label col-md-4" for="positionCode">
                             <spring:message code="trainActiv.table.positionType"/>
                         </label>
                         <div class="col-md-8">
@@ -44,7 +44,7 @@
                         </div>
                     </div>                          
 <!--                    <div class="form-group">
-                        <label class="control-label col-md-4" for="weeks">
+                        <label class="col-form-label col-md-4" for="weeks">
                             <spring:message code="trainActiv.table.weeks"/>
                         </label>
                         <div class="col-md-8">
@@ -52,7 +52,7 @@
                         </div>
                     </div>                             
                     <div class="form-group">
-                        <label class="control-label col-md-4" for="days">
+                        <label class="col-form-label col-md-4" for="days">
                             <spring:message code="trainActiv.table.days"/>
                         </label>
                         <div class="col-md-8">
@@ -61,7 +61,7 @@
                         </div>
                     </div> -->
                     <div class="form-group">
-                        <label class="control-label col-md-4" for="startTime">
+                        <label class="col-form-label col-md-4" for="startTime">
                             <spring:message code="trainActiv.table.startTime"/>
                         </label>
                         <div class="col-md-8">
@@ -69,7 +69,7 @@
                         </div>
                     </div>   
                     <div class="form-group">
-                        <label class="control-label col-md-4" for="endTime">
+                        <label class="col-form-label col-md-4" for="endTime">
                             <spring:message code="trainActiv.table.endTime"/>
                         </label>
                         <div class="col-md-8">
