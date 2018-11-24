@@ -41,8 +41,7 @@ public class LookupType implements Serializable {
     @Column(name = "LOOKUP_TYPE_ID")
     private int lookupTypeId;
     @Basic(optional = false)
-    @Column(name = "LOOKUP_TYPE")//, unique=true) 
-//    @UniqueConstraint(columnNames={"lookup_type"})
+    @Column(name = "LOOKUP_TYPE")
     private String lookupType;
     @Column(name = "DESCRIPTION")
     private String description;

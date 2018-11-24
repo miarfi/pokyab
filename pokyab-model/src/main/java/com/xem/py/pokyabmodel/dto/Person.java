@@ -16,8 +16,10 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -98,6 +100,9 @@ public class Person implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date endDate;    
     transient int currentAge;
+
+    @Transient
+    private MultipartFile file;
 
     public Person() {
         this.active = 'Y';
@@ -276,8 +281,16 @@ public class Person implements Serializable {
         LocalDate currentDate = LocalDate.now();
         LocalDate birthDate = getDateOfBirth().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();;                
         return Period.between(birthDate, currentDate).getYears();
+    }  
+    
+    public MultipartFile getFile() {
+        return file;
     }
 
+    public void setFile(MultipartFile file) {
+        this.file = file;
+    }
+    
     @Override
     public String toString() {
         return "Person{" + "personId=" + personId + ", orgId=" + orgId + ", hireDate=" + hireDate + ", employeeNumber=" + employeeNumber + ", firstName=" + firstName + ", lastName=" + lastName + ", middleName=" + middleName + ", preName=" + preName + ", fullName=" + fullName + ", dateOfBirth=" + dateOfBirth + ", dateOfDeath=" + dateOfDeath + ", genderCode=" + genderCode + ", personType=" + personType + ", maritalStatusCode=" + maritalStatusCode + ", nationalityCode=" + nationalityCode + ", nationalIdentifier=" + nationalIdentifier + ", emailAddress=" + emailAddress + ", phoneNumber=" + phoneNumber + ", active=" + active + ", startDate=" + startDate + ", endDate=" + endDate + '}';
