@@ -3,6 +3,7 @@ package com.xem.py.pokyabview.controller;
 
 import com.xem.py.pokyabmodel.dao.ActivityDAO;
 import com.xem.py.pokyabmodel.dto.Activity;
+import com.xem.py.pokyabmodel.validator.ActivityValidator;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -71,13 +74,23 @@ public class ActivityController {
     }    
     
     @RequestMapping(value="/manage/activity", method=RequestMethod.POST)
-    public String handleActivitySubm(@ModelAttribute Activity activity) {
+    public String handleActivitySubm(@ModelAttribute Activity activity,
+            BindingResult result, Model model) {
         logger.info("info.Inside handleActivitySubm method");
         String alertMessage = "";
         boolean daoResult = false;
         logger.info("activity: "+activity.toString());
-        if (activity.getActivityId() == 0 ) {
-            
+        
+        //Spring Validator        
+        new ActivityValidator().validate(activity, result);
+        
+        if (result.hasErrors()) {
+            model.addAttribute("title", "Activity");
+            model.addAttribute("userClickActivity", true);             
+            return "page";
+        }
+        
+        if (activity.getActivityId() == 0 ) {            
             logger.info("activityDAO.add: ");
             activityDAO.add(activity);
             daoResult = true;

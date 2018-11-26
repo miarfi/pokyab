@@ -12,16 +12,17 @@ import org.springframework.web.multipart.MultipartFile;
  * @author arria
  */
 public class FileUploadUtility {
+    
+    private static final BasicLogger logger = LoggerFactory.logger(FileUploadUtility.class);
     private static final String ABS_PATH = "D:\\Miguel_Arriaga\\Dropbox\\IDE\\netbeans82\\pokyab\\pokyab-view\\src\\main\\webapp\\assets\\images\\";
     private static String REAL_PATH = "";
 
-    private static final BasicLogger logger = LoggerFactory.logger(FileUploadUtility.class);
 
     public static void uploadFile(HttpServletRequest request, MultipartFile file, String code) {
         //
         REAL_PATH = request.getSession().getServletContext().getRealPath("/assets/images/");
-        logger.debug(REAL_PATH);
-        logger.debug(REAL_PATH);
+        logger.info(ABS_PATH);
+        logger.info(REAL_PATH);
 
         if (!new File(ABS_PATH).exists()) {
             new File(ABS_PATH).mkdirs();

@@ -12,7 +12,8 @@
 </div>
         
 <div class="row">
-    <div class="col-12 col-md-8">
+    <div class="col-12 col-md-12">
+        <div class="table-responsive-md">
         <table id="teamsListTable" class="table table-striped table-borderd">										
             <thead>
                 <tr> 
@@ -39,6 +40,7 @@
                 </tr>
             </tfoot>-->
         </table>
+        </div>
     </div>			
 </div>
 

@@ -9,11 +9,14 @@ import com.xem.py.pokyabmodel.dto.League;
 import com.xem.py.pokyabmodel.dto.Person;
 import com.xem.py.pokyabmodel.dto.Season;
 import com.xem.py.pokyabmodel.dto.Team;
+import com.xem.py.pokyabmodel.validator.TeamValidator;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -107,11 +110,21 @@ public class TeamController {
     }
     
     @RequestMapping(value = {"/manage/team"}, method = RequestMethod.POST)
-    public String handleTeamSubmission(@ModelAttribute Team team) {
+    public String handleTeamSubmission(@ModelAttribute Team team,
+            BindingResult result, Model model) {
         logger.info("En handleTeamSubmission");    
         String alertMessage = "";
         boolean daoResult = false;
    
+        //Spring Validator        
+        new TeamValidator().validate(team, result);
+        
+        if (result.hasErrors()) {
+            model.addAttribute("title", "Team");
+            model.addAttribute("userClickTeam", true);             
+            return "page";
+        }
+        
         if (team.getTeamId() == 0) {
             daoResult = teamDAO.add(team);
             if (daoResult) alertMessage = "Equipo agregado";

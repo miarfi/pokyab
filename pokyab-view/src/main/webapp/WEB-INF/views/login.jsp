@@ -48,26 +48,27 @@
                 </div>
             </nav>-->
 
+                            
 <!--Page content-->
 <div class="content">
 			
    <div class="container">
     
-   	<c:if test="${not empty message}">
-		<div class="row">
-			<div class="col-xs-12 col-md-offset-2 col-md-8">
-				<div class="alert alert-danger fade in">${message}</div>
-			</div>
-		</div>
-	</c:if>
-         
-   	<c:if test="${not empty logout}">
-		<div class="row">
-			<div class="col-xs-12 col-md-offset-2 col-md-8">
-				<div class="alert alert-success">${logout}</div>
-			</div>
-		</div>
-	</c:if>
+       <c:if test="${not empty message}">
+           <div class="row">
+               <div class="col-xs-12 col-md-offset-2 col-md-8">
+                   <div class="alert alert-danger fade in">${message}</div>
+               </div>
+           </div>
+       </c:if>
+
+       <c:if test="${not empty logout}">
+           <div class="row">
+               <div class="col-xs-12 col-md-offset-2 col-md-8">
+                   <div class="alert alert-success">${logout}</div>
+               </div>
+           </div>
+       </c:if>
        
        <div class="row">
 
@@ -83,14 +84,18 @@
                        <form action="${contextRoot}/login" method="POST" class="form-horizontal"
                              id="loginForm">
                            <div class="form-group row">
-                               <label for="username" class="col-md-4 col-form-label"><spring:message code="login.field.username"/>: </label>
+                               <label for="username" class="col-md-4 col-form-label">
+                                   <spring:message code="login.field.username"/>: </label>
                                <div class="col-md-8">
                                    <input type="text" name="username" id="username" class="form-control"/>
+                                   <!--<sf:input path="username" id="username" type="text" class="form-control"/>--> 
                                </div>
                            </div>
                            <div class="form-group row">
-                               <label for="password" class="col-md-4 col-form-label"><spring:message code="login.field.password"/>: </label>
+                               <label for="password" class="col-md-4 col-form-label">
+                                   <spring:message code="login.field.password"/>: </label>
                                <div class="col-md-8">
+                                   <!--<sf:input path="password" id="password" type="text" class="form-control"/>-->
                                    <input type="password" name="password" id="password" class="form-control"/>
                                </div>
                            </div>

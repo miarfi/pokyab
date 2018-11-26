@@ -1,4 +1,5 @@
 <%@include file="../shared/flows-header.jsp" %>
+
 <div class="container">    
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
@@ -6,7 +7,7 @@
             <div class="panel panel-primary">
 
                 <div class="panel-heading">
-                    <h4>Sign Up - Personal</h4>
+                    <h4><spring:message code="user.form.personal.title"/></h4>
                 </div>
 
                 <div class="panel-body">
@@ -16,55 +17,54 @@
                         modelAttribute="user"
                         class="form-horizontal"
                         id="registerForm">
-
                         <div class="form-group">
-                            <label class="col-form-label col-md-4">First Name</label>
+                            <label for="firstName" class="col-form-label col-md-4">
+                                <spring:message code="user.form.firstName"/></label>
                             <div class="col-md-8">
-                                <sf:input type="text" path="firstName" class="form-control"/>
+                                <sf:input path="firstName" type="text" class="form-control"/>
                                 <sf:errors path="firstName" cssClass="text-danger" element="div"/> 
                             </div>
                         </div>
-
                         <div class="form-group">
-                            <label class="col-form-label col-md-4">Last Name</label>
+                            <label for="lastName" class="col-form-label col-md-4">
+                                <spring:message code="user.form.lastName"/></label>
                             <div class="col-md-8">
-                                <sf:input type="text" path="lastName" class="form-control"/>
+                                <sf:input path="lastName" type="text" class="form-control"/>
                                 <sf:errors path="lastName" cssClass="text-danger" element="div"/> 
                             </div>
                         </div>
-
                         <div class="form-group">
-                            <label class="col-form-label col-md-4">Email</label>
-                            <div class="col-md-8">
-                                <sf:input type="text" path="email" class="form-control"/>
-                                <sf:errors path="email" cssClass="text-danger" element="div"/> 									
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-form-label col-md-4">Contact Number</label>
+                            <label for="contactNumber" class="col-form-label col-md-4">
+                                <spring:message code="user.form.contactNumber"/></label>
                             <div class="col-md-8">
                                 <sf:input type="text" path="contactNumber" class="form-control" maxlength="10" />
                                 <sf:errors path="contactNumber" cssClass="text-danger" element="div"/> 
                             </div>
                         </div>
-
                         <div class="form-group">
-                            <label class="col-form-label col-md-4">Password</label>
+                            <label for="email" class="col-form-label col-md-4">
+                                <spring:message code="user.form.email"/></label>
+                            <div class="col-md-8">
+                                <sf:input path="email" type="text" class="form-control"/>
+                                <sf:errors path="email" cssClass="text-danger" element="div"/> 									
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="col-form-label col-md-4">
+                                <spring:message code="user.form.password"/></label>
                             <div class="col-md-8">
                                 <sf:input type="password" path="password" class="form-control"/>
                                 <sf:errors path="password" cssClass="text-danger" element="div"/> 
                             </div>
                         </div>
-
                         <div class="form-group">
-                            <label class="col-form-label col-md-4">Confirm Password</label>
+                            <label for="confirmPassword" class="col-form-label col-md-4">
+                                <spring:message code="user.form.confirmPassword"/></label>
                             <div class="col-md-8">
                                 <sf:input type="password" path="confirmPassword" class="form-control"/>
                                 <sf:errors path="confirmPassword" cssClass="text-danger" element="div"/>										 
                             </div>
                         </div>
-
 <!--                        <div class="form-group">
                             <label class="col-form-label col-md-4">Select Role</label>
                             <div class="col-md-8">
@@ -76,11 +76,11 @@
                                 </label>
                             </div>
                         </div>							-->
-
                         <div class="form-group">
                             <div class="col-md-offset-4 col-md-8">
                                 <button type="submit" name="_eventId_confirm" class="btn btn-primary">
-                                    Next - Confirm <span class="glyphicon glyphicon-chevron-right"></span>
+                                    <spring:message code="user.form.btn.next.confirm"/>
+                                    <span class="glyphicon glyphicon-chevron-right"></span>
                                 </button>																	 
                             </div>
                         </div>

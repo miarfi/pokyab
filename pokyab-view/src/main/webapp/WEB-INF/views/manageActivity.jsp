@@ -51,7 +51,7 @@
                             <label for="totalTime" class="col-form-label col-md-4">
                                 <spring:message code="activity.table.totalTime"/></label>
                             <div class="col-md-4">
-                                <sf:input path="totalTime" id="totalTime" type="text" class="form-control" /> 
+                                <sf:input path="totalTime" id="totalTime" type="number" class="form-control" /> 
                                 <sf:errors path="totalTime" cssClass="text-danger" element="div"/>
                             </div>
                         </div>
@@ -83,7 +83,7 @@
                             <label for="quantityMin" class="col-form-label col-md-4">
                                 <spring:message code="activity.table.quantityMin"/></label>
                             <div class="col-md-4">
-                                <sf:input path="quantityMin" id="quantityMin" type="text" class="form-control"/> 
+                                <sf:input path="quantityMin" id="quantityMin" type="number" class="form-control"/> 
                                 <sf:errors path="quantityMin" cssClass="text-danger" element="div"/>
                             </div>
                         </div>                                              
@@ -91,7 +91,7 @@
                             <label for="quantityMax" class="col-form-label col-md-4">
                                 <spring:message code="activity.table.quantityMax"/></label>
                             <div class="col-md-4">
-                                <sf:input path="quantityMax" id="quantityMax" type="text" class="form-control"/>
+                                <sf:input path="quantityMax" id="quantityMax" type="number" class="form-control"/>
                                 <sf:errors path="quantityMax" cssClass="text-danger" element="div"/>
                             </div>
                         </div>  

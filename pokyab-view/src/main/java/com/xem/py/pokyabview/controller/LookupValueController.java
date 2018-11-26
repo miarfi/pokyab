@@ -3,10 +3,13 @@ package com.xem.py.pokyabview.controller;
 
 import com.xem.py.pokyabmodel.dao.LookupValueDAO;
 import com.xem.py.pokyabmodel.dto.LookupValue;
+import com.xem.py.pokyabmodel.validator.LookupValueValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,10 +42,20 @@ public class LookupValueController {
 //    }    
     
     @RequestMapping(value = {"/manage/lookupValue"}, method = RequestMethod.POST)
-    public String handleLookupTypeSubmission(@ModelAttribute LookupValue lookupValue) {
+    public String handleLookupTypeSubmission(@ModelAttribute LookupValue lookupValue
+            ,BindingResult result, Model model) {
         logger.info("En handleLookupTypeSubmission"); 
         String alertMessage = "";
         boolean daoResult = false;         
+                
+        //Spring Validator        
+        new LookupValueValidator().validate(lookupValue, result);
+        
+        if (result.hasErrors()) {
+            model.addAttribute("title", "LookupValue");
+            model.addAttribute("userClickManageLookupValue", true);             
+            return "page";
+        }
         
         if (lookupValue.getLookupValueId() == 0) {
             lookupValue.setStartDate(new java.sql.Date(System.currentTimeMillis()));

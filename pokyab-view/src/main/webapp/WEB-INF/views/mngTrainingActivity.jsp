@@ -7,7 +7,9 @@
     <div class="row">
 
     </div>
- 
+    <!--Alert Message Row-->
+    <%@include file="alertMessage.jsp" %>
+    
     <!--Training row-->
     <div class="row">
         <div class="col-12 col-md-8">
@@ -24,9 +26,8 @@
                         method="POST"
                         class="form-horizonal">
                         <div class="form-group row">
-                            <label  for="activityNumber" class="col-form-label col-md-4">
-                                <spring:message code="trainActiv.table.activityNumber"/>
-                            </label>
+                            <label for="activityNumber" class="col-form-label col-md-4">
+                                <spring:message code="trainActiv.table.activityNumber"/></label>
                             <div class="col-md-8">
                                 <sf:hidden path="activityId"/>
                                 <sf:hidden path="trainingId"/>
@@ -36,8 +37,7 @@
                         </div>                             
                         <div class="form-group">
                             <label class="col-form-label col-md-4" for="positionCode">
-                                <spring:message code="trainActiv.table.positionType"/>
-                            </label>
+                                <spring:message code="trainActiv.table.positionType"/></label>
                             <div class="col-md-8">
                                 <sf:input path="positionCode" id="positionCode" type="text" class="form-control"/> 
                                 <sf:errors path="positionCode" cssClass="text-danger" element="div" />
@@ -45,8 +45,7 @@
                         </div>                                                 
                         <div class="form-group">
                             <label for="startTime" class="col-form-label col-md-4">
-                                <spring:message code="trainActiv.table.startTime"/>
-                            </label>
+                                <spring:message code="trainActiv.table.startTime"/></label>
                             <div class="col-md-8">
                                 <sf:input path="startTime" id="startTime" type="time" class="form-control"/>
                                 <sf:errors path="startTime" cssClass="text-danger" element="div" />
@@ -54,8 +53,7 @@
                         </div>   
                         <div class="form-group">
                             <label for="endTime" class="col-form-label col-md-4">
-                                <spring:message code="trainActiv.table.endTime"/>
-                            </label>
+                                <spring:message code="trainActiv.table.endTime"/></label>
                             <div class="col-md-8">
                                 <sf:input path="endTime" id="endTime" type="time" class="form-control-time" /> 
                                 <sf:errors path="endTime" cssClass="text-danger" element="div" />

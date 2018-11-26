@@ -3,12 +3,15 @@ package com.xem.py.pokyabview.controller;
 
 import com.xem.py.pokyabmodel.dao.PersonDAO;
 import com.xem.py.pokyabmodel.dto.Person;
+import com.xem.py.pokyabmodel.validator.PersonValidator;
 import com.xem.py.pokyabview.util.FileUploadUtility;
 import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -65,11 +68,21 @@ public class PersonController {
     
     @RequestMapping(value="/manage/person", method=RequestMethod.POST)
     public String handlePersonSubmission(@ModelAttribute Person person
-            ,HttpServletRequest request) {
+            ,HttpServletRequest request,BindingResult result, Model model) {
         logger.info("info.Inside handlePersonSubmission method");
         String alertMessage = "";
         boolean daoResult = false;
         logger.info("person:"+person.toString());
+        
+        //Spring Validator        
+        new PersonValidator().validate(person, result);
+        
+        if (result.hasErrors()) {
+            model.addAttribute("title", "Person");
+            model.addAttribute("userClickPerson", true);             
+            return "page";
+        }
+        
         if (person.getPersonId() == 0) {
             daoResult = personDAO.add(person);
             if (daoResult) alertMessage = "Persona agregada";            

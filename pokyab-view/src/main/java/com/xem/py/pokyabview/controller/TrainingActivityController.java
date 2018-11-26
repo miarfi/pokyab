@@ -5,11 +5,15 @@ import com.xem.py.pokyabmodel.dao.ActivityDAO;
 import com.xem.py.pokyabmodel.dao.TrainingActivityDAO;
 import com.xem.py.pokyabmodel.dto.Activity;
 import com.xem.py.pokyabmodel.dto.TrainingActivity;
+import com.xem.py.pokyabmodel.validator.LookupTypeValidator;
+import com.xem.py.pokyabmodel.validator.TrainActivValidator;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -51,10 +55,20 @@ public class TrainingActivityController {
        
 
     @RequestMapping(value = "/manage/trainingActivity", method = RequestMethod.POST)
-    public String handleTrainActivitySubm(@ModelAttribute TrainingActivity trainingActivity) {
+    public String handleTrainActivitySubm(@ModelAttribute TrainingActivity trainingActivity,
+            BindingResult result, Model model) {
         logger.info("info.Inside handleTrainActivitySubm method");
         String alertMessage = "";
         boolean daoResult = false;
+        
+        //Spring Validator        
+        new TrainActivValidator().validate(trainingActivity, result);
+        
+        if (result.hasErrors()) {
+            model.addAttribute("title", "TrainingActivity");
+            model.addAttribute("userClickTrainActiv", true);             
+            return "page";
+        }
         
         if (trainingActivity.getTrainActId() == 0) {
             daoResult =   trainingActivityDAO.add(trainingActivity);

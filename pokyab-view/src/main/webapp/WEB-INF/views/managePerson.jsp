@@ -4,6 +4,9 @@
     <div class="row">
 
     </div>
+    
+    <!--Alert Message Row-->
+    <%@include file="alertMessage.jsp" %>
  
     <!--Training row-->
     <div class="row">
@@ -19,12 +22,11 @@
                         modelAttribute="person" 
                         action="${contextRoot}/manage/person" 
                         method="POST"
-                        class="form-horizonal">
-
+                        class="form-horizonal"
+                        enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="firstName" class="col-form-label col-md-4">
-                                <spring:message code="person.table.firstName"/>:
-                            </label>
+                                <spring:message code="person.table.firstName"/>:</label>
                             <div class="col-md-8">
                                 <sf:input id="personId" path="personId" type="hidden"/>
                                 <sf:input path="firstName" id="firstName" type="text" class="form-control"/>
@@ -32,42 +34,48 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="lastName" class="col-form-label col-md-4"><spring:message code="person.table.lastName"/>:</label>
+                            <label for="lastName" class="col-form-label col-md-4">
+                                <spring:message code="person.table.lastName"/>:</label>
                             <div class="col-md-8">
                                 <sf:input path="lastName" id="lastName" type="text" class="form-control"/>
                                 <sf:errors path="lastName" cssClass="text-danger" element="div" />
                             </div>
                         </div>                              
                         <div class="form-group">
-                            <label for="genderCode" class="col-form-label col-md-4"><spring:message code="person.table.genderCode"/>:</label>
+                            <label for="genderCode" class="col-form-label col-md-4">
+                                <spring:message code="person.table.genderCode"/>:</label>
                             <div class="col-md-8">
                                 <sf:input path="genderCode" id="genderCode" type="text" class="form-control"/>
-                                <sf:errors path="gendercode" cssClass="text-danger" element="div" />
+                                <sf:errors path="genderCode" cssClass="text-danger" element="div" />
                             </div>
                         </div>  
                         <div class="form-group">
-                            <label for="personType" class="col-form-label col-md-4"><spring:message code="person.table.personType"/>:</label>
+                            <label for="personType" class="col-form-label col-md-4">
+                                <spring:message code="person.table.personType"/>:</label>
                             <div class="col-md-8">
                                 <sf:input path="personType" id="personType" type="text" class="form-control"/>
                                 <sf:errors path="personType" cssClass="text-danger" element="div" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="maritalStatusCode" class="col-form-label col-md-4"><spring:message code="person.table.maritalStatusCode"/>:</label>
+                            <label for="maritalStatusCode" class="col-form-label col-md-4">
+                                <spring:message code="person.table.maritalStatusCode"/>:</label>
                             <div class="col-md-8">
                                 <sf:input path="maritalStatusCode" id="maritalStatusCode" type="text" class="form-control"/>
                                 <sf:errors path="maritalStatusCode" cssClass="text-danger" element="div" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="dateOfBirth" class="col-form-label col-md-4"><spring:message code="person.table.dateOfBirth"/>:</label>
+                            <label for="dateOfBirth" class="col-form-label col-md-4">
+                                <spring:message code="person.table.dateOfBirth"/>:</label>
                             <div class="col-md-4">
                                 <sf:input path="dateOfBirth" id="dateOfBirth" type="date"/>
                                 <sf:errors path="dateOfBirth" cssClass="text-danger" element="div" />
                             </div>
                         </div>                         
                         <div class="form-group">
-                            <label for="startDate" class="col-form-label col-md-4"><spring:message code="common.field.startDate"/>:</label>
+                            <label for="startDate" class="col-form-label col-md-4">
+                                <spring:message code="common.field.startDate"/>:</label>
                             <div class="col-md-4">
                                 <sf:input path="startDate" id="startDate" type="date"/>
                                 <sf:errors path="startDate" cssClass="text-danger" element="div" />
@@ -75,7 +83,8 @@
                         </div>  
                         <c:if test="${person.personId > 0 }">
                             <div class="form-group">
-                                <label for="endDate" class="col-form-label col-md-4"><spring:message code="common.field.endDate"/>:</label>
+                                <label for="endDate" class="col-form-label col-md-4">
+                                    <spring:message code="common.field.endDate"/>:</label>
                                 <div class="col-md-4">
                                     <sf:input path="endDate" id="endDate" type="date"/>
                                     <sf:errors path="endDate" cssClass="text-danger" element="div" />
@@ -83,7 +92,8 @@
                             </div>   
                         </c:if>
                         <div class="form-group">
-                            <label class="col-form-label col-md-4" for="file">Subir Foto</label>
+                            <label for="file" class="col-form-label col-md-4">
+                                <spring:message code="common.field.file.upload"/></label>
                             	<div class="col-md-8">
                                     <sf:input path="file" id="file" type="file" class="form-control"/>
                                     <sf:errors path="file" cssClass="text-danger" element="div"/>

@@ -30,25 +30,28 @@
                             <label for="teamName" class="col-form-label col-md-4">
                                 <spring:message code="team.table.teamName"/></label>
                             <div class="col-md-8">
-                                <sf:input id="teamId" path="teamId" type="hidden"/>
-                                <sf:input path="teamName" id="teamName" type="text" class="form-control"/> 
+                                <sf:input path="teamId" id="teamId" type="hidden"/>
+                                <sf:input path="teamName" id="teamName" type="text" class="form-control"/>
+                                <sf:errors path="teamName" cssClass="text-danger" element="div" />
                             </div>
                         </div>
-
                         <div class="form-group">
                             <label for="groupNumber" class="col-form-label col-md-4">
                                 <spring:message code="team.table.groupNumber"/></label>
                             <div class="col-md-8">
-                                <sf:input path="groupNumber" id="groupNumber" type="text" class="form-control"/> 
+                                <sf:input path="groupNumber" id="groupNumber" type="number" class="form-control"/> 
+                                <sf:errors path="groupNumber" cssClass="text-danger" element="div" />
                             </div>
                         </div>                                              
-
                         <div class="form-group">
                             <label class="col-form-label col-md-4" for="leagueId">
                                 <spring:message code="team.table.league"/></label>
                             <div class="col-md-8">
-                                <sf:select path="leagueId" id="leagueId" items="${leagues}" itemLabel="leagueName"
-                                           itemValue="leagueId" class="form-control"/>
+                                <sf:select path="leagueId" id="leagueId" class="form-control">
+                                    <sf:option value="0" label="---"/>
+                                    <sf:options items="${leagues}" itemLabel="leagueName" itemValue="leagueId" />
+                                </sf:select>
+                                <sf:errors path="leagueId" cssClass="text-danger" element="div" />
                                 <div class="text-right">
                                     <!--<br/>-->			                                                                   		
                                     <c:if test="${team.leagueId == 0 }">
@@ -60,7 +63,7 @@
                                         </div>
                                     </c:if>	
                                 </div>					
-                            </div>	
+                            </div>                            
                         </div>
                                         
                         <div class="form-group">
@@ -68,10 +71,12 @@
                                 <spring:message code="team.table.season"/>
                             </label>
                             <div class="col-md-8">
-                                <sf:select path="seasonId" id="seasonId" items="${seasons}" itemLabel="seasonName"
-                                           itemValue="seasonId" class="form-control"/>
-                                <div class="text-right">
-                                    <!--<br/>-->			                                		
+                                <sf:select path="seasonId" id="seasonId" class="form-control">                                    
+                                    <sf:option value="0" label="---"/>
+                                    <sf:options items="${seasons}" itemLabel="seasonName" itemValue="seasonId" />
+                                </sf:select>
+                                <sf:errors path="seasonId" cssClass="text-danger" element="div" />
+                                <div class="text-right">                			                                		
                                     <c:if test="${team.seasonId == 0 }">
                                         <div class="text-right">
                                             <br/>										
@@ -81,7 +86,7 @@
                                         </div>
                                     </c:if>	
                                 </div>					
-                            </div>	
+                            </div>                            
                         </div>                                        
                                         
                         <div class="form-group">
@@ -89,10 +94,12 @@
                                 <spring:message code="team.table.trainer"/>
                             </label>
                             <div class="col-md-8">
-                                <sf:select path="trainerPerId" id="trainerPerId" items="${trainers}" 
-                                           itemLabel="firstName" itemValue="personId" class="form-control"/>
-                                <div class="text-right">
-                                    <!--<br/>-->			                                 	
+                                <sf:select path="trainerPerId" id="trainerPerId" class="form-control">
+                                    <sf:option value="0" label="---"/>
+                                    <sf:options items="${trainers}" itemLabel="firstName" itemValue="personId" />
+                                </sf:select>
+                                <sf:errors path="trainerPerId" cssClass="text-danger" element="div" />
+                                <div class="text-right">                                  			                                 	
                                     <c:if test="${team.teamId == 0 }">
                                         <div class="text-right">
                                             <br/>										
@@ -102,7 +109,7 @@
                                         </div>
                                     </c:if>	
                                 </div>					
-                            </div>	
+                            </div>                            
                         </div>
                         <div class="form-group">
                             <label for="startDate" class="col-form-label col-md-4">
@@ -110,6 +117,7 @@
                             <div class="col-md-4">
                                 <sf:input path="startDate" id="startDate" type="date"/>
                             </div>
+                            <sf:errors path="startDate" cssClass="text-danger" element="div" />
                         </div> 
                         <c:if test="${team.teamId > 0 }">
                             <div class="form-group">
@@ -118,6 +126,7 @@
                                 <div class="col-md-4">
                                     <sf:input path="endDate" id="endDate" type="date"/>
                                 </div>
+                                <sf:errors path="endDate" cssClass="text-danger" element="div" />
                             </div>   
                         </c:if>
                         <div class="form-group">

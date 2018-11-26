@@ -1,17 +1,5 @@
 <%@include file="alertMessage.jsp" %>
 
-<!--AlertMessage Row-->
-<c:if test="${not empty message}">
-    <div class="row">
-        <div class="col-12 col-md-8">
-            <div class="alert alert-sucess alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                ${message}
-            </div>
-        </div>
-    </div>
-</c:if>	
-
 <!--Button Row-->
 <div class="row">
     <div class="col-12 col-md-8">
@@ -25,8 +13,8 @@
 </div>
 
 <div class="row">
-    <div class="col-12 col-md-8"><!--col-md-8 se mueve el footer-->
-        <!--<div class="table-responsive">-->
+    <div class="col-12 col-md-12"><!--col-md-8 se mueve el footer-->
+        <div class="table-responsive">
             <table id="lookupTypesListTable" class="table table-striped table-bordered">										
                 <thead>
                     <tr> 
@@ -46,7 +34,7 @@
                     </tr>
                 </tfoot>-->
             </table>
-        <!--</div>-->
+        </div>
     </div>			
 </div>
 

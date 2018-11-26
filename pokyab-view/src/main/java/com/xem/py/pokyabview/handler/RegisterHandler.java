@@ -50,6 +50,7 @@ public class RegisterHandler {
 
     public String validateUser(User user, MessageContext error) {
         
+        
         String transitionValue = "confirm";
         if (!user.getPassword().equals(user.getConfirmPassword())) {
             error.addMessage(new MessageBuilder().error().source("confirmPassword")

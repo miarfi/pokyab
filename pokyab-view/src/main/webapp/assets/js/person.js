@@ -36,8 +36,8 @@
                     bSortable: false,
                     mRender: function (data, type, row) {
                         var str = '';
-                        str += '<a href="' + window.contextRoot + '/manage/'
-                                + data + '/person"><i class="fas fa-edit"></i></a>';
+                        str += '<a href="' + window.contextRoot + '/manage/person/'
+                                + data + '"><i class="fas fa-edit"></i></a>';
                         return str;
                     }
                 },
@@ -46,8 +46,8 @@
                     bSortable: false,
                     mRender: function (data, type, row) {
                         var str = '';
-                        str += '<a href="' + window.contextRoot + '/manage/'
-                                + data + '/person/delete" class="confirmation"><i class="fas fa-trash"></i></a>';
+                        str += '<a href="' + window.contextRoot + '/manage/person/'
+                                + data + '/delete" class="confirmation"><i class="fas fa-trash"></i></a>';
                         return str;
                     }
                 },

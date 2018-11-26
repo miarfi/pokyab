@@ -5,17 +5,20 @@
         <div class="col-sm-6">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h4>Personal Details</h4>
+                    <h4><spring:message code="user.form.personal.title"/></h4>
                 </div>
 
                 <div class="panel-body">
                     <div class="text-center">
-                        <h3>Name : <strong>${registerModel.user.firstName} ${registerModel.user.lastName}</strong></h3>
-                        <h4>Email : <strong>${registerModel.user.email}</strong></h4>
-                        <h4>Contact : <strong>${registerModel.user.contactNumber}</strong></h4>
-                        <h4>Role : <strong>${registerModel.user.role}</strong></h4>
+                        <h3><spring:message code="user.form.firstName"/> : 
+                            <strong>${registerModel.user.firstName} ${registerModel.user.lastName}</strong></h3>
+                        <h4><spring:message code="user.form.email"/> : 
+                            <strong>${registerModel.user.email}</strong></h4>
+                        <h4><spring:message code="user.form.contactNumber"/> : 
+                            <strong>${registerModel.user.contactNumber}</strong></h4>                   
                         <p>
-                            <a href="${flowExecutionUrl}&_eventId_personal" class="btn btn-primary">Edit</a>
+                            <a href="${flowExecutionUrl}&_eventId_personal" class="btn btn-primary">
+                                <spring:message code="common.btn.edit"/></a>
                         </p>
                     </div>
                 </div>
