@@ -5,6 +5,7 @@ import com.xem.py.pokyabmodel.dao.TeamDAO;
 import com.xem.py.pokyabmodel.dto.Team;
 import com.xem.py.pokyabmodel.view.TeamV;
 import java.util.List;
+import org.hibernate.HibernateException;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class TeamDAOImpl implements TeamDAO
             team.setActive('Y');
             sessionFactory.getCurrentSession()
                     .persist(team);
-        } catch (Exception e) {
+        } catch (HibernateException e) {
             e.printStackTrace();
             return false;
         }

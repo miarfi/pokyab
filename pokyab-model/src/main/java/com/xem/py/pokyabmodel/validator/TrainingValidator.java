@@ -21,12 +21,13 @@ public class TrainingValidator implements Validator{
     public void validate(Object o, Errors errors) {
         Training training = (Training) o;
         
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "trainingName", "training.form.trainingName.notEmpty");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "description", "training.form.description.notEmpty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "trainingName", "common.form.string.notEmpty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "description", "common.form.string.notEmpty");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "startDate", "common.form.startDate.notEmpty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "weeks", "common.form.int.notEmpty");
         
-        if (training.getWeeks() <= 0) {//training.getWeeks() == null || 
-            errors.rejectValue("weeks", "training.form.weeks.notEmpty");
+        if (training.getWeeks() <= 0) {//training.getWeeks() != null || 
+            errors.rejectValue("weeks", "common.form.int.greater0");
         }
     }
     

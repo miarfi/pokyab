@@ -41,6 +41,7 @@ public class LookupValue implements Serializable {
     @Basic(optional = false)
     @Column(name = "LOOKUP_CODE", nullable = false, length = 30)
     private String lookupCode;
+    @Basic(optional = false)
     @Column(name = "MEANING", length = 150)
     private String meaning;
     @Column(name = "DESCRIPTION", length = 250)

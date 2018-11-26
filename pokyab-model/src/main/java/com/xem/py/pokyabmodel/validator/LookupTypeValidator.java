@@ -22,8 +22,8 @@ public class LookupTypeValidator implements Validator{
     public void validate(Object o, Errors errors) {
 //        LookupType lookupType = (LookupType) o;
         
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lookupType", "lookupType.form.lookupType.notEmpty");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "description", "lookupType.form.description.notEmpty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lookupType", "common.form.string.notEmpty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "description", "common.form.string.notEmpty");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "startDate", "common.form.startDate.notEmpty");        
     }    
 }

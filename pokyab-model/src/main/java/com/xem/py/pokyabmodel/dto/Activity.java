@@ -61,7 +61,7 @@ public class Activity implements Serializable {
 //    @Basic(optional = false)
     @Column(name = "REPETITIONS")
     private short repetitions;
-//    @Basic(optional = false)
+    @Basic(optional = false)
     @Column(name = "UOM_CODE")
     private String uomCode;
     @Basic(optional = false)
