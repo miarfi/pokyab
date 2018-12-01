@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -49,11 +50,12 @@ public class TrainingController {
     }
     
     @RequestMapping(value = {"/trainings"})
-    public ModelAndView showAllTrainings() {
+    public ModelAndView showAllTrainings(@RequestParam(name = "alertMessage", required = false) String alertMessage) {
         logger.info("info.Inside showAllTrainings method");
         ModelAndView mv = new ModelAndView("page");
         mv.addObject("title", "Trainings");
         mv.addObject("userClickTrainings", true);
+        mv.addObject("alertMessage", alertMessage);
         return mv;
     }  
     
@@ -68,11 +70,13 @@ public class TrainingController {
     }
     
     @RequestMapping(value = {"/manage/training/{id}"})
-    public ModelAndView showManageTrainingEdit(@PathVariable int id) {
+    public ModelAndView showManageTrainingEdit(@PathVariable int id
+        ,@RequestParam(name = "alertMessage", required = false) String alertMessage) {
         logger.info("info.Inside showManageTrainingEdit method");
         ModelAndView mv = new ModelAndView("page");
         mv.addObject("title", "Training");
-        mv.addObject("userClickTraining", true);        
+        mv.addObject("userClickTraining", true);     
+        mv.addObject("alertMessage", alertMessage);
         
         //Get Training object
         Training training = trainingDAO.getTrainingById(id);
@@ -108,8 +112,8 @@ public class TrainingController {
             daoResult = trainingDAO.update(training);
             if (daoResult) alertMessage = "Entrenamiento actualizado";
         }
-        if (daoResult) returnUrl = "redirect:/manage/training/"+training.getTrainingId();
-        else returnUrl = "redirect:/manage/training";
+        if (daoResult) returnUrl = "redirect:/manage/training/"+training.getTrainingId()+"?alertMessage="+alertMessage;
+        else returnUrl = "redirect:/manage/training?alertMessage="+alertMessage;
         
         logger.info("daoResult: "+daoResult+" alertMessage: "+alertMessage);
         return returnUrl;

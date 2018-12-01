@@ -4,7 +4,15 @@
     
     <!--Breadcrumb row-->
     <div class="row">
-
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="${contextRoot}/home">
+                    <spring:message code="menu.navbar.home"/></a></li>
+                <li class="breadcrumb-item"><a href="${contextRoot}/lookupTypes">
+                    <spring:message code="menu.navbar.lookupTypes"/></a></li>
+                <li class="breadcrumb-item active" aria-current="page">${lookupType.lookupType}</li>
+            </ol>
+        </nav>
     </div>
  
     <!--Lookup Type row-->

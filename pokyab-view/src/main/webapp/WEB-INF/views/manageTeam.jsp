@@ -1,14 +1,21 @@
 
 <div class="container">
+    <%@include file="alertMessage.jsp" %>
     
     <!--Breadcrumb row-->
     <div class="row">            
-<!--            Current Locale : ${pageContext.response.locale}            -->
-            <hr/>
-    </div>
-    
-    <!--Alert Message Row-->
-    <%@include file="alertMessage.jsp" %>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="${contextRoot}/home">
+                    <spring:message code="menu.navbar.home"/></a></li>
+                <li class="breadcrumb-item"><a href="${contextRoot}/teams">
+                    <spring:message code="menu.navbar.teams"/></a></li>
+                <li class="breadcrumb-item active" aria-current="page">${team.teamName}</li>
+            </ol>
+        </nav>
+<!--        Current Locale : ${pageContext.response.locale}            
+        <hr/>-->
+    </div>    
             
     <!--Team row-->
     <div class="row">

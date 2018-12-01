@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -33,11 +34,12 @@ public class PersonController {
     private PersonDAO personDAO;  
     
     @RequestMapping(value = {"/persons"})
-    public ModelAndView showAllPersons() {
+    public ModelAndView showAllPersons(@RequestParam(name = "alertMessage", required = false) String alertMessage) {
         logger.info("info.Inside showAllPersons method");
         ModelAndView mv = new ModelAndView("page");
         mv.addObject("title", "Persons");
         mv.addObject("userClickPersons", true);
+        mv.addObject("alertMessage", alertMessage);
         return mv;
     }
     
@@ -54,11 +56,13 @@ public class PersonController {
     }
     
     @RequestMapping(value = {"/manage/person/{id}"})
-    public ModelAndView showManagePersonEdit(@PathVariable int id) {
+    public ModelAndView showManagePersonEdit(@PathVariable int id
+        ,@RequestParam(name = "alertMessage", required = false) String alertMessage) {
         logger.info("En showManagePersonEdit");
         ModelAndView mv = new ModelAndView("page");
         mv.addObject("title", "Person");
         mv.addObject("userClickPerson", true);
+        mv.addObject("alertMessage", alertMessage);
         
         //Get Person object
         Person person = personDAO.getPersonById(id);
@@ -72,6 +76,7 @@ public class PersonController {
         logger.info("info.Inside handlePersonSubmission method");
         String alertMessage = "";
         boolean daoResult = false;
+        String returnUrl = "";
         logger.info("person:"+person.toString());
         
         //Spring Validator        
@@ -95,7 +100,11 @@ public class PersonController {
             FileUploadUtility.uploadFile(request, person.getFile(), String.valueOf(person.getPersonId()));
         }
         
-        return "redirect:/persons?alertMessage=" + alertMessage;
+        if (daoResult) returnUrl = "redirect:/manage/person/"+person.getPersonId()+"?alertMessage="+alertMessage;
+        else returnUrl = "redirect:/persons?alertMessage="+alertMessage;
+        
+        logger.info("daoResult: "+daoResult+" alertMessage: "+alertMessage);
+        return returnUrl;
     }
     
     @RequestMapping(value="/manage/person/{id}/delete", method=RequestMethod.GET)

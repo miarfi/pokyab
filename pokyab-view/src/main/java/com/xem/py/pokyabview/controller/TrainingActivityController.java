@@ -5,7 +5,6 @@ import com.xem.py.pokyabmodel.dao.ActivityDAO;
 import com.xem.py.pokyabmodel.dao.TrainingActivityDAO;
 import com.xem.py.pokyabmodel.dto.Activity;
 import com.xem.py.pokyabmodel.dto.TrainingActivity;
-import com.xem.py.pokyabmodel.validator.LookupTypeValidator;
 import com.xem.py.pokyabmodel.validator.TrainActivValidator;
 import java.util.List;
 import org.slf4j.Logger;
@@ -78,6 +77,7 @@ public class TrainingActivityController {
             if (daoResult) alertMessage = "Actividad actualizada";   
         }
                      
-        return "redirect:/manage/"+trainingActivity.getTrainingId()+"/training";
+        return "redirect:/manage/training/"+trainingActivity.getTrainingId()+"?alertMessage="+alertMessage;
+
     }
 }

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -37,11 +38,12 @@ public class ActivityController {
     private Environment environment;
     
     @RequestMapping(value = {"/activities"})
-    public ModelAndView showAllActivities() {
+    public ModelAndView showAllActivities(@RequestParam(name = "alertMessage", required = false) String alertMessage) {
         logger.info("info.Inside showAllActivities method");
         ModelAndView mv = new ModelAndView("page");
         mv.addObject("title", "Activities");
         mv.addObject("userClickActivities", true);
+        mv.addObject("alertMessage", alertMessage);
 
         return mv;
     }    
@@ -61,11 +63,13 @@ public class ActivityController {
     }    
     
     @RequestMapping(value = {"/manage/activity/{id}"})
-    public ModelAndView showManageActivityEdit(@PathVariable int id) {
+    public ModelAndView showManageActivityEdit(@PathVariable int id
+        ,@RequestParam(name = "alertMessage", required = false) String alertMessage) {
         logger.info("En showManageActivityEdit");
         ModelAndView mv = new ModelAndView("page");
         mv.addObject("title", "Activity");
-        mv.addObject("userClickActivity", true);//userClickManageActivity
+        mv.addObject("userClickActivity", true);
+        mv.addObject("alertMessage", alertMessage);
         
         //Get Activity object
         Activity activity = activityDAO.getActivityById(id);
@@ -79,6 +83,7 @@ public class ActivityController {
         logger.info("info.Inside handleActivitySubm method");
         String alertMessage = "";
         boolean daoResult = false;
+        String returnUrl = "";
         logger.info("activity: "+activity.toString());
         
         //Spring Validator        
@@ -99,8 +104,11 @@ public class ActivityController {
             daoResult = activityDAO.update(activity);
             if (daoResult) alertMessage = "Actividad actualizada";
         }
-        logger.info("alertMessage: "+alertMessage);
-        return "redirect:/activities?alertMessage="+alertMessage;
+        if (daoResult) returnUrl = "redirect:/manage/activity/"+activity.getActivityId()+"?alertMessage="+alertMessage;
+        else returnUrl = "redirect:/activities?alertMessage="+alertMessage;
+        
+        logger.info("daoResult: "+daoResult+" alertMessage: "+alertMessage);
+        return returnUrl;
     }
     
     @RequestMapping(value="/manage/activity/{id}/delete", method=RequestMethod.GET)

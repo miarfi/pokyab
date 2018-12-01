@@ -62,9 +62,9 @@ public class LookupTypeController {
         ,@RequestParam(name="alertMessage", required=false)String alertMessage) {
         logger.info("En showManageLookupTypeEdit");
         ModelAndView mv = new ModelAndView("page");
-        mv.addObject("title", "Lookup Type");
-        mv.addObject("alertMessage", alertMessage);
+        mv.addObject("title", "Lookup Type");        
         mv.addObject("userClickManageLookupType", true);
+        mv.addObject("alertMessage", alertMessage);
         
         //Get LookupType object
         LookupType lookupType = lookupTypeDAO.getLookupTypeById(id);
@@ -104,7 +104,7 @@ public class LookupTypeController {
             if (daoResult) alertMessage = "Catalogo actualizado";
         }
         
-        if (daoResult) returnUrl = "redirect:/manage/lookupType/"+lookupType.getLookupTypeId();
+        if (daoResult) returnUrl = "redirect:/manage/lookupType/"+lookupType.getLookupTypeId()+"?alertMessage="+alertMessage;
         else returnUrl = "redirect:/lookupTypes?alertMessage="+alertMessage;
         
         logger.info("daoResult: "+daoResult+" alertMessage: "+alertMessage);

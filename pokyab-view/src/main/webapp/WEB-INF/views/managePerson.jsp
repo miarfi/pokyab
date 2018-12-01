@@ -1,8 +1,18 @@
 
 <div class="container">   
+    <%@include file="alertMessage.jsp" %>
+    
     <!--Breadcrumb row-->
     <div class="row">
-
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="${contextRoot}/home">
+                    <spring:message code="menu.navbar.home"/></a></li>
+                <li class="breadcrumb-item"><a href="${contextRoot}/persons">
+                    <spring:message code="menu.navbar.persons"/></a></li>
+                <li class="breadcrumb-item active" aria-current="page">${person.firstName} ${person.lastName}</li>
+            </ol>
+        </nav>
     </div>
     
     <!--Alert Message Row-->

@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -76,10 +77,11 @@ public class TeamController {
     }
     
     @RequestMapping(value = {"/teams"})
-    public ModelAndView showAllTeams() {
+    public ModelAndView showAllTeams(@RequestParam(name = "alertMessage", required = false) String alertMessage) {
         ModelAndView mv = new ModelAndView("page");
         mv.addObject("title", "Teams");
         mv.addObject("userClickTeams", true);
+        mv.addObject("alertMessage", alertMessage);
         return mv;
     }
     
@@ -97,11 +99,13 @@ public class TeamController {
     }
 
     @RequestMapping(value = {"/manage/team/{id}"})
-    public ModelAndView showManageTeamEdit(@PathVariable int id) {
+    public ModelAndView showManageTeamEdit(@PathVariable int id
+        ,@RequestParam(name = "alertMessage", required = false) String alertMessage) {
         logger.info("info.Inside showManageTeamEdit method");
         ModelAndView mv = new ModelAndView("page");
         mv.addObject("title", "Team");
-        mv.addObject("userClickTeam", true);        
+        mv.addObject("userClickTeam", true);   
+        mv.addObject("alertMessage", alertMessage);
         
         //Get Team object
         Team team = teamDAO.getTeamById(id);
@@ -115,6 +119,7 @@ public class TeamController {
         logger.info("En handleTeamSubmission");    
         String alertMessage = "";
         boolean daoResult = false;
+        String returnUrl;
    
         //Spring Validator        
         new TeamValidator().validate(team, result);
@@ -132,8 +137,11 @@ public class TeamController {
             daoResult = teamDAO.update(team);
             if (daoResult) alertMessage = "Equipo actualizado";
         }       
+        if (daoResult) returnUrl = "redirect:/manage/team/"+team.getTeamId()+"?alertMessage="+alertMessage;
+        else returnUrl = "redirect:/teams?alertMessage="+alertMessage;
         
-        return "redirect:/teams?alertMessage="+alertMessage;
+        logger.info("daoResult: "+daoResult+" alertMessage: "+alertMessage);
+        return returnUrl;
     }
     
     @RequestMapping(value="/manage/team/{id}/delete", method=RequestMethod.GET)
