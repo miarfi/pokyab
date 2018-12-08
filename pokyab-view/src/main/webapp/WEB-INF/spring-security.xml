@@ -34,9 +34,15 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
     <!--Http minimal configuration-->
     <http pattern="/resources/**" security="none"/>    
     <http>
+        <!--Public access-->
+        <intercept-url pattern="/" access="permitAll" /> 
+        <intercept-url pattern="/home" access="permitAll" />    
+        <intercept-url pattern="/index" access="permitAll" /> 
         <intercept-url pattern="/login" access="permitAll" />        
-        <intercept-url pattern="/register" access="permitAll" />  
-        <intercept-url pattern="/manage/**" access="hasRole('ROLE_ADMIN')" /> 
+        <intercept-url pattern="/register" access="permitAll" />
+        <!--Admin access-->        
+        <intercept-url pattern="/manage/**" access="hasRole('ROLE_ADMIN')" />
+        <!--User access-->
         <intercept-url pattern="/**" access="hasRole('ROLE_USER')" />        
         <form-login login-page='/login' />
         <access-denied-handler error-page="/access-denied"/>

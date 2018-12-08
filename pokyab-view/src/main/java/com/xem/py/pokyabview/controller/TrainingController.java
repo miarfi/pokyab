@@ -52,7 +52,7 @@ public class TrainingController {
     @RequestMapping(value = {"/trainings"})
     public ModelAndView showAllTrainings(@RequestParam(name = "alertMessage", required = false) String alertMessage) {
         logger.info("info.Inside showAllTrainings method");
-        ModelAndView mv = new ModelAndView("page");
+        ModelAndView mv = new ModelAndView("training/trainingMain");
         mv.addObject("title", "Trainings");
         mv.addObject("userClickTrainings", true);
         mv.addObject("alertMessage", alertMessage);
@@ -62,7 +62,7 @@ public class TrainingController {
     @RequestMapping(value = {"/manage/training"})
     public ModelAndView showManageTraining() {
         logger.info("info.Inside showManageTraining method");
-        ModelAndView mv = new ModelAndView("page");
+        ModelAndView mv = new ModelAndView("training/trainingMain");
         mv.addObject("title", "Training");
         mv.addObject("userClickTraining", true);        
 
@@ -73,7 +73,7 @@ public class TrainingController {
     public ModelAndView showManageTrainingEdit(@PathVariable int id
         ,@RequestParam(name = "alertMessage", required = false) String alertMessage) {
         logger.info("info.Inside showManageTrainingEdit method");
-        ModelAndView mv = new ModelAndView("page");
+        ModelAndView mv = new ModelAndView("training/trainingMain");
         mv.addObject("title", "Training");
         mv.addObject("userClickTraining", true);     
         mv.addObject("alertMessage", alertMessage);
@@ -102,7 +102,7 @@ public class TrainingController {
         if (result.hasErrors()) {
             model.addAttribute("title", "Training");
             model.addAttribute("userClickTraining", true); 
-            return "page";
+            return "training/trainingMain";
         } 
 
         if (training.getTrainingId() == 0) {

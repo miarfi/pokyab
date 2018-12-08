@@ -40,7 +40,7 @@ public class ActivityController {
     @RequestMapping(value = {"/activities"})
     public ModelAndView showAllActivities(@RequestParam(name = "alertMessage", required = false) String alertMessage) {
         logger.info("info.Inside showAllActivities method");
-        ModelAndView mv = new ModelAndView("page");
+        ModelAndView mv = new ModelAndView("training/trainingMain");
         mv.addObject("title", "Activities");
         mv.addObject("userClickActivities", true);
         mv.addObject("alertMessage", alertMessage);
@@ -52,7 +52,7 @@ public class ActivityController {
     @RequestMapping(value = {"/manage/activity"})
     public ModelAndView showManageActivity() {
         logger.info("info.Inside showManageActivity method");
-        ModelAndView mv = new ModelAndView("page");
+        ModelAndView mv = new ModelAndView("training/trainingMain");
         mv.addObject("title",  environment.getProperty("activity.table.title"));
         mv.addObject("userClickActivity", true);        
         
@@ -66,7 +66,7 @@ public class ActivityController {
     public ModelAndView showManageActivityEdit(@PathVariable int id
         ,@RequestParam(name = "alertMessage", required = false) String alertMessage) {
         logger.info("En showManageActivityEdit");
-        ModelAndView mv = new ModelAndView("page");
+        ModelAndView mv = new ModelAndView("training/trainingMain");
         mv.addObject("title", "Activity");
         mv.addObject("userClickActivity", true);
         mv.addObject("alertMessage", alertMessage);
@@ -92,7 +92,7 @@ public class ActivityController {
         if (result.hasErrors()) {
             model.addAttribute("title", "Activity");
             model.addAttribute("userClickActivity", true);             
-            return "page";
+            return "training/trainingMain";
         }
         
         if (activity.getActivityId() == 0 ) {            

@@ -50,7 +50,7 @@ public class LookupTypeController {
     @RequestMapping(value = {"/lookupTypes"})
     public ModelAndView showAllLookuptypes(@RequestParam(name = "alertMessage", required = false) String alertMessage) {
         logger.info("En showAllLookuptypes");
-        ModelAndView mv = new ModelAndView("page");
+        ModelAndView mv = new ModelAndView("lookup/lookupMain");
         mv.addObject("title", "Lookup Types");
         mv.addObject("userClickLookupTypes", true);
         mv.addObject("alertMessage", alertMessage);
@@ -61,7 +61,7 @@ public class LookupTypeController {
     public ModelAndView showManageLookupTypeEdit(@PathVariable int id
         ,@RequestParam(name="alertMessage", required=false)String alertMessage) {
         logger.info("En showManageLookupTypeEdit");
-        ModelAndView mv = new ModelAndView("page");
+        ModelAndView mv = new ModelAndView("lookup/lookupMain");
         mv.addObject("title", "Lookup Type");        
         mv.addObject("userClickManageLookupType", true);
         mv.addObject("alertMessage", alertMessage);
@@ -93,7 +93,7 @@ public class LookupTypeController {
         if (result.hasErrors()) {
             model.addAttribute("title", "LookupType");
             model.addAttribute("userClickManageLookupType", true);             
-            return "page";
+            return "lookup/lookupMain";
         }
         
         if (lookupType.getLookupTypeId() == 0) {

@@ -1,3 +1,5 @@
+<%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
     <a class="navbar-brand" href="#"><spring:message code="menu.navbar.home"/></a>
@@ -28,12 +30,12 @@
                 </a>
             </li>  
             
-<!--            <li class="nav-item">
-                <a class="nav-link" href="${contextRoot}/manage/team">
-                <spring:message code="menu.navbar.team"/>
+            <li class="nav-item">
+                <a class="nav-link" href="${contextRoot}/users">
+                <spring:message code="menu.navbar.users"/>
                 </a>
             </li>
-            <li class="nav-item">
+<!--            <li class="nav-item">
                 <a class="nav-link" href="${contextRoot}/manage/training">
                 <spring:message code="menu.navbar.training"/>
                 </a>
@@ -51,17 +53,41 @@
         </ul>
             
         <ul class="nav navbar-nav navbar-right">
-            <li class="nav-item" id="register">
-                <a class="nav-link" href="${contextRoot}/register">
-                <spring:message code="menu.navbar.sign"/>
-                </a>
-            </li>
-            <li class="nav-item" id="login">
-                <a class="nav-link" href="${contextRoot}/login">
-                <spring:message code="menu.navbar.login"/>
-                </a>
-            </li>
-        </ul>
+            <security:authorize access="isAnonymous()">
+                <li class="nav-item" id="register">
+                    <a class="nav-link" href="${contextRoot}/register">
+                        <spring:message code="menu.navbar.sign"/>
+                    </a>
+                </li>
+                <li class="nav-item" id="login">
+                    <a class="nav-link" href="${contextRoot}/login">
+                        <spring:message code="menu.navbar.login"/>
+                    </a>
+                </li>
+            </security:authorize>
+            <security:authorize access="isAuthenticated()">
+                <li class="dropdown" id="userModel">
+                    <a class="btn btn-default dropdown-toggle" href="javascript:void(0)" 
+                       id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        ${userModel.fullName}
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">	
+                        <li id="logout">
+                            <a href="${contextRoot}/profile">
+                                <spring:message code="menu.navbar.profile"/>
+                            </a>
+                        </li> 
+                        <li role="separator" class="divider"></li>	                                              							
+                        <li id="logout">
+                            <a href="${contextRoot}/logout">
+                                <spring:message code="menu.navbar.logout"/>
+                            </a>
+                        </li>                    			    	
+                    </ul>		
+                </li>
+            </security:authorize>
+        </ul>                        
         <!--    <span class="navbar-text">
               Navbar text with an inline element
             </span>-->

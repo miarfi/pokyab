@@ -47,7 +47,7 @@
     <!-- Load static resources -->
     <mvc:annotation-driven/>
     <mvc:resources location="/assets/" mapping="/resources/**" />
-    
+<!--    <mvc:resources location="/WEB-INF/views/" mapping="/views/**" />-->
         
     <!--MVC View Resolver-->
     <bean id="viewResolver"

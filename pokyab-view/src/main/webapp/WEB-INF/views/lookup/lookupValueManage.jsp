@@ -8,42 +8,51 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="${contextRoot}/home">
                     <spring:message code="menu.navbar.home"/></a></li>
-                <li class="breadcrumb-item"><a href="${contextRoot}/lookupTypes">
-                    <spring:message code="menu.navbar.lookupTypes"/></a></li>
-                <li class="breadcrumb-item active" aria-current="page">${lookupType.lookupType}</li>
+                    <li class="breadcrumb-item"><a href="${contextRoot}/manage/lookupType/${lookupValue.lookupTypeId}">
+                    <spring:message code="lookupType.table.lookupType"/></a></li>
+                <li class="breadcrumb-item active" aria-current="page">${lookupValue.lookupCode}</li>
             </ol>
         </nav>
     </div>
  
-    <!--Lookup Type row-->
+    <!--Lookup Value row-->
     <div class="row">
         <div class="col-12 col-md-12">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h4><spring:message code="lookupType.manage.title"/></h4>
+                    <h4><spring:message code="lookupValue.manage.title"/></h4>
                 </div>
                 <div class="panel-body">                    
                     <sf:form 
                         id="seasonForm"
-                        modelAttribute="lookupType" 
-                        action="${contextRoot}/manage/lookupType" 
+                        modelAttribute="lookupValue" 
+                        action="${contextRoot}/manage/lookupValue" 
                         method="POST"
                         class="form-group">
                         <div class="form-row">
-                            <div class="form-group col-6 col-md-2">
-                                <label for="lookupType" class="col-form-label">
-                                    <spring:message code="lookupType.table.lookupType"/>:</label>
+                            <div class="form-group col-12 col-md-4">
+                                <label for="lookupCode" class="col-form-label">
+                                    <spring:message code="lookupValue.table.lookupCode"/>:</label>
                                     <sf:input path="lookupTypeId" id="lookupTypeId"  type="hidden"/>
-                                    <sf:input path="lookupType" type="text" class="form-control"/>
-                                    <sf:errors path="lookupType" cssClass="text-danger" element="div"/>
+                                    <sf:input path="lookupValueId" id="lookupValueId"  type="hidden"/>
+                                    <sf:input path="lookupCode" type="text" class="form-control"/>
+                                    <sf:errors path="lookupCode" cssClass="text-danger" element="div"/>
                             </div>
+                            <div class="form-group col-12 col-md-4">
+                                <label for="meaning" class="col-form-label">
+                                    <spring:message code="lookupValue.table.meaning"/>:</label>
+                                    <sf:input path="meaning" id="description" class="form-control"/> 
+                                    <sf:errors path="meaning" cssClass="text-danger" element="div"/>
+                            </div> 
+                        </div>                       
+                        <div class="form-row">
                             <div class="form-group col-12 col-md-8">
                                 <label for="description" class="col-form-label">
-                                    <spring:message code="lookupType.table.description"/>:</label>
+                                    <spring:message code="lookupValue.table.description"/>:</label>
                                     <sf:input path="description" id="description" class="form-control"/> 
                                     <sf:errors path="description" cssClass="text-danger" element="div"/>
                             </div> 
-                        </div>
+                        </div>                          
                         <div class="form-row">
                             <div class="form-group col-6 col-md-2">
                                 <label for="startDate" class="col-form-label">
@@ -62,14 +71,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="form-check">
-                                <sf:checkbox path="systemFlag" id="systemFlag" value="Y" cssClass="form-check-input" />                                                                                                                                           
-                                <label for="systemFlag" class="form-check-label">
-                                    <spring:message code="lookupType.table.system"/></label>
-                                <sf:errors path="systemFlag" cssClass="text-danger" element="div" />
-                            </div>  
-                        </div>
                         <div class="form-group">								
                             <!--<div class="col-offset-4 col-md-8">-->                                   
                                 <input type="submit" value="<spring:message code="common.btn.save"/>" class="btn btn-primary">
@@ -80,28 +81,6 @@
                 </div>                
             </div>
         </div>
-    </div>
-                        
-
-    <c:if test="${lookupType.lookupTypeId > 0 }">
-        <!--Button Row-->
-        <div class="row">
-            <div class="col-12 col-md-12">
-                <div class="text-right">
-                    <br/>										
-                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#mylookupValueModal">
-                        <spring:message code="lookupType.table.btn.addLookupValue"/>
-                    </button>
-                </div>      
-            </div>
-        </div>
-
-        <!--Training activity table row-->
-        <%@include file="lookupValues.jsp" %>
-
-        <!--Training activity modal row-->
-        <%@include file="lookupValueModal.jsp" %>
-    </c:if>
-                        
+    </div>                                              
                         
 </div>                        

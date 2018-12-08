@@ -1,17 +1,14 @@
-<%--<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>--%>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %> 
 <%@taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 
-
 <spring:url var="css" value="/resources/css"/>
 <spring:url var="js" value="/resources/js"/>
 <spring:url var="images" value="/resources/images"/>
 
-<c:set var="contextRoot" value="${pageContext.request.contextPath}"/> 
-    
+<c:set var="contextRoot" value="${pageContext.request.contextPath}"/>     
 
 <!DOCTYPE html>
 <html>
@@ -54,50 +51,7 @@
                 <c:if test="${userClickContact == true }">
                    <%@include file="contact.jsp" %>
                 </c:if>     
-                                    
-                <!--Table content-->                    
-                <!--Load players content-->
-                <c:if test="${userClickPersons == true }">
-                   <%@include file="persons.jsp"%>
-                </c:if>
-                <!--Load teams content-->
-                <c:if test="${userClickTeams == true }">
-                   <%@include file="teams.jsp"%>
-                </c:if>
-                <!--Load activities content-->
-                <c:if test="${userClickActivities == true }">
-                   <%@include file="activities.jsp"%>
-                </c:if>  
-                <!--Load trainings content-->
-                <c:if test="${userClickTrainings == true }">
-                   <%@include file="trainings.jsp"%>
-                </c:if>           
-                
-                
-                <!--Management content-->     
-                <!--Load person content-->
-                <c:if test="${userClickPerson == true }">
-                   <%@include file="managePerson.jsp"%>
-                </c:if>         
-                <c:if test="${userClickManageLookupType == true }">
-                   <%@include file="manageLookupType.jsp"%>
-                </c:if>                   
-                <!--Load team content-->
-                <c:if test="${userClickTeam == true }">
-                   <%@include file="manageTeam.jsp"%>
-                </c:if>
-                <!--Load training content-->
-                <c:if test="${userClickTraining == true }">
-                   <%@include file="manageTraining.jsp"%>
-                </c:if>
-                <!--Load activity content-->
-                <c:if test="${userClickActivity == true }">
-                   <%@include file="manageActivity.jsp"%>
-                </c:if>                
-                <!--Load lookup_types content-->
-                <c:if test="${userClickLookupTypes == true }">
-                   <%@include file="lookupTypes.jsp"%>
-                </c:if> 
+                                                                                   
             </div>
                 
             <!--footer-->
@@ -121,14 +75,7 @@
             <!-- Bootbox JavaScript -->
             <script src="${js}/bs/bootbox.min.js" type="text/javascript"></script>
             <!--Project Javascrip-->
-            <script src="${js}/myapp.js" type="text/javascript"></script>
-            
-            <c:if test="${userClickLookupTypes == true }">
-                <script src="${js}/lookupType.js" type="text/javascript"></script>
-            </c:if> 
-            <c:if test="${userClickPersons == true }">
-               <script src="${js}/person.js" type="text/javascript"></script>
-            </c:if>
+            <script src="${js}/myapp.js" type="text/javascript"></script>            
         </div>
     </body>
 </html>

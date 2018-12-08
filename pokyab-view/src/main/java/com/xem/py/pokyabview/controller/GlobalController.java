@@ -43,7 +43,7 @@ public class GlobalController {
             if (!authentication.getPrincipal().equals("anonymousUser")) {
                 // get the user from the database
                 user = userDAO.getByEmail(authentication.getName());
-
+                    
                 if (user != null) {
                     // create a new model
                     userModel = new UserModel();
@@ -57,7 +57,7 @@ public class GlobalController {
                     //}				
                     session.setAttribute("userModel", userModel);
                     return userModel;
-                }
+                } 
             }
         }
 

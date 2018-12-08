@@ -78,7 +78,7 @@ public class TeamController {
     
     @RequestMapping(value = {"/teams"})
     public ModelAndView showAllTeams(@RequestParam(name = "alertMessage", required = false) String alertMessage) {
-        ModelAndView mv = new ModelAndView("page");
+        ModelAndView mv = new ModelAndView("team/teamMain");
         mv.addObject("title", "Teams");
         mv.addObject("userClickTeams", true);
         mv.addObject("alertMessage", alertMessage);
@@ -88,7 +88,7 @@ public class TeamController {
     //Url Mappings - Manage
     @RequestMapping(value = {"/manage/team"})
     public ModelAndView showManageTeam() {
-        ModelAndView mv = new ModelAndView("page");
+        ModelAndView mv = new ModelAndView("team/teamMain");
         mv.addObject("title", "Team");
         mv.addObject("userClickTeam", true);        
         
@@ -102,7 +102,7 @@ public class TeamController {
     public ModelAndView showManageTeamEdit(@PathVariable int id
         ,@RequestParam(name = "alertMessage", required = false) String alertMessage) {
         logger.info("info.Inside showManageTeamEdit method");
-        ModelAndView mv = new ModelAndView("page");
+        ModelAndView mv = new ModelAndView("team/teamMain");
         mv.addObject("title", "Team");
         mv.addObject("userClickTeam", true);   
         mv.addObject("alertMessage", alertMessage);
@@ -127,7 +127,7 @@ public class TeamController {
         if (result.hasErrors()) {
             model.addAttribute("title", "Team");
             model.addAttribute("userClickTeam", true);             
-            return "page";
+            return "team/teamMain";
         }
         
         if (team.getTeamId() == 0) {

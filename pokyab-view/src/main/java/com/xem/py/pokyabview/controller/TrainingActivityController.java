@@ -41,7 +41,7 @@ public class TrainingActivityController {
     @RequestMapping(value = {"/manage/trainingActivity"})
     public ModelAndView showMngTrainingActivity() {
         logger.info("info.Inside showMngTrainingActivity method");
-        ModelAndView mv = new ModelAndView("page");
+        ModelAndView mv = new ModelAndView("training/trainingMain");
         mv.addObject("title", "Training Activity");
         mv.addObject("userClickTrainActivity", true);
         
@@ -66,7 +66,7 @@ public class TrainingActivityController {
         if (result.hasErrors()) {
             model.addAttribute("title", "TrainingActivity");
             model.addAttribute("userClickTrainActiv", true);             
-            return "page";
+            return "training/trainingMain";
         }
         
         if (trainingActivity.getTrainActId() == 0) {
