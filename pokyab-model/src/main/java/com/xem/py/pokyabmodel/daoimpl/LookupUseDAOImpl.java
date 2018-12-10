@@ -1,10 +1,9 @@
 package com.xem.py.pokyabmodel.daoimpl;
 
-import com.xem.py.pokyabmodel.dao.LookupValueDAO;
+import com.xem.py.pokyabmodel.dao.LookupUseDAO;
 import com.xem.py.pokyabmodel.dto.LookupType;
-import com.xem.py.pokyabmodel.dto.LookupValue;
+import com.xem.py.pokyabmodel.dto.LookupUse;
 import java.util.List;
-
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -12,20 +11,19 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
- * @author arria
+ * @author miguel
  */
-@Repository("LookupValueDAO")
+@Repository("LookupUseDAO")
 @Transactional
-public class LookupValueDAOImpl implements LookupValueDAO{
-
+public class LookupUseDAOImpl implements LookupUseDAO{
     @Autowired
     private SessionFactory sessionFactory;
         
-    public boolean add(LookupValue lookupValue) {
+    public boolean add(LookupUse lookupUse) {
         try {
-//            lookupValue.setActive('Y');
+//            lookupUse.setActive(true);
             sessionFactory.getCurrentSession()
-                          .persist(lookupValue);            
+                          .persist(lookupUse);            
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -34,10 +32,10 @@ public class LookupValueDAOImpl implements LookupValueDAO{
     }
     
     @Override
-    public boolean update(LookupValue lookupValue) {
+    public boolean update(LookupUse lookupUse) {
         try {
             sessionFactory.getCurrentSession()
-                          .update(lookupValue);            
+                          .update(lookupUse);            
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -46,13 +44,13 @@ public class LookupValueDAOImpl implements LookupValueDAO{
     }
 
     @Override
-    public boolean delete(LookupValue lookupValue) {
+    public boolean delete(LookupUse lookupUse) {
         
         try {
-//            lookupValue.setActive('N');
-//            lookupValue.setEndDate(new java.sql.Date(System.currentTimeMillis()));
+//            lookupUse.setActive(false);
+//            lookupUse.setEndDate(new java.sql.Date(System.currentTimeMillis()));
             sessionFactory.getCurrentSession()
-                          .delete(lookupValue);            
+                          .delete(lookupUse);            
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -61,17 +59,17 @@ public class LookupValueDAOImpl implements LookupValueDAO{
     }
     
     @Override
-    public List<LookupValue> getLkpValuesByTypeId(int lookupTypeId) {
-        String query = "FROM LookupValue WHERE lookupTypeId = :lookupTypeId";
+    public List<LookupUse> getLkpUsesByTypeId(int lookupTypeId) {
+        String query = "FROM LookupUse WHERE lookupTypeId = :lookupTypeId";
         return sessionFactory.getCurrentSession()
-                .createQuery(query, LookupValue.class)
+                .createQuery(query, LookupUse.class)
                 .setParameter("lookupTypeId", lookupTypeId)
                 .getResultList();
     }
 
     //En automatico debe hacer esta consulta en el maestro.
     @Override
-    public List<LookupValue> getLkpValuesByType(String lookupType) {
+    public List<LookupUse> getLkpUsesByType(String lookupType) {
         //Busqueda de lookupTypeId
         String query = "FROM LookupType WHERE lookupType = :lookupType";
         int lookupTypeId =  sessionFactory.getCurrentSession()
@@ -80,20 +78,19 @@ public class LookupValueDAOImpl implements LookupValueDAO{
                 .getSingleResult()
                 .getLookupTypeId();
         
-        query = "FROM LookupValue WHERE lookupTypeId = :lookupTypeId";
+        query = "FROM LookupUse WHERE lookupTypeId = :lookupTypeId";
         return sessionFactory.getCurrentSession()
-                .createQuery(query, LookupValue.class)
+                .createQuery(query, LookupUse.class)
                 .setParameter("lookupTypeId", lookupTypeId)
                 .getResultList();
     }
 
     @Override
-    public LookupValue getLookupValueById(int id) {
-        String query = "FROM LookupValue WHERE lookupValueId = :id";
+    public LookupUse getLookupUseById(int id) {
+        String query = "FROM LookupUse WHERE lookupUseId = :id";
         return sessionFactory.getCurrentSession()
-                .createQuery(query, LookupValue.class)
+                .createQuery(query, LookupUse.class)
                 .setParameter("id", id)
                 .getSingleResult();
     }
-    
 }

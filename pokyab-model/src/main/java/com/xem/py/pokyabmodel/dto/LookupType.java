@@ -65,12 +65,12 @@ public class LookupType implements Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date endDate;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "lookupTypeId")
+    @OneToMany(fetch = FetchType.EAGER,  mappedBy = "lookupTypeId")//cascade = CascadeType.ALL,
     @JsonIgnore
     private Collection<LookupValue> lookupValueCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "lookupTypeId")
     @JsonIgnore
-    private Collection<LookupTypeUse> lookupTypeUseCollection;
+    private Collection<LookupUse> lookupUseCollection;
     
     
     public LookupType() {
@@ -165,12 +165,12 @@ public class LookupType implements Serializable {
     }
 
     @XmlTransient
-    public Collection<LookupTypeUse> getLookupTypeUseCollection() {
-        return lookupTypeUseCollection;
+    public Collection<LookupUse> getLookupTypeUseCollection() {
+        return lookupUseCollection;
     }
 
-    public void setLookupTypeUseCollection(Collection<LookupTypeUse> lookupTypeUseCollection) {
-        this.lookupTypeUseCollection = lookupTypeUseCollection;
+    public void setLookupTypeUseCollection(Collection<LookupUse> lookupTypeUseCollection) {
+        this.lookupUseCollection = lookupUseCollection;
     }
 
 }

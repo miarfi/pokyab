@@ -30,7 +30,7 @@ public class PersonValidator implements Validator{
 //            errors.rejectValue("file", null, "common.form.file.notEmpty");
 //            return;
 //        }
-        if (person.getFile() != null ) {
+        if (person.getFile() != null && !person.getFile().getOriginalFilename().equals("") ) {
             if (!(person.getFile().getContentType().equals("image/jpeg")
                     || person.getFile().getContentType().equals("image/png")
                     || person.getFile().getContentType().equals("image/gif"))) {
