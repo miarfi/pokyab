@@ -17,21 +17,21 @@
 
     <body>        
         <div class="wrapper">
-
             <!--navbar-->
             <%@include file="../shared/navbar.jsp"%>
-            <!--message-->            
-            <%@include file="../shared/alertMessage.jsp"%>
-
             <!--main content-->
-            <%@include file="users.jsp"%>
-
+            <div class="content">
+                <!--message-->            
+                <%@include file="../shared/alertMessage.jsp"%>
+                
+                <%@include file="users.jsp"%>
+            </div>
             <!--footer-->
             <%@include file="../shared/footer.jsp"%>
         </div>
 
         <!--javascript-->
         <%@include file="../shared/jsFooter.jsp"%>         
-        <%@include file="${js}/user.js"%>
+        <script src="${js}/user.js" type="text/javascript"></script>
     </body>
 </html>

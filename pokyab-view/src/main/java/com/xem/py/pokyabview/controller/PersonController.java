@@ -36,7 +36,7 @@ public class PersonController {
     @RequestMapping(value = {"/persons"})
     public ModelAndView showAllPersons(@RequestParam(name = "alertMessage", required = false) String alertMessage) {
         logger.info("info.Inside showAllPersons method");
-        ModelAndView mv = new ModelAndView("page");
+        ModelAndView mv = new ModelAndView("person/personMain");
         mv.addObject("title", "Persons");
         mv.addObject("userClickPersons", true);
         mv.addObject("alertMessage", alertMessage);
@@ -45,7 +45,7 @@ public class PersonController {
     
     @RequestMapping(value={"/manage/person"})
     public ModelAndView showManagePerson() {
-        ModelAndView mv = new ModelAndView("page");
+        ModelAndView mv = new ModelAndView("person/personMain");
         mv.addObject("title", "Person");
         mv.addObject("userClickPerson", true);        
         
@@ -59,7 +59,7 @@ public class PersonController {
     public ModelAndView showManagePersonEdit(@PathVariable int id
         ,@RequestParam(name = "alertMessage", required = false) String alertMessage) {
         logger.info("En showManagePersonEdit");
-        ModelAndView mv = new ModelAndView("page");
+        ModelAndView mv = new ModelAndView("person/personMain");
         mv.addObject("title", "Person");
         mv.addObject("userClickPerson", true);
         mv.addObject("alertMessage", alertMessage);
@@ -83,9 +83,9 @@ public class PersonController {
         new PersonValidator().validate(person, result);
         
         if (result.hasErrors()) {
-            model.addAttribute("title", "Person");
+            model.addAttribute("title", "Persona");
             model.addAttribute("userClickPerson", true);             
-            return "page";
+            return "person/personMain";
         }
         
         if (person.getPersonId() == 0) {

@@ -1,6 +1,5 @@
 
 <div class="container">   
-    <%@include file="alertMessage.jsp" %>
     
     <!--Breadcrumb row-->
     <div class="row">
@@ -15,8 +14,6 @@
         </nav>
     </div>
     
-    <!--Alert Message Row-->
-    <%@include file="alertMessage.jsp" %>
  
     <!--Training row-->
     <div class="row">

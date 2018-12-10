@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -80,4 +81,43 @@ public class TrainingActivityController {
         return "redirect:/manage/training/"+trainingActivity.getTrainingId()+"?alertMessage="+alertMessage;
 
     }
+    
+    
+    @RequestMapping(value="/manage/trainingActivity/{id}/delete", method=RequestMethod.GET)
+    public String handleTrainingActivityDelete(@PathVariable int id) {
+        logger.info("info.Inside handleTrainingActivityDelete method");
+        String alertMessage = "";
+        boolean daoResult = false;
+        TrainingActivity trainingActivity = trainingActivityDAO.getTrainActivityById(id);
+        if (trainingActivity != null) {
+            logger.info("trainingActivity: "+trainingActivity.toString());
+            daoResult = trainingActivityDAO.delete(trainingActivity);
+            if (daoResult) alertMessage = "Actividad borrada";                   
+        } else {
+            alertMessage = "Actividad no encontrada"; 
+        }
+        logger.info("daoResult: "+daoResult);
+        return "redirect:/trainingActivities?alertMessage=" + alertMessage;
+    }
+
+    
+//    @RequestMapping(value="/manage/trainingActivity/{id}/activation", method=RequestMethod.GET)
+//    @ResponseBody
+//    public String handleTrainingActivityActivation(@PathVariable int id) {
+//        logger.info("info.Inside handleTrainingActivityActivation method");
+//        String alertMessage = "";
+//        boolean daoResult = false;
+//        TrainingActivity trainingActivity = trainingActivityDAO.getTrainActivityById(id);
+//        logger.info("trainingActivity:"+trainingActivity.toString()); 
+//
+//        if (trainingActivity != null) {
+//            if (trainingActivity.getActive() == 'Y') trainingActivity.setActive('N');
+//            else trainingActivity.setActive('Y');
+//            daoResult = trainingActivityDAO.update(trainingActivity);
+//            if (daoResult) alertMessage = "Equipo actualizada satisfactoriamente";
+//        } else {
+//            alertMessage = "Equipo no encontrado"; 
+//        }
+//        return alertMessage;
+//    }
 }

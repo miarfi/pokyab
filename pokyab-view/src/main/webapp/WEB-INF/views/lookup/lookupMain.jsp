@@ -17,32 +17,31 @@
 
     <body>        
         <div class="wrapper">
-
             <!--navbar-->
             <%@include file="../shared/navbar.jsp"%>
-            <!--message-->            
-            <%@include file="../shared/alertMessage.jsp"%>
-
             <!--main content-->
-            <!--Load lookup_types content-->
-            <c:if test="${userClickLookupTypes == true }">
-               <%@include file="lookupTypes.jsp"%>
-            </c:if> 
-            <!--Load lookup_type content-->
-            <c:if test="${userClickManageLookupType == true }">
-               <%@include file="lookupTypeManage.jsp"%>
-            </c:if>  
-            <!--Load lookup_value content-->
-            <c:if test="${userClickManageLookupValue == true }">
-               <%@include file="lookupValueManage.jsp"%>
-            </c:if>  
-
+            <div class="content">
+                <!--alert message-->            
+                <%@include file="../shared/alertMessage.jsp"%>
+                <!--Load lookup_types content-->
+                <c:if test="${userClickLookupTypes == true }">
+                   <%@include file="lookupTypes.jsp"%>
+                </c:if> 
+                <!--Load lookup_type content-->
+                <c:if test="${userClickManageLookupType == true }">
+                   <%@include file="lookupTypeManage.jsp"%>
+                </c:if>  
+                <!--Load lookup_value content-->
+                <c:if test="${userClickManageLookupValue == true }">
+                   <%@include file="lookupValueManage.jsp"%>
+                </c:if>  
+            </div>
             <!--footer-->
             <%@include file="../shared/footer.jsp"%>
         </div>
 
         <!--javascript-->
         <%@include file="../shared/jsFooter.jsp"%>         
-        <%@include file="${js}/lookupType.js"%>        
+        <script src="${js}/lookup.js" type="text/javascript"></script>
     </body>
 </html>

@@ -1,4 +1,3 @@
-<%@include file="alertMessage.jsp" %>
 
 <!--Button Row-->
 <div class="row">
@@ -13,13 +12,12 @@
 </div>
 
 <div class="row">
-    <div class="col-12 col-md-12"><!--col-md-8 se mueve el footer-->
+    <div class="col-12 col-md-8"><!--col-md-8 se mueve el footer-->
         <div class="table-responsive">
             <table id="lookupTypesListTable" class="table table-striped table-bordered">										
                 <thead>
                     <tr> 
-                        <th></th>
-                        <th></th>
+                        <th></th><th></th>
                         <th><spring:message code="lookupType.table.lookupType"/></th>
                         <th><spring:message code="lookupType.table.description"/></th>
                         <th><spring:message code="lookupType.table.system"/></th>

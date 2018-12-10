@@ -17,28 +17,27 @@
 
     <body>        
         <div class="wrapper">
-
             <!--navbar-->
             <%@include file="../shared/navbar.jsp"%>
-            <!--message-->            
-            <%@include file="../shared/alertMessage.jsp"%>
-
             <!--main content-->
-            <!--Load persons content-->
-            <c:if test="${userClickPersons == true }">
-                <%@include file="persons.jsp"%>
-            </c:if>
-            <!--Load person content-->
-            <c:if test="${userClickPerson == true }">
-                <%@include file="personManage.jsp"%>
-            </c:if>  
-
+            <div class="content">
+                <!--message-->            
+                <%@include file="../shared/alertMessage.jsp"%>
+                <!--Load persons content-->
+                <c:if test="${userClickPersons == true }">
+                    <%@include file="persons.jsp"%>
+                </c:if>
+                <!--Load person content-->
+                <c:if test="${userClickPerson == true }">
+                    <%@include file="personManage.jsp"%>
+                </c:if>  
+            </div>
             <!--footer-->
             <%@include file="../shared/footer.jsp"%>
         </div>
 
         <!--javascript-->
         <%@include file="../shared/jsFooter.jsp"%>         
-        <%@include file="${js}/person.js"%>
+        <script src="${js}/person.js" type="text/javascript"></script>
     </body>
 </html>

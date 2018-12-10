@@ -4,8 +4,7 @@
         <table id="trainActivListTable" class="table table-striped table-borderd">										
             <thead>
                 <tr> 
-                    <th></th>
-                    
+                    <th></th><th></th>                
                     <th><spring:message code="trainActiv.table.startTime"/></th>
                     <th><spring:message code="trainActiv.table.endTime"/></th>                    
                     <th><spring:message code="trainActiv.table.activityNumber.short"/></th>

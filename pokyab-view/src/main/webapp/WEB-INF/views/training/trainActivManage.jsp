@@ -1,7 +1,6 @@
 <!--Borrar jsp probable ya no se utilizara-->
 
 <div class="container">
-    <%@include file="alertMessage.jsp" %>
     
     <!--Breadcrumb row-->
     <div class="row">

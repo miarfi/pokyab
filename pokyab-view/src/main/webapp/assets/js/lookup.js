@@ -1,4 +1,4 @@
-$(function(){
+$(function () {
 
     //lookupTypes.jsp table
     $table = $('#lookupTypesListTable');
@@ -38,8 +38,8 @@ $(function(){
                     bSortable: false,
                     mRender: function (data, type, row) {
                         var str = '';
-                        str += '<a href="'+ window.contextRoot+ '/manage/lookupType/' 
-                            + data + '"><i class="fas fa-edit"></i></a>';
+                        str += '<a href="' + window.contextRoot + '/manage/lookupType/'
+                                + data + '"><i class="fas fa-edit"></i></a>';
                         return str;
                     }
                 },
@@ -48,32 +48,32 @@ $(function(){
                     bSortable: false,
                     mRender: function (data, type, row) {
                         var str = '';
-                        str += '<a href="'+ window.contextRoot+ '/manage/lookupType/' 
-                            + data + '/delete" class="confirmation"><i class="fas fa-trash"></i></a>';
+                        str += '<a href="' + window.contextRoot + '/manage/lookupType/'
+                                + data + '/delete" class="confirmation"><i class="fas fa-trash"></i></a>';
                         return str;
                     }
                 },
-                {   data: 'lookupType'  },
-                {   data: 'description' },
-                {   data: 'systemFlag'  },
-                {   data: 'startDate'  },
-                {   data: 'endDate'  },
-                {   
+                {data: 'lookupType'},
+                {data: 'description'},
+                {data: 'systemFlag'},
+                {data: 'startDate'},
+                {data: 'endDate'},
+                {
                     data: 'active',
                     bSortable: false,
-                        mRender: function(data, type, row){
-                                var str ='';
-                                if (data == 'Y') {
-                                        str += '<label class="switch">'
-                                                 + '<input type="checkbox" checked="checked" value="'+row.lookupTypeId+'"/>'
-                                             + '<div class="slider round"></div></label>';	
-                                } else {
-                                        str += '<label class="switch">'
-                                                 + '<input type="checkbox" value="'+row.lookupTypeId+'"/>'
-                                             + '<div class="slider round"></div></label>';	
-                                }
-                                return str;
-                        }                    
+                    mRender: function (data, type, row) {
+                        var str = '';
+                        if (data == 'Y') {
+                            str += '<label class="switch">'
+                                    + '<input type="checkbox" checked="checked" value="' + row.lookupTypeId + '"/>'
+                                    + '<div class="slider round"></div></label>';
+                        } else {
+                            str += '<label class="switch">'
+                                    + '<input type="checkbox" value="' + row.lookupTypeId + '"/>'
+                                    + '<div class="slider round"></div></label>';
+                        }
+                        return str;
+                    }
                 }
             ],
             //Bootbox alert
@@ -93,10 +93,9 @@ $(function(){
                         callback: function (confirmed) {
                             if (confirmed) {
                                 console.log(value);
-
                                 //Post update product
                                 var activationUrl = window.contextRoot + '/manage/lookupType/' + value + '/activation';
-                                console.log('activationUrl: '+activationUrl);
+                                console.log('activationUrl: ' + activationUrl);
                                 $.ajax({
                                     type: 'GET',
                                     url: activationUrl,
@@ -111,19 +110,28 @@ $(function(){
 //                                        display(e);
                                     }
                                 });
-
-
-
                             } else {
                                 checkbox.prop('checked', !checked);
                             }
                         }
                     });
                 });
-            }            
+
+                //bootbox class=confirmation 
+                api.$('.confirmation').on('click', function (e) {
+                    console.log('confirmation');
+                    e.preventDefault();
+                    href = $(this).attr('href');
+                    return bootbox.confirm('Está seguro de borrar el registro?', function (result) {
+                        if (result) {
+                            window.location = href
+                        }
+                    });
+                });
+            }
         })
     }
-    
-    
+
+
 });
     

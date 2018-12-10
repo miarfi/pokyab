@@ -1,6 +1,5 @@
 
 <div class="container">
-    <%@include file="alertMessage.jsp" %>
     
     <!--Breadcrumb row-->
     <div class="row">            

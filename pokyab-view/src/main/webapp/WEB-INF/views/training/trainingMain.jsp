@@ -17,37 +17,35 @@
 
     <body>        
         <div class="wrapper">
-
             <!--navbar-->
             <%@include file="../shared/navbar.jsp"%>
-            <!--message-->            
-            <%@include file="../shared/alertMessage.jsp"%>
-
             <!--main content-->
-            <!--Load activities content-->
-            <c:if test="${userClickActivities == true }">
-                <%@include file="activities.jsp"%>
-            </c:if>  
-            <!--Load trainings content-->
-            <c:if test="${userClickTrainings == true }">
-                <%@include file="trainings.jsp"%>
-            </c:if>    
-            <!--Load activity content-->
-            <c:if test="${userClickActivity == true }">
-                <%@include file="activityManage.jsp"%>
-            </c:if>  
-            <!--Load training content-->
-            <c:if test="${userClickTraining == true }">
-                <%@include file="trainingManage.jsp"%>
-            </c:if>
-
-
+            <div class="content">
+                <!--message-->            
+                <%@include file="../shared/alertMessage.jsp"%>
+                <!--Load activities content-->
+                <c:if test="${userClickActivities == true }">
+                    <%@include file="activities.jsp"%>
+                </c:if>  
+                <!--Load trainings content-->
+                <c:if test="${userClickTrainings == true }">
+                    <%@include file="trainings.jsp"%>
+                </c:if>    
+                <!--Load activity content-->
+                <c:if test="${userClickActivity == true }">
+                    <%@include file="activityManage.jsp"%>
+                </c:if>  
+                <!--Load training content-->
+                <c:if test="${userClickTraining == true }">
+                    <%@include file="trainingManage.jsp"%>
+                </c:if>
+            </div>
             <!--footer-->
             <%@include file="../shared/footer.jsp"%>
         </div>
 
         <!--javascript-->
         <%@include file="../shared/jsFooter.jsp"%>         
-        <%--<%@include file="${js}/user.js"%>--%>
+        <script src="${js}/training.js" type="text/javascript"></script>
     </body>
 </html>

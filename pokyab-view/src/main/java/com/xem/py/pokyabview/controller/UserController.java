@@ -23,7 +23,7 @@ public class UserController{
     @RequestMapping(value = {"/users"})
     public ModelAndView showAllUsers(@RequestParam(name = "alertMessage", required = false) String alertMessage) {
         logger.info("info.Inside showAllUsers method");
-        ModelAndView mv = new ModelAndView("user/users");
+        ModelAndView mv = new ModelAndView("user/userMain");
         mv.addObject("title", "Users");
 //        mv.addObject("userClickUsers", true);
         mv.addObject("alertMessage", alertMessage);

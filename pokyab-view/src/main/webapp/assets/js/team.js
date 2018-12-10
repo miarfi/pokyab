@@ -1,12 +1,12 @@
-//persons.jsp table
-var $table = $('#personsListTable');
+//teams.jsp table
+var $table = $('#teamsListTable');
 
 if ($table.length) {
 
     var jsonUrl = '';
-    jsonUrl = window.contextRoot + '/json/data/admin/all/persons';
+    jsonUrl = window.contextRoot + '/json/data/admin/all/teams';
 
-    console.log('Inside js personsListTable');
+    console.log('Inside js teamsListTable');
     console.log('jsonUrl: ' + jsonUrl);
     $table.DataTable({
         "language": {
@@ -17,6 +17,7 @@ if ($table.length) {
             "infoEmpty": "Ning&uacute;n registro disponible",
             "infoFiltered": "(filtro de _MAX_ total registros)",
             "search": "Buscar",
+            "pagingType": "full_numbers",
             "paginate": {
                 "first": "Primero",
                 "last": "Ultimo",
@@ -32,62 +33,65 @@ if ($table.length) {
         },
         columns: [
             {
-                data: 'personId',
+                data: 'teamId',
                 bSortable: false,
                 mRender: function (data, type, row) {
                     var str = '';
-                    str += '<a href="' + window.contextRoot + '/manage/person/'
-                            + data + '"><i class="fas fa-edit"></i></a>';
+                    str += '<a href="'+ window.contextRoot + '/manage/team/'
+                            + data  + '"><i class="fas fa-edit"></i></a>';
                     return str;
                 }
             },
             {
-                data: 'personId',
+                data: 'teamId',
                 bSortable: false,
                 mRender: function (data, type, row) {
                     var str = '';
-                    str += '<a href="' + window.contextRoot + '/manage/person/'
+                    str += '<a href="' + window.contextRoot + '/manage/team/'
                             + data + '/delete" class="confirmation"><i class="fas fa-trash"></i></a>';
                     return str;
                 }
             },
-            {data: 'firstName'},
-            {data: 'lastName'},
-            {data: 'currentAge'},
-            {data: 'genderCode'},
-            {data: 'personType'},
-            {data: 'startDate'},
-            {data: 'endDate'},
+            {data: 'teamName'},
+            {data: 'groupNumber'},
+            {data: 'leagueName'},
+            {data: 'seasonName'},
+            {data: 'categoryCode'},
+            {data: 'trainerPerName'},
+            {data: 'conceded'},
+            {data: 'scores'},
+            {data: 'matchesPlayed'},
+            {data: 'wins'},
+            {data: 'draws'},
+            {data: 'losts'},
+            {data: 'points'},
             {
                 data: 'active',
                 bSortable: false,
                 mRender: function (data, type, row) {
                     var str = '';
-                    if (data == 'Y') {
+                    if (data) {
                         str += '<label class="switch">'
-                                + '<input type="checkbox" checked="checked" value="' + row.personId + '"/>'
-                                + '<div class="slider round"></div>'
-                                + '</label>';
+                                + '<input type="checkbox" checked="checked" value="' + row.teamId + '"/>'
+                                + '<div class="slider round"></div></label>';
                     } else {
                         str += '<label class="switch">'
-                                + '<input type="checkbox" value="' + row.personId + '"/>'
-                                + '<div class="slider round"></div>'
-                                + '</label>';
+                                + '<input type="checkbox" value="' + row.teamId + '"/>'
+                                + '<div class="slider round"></div></label>';
                     }
                     return str;
                 }
             }
-        ]
-        ,
+        ],
         //Bootbox alert
         initComplete: function () {
             var api = this.api();
             api.$('.switch input[type="checkbox"]').on('change', function () {
                 var checkbox = $(this);
                 var checked = checkbox.prop('checked');
-                var dMsg = (checked) ? 'Quiere activar la persona' :
-                        'Quiere desactivar la persona?';
-                var value = checkbox.prop('value');                                            
+                var dMsg = (checked) ? 'Quiere activar el catalogo' :
+                        'Quiere desactivar el catalogo?';
+                var value = checkbox.prop('value');
 
                 bootbox.confirm({
                     size: 'medium',
@@ -95,10 +99,9 @@ if ($table.length) {
                     message: dMsg,
                     callback: function (confirmed) {
                         if (confirmed) {
-                            console.log('value: ' + value);
-
-                            //Post update person
-                            var activationUrl = window.contextRoot + '/manage/person/' + value + '/activation';
+                            console.log(value);
+                            //Post update product
+                            var activationUrl = window.contextRoot + '/manage/team/' + value + '/activation';
                             console.log('activationUrl: ' + activationUrl);
                             $.ajax({
                                 type: 'GET',
@@ -132,7 +135,6 @@ if ($table.length) {
                     }
                 });
             });
-        }
-    });
+        }//Bootbox
+    })
 }
-
