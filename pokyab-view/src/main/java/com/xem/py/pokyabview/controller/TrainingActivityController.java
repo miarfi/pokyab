@@ -2,8 +2,10 @@
 package com.xem.py.pokyabview.controller;
 
 import com.xem.py.pokyabmodel.dao.ActivityDAO;
+import com.xem.py.pokyabmodel.dao.LookupValueDAO;
 import com.xem.py.pokyabmodel.dao.TrainingActivityDAO;
 import com.xem.py.pokyabmodel.dto.Activity;
+import com.xem.py.pokyabmodel.dto.LookupValue;
 import com.xem.py.pokyabmodel.dto.TrainingActivity;
 import com.xem.py.pokyabmodel.validator.TrainActivValidator;
 import java.util.List;
@@ -32,6 +34,13 @@ public class TrainingActivityController {
     private ActivityDAO activityDAO; 
     @Autowired
     private TrainingActivityDAO trainingActivityDAO; 
+    @Autowired
+    private LookupValueDAO lookupValueDAO;  
+    
+    @ModelAttribute("positionCodes")
+    public List<LookupValue> getPositionCodes() {
+        return lookupValueDAO.getLkpValuesByType("POSITION_CODE", "");
+    }
     
     //lov activities
     @ModelAttribute("activities")

@@ -18,11 +18,11 @@
     <!--Training row-->
     <div class="row">
         <div class="col-12 col-md-8">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h4><spring:message code="person.manage.title"/></h4>
+            <div class="card">
+                <div class="card-header">
+                    <h5><spring:message code="person.manage.title"/></h5>
                 </div>
-                <div class="panel-body">
+                <div class="card-body">
                                            
                     <sf:form 
                         id="personForm"
@@ -51,16 +51,22 @@
                         <div class="form-group">
                             <label for="genderCode" class="col-form-label col-md-4">
                                 <spring:message code="person.table.genderCode"/>:</label>
-                            <div class="col-md-8">
-                                <sf:input path="genderCode" id="genderCode" type="text" class="form-control"/>
+                            <div class="col-md-8">                               
+                                <sf:select path="genderCode" id="genderCode" class="form-control">
+                                    <sf:option value="" label="---"/>
+                                    <sf:options items="${genderCodes}" itemLabel="meaning" itemValue="lookupCode" />
+                                </sf:select>                                
                                 <sf:errors path="genderCode" cssClass="text-danger" element="div" />
                             </div>
                         </div>  
                         <div class="form-group">
                             <label for="personType" class="col-form-label col-md-4">
                                 <spring:message code="person.table.personType"/>:</label>
-                            <div class="col-md-8">
-                                <sf:input path="personType" id="personType" type="text" class="form-control"/>
+                            <div class="col-md-8">                                
+                                <sf:select path="personType" id="personType" class="form-control">
+                                    <sf:option value="" label="---"/>
+                                    <sf:options items="${personTypes}" itemLabel="meaning" itemValue="lookupCode" />
+                                </sf:select> 
                                 <sf:errors path="personType" cssClass="text-danger" element="div" />
                             </div>
                         </div>
@@ -68,7 +74,10 @@
                             <label for="maritalStatusCode" class="col-form-label col-md-4">
                                 <spring:message code="person.table.maritalStatusCode"/>:</label>
                             <div class="col-md-8">
-                                <sf:input path="maritalStatusCode" id="maritalStatusCode" type="text" class="form-control"/>
+                                <sf:select path="maritalStatusCode" id="maritalStatusCode" class="form-control">
+                                    <sf:option value="" label="---"/>
+                                    <sf:options items="${maritalStatusCodes}" itemLabel="meaning" itemValue="lookupCode" />
+                                </sf:select> 
                                 <sf:errors path="maritalStatusCode" cssClass="text-danger" element="div" />
                             </div>
                         </div>
@@ -106,10 +115,9 @@
                                     <sf:errors path="file" cssClass="text-danger" element="div"/>
 				</div>
 			</div>
-                        <div class="form-group">								
-                            <div class="col-offset-4 col-md-8">                                  
-                                <input type="submit" value="<spring:message code="common.btn.save"/>" class="btn btn-primary">
-                            </div>
+                        <div class="form-group">								                                                        
+                            <button type="submit" class="btn btn-primary">
+                                <spring:message code="common.btn.save"/></button>
                         </div>                                       
                     </sf:form>                    
                 </div>                

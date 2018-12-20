@@ -27,6 +27,14 @@
                 <c:if test="${userClickTeam == true }">
                     <%@include file="teamManage.jsp"%>
                 </c:if>
+                <!--Load league content-->
+                <c:if test="${userClickLeague == true }">
+                    <%@include file="../league/leagueManage.jsp"%>
+                </c:if>
+                <!--Load teams content-->
+                <c:if test="${userClickSeason == true }">
+                    <%@include file="../season/seasonManage.jsp"%>
+                </c:if>
                 <!--Load teams content-->
                 <c:if test="${userClickTeams == true }">
                     <%@include file="teams.jsp"%>

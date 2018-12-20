@@ -17,5 +17,6 @@
         <link href="${css}/bs/dataTables.bootstrap4.css" rel="stylesheet" type="text/css"/>
         <!--<link href="${css}/fa/fontawesome.min.css" rel="stylesheet" type="text/css"/>-->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-        <link href="${css}/myapp.css" rel="stylesheet" type="text/css"/>                 
+        <link href="${css}/bs/jquery-ui.css" rel="stylesheet" type="text/css"/>
+        <link href="${css}/myapp.css" rel="stylesheet" type="text/css"/>              
     </head>

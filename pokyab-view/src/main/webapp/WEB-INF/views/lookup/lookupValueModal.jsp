@@ -5,19 +5,19 @@
             <div class="modal-content">
                 <!--Modal Header -->
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span>&times;</span>						
-                    </button>
                     <h4 class="modal-title"><spring:message code="lookupValue.modal.title"/></h4>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>						
+                    </button>                    
                 </div>
-                <!--Modal Body -->
-                <div class="modal-body">
-                    <sf:form 
-                        id="seasonForm"
-                        modelAttribute="lookupValue" 
-                        action="${contextRoot}/manage/lookupValue" 
-                        method="POST"
-                        class="form-group">
+                <sf:form 
+                    id="seasonForm"
+                    modelAttribute="lookupValue" 
+                    action="${contextRoot}/manage/lookupValue" 
+                    method="POST"
+                    class="form-group">
+                    <!--Modal Body -->
+                    <div class="modal-body">                    
                         <div class="form-group">
                             <label for="lookupCode" class="col-form-label col-md-4">
                                 <spring:message code="lookupValue.table.lookupCode"/>:</label>
@@ -52,14 +52,16 @@
                             <div class="col-md-4">
                                 <sf:input path="languageCode" id="languageCode" type="text"/>
                             </div>
-                        </div>                        -->
-                        <div class="form-group">								
-                            <div class="col-offset-4 col-md-8">                                   
-                                <input type="submit" value="<spring:message code="lookupType.table.btn.addLookupValue"/>" class="btn btn-primary">
-                            </div>
-                        </div>
-                    </sf:form>
-                </div>
+                        </div>                        -->                                            
+                    </div>
+                    <!--Modal Footer-->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                            <spring:message code="common.btn.close"/></button>
+                        <button type="submit" class="btn btn-primary">
+                            <spring:message code="lookupType.table.btn.addLookupValue"/></button>                    
+                    </div>
+                </sf:form>
             </div>
         </div>
     </div>

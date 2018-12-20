@@ -35,6 +35,10 @@
                 <c:if test="${userClickManageLookupValue == true }">
                    <%@include file="lookupValueManage.jsp"%>
                 </c:if>  
+                <!--Load lookup_use content-->
+                <c:if test="${userClickManageLookupUse == true }">
+                   <%@include file="lookupUseManage.jsp"%>
+                </c:if>                  
             </div>
             <!--footer-->
             <%@include file="../shared/footer.jsp"%>

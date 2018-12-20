@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-12 col-md-8">
+    <div class="col-12 col-xl-8">
         <div class="table-responsive-md">
         <table id="lookupUsesListTable" class="table table-striped table-borderd">										
             <thead>
@@ -7,7 +7,7 @@
                     <th></th><th></th>
                     <th><spring:message code="lookupUse.table.tableName"/></th>
                     <th><spring:message code="lookupUse.table.columnName"/></th>
-                    <th><spring:message code="lookupUse.table.required"/></th>
+                    <!--<th><spring:message code="lookupUse.table.required"/></th>-->
                     <th><spring:message code="common.field.startDate"/></th>
                     <th><spring:message code="common.field.endDate"/></th>
                     <th></th>                   
@@ -30,7 +30,7 @@
                                 </td>
                                 <td>${lookupUse.tableName}</td>
                                 <td>${lookupUse.columnName}</td>
-                                <td>${lookupUse.required}</td>
+                                <!--<td>${lookupUse.required}</td>-->
                                 <td><fmt:formatDate type = "date" 
                                     value = "${lookupUse.startDate}" pattern='dd-MM-yyyy'/></td>
                                 <td><fmt:formatDate type = "date" 

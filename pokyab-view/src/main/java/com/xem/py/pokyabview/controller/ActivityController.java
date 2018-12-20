@@ -2,8 +2,11 @@
 package com.xem.py.pokyabview.controller;
 
 import com.xem.py.pokyabmodel.dao.ActivityDAO;
+import com.xem.py.pokyabmodel.dao.LookupValueDAO;
 import com.xem.py.pokyabmodel.dto.Activity;
+import com.xem.py.pokyabmodel.dto.LookupValue;
 import com.xem.py.pokyabmodel.validator.ActivityValidator;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,10 +35,27 @@ public class ActivityController {
     Logger logger = LoggerFactory.getLogger(ActivityController.class);
     
     @Autowired
-    private ActivityDAO activityDAO;   
-    
+    private ActivityDAO activityDAO;       
     @Autowired
     private Environment environment;
+    @Autowired
+    private LookupValueDAO lookupValueDAO;  
+    
+
+    @ModelAttribute("activityTypes")
+    public List<LookupValue> getActivityTypes() {
+        return lookupValueDAO.getLkpValuesByType("ACTIVITY_TYPE", "");
+    }
+    
+    @ModelAttribute("metricTypes")
+    public List<LookupValue> getMetricTypes() {
+        return lookupValueDAO.getLkpValuesByType("METRIC_TYPE", "");
+    }
+    
+    @ModelAttribute("uomCodes")
+    public List<LookupValue> getUomCodes() {
+        return lookupValueDAO.getLkpValuesByType("UOM_CODE", "");
+    }
     
     @RequestMapping(value = {"/activities"})
     public ModelAndView showAllActivities(@RequestParam(name = "alertMessage", required = false) String alertMessage) {

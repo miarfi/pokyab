@@ -7,13 +7,13 @@ import com.xem.py.pokyabmodel.dao.PersonDAO;
 import com.xem.py.pokyabmodel.dao.TeamDAO;
 import com.xem.py.pokyabmodel.dao.TrainingActivityDAO;
 import com.xem.py.pokyabmodel.dao.TrainingDAO;
-import com.xem.py.pokyabmodel.dto.Activity;
 import com.xem.py.pokyabmodel.dto.LookupType;
 import com.xem.py.pokyabmodel.dto.Message;
-import com.xem.py.pokyabmodel.dto.Person;
-import com.xem.py.pokyabmodel.dto.Training;
+import com.xem.py.pokyabmodel.view.ActivityV;
+import com.xem.py.pokyabmodel.view.PersonV;
 import com.xem.py.pokyabmodel.view.TrainingActivityV;
 import com.xem.py.pokyabmodel.view.TeamV;
+import com.xem.py.pokyabmodel.view.TrainingV;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -64,9 +64,9 @@ public class JsonDataController {
 	
         @RequestMapping("/admin/all/persons")
 	@ResponseBody
-	public List<Person> getAdminPersons(){
+	public List<PersonV> getAdminPersons(){
             logger.info("info.Inside getAdminPersons method");
-            return personDAO.getAllPersons();
+            return personDAO.getAllPersonsV();
 	}
 
         @RequestMapping("/admin/all/teams")
@@ -78,17 +78,17 @@ public class JsonDataController {
         
         @RequestMapping("/admin/all/trainings")
 	@ResponseBody
-	public List<Training> getAdminTrainings(){
+	public List<TrainingV> getAdminTrainings(){
             logger.info("info.Inside getAdminTrainings method");
-            return trainingDAO.getAllTrainings();
+            return trainingDAO.getAllTrainingsV();
 	}
         
         @RequestMapping("/admin/all/activities")
 	@ResponseBody
-	public List<Activity> getAdminActivities(){
+	public List<ActivityV> getAdminActivities(){
             logger.info("info.Inside getAdminActivities method");
 
-            return activityDAO.getAllActivities();
+            return activityDAO.getAllActivitiesV();
 	} 
         
         @RequestMapping("/admin/all/{id}/trainActivities")

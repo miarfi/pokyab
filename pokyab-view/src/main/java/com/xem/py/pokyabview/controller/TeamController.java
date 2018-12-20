@@ -2,10 +2,12 @@
 package com.xem.py.pokyabview.controller;
 
 import com.xem.py.pokyabmodel.dao.LeagueDAO;
+import com.xem.py.pokyabmodel.dao.LookupValueDAO;
 import com.xem.py.pokyabmodel.dao.PersonDAO;
 import com.xem.py.pokyabmodel.dao.SeasonDAO;
 import com.xem.py.pokyabmodel.dao.TeamDAO;
 import com.xem.py.pokyabmodel.dto.League;
+import com.xem.py.pokyabmodel.dto.LookupValue;
 import com.xem.py.pokyabmodel.dto.Person;
 import com.xem.py.pokyabmodel.dto.Season;
 import com.xem.py.pokyabmodel.dto.Team;
@@ -43,7 +45,9 @@ public class TeamController {
     private SeasonDAO seasonDAO;
     @Autowired
     private LeagueDAO leagueDAO;  
-    
+    @Autowired
+    private LookupValueDAO lookupValueDAO; 
+        
      //Beans Modal
     @ModelAttribute("person")
     public Person getPerson() {
@@ -60,7 +64,17 @@ public class TeamController {
         return new Season();
     }    
 
-    //Form Lists
+    //Form Lists    
+    @ModelAttribute("leagueCategoryCodes")
+    public List<LookupValue> getLeagueCategoryCodes() {
+        return lookupValueDAO.getLkpValuesByType("LEAGUE_CATEGORY_CODE", "");
+    }  
+    
+    @ModelAttribute("leagueTypes")
+    public List<LookupValue> getLeagueTypes() {
+        return lookupValueDAO.getLkpValuesByType("LEAGUE_TYPE", "");
+    }   
+            
     @ModelAttribute("trainers")
     public List<Person> getTrainers() {
         return personDAO.getActivePersons();
@@ -75,7 +89,7 @@ public class TeamController {
     public List<Season> getSeasons() {
         return seasonDAO.getActiveSeasons();
     }
-    
+
     @RequestMapping(value = {"/teams"})
     public ModelAndView showAllTeams(@RequestParam(name = "alertMessage", required = false) String alertMessage) {
         ModelAndView mv = new ModelAndView("team/teamMain");
@@ -184,25 +198,13 @@ public class TeamController {
     //
     //
     //ToDo Revisar donde dejar estos metodos y corregir
-    @RequestMapping(value="/manage/league", method=RequestMethod.POST)
-    public String handleLeagueSubmission(@ModelAttribute League league) {
-        logger.info("En handleLeagueSubmission"); 
-        String alertMessage = "";
-        boolean daoResult = false;
-        daoResult = leagueDAO.Add(league);
-        if (daoResult) alertMessage = "Liga Agregada";
-        return "redirect:/manage/team?alertMessage="+alertMessage;
-    }
-    //
-    //
-    //ToDo Revisar donde dejar estos metodos y corregir
-    @RequestMapping(value="/manage/season", method=RequestMethod.POST)
-    public String handleSeasonSubmission(@ModelAttribute Season season) {
-        logger.info("En handleSeasonSubmission");  
-        String alertMessage = "";
-        boolean daoResult = false;        
-        daoResult = seasonDAO.Add(season);
-        if (daoResult) alertMessage = "Temporada Agregada";
-        return "redirect:/manage/team?alertMessage="+alertMessage;
-    }    
+//    @RequestMapping(value="/manage/season", method=RequestMethod.POST)
+//    public String handleSeasonSubmission(@ModelAttribute Season season) {
+//        logger.info("En handleSeasonSubmission");  
+//        String alertMessage = "";
+//        boolean daoResult = false;        
+//        daoResult = seasonDAO.ddd(season);
+//        if (daoResult) alertMessage = "Temporada Agregada";
+//        return "redirect:/manage/team?alertMessage="+alertMessage;
+//    }    
 }

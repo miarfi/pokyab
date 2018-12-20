@@ -5,8 +5,8 @@
     <a class="navbar-brand" href="#"><spring:message code="menu.navbar.home"/></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-    </button>
-    
+    </button>    
+                    
     <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
@@ -18,40 +18,44 @@
                 <a class="nav-link" href="${contextRoot}/persons">
                     <spring:message code="menu.navbar.persons"/>
                 </a>
-            </li>  
-            <li class="nav-item">
-                <a class="nav-link" href="${contextRoot}/activities">
-                    <spring:message code="menu.navbar.activities"/>
-                </a>
-            </li>  
+            </li>             
             <li class="nav-item">
                 <a class="nav-link" href="${contextRoot}/trainings">
                     <spring:message code="menu.navbar.trainings"/>
                 </a>
             </li>  
             
-            <li class="nav-item">
-                <a class="nav-link" href="${contextRoot}/users">
-                <spring:message code="menu.navbar.users"/>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <spring:message code="menu.navbar.catalog"/>
                 </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="${contextRoot}/lookupTypes">
+                      <spring:message code="menu.navbar.lookupTypes"/></a>                  
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="${contextRoot}/activities">
+                      <spring:message code="menu.navbar.activities"/></a>
+                  <a class="dropdown-item" href="${contextRoot}/leagues">
+                      <spring:message code="menu.navbar.leagues"/></a>
+                  <a class="dropdown-item" href="${contextRoot}/seasons">
+                      <spring:message code="menu.navbar.seasons"/></a>                      
+                </div>
             </li>
-<!--            <li class="nav-item">
-                <a class="nav-link" href="${contextRoot}/manage/training">
-                <spring:message code="menu.navbar.training"/>
-                </a>
-            </li>            
-            <li class="nav-item">
-                <a class="nav-link" href="${contextRoot}/manage/activity">
-                <spring:message code="menu.navbar.activity"/>
-                </a>
-            </li>    -->
-            <li class="nav-item">
-                <a class="nav-link" href="${contextRoot}/lookupTypes">
-                <spring:message code="menu.navbar.lookupTypes"/>
-                </a>
-            </li>              
-        </ul>
             
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <spring:message code="menu.navbar.admon"/>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="${contextRoot}/users">
+                      <spring:message code="menu.navbar.users"/></a>                  
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">
+                      </a>                                      
+                </div>
+            </li>           
+        </ul>
+         
         <ul class="nav navbar-nav navbar-right">
             <security:authorize access="isAnonymous()">
                 <li class="nav-item" id="register">

@@ -18,11 +18,11 @@
     <!--Training row-->
     <div class="row">
         <div class="col-12 col-md-8">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h4><spring:message code="trainActiv.manage.title"/></h4>
+            <div class="card">
+                <div class="card-header">
+                    <h5><spring:message code="trainActiv.manage.title"/></h5>
                 </div>
-                <div class="panel-body">
+                <div class="card-body">
                     
                     <sf:form
                         id="trainingActivityForm"                            
@@ -30,39 +30,35 @@
                         action="${contextRoot}/manage/trainingActivity" 
                         method="POST"
                         class="form-horizonal">
-                        <div class="form-group row">
+                        <div class="form-group col-md-8">
                             <label for="activityNumber" class="col-form-label col-md-4">
-                                <spring:message code="trainActiv.table.activityNumber"/></label>
-                            <div class="col-md-8">
-                                <sf:hidden path="activityId"/>
-                                <sf:hidden path="trainingId"/>
-                                <sf:input path="activityNumber" id="activityNumber" type="text" class="form-control" /> 
-                                <sf:errors path="activityNumber" cssClass="text-danger" element="div" />
-                            </div>
+                                <spring:message code="trainActiv.table.activityNumber"/></label>                            
+                            <sf:hidden path="activityId"/>
+                            <sf:hidden path="trainingId"/>
+                            <sf:input path="activityNumber" id="activityNumber" type="text" class="form-control" /> 
+                            <sf:errors path="activityNumber" cssClass="text-danger" element="div" />                            
                         </div>                             
-                        <div class="form-group">
-                            <label class="col-form-label col-md-4" for="positionCode">
+                        <div class="form-group col-md-8">
+                            <label class="col-form-label" for="positionCode">
                                 <spring:message code="trainActiv.table.positionType"/></label>
-                            <div class="col-md-8">
-                                <sf:input path="positionCode" id="positionCode" type="text" class="form-control"/> 
-                                <sf:errors path="positionCode" cssClass="text-danger" element="div" />
-                            </div>
+                            <!--<sf:input path="positionCode" id="positionCode" type="text" class="form-control"/>--> 
+                            <sf:select path="positionCode" id="positionCode" class="form-control">
+                                <sf:option value="" label="---"/>
+                                <sf:options items="${positionCodes}" itemLabel="meaning" itemValue="lookupCode" />
+                            </sf:select>
+                            <sf:errors path="positionCode" cssClass="text-danger" element="div" />                            
                         </div>                                                 
-                        <div class="form-group">
+                        <div class="form-group col-md-8">
                             <label for="startTime" class="col-form-label col-md-4">
                                 <spring:message code="trainActiv.table.startTime"/></label>
-                            <div class="col-md-8">
-                                <sf:input path="startTime" id="startTime" type="time" class="form-control"/>
-                                <sf:errors path="startTime" cssClass="text-danger" element="div" />
-                            </div>
+                            <sf:input path="startTime" id="startTime" type="time" class="form-control"/>
+                            <sf:errors path="startTime" cssClass="text-danger" element="div" />                            
                         </div>   
-                        <div class="form-group">
+                        <div class="form-group col-md-8">
                             <label for="endTime" class="col-form-label col-md-4">
                                 <spring:message code="trainActiv.table.endTime"/></label>
-                            <div class="col-md-8">
-                                <sf:input path="endTime" id="endTime" type="time" class="form-control-time" /> 
-                                <sf:errors path="endTime" cssClass="text-danger" element="div" />
-                            </div>
+                            <sf:input path="endTime" id="endTime" type="time" class="form-control-time" /> 
+                            <sf:errors path="endTime" cssClass="text-danger" element="div" />
                         </div>                             
                         <div class="form-group col-md-12">
                             <div class="form-check form-check-inline disabled">
@@ -104,8 +100,9 @@
                             <sf:errors path="daysFlag" cssClass="text-danger" element="div" />
                         </div>       
                         <div class="form-group">
-                            <div class="col-md-offset-4 col-md-8">
-                                <input type="submit" name="submit" value="<spring:message code="common.btn.save"/>" class="btn btn-primary"/>
+                            <div class="col-md-offset-4 col-md-8">                                
+                                <button type="submit" class="btn btn-primary">
+                                    <spring:message code="common.btn.save"/></button>
                             </div>
                         </div>                                        
                     </sf:form>                    
@@ -113,4 +110,5 @@
             </div>
         </div>
     </div>
-    
+
+</div>

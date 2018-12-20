@@ -39,7 +39,7 @@ $(function () {
         href = $(this).attr('href');
         return bootbox.confirm('Está seguro de borrar el registro?', function (result) {
             if (result) {
-                window.location = href
+                window.location = href;
             }
         });
     });
@@ -111,10 +111,6 @@ $(function () {
                 }
             }
         });
-    });
-    
- 
-
-    
+    });        
 
 });

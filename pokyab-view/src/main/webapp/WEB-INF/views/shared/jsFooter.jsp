@@ -15,5 +15,7 @@
              
             <!-- Bootbox JavaScript -->
             <script src="${js}/bs/bootbox.min.js" type="text/javascript"></script>
+            <!-- Jquery ui JavaScript -->
+            <script src="${js}/bs/jquery-ui.min.js" type="text/javascript"></script>
             <!--Project Javascrip-->
             <script src="${js}/myapp.js" type="text/javascript"></script>

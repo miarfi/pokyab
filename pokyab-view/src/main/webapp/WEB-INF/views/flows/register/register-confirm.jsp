@@ -3,12 +3,12 @@
 <div class="container">    
     <div class="row">
         <div class="col-sm-6">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
+            <div class="card">
+                <div class="card-header">
                     <h4><spring:message code="user.form.personal.title"/></h4>
                 </div>
 
-                <div class="panel-body">
+                <div class="card-body">
                     <div class="text-center">
                         <h3><spring:message code="user.form.firstName"/> : 
                             <strong>${registerModel.user.firstName} ${registerModel.user.lastName}</strong></h3>

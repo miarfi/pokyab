@@ -3,6 +3,7 @@ package com.xem.py.pokyabview.controller;
 import com.xem.py.pokyabmodel.dao.LookupValueDAO;
 import com.xem.py.pokyabmodel.dto.LookupValue;
 import com.xem.py.pokyabmodel.validator.LookupValueValidator;
+import java.util.List;
 import org.hibernate.exception.ConstraintViolationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -22,13 +24,23 @@ import org.springframework.web.servlet.ModelAndView;
  * @author arria
  */
 @Controller
-//@RequestMapping("/lookupType")
+//@RequestMapping("/lookupValue")
 public class LookupValueController {
 
     Logger logger = LoggerFactory.getLogger(LookupValueController.class);
     @Autowired
     private LookupValueDAO lookupValueDAO;
 
+    
+    @RequestMapping(value = "/lookupValues", method = RequestMethod.GET)
+    public @ResponseBody  List<LookupValue> LookupValuesForType(
+            @RequestParam(value = "lookupType", required = true) String lookupType
+            ,@RequestParam(value = "meaning", required = true) String meaning
+    ) {
+        logger.debug("finding lookupValues for type " + lookupType);
+        return lookupValueDAO.getLkpValuesByType(lookupType, meaning);
+    }
+    
     @RequestMapping(value = {"/manage/lookupValue/{id}"})
     public ModelAndView showManageLookupValueEdit(@PathVariable int id) {
         logger.info("En showManageLookupValueEdit");
@@ -60,7 +72,7 @@ public class LookupValueController {
         logger.info("lookupValue: " + lookupValue.toString());
         try {
             if (lookupValue.getLookupValueId() == 0) {
-                lookupValue.setStartDate(new java.sql.Date(System.currentTimeMillis()));
+//                lookupValue.setStartDate(new java.sql.Date(System.currentTimeMillis()));
                 daoResult = lookupValueDAO.add(lookupValue);
                 if (daoResult) {
                     alertMessage = "Valor agregado";

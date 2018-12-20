@@ -5,58 +5,59 @@
             <div class="modal-content">
                 <!--Modal Header -->
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span>&times;</span>						
-                    </button>
                     <h4 class="modal-title"><spring:message code="lookupType.modal.title"/></h4>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>						
+                    </button>                    
                 </div>
-                <!--Modal Body -->
-                <div class="modal-body">
-                    <sf:form 
-                        id="seasonForm"
-                        modelAttribute="lookupType" 
-                        action="${contextRoot}/manage/lookupType" 
-                        method="POST"
-                        class="form-group">
+                <sf:form 
+                    id="seasonForm"
+                    modelAttribute="lookupType" 
+                    action="${contextRoot}/manage/lookupType" 
+                    method="POST"
+                    class="form-group">
+                    <!--Modal Body -->
+                    <div class="modal-body">
+                    
                         <div class="form-group">
                             <label for="lookupType" class="col-form-label col-md-4">
                                 <spring:message code="lookupType.table.lookupType"/>:</label>
-                            <!--<div class="col-md-8">-->
-                                <sf:input path="lookupType" id="lookupType" type="text" class="form-control"/>
-                                <sf:errors path="lookupType" cssClass="text-danger" element="div"/>
-                            <!--</div>-->
+                            <div class="col-md-8">
+                                <sf:input path="lookupType" id="lookupType" type="text" class="form-control"/>                                
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="description" class="col-form-label col-md-4">
                                 <spring:message code="lookupType.table.description"/>:</label>
-                            <!--<div class="col-md-8">-->
-                                <sf:textarea path="description" id="description" class="form-control"/> 
-                                <sf:errors path="description" cssClass="text-danger" element="div"/>
-                            <!--</div>-->
-                        </div> 
-                        <div class="form-group">
-                            <label for="systemFlag" class="form-check-label col-md-4">
-                                <spring:message code="lookupType.table.system"/>:</label>
-                            <!--<div class="form-check">-->
-                                <sf:checkbox path="systemFlag" id="systemFlag" value="Y" />
-                                <sf:errors path="systemFlag" cssClass="text-danger" element="div"/>                                
-                            <!--</div>--> 
+                            <div class="col-md-8">
+                                <sf:textarea path="description" id="description" class="form-control"/>                                 
+                            </div>
                         </div> 
                         <div class="form-group">
                             <label for="startDate" class="col-form-label col-md-4">
                                 <spring:message code="common.field.startDate"/>:</label>
-                            <!--<div class="col-md-4">-->
-                                <sf:input path="startDate" id="startDate" type="date"/>
-                                <sf:errors path="startDate" cssClass="text-danger" element="div" />
-                            <!--</div>-->
+                            <div class="col-md-8">
+                                <sf:input path="startDate" id="startDate" type="date"/>                                
+                            </div>
                         </div>
-                        <div class="form-group">								
-                            <!--<div class="col-offset-4 col-md-8">-->                                   
-                                <input type="submit" value="<spring:message code="lookupType.table.btn.addLookupType"/>" class="btn btn-primary">
-                            <!--</div>-->
-                        </div>
-                    </sf:form>
-                </div>
+                        <div class="form-group">
+                            <div class="form-check ">
+                                <div class="col-md-4">
+                                <sf:checkbox path="systemFlag" id="systemFlag" value="Y" cssClass="form-check-input" />                                                                                                                                           
+                                <label for="systemFlag" class="form-check-label">
+                                    <spring:message code="lookupType.table.system"/></label>
+                                </div>
+                            </div>  
+                        </div>                                                                    
+                    </div>
+                    <!--Modal Footer-->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                            <spring:message code="common.btn.close"/></button>
+                        <button type="submit" class="btn btn-primary">
+                            <spring:message code="lookupType.table.btn.addLookupType"/></button>                    
+                    </div>
+                </sf:form>
             </div>
         </div>
     </div>

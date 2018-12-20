@@ -1,5 +1,38 @@
-$(function () {
 
+function getColumns() {
+    console.log('fn.getColumns');
+    var activationUrl = window.contextRoot + '/tableColumns';
+    var tableNameId=$("#tableName").val();
+    console.log('tableNameId: '+tableNameId);
+    $.ajax({
+        type: 'GET',
+        url: activationUrl,
+        timeout: 100000,
+        data:{'tableName':tableNameId},
+        success: function (data) {
+            console.log('ajax success');
+            console.log('length: '+data.length);
+            var html = '<option value="">---</option>';
+            for (var i = 0; i < data.length; i++) {
+                html += '<option value="' + data[i].columnName + '">' + data[i].columnName + '</option>';
+            }
+            $('#columnName').html(html);        
+        },
+        error: function (e) {
+            console.log('ajax error '+data);            
+//            display(e);
+        }
+    });
+}            
+            
+
+$(function () {
+    //Columns Dropdown
+    $('#tableName').change(function () {
+        console.log('call.getColumns');
+        getColumns();
+    });
+    
     //lookupTypes.jsp table
     $table = $('#lookupTypesListTable');
 
@@ -129,7 +162,7 @@ $(function () {
                     });
                 });
             }
-        })
+        });
     }
 
 

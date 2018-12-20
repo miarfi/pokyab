@@ -1,10 +1,13 @@
 
 package com.xem.py.pokyabview.controller;
 
+import com.xem.py.pokyabmodel.dao.LookupValueDAO;
 import com.xem.py.pokyabmodel.dao.PersonDAO;
+import com.xem.py.pokyabmodel.dto.LookupValue;
 import com.xem.py.pokyabmodel.dto.Person;
 import com.xem.py.pokyabmodel.validator.PersonValidator;
 import com.xem.py.pokyabview.util.FileUploadUtility;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,6 +35,24 @@ public class PersonController {
     
     @Autowired
     private PersonDAO personDAO;  
+    @Autowired
+    private LookupValueDAO lookupValueDAO; 
+    
+    //Form Lists
+    @ModelAttribute("personTypes")
+    public List<LookupValue> getPersonTypes() {
+        return lookupValueDAO.getLkpValuesByType("PERSON_TYPE", "");
+    }
+    
+    @ModelAttribute("genderCodes")
+    public List<LookupValue> getGenderCodes() {
+        return lookupValueDAO.getLkpValuesByType("GENDER_CODE", "");
+    }
+    
+    @ModelAttribute("maritalStatusCodes")
+    public List<LookupValue> getMaritalStatusCodes() {
+        return lookupValueDAO.getLkpValuesByType("MARITAL_STATUS_CODE", "");
+    }
     
     @RequestMapping(value = {"/persons"})
     public ModelAndView showAllPersons(@RequestParam(name = "alertMessage", required = false) String alertMessage) {

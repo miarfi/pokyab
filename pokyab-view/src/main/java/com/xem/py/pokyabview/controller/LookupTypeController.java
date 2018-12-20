@@ -1,9 +1,13 @@
 package com.xem.py.pokyabview.controller;
 
 import com.xem.py.pokyabmodel.dao.LookupTypeDAO;
+import com.xem.py.pokyabmodel.dao.LookupUseDAO;
 import com.xem.py.pokyabmodel.dto.LookupType;
+import com.xem.py.pokyabmodel.dto.LookupUse;
 import com.xem.py.pokyabmodel.dto.LookupValue;
 import com.xem.py.pokyabmodel.validator.LookupTypeValidator;
+import com.xem.py.pokyabmodel.view.TableV;
+import java.util.List;
 import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,6 +35,8 @@ public class LookupTypeController {
 
     @Autowired
     private LookupTypeDAO lookupTypeDAO;
+    @Autowired
+    private LookupUseDAO lookupUseDAO;
 //    @Autowired
 //    @Qualifier("lookupTypeValidator")
 //    private Validator lookupTypeValidator;
@@ -47,6 +53,12 @@ public class LookupTypeController {
         return new LookupType();
     }
 
+    @ModelAttribute("tables")
+    public List<TableV> getTables() {
+        logger.info("En getTables");
+        return lookupUseDAO.getTableList();
+    }
+    
     @RequestMapping(value = {"/lookupTypes"})
     public ModelAndView showAllLookuptypes(@RequestParam(name = "alertMessage", required = false) String alertMessage) {
         logger.info("En showAllLookuptypes");
@@ -74,6 +86,10 @@ public class LookupTypeController {
         LookupValue lookupValue = new LookupValue();
         lookupValue.setLookupTypeId(id);
         mv.addObject("lookupValue", lookupValue);
+        //Init new lookupUse
+        LookupUse lookupUse = new LookupUse();
+        lookupUse.setLookupTypeId(id);
+        mv.addObject("lookupUse", lookupUse);
         return mv;
     }
     

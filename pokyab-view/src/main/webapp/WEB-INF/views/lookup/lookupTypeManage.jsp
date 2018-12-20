@@ -13,14 +13,14 @@
 </div>
 
 <!--Lookup Type row-->
-<div class="row">
-    <a href="lookupTypeModal.jsp"></a>
-    <div class="col-12 col-md-8">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h4><spring:message code="lookupType.manage.title"/></h4>
+<div class="row">   
+    
+    <div class="col-12 col-md-10 col-lg-8">
+        <div class="card">
+            <div class="card-header">
+                <h5><spring:message code="lookupType.manage.title"/></h5>
             </div>
-            <div class="panel-body">                    
+            <div class="card-body">                    
                 <sf:form 
                     id="seasonForm"
                     modelAttribute="lookupType" 
@@ -28,14 +28,14 @@
                     method="POST"
                     class="form-group">
                     <div class="form-row">
-                        <div class="form-group col-6 col-md-2">
+                        <div class="form-group col-12 col-sm-4 col-md-3">
                             <label for="lookupType" class="col-form-label">
                                 <spring:message code="lookupType.table.lookupType"/>:</label>
                                 <sf:input path="lookupTypeId" id="lookupTypeId"  type="hidden"/>
                                 <sf:input path="lookupType" type="text" class="form-control"/>
                                 <sf:errors path="lookupType" cssClass="text-danger" element="div"/>
                         </div>
-                        <div class="form-group col-6 col-md-4">
+                        <div class="form-group col-12 col-sm-6 col-md-4">
                             <label for="description" class="col-form-label">
                                 <spring:message code="lookupType.table.description"/>:</label>
                                 <sf:input path="description" id="description" class="form-control"/> 
@@ -43,7 +43,7 @@
                         </div> 
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-6 col-md-2">
+                        <div class="form-group col-6 col-sm-4 col-md-3">
                             <label for="startDate" class="col-form-label">
                                 <spring:message code="common.field.startDate"/>:</label>
                             <div>
@@ -51,7 +51,7 @@
                                 <sf:errors path="startDate" cssClass="text-danger" element="div" />
                             </div>
                         </div>
-                        <div class="form-group col-6 col-md-2">
+                        <div class="form-group col-6 col-sm-4 col-md-3">
                             <label for="endDate" class="col-form-label">
                                 <spring:message code="common.field.endDate"/>:</label>
                             <div>
@@ -68,35 +68,68 @@
                             <sf:errors path="systemFlag" cssClass="text-danger" element="div" />
                         </div>  
                     </div>
-                    <div class="form-group">								
-                        <!--<div class="col-offset-4 col-md-8">-->                                   
-                            <input type="submit" value="<spring:message code="common.btn.save"/>" class="btn btn-primary">
-                        <!--</div>-->
+                    <div class="form-group">								                                                        
+                        <button type="button" class="btn btn-primary">
+                            <spring:message code="common.btn.save"/></button>
                     </div>
                 </sf:form>
 
             </div>                
         </div>
     </div>
-</div>
-
-
-<c:if test="${lookupType.lookupTypeId > 0 }">
-    <!--Button Row-->
-    <div class="row">
-        <div class="col-12 col-md-8">
-            <div class="text-right">
-                <br/>										
-                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#mylookupValueModal">
-                    <spring:message code="lookupType.table.btn.addLookupValue"/>
-                </button>
-            </div>      
+</div>            
+            
+<c:if test="${lookupType.lookupTypeId > 0 }">      
+   
+    <nav>
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">
+            Valores</a>
+        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">
+            Usos</a>
         </div>
-    </div>
+    </nav>
 
-    <!--Lookup Types table row-->
-    <%@include file="lookupValues.jsp" %>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+   
+            <!--Button Row-->
+            <div class="row">
+                <div class="col-12 col-xl-8">
+                    <div class="text-right">
+                        <br/>										
+                        <button type="submit" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#mylookupValueModal">
+                            <spring:message code="lookupType.table.btn.addLookupValue"/>
+                        </button>
+                    </div>      
+                </div>
+            </div>
 
-    <!--Lookup Type modal row-->
-    <%@include file="lookupValueModal.jsp" %>
+            <!--Lookup Values table row-->
+            <%@include file="lookupValues.jsp" %>            
+        </div>
+        
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <!--Button Row-->
+            <div class="row">
+                <div class="col-12 col-xl-8">
+                    <div class="text-right">
+                        <br/>										
+                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#mylookupUseModal">
+                            <spring:message code="lookupType.table.btn.addLookupUse"/>
+                        </button>
+                    </div>      
+                </div>
+            </div>
+
+            <!--Lookup Uses table row-->
+            <%@include file="lookupUses.jsp" %> 
+        </div>
+
+    </div>    
+        
+    <!--Lookup Value modal row-->
+    <%@include file="lookupValueModal.jsp" %>      
+    <!--Lookup Use modal row-->
+    <%@include file="lookupUseModal.jsp" %>    
 </c:if>                                                                     

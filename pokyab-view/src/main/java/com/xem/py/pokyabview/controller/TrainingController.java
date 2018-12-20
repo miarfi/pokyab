@@ -2,8 +2,10 @@
 package com.xem.py.pokyabview.controller;
 
 import com.xem.py.pokyabmodel.dao.ActivityDAO;
+import com.xem.py.pokyabmodel.dao.LookupValueDAO;
 import com.xem.py.pokyabmodel.dao.TrainingDAO;
 import com.xem.py.pokyabmodel.dto.Activity;
+import com.xem.py.pokyabmodel.dto.LookupValue;
 import com.xem.py.pokyabmodel.dto.Training;
 import com.xem.py.pokyabmodel.dto.TrainingActivity;
 import com.xem.py.pokyabmodel.validator.TrainingValidator;
@@ -32,11 +34,22 @@ public class TrainingController {
     Logger logger = LoggerFactory.getLogger(TrainingController.class);
     
     @Autowired  
-    private TrainingDAO trainingDAO;
-    
+    private TrainingDAO trainingDAO;    
     @Autowired
     private ActivityDAO activityDAO;
+    @Autowired
+    private LookupValueDAO lookupValueDAO;  
+   
 
+    @ModelAttribute("trainCategoryCodes")
+    public List<LookupValue> getTrainCategoryCodes() {
+        return lookupValueDAO.getLkpValuesByType("TRAIN_CATEGORY_CODE", "");
+    }
+    @ModelAttribute("trainStatusCodes")
+    public List<LookupValue> getTrainStatusCodes() {
+        return lookupValueDAO.getLkpValuesByType("TRAIN_STATUS_CODE", "");
+    }
+    
     @ModelAttribute("training")
     public Training getTraining() {
         logger.info("En getTraining");

@@ -74,15 +74,15 @@
 
                     <div class="row">
 
-                        <div class="col-md-offset-3 col-md-6 border">
+                        <div class="col-md-offset-3 col-md-6">
 
-                            <div class="panel panel-primary">
+                            <div class="card">
 
-                                <div class="panel-heading">
+                                <div class="card-header">
                                     <h4><spring:message code="login.title"/></h4>
                                 </div>
 
-                                <div class="panel-body">
+                                <div class="card-body">
                                     <form action="${contextRoot}/login" method="POST" class="form-horizontal"
                                           id="loginForm">
                                         <div class="form-group row">
