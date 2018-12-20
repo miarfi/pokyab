@@ -1,4 +1,3 @@
-
 package com.xem.py.pokyabmodel.dto;
 
 import java.io.Serializable;
@@ -9,8 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -51,8 +48,10 @@ public class LookupUse implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
-    @JoinColumn(name = "LOOKUP_TYPE_ID", referencedColumnName = "LOOKUP_TYPE_ID")
-    @ManyToOne(optional = false)
+    //FKs
+//    @JoinColumn(name = "LOOKUP_TYPE_ID", referencedColumnName = "LOOKUP_TYPE_ID")
+//    @ManyToOne(optional = false)
+    @Column(name = "LOOKUP_TYPE_ID")
     private int lookupTypeId;
 
     public LookupUse() {
@@ -60,12 +59,12 @@ public class LookupUse implements Serializable {
         this.startDate = new java.sql.Date(System.currentTimeMillis());
     }
 
-    public int getLookupTypeUseId() {
+    public int getLookupUseId() {
         return lookupUseId;
     }
 
-    public void setLookupTypeUseId(int lookupTypeUseId) {
-        this.lookupUseId = lookupTypeUseId;
+    public void setLookupUseId(int lookupUseId) {
+        this.lookupUseId = lookupUseId;
     }
 
     public String getTableName() {
@@ -114,8 +113,7 @@ public class LookupUse implements Serializable {
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
-    }
-    
+    }    
     
     public int getLookupTypeId() {
         return lookupTypeId;
@@ -125,4 +123,8 @@ public class LookupUse implements Serializable {
         this.lookupTypeId = lookupTypeId;
     }
 
+    @Override
+    public String toString() {
+        return "LookupUse{" + "lookupUseId=" + lookupUseId + ", tableName=" + tableName + ", columnName=" + columnName + ", active=" + active + ", startDate=" + startDate + ", endDate=" + endDate + ", lookupTypeId=" + lookupTypeId + '}';
+    }        
 }

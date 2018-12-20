@@ -94,6 +94,5 @@ public class TeamDAOImpl implements TeamDAO
                 .createQuery(query, Team.class)
                 .setParameter("id", id)
                 .getSingleResult();
-    }
-    
+    }  
 }

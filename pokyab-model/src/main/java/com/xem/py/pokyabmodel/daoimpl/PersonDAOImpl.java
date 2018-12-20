@@ -2,6 +2,7 @@ package com.xem.py.pokyabmodel.daoimpl;
 
 import com.xem.py.pokyabmodel.dao.PersonDAO;
 import com.xem.py.pokyabmodel.dto.Person;
+import com.xem.py.pokyabmodel.view.PersonV;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -50,8 +51,6 @@ public class PersonDAOImpl implements PersonDAO{
     @Override
     public boolean delete(Person person) {
         try { 
-//            person.setActive('N');
-//            person.setEndDate(new java.sql.Date(System.currentTimeMillis()));
             sessionFactory.getCurrentSession()
                           .delete(person);            
         } catch (Exception e) {
@@ -78,6 +77,14 @@ public class PersonDAOImpl implements PersonDAO{
                              .getResultList();
     }
 
+    @Override
+    public List<PersonV> getAllPersonsV() {
+        String query = "FROM PersonV";
+        return sessionFactory.getCurrentSession()
+                             .createQuery(query, PersonV.class)                                     
+                             .getResultList();
+    }
+    
     @Override
     public Person getPersonById(int id) {
         String query = "FROM Person WHERE personId = :id";

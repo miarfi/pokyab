@@ -31,12 +31,7 @@ public class LookupValue implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "LOOKUP_VALUE_ID", nullable = false)        
-    private int lookupValueId;   
-//    @JoinColumn(name = "LOOKUP_TYPE_ID", referencedColumnName = "LOOKUP_TYPE_ID")
-//    @ManyToOne(optional = false)
-//    private LookupType lookupTypeId;
-    @Column(name = "LOOKUP_TYPE_ID")
-    private int lookupTypeId;
+    private int lookupValueId;      
     @Basic(optional = false)
     @Column(name = "LOOKUP_CODE", nullable = false, length = 30)
     private String lookupCode;
@@ -61,6 +56,12 @@ public class LookupValue implements Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
 //    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date endDate;    
+    //FKs
+    @Column(name = "LOOKUP_TYPE_ID")
+    private int lookupTypeId;
+//    @JoinColumn(name = "LOOKUP_TYPE_ID", referencedColumnName = "LOOKUP_TYPE_ID")
+//    @ManyToOne(optional = false)
+//    private LookupType lookupType;
 
     public LookupValue() {
         this.active = 'Y';
@@ -73,7 +74,7 @@ public class LookupValue implements Serializable {
     }
 
     public void setLookupCode(String lookupCode) {
-        this.lookupCode = lookupCode;
+        this.lookupCode = lookupCode.toUpperCase();
     }
 
     public String getMeaning() {

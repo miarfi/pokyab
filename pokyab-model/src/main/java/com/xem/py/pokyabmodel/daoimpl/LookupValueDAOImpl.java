@@ -69,21 +69,45 @@ public class LookupValueDAOImpl implements LookupValueDAO{
                 .getResultList();
     }
 
-    //En automatico debe hacer esta consulta en el maestro.
+       
+//    @Override
+//    public List<LookupValue> getLkpValuesByType(String lookupType) {
+//        //Busqueda de lookupTypeId
+//        String query = "FROM LookupType WHERE lookupType = :lookupType";
+//        int lookupTypeId =  sessionFactory.getCurrentSession()
+//                .createQuery(query, LookupType.class)
+//                .setParameter("lookupType", lookupType)
+//                .getSingleResult()
+//                .getLookupTypeId();
+//        
+//        query = "FROM LookupValue WHERE lookupTypeId = :lookupTypeId";
+//        return sessionFactory.getCurrentSession()
+//                .createQuery(query, LookupValue.class)
+//                .setParameter("lookupTypeId", lookupTypeId)
+//                .getResultList();
+//    }
+    
     @Override
-    public List<LookupValue> getLkpValuesByType(String lookupType) {
-        //Busqueda de lookupTypeId
+    public List<LookupValue> getLkpValuesByType(String lookupType, String meaning) {
         String query = "FROM LookupType WHERE lookupType = :lookupType";
-        int lookupTypeId =  sessionFactory.getCurrentSession()
+        int lookupTypeId;
+        try {
+            lookupTypeId =  sessionFactory.getCurrentSession()
                 .createQuery(query, LookupType.class)
                 .setParameter("lookupType", lookupType)
                 .getSingleResult()
                 .getLookupTypeId();
+        } catch (Exception e) {
+            lookupTypeId = -1;
+        }
+            
+
         
-        query = "FROM LookupValue WHERE lookupTypeId = :lookupTypeId";
+        query = "FROM LookupValue WHERE lookupTypeId = :lookupTypeId AND meaning LIKE :meaning";
         return sessionFactory.getCurrentSession()
                 .createQuery(query, LookupValue.class)
                 .setParameter("lookupTypeId", lookupTypeId)
+                .setParameter("meaning", meaning+'%')
                 .getResultList();
     }
 

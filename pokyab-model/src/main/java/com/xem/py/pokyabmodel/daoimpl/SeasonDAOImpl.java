@@ -2,7 +2,6 @@ package com.xem.py.pokyabmodel.daoimpl;
 
 import com.xem.py.pokyabmodel.dao.SeasonDAO;
 import com.xem.py.pokyabmodel.dto.Season;
-import java.sql.Date;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -20,7 +19,7 @@ public class SeasonDAOImpl implements SeasonDAO{
     @Autowired
     private SessionFactory sessionFactory;
     @Override
-    public boolean Add(Season season) {
+    public boolean add(Season season) {
         try {           
             sessionFactory.getCurrentSession()
                           .persist(season);            
@@ -32,6 +31,32 @@ public class SeasonDAOImpl implements SeasonDAO{
         return true;
     }
 
+    @Override
+    public boolean update(Season season) {        
+        try {            
+            sessionFactory.getCurrentSession()
+                    .update(season);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean delete(Season season) {
+        try {     
+//            season.setActive('N');
+            season.setEndDate(new java.sql.Date(System.currentTimeMillis()));
+            sessionFactory.getCurrentSession()
+                    .update(season);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+    
     @Override
     public List<Season> getActiveSeasons() {
         String query = "FROM Season";
@@ -48,4 +73,12 @@ public class SeasonDAOImpl implements SeasonDAO{
                              .getResultList();
     }
     
+    @Override
+    public Season getSeasonById(int id) {
+        String query = "FROM Season WHERE seasonId = :id";
+        return sessionFactory.getCurrentSession()
+                .createQuery(query, Season.class)
+                .setParameter("id", id)
+                .getSingleResult();
+    }
 }

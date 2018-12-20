@@ -1,6 +1,7 @@
 package com.xem.py.pokyabmodel.dao;
 
 import com.xem.py.pokyabmodel.dto.Person;
+import com.xem.py.pokyabmodel.view.PersonV;
 import java.util.List;
 
 /**
@@ -13,5 +14,6 @@ public interface PersonDAO {
     boolean delete(Person person);
     List<Person> getActivePersons();
     List<Person> getAllPersons();   
+    List<PersonV> getAllPersonsV();   
     Person getPersonById(int id);
 }

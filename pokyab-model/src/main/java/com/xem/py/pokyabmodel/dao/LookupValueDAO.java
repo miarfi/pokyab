@@ -13,7 +13,8 @@ public interface LookupValueDAO {
     boolean delete(LookupValue lookupValue);
     public LookupValue getLookupValueById(int id);
     List<LookupValue> getLkpValuesByTypeId(int lookupTypeId);    
-    List<LookupValue> getLkpValuesByType(String lookupType);
+//    List<LookupValue> getLkpValuesByType(String lookupType);
+    List<LookupValue> getLkpValuesByType(String lookupType, String meaning);
     
 
 }

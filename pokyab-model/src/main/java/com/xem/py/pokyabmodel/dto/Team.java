@@ -1,7 +1,5 @@
 package com.xem.py.pokyabmodel.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -67,25 +65,19 @@ public class Team implements Serializable {
     @Basic(optional = false)
     @Column(name = "START_DATE")
     @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")    
     private Date startDate;
     @Column(name = "END_DATE")
     @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")    
     private Date endDate; 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "teamId")
-    @JsonIgnore
     private Collection<TeamPerson> teamPersonCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "awayTeamId")
-    @JsonIgnore
     private Collection<Match> matchCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "homeTeamId")
-    @JsonIgnore
     private Collection<Match> matchCollection1;
     @OneToMany(mappedBy = "winnerTeamId")
-    @JsonIgnore
     private Collection<Match> matchCollection2;    
 //    @JoinColumn(name = "LEAGUE_ID", referencedColumnName = "LEAGUE_ID")
 //    @ManyToOne(optional = false)
@@ -97,9 +89,7 @@ public class Team implements Serializable {
     private int leagueId;   
     @Column(name = "SEASON_ID")
     private int seasonId;    
-
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "teamId")
-    @JsonIgnore
     private Collection<TrainingPerson> trainingPersonCollection;
 
     public Team() {

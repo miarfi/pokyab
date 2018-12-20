@@ -8,8 +8,11 @@ import java.util.List;
  * @author arria
  */
 public interface LeagueDAO {
-    boolean Add(League league);
+    boolean add(League league);
+    boolean update(League league);
+    boolean delete(League league);
     
     List<League> getActiveLeagues();
     List<League> getAllLeagues();
+    League getLeagueById(int id);
 }

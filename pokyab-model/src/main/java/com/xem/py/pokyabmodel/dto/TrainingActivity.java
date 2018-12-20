@@ -1,6 +1,5 @@
 package com.xem.py.pokyabmodel.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -64,8 +63,7 @@ public class TrainingActivity implements Serializable {
     private String startTime;
     @Basic(optional = false)
     @Column(name = "END_TIME")
-    private String endTime;
-    @JsonIgnore
+    private String endTime;    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "trainActId")
     private Collection<TrainingPerson> trainingPersonCollection;
 //    @JoinColumn(name = "ACTIVITY_ID", referencedColumnName = "ACTIVITY_ID")

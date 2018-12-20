@@ -20,8 +20,8 @@ public class LookupValueValidator implements Validator{
     public void validate(Object o, Errors errors) {
 //        LookupValue lookupValue = (LookupValue) o;
         
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "tableName", "common.form.string.notEmpty");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "columnName", "common.form.string.notEmpty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lookupCode", "common.form.string.notEmpty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "meaning", "common.form.string.notEmpty");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "startDate", "common.form.startDate.notEmpty");   
     }   
 }

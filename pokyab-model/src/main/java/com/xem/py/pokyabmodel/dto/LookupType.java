@@ -7,7 +7,6 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -20,6 +19,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlTransient;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
@@ -68,7 +69,8 @@ public class LookupType implements Serializable {
     @OneToMany(fetch = FetchType.EAGER,  mappedBy = "lookupTypeId")//cascade = CascadeType.ALL,
     @JsonIgnore
     private Collection<LookupValue> lookupValueCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "lookupTypeId")
+    @OneToMany(fetch = FetchType.LAZY,  mappedBy = "lookupTypeId")
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JsonIgnore
     private Collection<LookupUse> lookupUseCollection;
     
@@ -91,7 +93,7 @@ public class LookupType implements Serializable {
     }
 
     public void setLookupType(String lookupType) {
-        this.lookupType = lookupType;
+        this.lookupType = lookupType.toUpperCase();
     }
 
     public String getDescription() {
@@ -165,11 +167,11 @@ public class LookupType implements Serializable {
     }
 
     @XmlTransient
-    public Collection<LookupUse> getLookupTypeUseCollection() {
+    public Collection<LookupUse> getLookupUseCollection() {
         return lookupUseCollection;
     }
 
-    public void setLookupTypeUseCollection(Collection<LookupUse> lookupTypeUseCollection) {
+    public void setLookupUseCollection(Collection<LookupUse> lookupUseCollection) {
         this.lookupUseCollection = lookupUseCollection;
     }
 
