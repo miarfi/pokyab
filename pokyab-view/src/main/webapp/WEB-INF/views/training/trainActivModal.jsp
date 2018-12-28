@@ -9,15 +9,14 @@
                         <span aria-hidden="true">&times;</span>						
                     </button>                    
                 </div>
-                <!--Modal Body -->
-                <div class="modal-body">
-                    <sf:form 
-                        id="trainingActivityForm"
-                        modelAttribute="trainingActivity" 
-                        action="${contextRoot}/manage/trainingActivity" 
-                        method="POST"
-                        class="form-group">
-
+                <sf:form 
+                    id="trainingActivityForm"
+                    modelAttribute="trainingActivity" 
+                    action="${contextRoot}/manage/trainingActivity" 
+                    method="POST"
+                    class="form-group">
+                    <!--Modal Body -->
+                    <div class="modal-body">                    
                         <div class="form-group">
                             <label class="col-form-label col-md-4" for="activityId">
                                 <spring:message code="trainActiv.table.activity"/>
@@ -62,7 +61,7 @@
                                 <sf:hidden path="trainingId"/>
                             </div>
                         </div>                             
-                        <div class="form-group col-md-12">
+                        <div class="form-group col-md-8">
                             <div class="form-check form-check-inline disabled">
                                 <label class="form-check-label">
                                     <sf:checkbox id="mondayFlag" path="mondayFlag" value="Y" />
@@ -99,16 +98,16 @@
                                     <spring:message code="trainActiv.table.saturday"/>
                                 </label>
                             </div>                        
-                        </div>                        
-                    </sf:form>                
-                </div>
-                <!--Modal Footer-->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                        <spring:message code="common.btn.close"/></button>
-                    <button type="button" class="btn btn-primary">
-                        <spring:message code="common.btn.submit"/></button>                    
-                </div>                            
+                        </div>                                                           
+                    </div>
+                    <!--Modal Footer-->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                            <spring:message code="common.btn.close"/></button>
+                        <button type="submit" class="btn btn-primary">
+                            <spring:message code="training.table.btn.addTrainActiv"/></button>                    
+                    </div> 
+                </sf:form> 
             </div>
         </div>
     </div>

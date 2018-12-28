@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -61,7 +62,20 @@ public class TrainingActivityController {
         return mv;
     }
 
-       
+    @RequestMapping(value = {"/manage/trainingActivity/{id}"})
+    public ModelAndView showMngTrainingActivEdit(@PathVariable int id
+        ,@RequestParam(name = "alertMessage", required = false) String alertMessage) {
+        logger.info("info.Inside showMngTrainingActivEdit method");
+        ModelAndView mv = new ModelAndView("training/trainingMain");
+        mv.addObject("title", "Training");
+        mv.addObject("userClickTrainActivity", true);     
+        mv.addObject("alertMessage", alertMessage);
+        
+        //Get Training object
+        TrainingActivity trainingActivity = trainingActivityDAO.getTrainActivityById(id);
+        mv.addObject("trainingActivity", trainingActivity);   
+        return mv;
+    }   
 
     @RequestMapping(value = "/manage/trainingActivity", method = RequestMethod.POST)
     public String handleTrainActivitySubm(@ModelAttribute TrainingActivity trainingActivity,
@@ -86,9 +100,9 @@ public class TrainingActivityController {
             daoResult =   trainingActivityDAO.update(trainingActivity);
             if (daoResult) alertMessage = "Actividad actualizada";   
         }
-                     
+        
+        logger.info("daoResult: "+daoResult+" alertMessage: "+alertMessage);
         return "redirect:/manage/training/"+trainingActivity.getTrainingId()+"?alertMessage="+alertMessage;
-
     }
     
     

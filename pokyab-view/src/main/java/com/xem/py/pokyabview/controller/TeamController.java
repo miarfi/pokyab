@@ -74,7 +74,12 @@ public class TeamController {
     public List<LookupValue> getLeagueTypes() {
         return lookupValueDAO.getLkpValuesByType("LEAGUE_TYPE", "");
     }   
-            
+    
+    @ModelAttribute("genderCodes")
+    public List<LookupValue> getGenderCodes() {
+        return lookupValueDAO.getLkpValuesByType("GENDER_CODE", "");
+    }
+    
     @ModelAttribute("trainers")
     public List<Person> getTrainers() {
         return personDAO.getActivePersons();

@@ -32,7 +32,7 @@
                         method="POST"
                         class="form-horizonal">
 
-                        <div class="form-row ">
+                        <div class="form-row">
                             <div class="form-group col-sm-6 col-md-5">
                                 <label for="teamName" class="col-form-label">
                                     <spring:message code="team.table.teamName"/></label>
@@ -122,7 +122,7 @@
                                     <sf:errors path="endDate" cssClass="text-danger" element="div" />
                                 </div>   
                             </c:if>  
-                            <div class="form-group col-2 col-sm-2 col-md-2">
+                            <div class="form-group col-4 col-sm-4 col-md-3">
                                 <label for="groupNumber" class="col-form-label">
                                     <spring:message code="team.table.groupNumber"/></label>
                                 <sf:input path="groupNumber" id="groupNumber" type="number" class="form-control"/> 

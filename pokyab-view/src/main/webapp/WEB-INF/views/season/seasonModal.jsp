@@ -38,20 +38,22 @@
                                     <sf:textarea path="description" id="description" class="form-control"/> 
                                 </div>
                             </div>   
-                            <div class="form-group">
-                                <label for="startDate" class="col-form-label col-md-4">
-                                    <spring:message code="common.field.startDate"/>:</label>
-                                <div class="col-md-4">
-                                    <sf:input path="startDate" id="startDate" type="date"/>
-                                </div>
-                            </div> 
-                            <div class="form-group">
-                                <label for="endDate" class="col-form-label col-md-4">
-                                    <spring:message code="common.field.endDate"/>:</label>
-                                <div class="col-md-4">
-                                    <sf:input path="endDate" id="endDate" type="date"/>
-                                </div>
-                            </div>                                                                                
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="startDate" class="col-form-label col-md-10">
+                                        <spring:message code="common.field.startDate"/>:</label>
+                                    <div class="col-md-4">
+                                        <sf:input path="startDate" id="startDate" type="date"/>
+                                    </div>
+                                </div> 
+                                <div class="form-group">
+                                    <label for="endDate" class="col-form-label col-md-10">
+                                        <spring:message code="common.field.endDate"/>:</label>
+                                    <div class="col-md-4">
+                                        <sf:input path="endDate" id="endDate" type="date"/>
+                                    </div>
+                                </div>  
+                            </div>
                         </div>
                         <!--Modal Footer-->
                         <div class="modal-footer">

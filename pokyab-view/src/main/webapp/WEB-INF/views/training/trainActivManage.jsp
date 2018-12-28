@@ -12,8 +12,6 @@
             </ol>
         </nav>
     </div>
-    <!--Alert Message Row-->
-    <%@include file="alertMessage.jsp" %>
     
     <!--Training row-->
     <div class="row">
@@ -41,7 +39,6 @@
                         <div class="form-group col-md-8">
                             <label class="col-form-label" for="positionCode">
                                 <spring:message code="trainActiv.table.positionType"/></label>
-                            <!--<sf:input path="positionCode" id="positionCode" type="text" class="form-control"/>--> 
                             <sf:select path="positionCode" id="positionCode" class="form-control">
                                 <sf:option value="" label="---"/>
                                 <sf:options items="${positionCodes}" itemLabel="meaning" itemValue="lookupCode" />
@@ -97,7 +94,7 @@
                                 <spring:message code="trainActiv.table.saturday"/>
                               </label>
                             </div> 
-                            <sf:errors path="daysFlag" cssClass="text-danger" element="div" />
+                            <sf:errors path="saturdayFlag" cssClass="text-danger" element="div" />
                         </div>       
                         <div class="form-group">
                             <div class="col-md-offset-4 col-md-8">                                

@@ -39,6 +39,10 @@
                 <c:if test="${userClickTraining == true }">
                     <%@include file="trainingManage.jsp"%>
                 </c:if>
+                <!--Load training activity content-->
+                <c:if test="${userClickTrainActivity == true }">
+                    <%@include file="trainActivManage.jsp"%>
+                </c:if>
             </div>
             <!--footer-->
             <%@include file="../shared/footer.jsp"%>

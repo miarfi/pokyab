@@ -355,7 +355,7 @@ $(function () {
                     bSortable: false,
                     mRender: function (data, type, row) {
                         var str = '';
-                        str += '<a href="'+ window.contextRoot + '/manage/trainActiv/'
+                        str += '<a href="'+ window.contextRoot + '/manage/trainingActivity/'
                                 + data + '"><i class="fas fa-edit"></i></a>';
                         return str;
                     }
@@ -365,7 +365,7 @@ $(function () {
                     bSortable: false,
                     mRender: function (data, type, row) {
                         var str = '';
-                        str += '<a href="' + window.contextRoot + '/manage/trainActiv/'
+                        str += '<a href="' + window.contextRoot + '/manage/trainingActivity/'
                                 + data + '/delete" class="confirmation"><i class="fas fa-trash"></i></a>';
                         return str;
                     }

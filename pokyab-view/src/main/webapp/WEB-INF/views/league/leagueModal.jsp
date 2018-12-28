@@ -18,14 +18,14 @@
                         <!--Modal Body -->
                         <div class="modal-body">                        
                             <div class="form-group">
-                                <label for="leagueName" class="col-form-label col-md-4">
+                                <label for="leagueName" class="col-form-label col-md-8">
                                     <spring:message code="league.table.leagueName"/>:</label>
                                 <div class="col-md-8">
                                     <sf:input path="leagueName" id="leagueName" type="text" class="form-control"/>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="leagueType" class="col-form-label col-md-4">
+                                <label for="leagueType" class="col-form-label col-md-8">
                                     <spring:message code="league.table.leagueType"/>:</label>
                                 <div class="col-md-8">
                                     <sf:select path="leagueType" id="leagueType" class="form-control">
@@ -35,22 +35,15 @@
                                 </div>
                             </div>                              
                             <div class="form-group">
-                                <label for="categoryCode" class="col-form-label col-md-4">                               
+                                <label for="categoryCode" class="col-form-label col-md-8">                               
                                     <spring:message code="league.table.category"/>:</label>
                                 <div class="col-md-8">                                    
                                      <sf:select path="categoryCode" id="categoryCode" class="form-control">
                                         <sf:option value="" label="---"/>
-                                        <sf:options items="${teamCategoryCodes}" itemLabel="meaning" itemValue="lookupCode" />
+                                        <sf:options items="${leagueCategoryCodes}" itemLabel="meaning" itemValue="lookupCode" />
                                     </sf:select>
                                 </div>
-                            </div>                               
-    <!--                            <div class="form-group">
-                                <label for="countryCode " class="col-form-label col-md-4">
-                                    <spring:message code="league.table.country"/>:</label>
-                                <div class="col-md-8">
-                                    <sf:input path="countryCode" id="countryCode " type="text" class="form-control"/>
-                                </div>
-                            </div>                                   -->                         
+                            </div>                                                     
                         </div>
                         <!--Modal Footer-->
                         <div class="modal-footer">
