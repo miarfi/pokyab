@@ -21,7 +21,7 @@ public class TrainActivValidator implements Validator{
 //        TrainingActivity trainingActivity = (TrainingActivity) o;
         
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "activityNumber", "common.form.int.notEmpty");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "totalWeeks", "common.form.int.notEmpty");        
+//        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "totalWeeks", "common.form.int.notEmpty");        
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "startTime", "common.form.date.notEmpty");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "endTime", "common.form.date.notEmpty");        
 
