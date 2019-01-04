@@ -56,7 +56,7 @@ if ($table.length) {
             {data: 'groupNumber'},
             {data: 'leagueName'},
             {data: 'seasonName'},
-            {data: 'categoryCode'},
+//            {data: 'categoryCode'},
             {data: 'trainerPerName'},
             {data: 'conceded'},
             {data: 'scores'},

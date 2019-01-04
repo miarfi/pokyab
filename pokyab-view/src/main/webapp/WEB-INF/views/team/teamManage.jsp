@@ -1,24 +1,26 @@
 
-<div class="container">
+<!--<div class="container-fluid">-->
     
     <!--Breadcrumb row-->
-    <div class="row">            
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="${contextRoot}/home">
-                    <spring:message code="menu.navbar.home"/></a></li>
-                <li class="breadcrumb-item"><a href="${contextRoot}/teams">
-                    <spring:message code="menu.navbar.teams"/></a></li>
-                <li class="breadcrumb-item active" aria-current="page">${team.teamName}</li>
-            </ol>
-        </nav>
+    <div class="row">
+        <div class="col-12 col-md-10 col-xl-8">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="${contextRoot}/home">
+                        <spring:message code="menu.navbar.home"/></a></li>
+                    <li class="breadcrumb-item"><a href="${contextRoot}/teams">
+                        <spring:message code="menu.navbar.teams"/></a></li>
+                    <li class="breadcrumb-item active" aria-current="page">${team.teamName}</li>
+                </ol>
+            </nav>
 <!--        Current Locale : ${pageContext.response.locale}            
         <hr/>-->
+        </div>
     </div>    
             
     <!--Team row-->
     <div class="row">
-        <div class="col-12 col-lg-8">
+        <div class="col-12 col-md-10 col-xl-8">
             <div class="card">
                 <div class="card-header">
                     <h5><spring:message code="team.manage.title"/></h5>
@@ -104,7 +106,7 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group col-5 col-sm-4 col-md-3">
+                            <div class="form-group col-6 col-sm-4 col-md-3">
                                 <label for="startDate" class="col-form-label">
                                     <spring:message code="common.field.startDate"/></label>
                                 <div>
@@ -113,7 +115,7 @@
                                 <sf:errors path="startDate" cssClass="text-danger" element="div" />
                             </div> 
                             <c:if test="${team.teamId > 0 }">
-                                <div class="form-group col-5 col-sm-4 col-md-3">
+                                <div class="form-group col-6 col-sm-4 col-md-3">
                                     <label for="endDate" class="col-form-label">
                                         <spring:message code="common.field.endDate"/></label>
                                     <div>
@@ -122,7 +124,7 @@
                                     <sf:errors path="endDate" cssClass="text-danger" element="div" />
                                 </div>   
                             </c:if>  
-                            <div class="form-group col-4 col-sm-4 col-md-3">
+                            <div class="form-group col-6 col-sm-3 col-md-2">
                                 <label for="groupNumber" class="col-form-label">
                                     <spring:message code="team.table.groupNumber"/></label>
                                 <sf:input path="groupNumber" id="groupNumber" type="number" class="form-control"/> 
@@ -132,7 +134,7 @@
 
                         <div class="form-group">                                                            
                             <button type="submit" class="btn btn-primary">
-                                    <spring:message code="common.btn.save"/></button>
+                                <spring:message code="common.btn.save"/></button>
                         </div>   
 
                     </sf:form>                    
@@ -152,4 +154,4 @@
     <!--Trainer Modal row-->
     <%@include file="trainerModal.jsp" %>
     
-</div>
+<!--</div>-->

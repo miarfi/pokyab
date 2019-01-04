@@ -1,5 +1,3 @@
-
-
 <!--Button Row-->
 <div class="row">
     <div class="col-12 col-xl-8">
@@ -19,13 +17,13 @@
             <thead>
                 <tr> 
                     <th></th><th></th>
-                    <th><spring:message code="activity.table.activityName"/></th>
-                    <th><spring:message code="activity.table.activityType"/></th>
-                    <th><spring:message code="activity.table.metricType"/></th>
-                    <th><spring:message code="activity.table.totalTime"/></th>
-                    <th><spring:message code="activity.table.uomCode"/></th>
-                    <th><spring:message code="activity.table.quantityMin"/></th>
-                    <th><spring:message code="activity.table.quantityMax"/></th>
+                    <th><spring:message code="activity.table.activityName.short"/></th>
+                    <th><spring:message code="activity.table.activityType.short"/></th>
+                    <th><spring:message code="activity.table.metricType.short"/></th>
+                    <th><spring:message code="activity.table.totalTime.short"/></th>
+                    <th><spring:message code="activity.table.uomCode.short"/></th>
+                    <th><spring:message code="activity.table.quantityMin.short"/></th>
+                    <th><spring:message code="activity.table.quantityMax.short"/></th>
                     <th><spring:message code="common.field.startDate"/></th>
                     <th></th>	
                 </tr>

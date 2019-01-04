@@ -1,5 +1,4 @@
 
-
 <!--Button Row-->
 <div class="row">
     <div class="col-12 col-xl-8">
@@ -20,10 +19,10 @@
                 <tr> 
                     <th></th><th></th>
                     <th><spring:message code="team.table.teamName"/></th>
-                    <th><spring:message code="team.table.groupNumber"/></th>
+                    <th><spring:message code="team.table.groupNumber.short"/></th>
                     <th><spring:message code="team.table.league"/></th>
                     <th><spring:message code="team.table.season"/></th>
-                    <th><spring:message code="league.table.category"/></th>                    
+                    <!--<th><spring:message code="league.table.category"/></th>-->                    
                     <th><spring:message code="team.table.trainer"/></th>
                     <th><spring:message code="team.table.conceded.short"/></th>  
                     <th><spring:message code="team.table.scores.short"/></th>              

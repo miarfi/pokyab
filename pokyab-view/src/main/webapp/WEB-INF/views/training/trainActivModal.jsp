@@ -21,8 +21,11 @@
                             <label class="col-form-label col-md-4" for="activityId">
                                 <spring:message code="trainActiv.table.activity"/>
                             </label>
-                            <div class="col-md-8">
-                                <sf:select path="activityId" id="activityId" items="${activities}" itemLabel="activityName" itemValue="activityId" class="form-control"/>				
+                            <div class="col-md-8">                             				
+                                <sf:select path="activityId" id="activityId" class="form-control">
+                                    <sf:option value="0" label="---"/>
+                                    <sf:options items="${activities}" itemLabel="activityName" itemValue="activityId" />
+                                </sf:select>
                             </div>	
                         </div>
                         <div class="form-group">
@@ -35,32 +38,31 @@
                         </div>                             
                         <div class="form-group">
                             <label class="col-form-label col-md-4" for="positionCode">
-                                <spring:message code="trainActiv.table.positionType"/>
-                            </label>
+                                <spring:message code="trainActiv.table.positionType"/></label>
                             <div class="col-md-8">                            
                                 <sf:select path="positionCode" id="positionCode" class="form-control">
                                     <sf:option value="" label="---"/>
                                     <sf:options items="${positionCodes}" itemLabel="meaning" itemValue="lookupCode" />
                                 </sf:select>
                             </div>
-                        </div>                          
-                        <div class="form-group">
-                            <label class="col-form-label col-md-4" for="startTime">
-                                <spring:message code="trainActiv.table.startTime"/>
-                            </label>
-                            <div class="col-md-8">
-                                <sf:input type="text" id="startTime" path="startTime" class="form-control" /> 
+                        </div>                  
+                        <div class="form-row col-md-8">
+                            <div class="form-group col-md-4">
+                                <label class="col-form-label" for="startTime">
+                                    <spring:message code="trainActiv.table.startTime"/></label>
+                                <div>
+                                    <sf:input type="time" id="startTime" path="startTime" class="form-control-time" /> 
+                                </div>
+                            </div>   
+                            <div class="form-group col-md-4">
+                                <label class="col-form-label" for="endTime">
+                                    <spring:message code="trainActiv.table.endTime"/></label>
+                                <div>
+                                    <sf:input type="time" id="endTime" path="endTime" class="form-control-time" /> 
+                                    <sf:hidden path="trainingId"/>
+                                </div>
                             </div>
-                        </div>   
-                        <div class="form-group">
-                            <label class="col-form-label col-md-4" for="endTime">
-                                <spring:message code="trainActiv.table.endTime"/>
-                            </label>
-                            <div class="col-md-8">
-                                <sf:input type="text" id="endTime" path="endTime" class="form-control" /> 
-                                <sf:hidden path="trainingId"/>
-                            </div>
-                        </div>                             
+                        </div>
                         <div class="form-group col-md-8">
                             <div class="form-check form-check-inline disabled">
                                 <label class="form-check-label">

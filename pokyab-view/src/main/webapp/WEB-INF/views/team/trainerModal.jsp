@@ -39,8 +39,7 @@
                                 <sf:select path="genderCode" id="genderCode" class="form-control">
                                     <sf:option value="" label="---"/>
                                     <sf:options items="${genderCodes}" itemLabel="meaning" itemValue="lookupCode" />
-                                </sf:select>                                
-                                <sf:errors path="genderCode" cssClass="text-danger" element="div" />
+                                </sf:select>                                                  
                             </div>
                         </div> 
                         <div class="form-group">

@@ -1,5 +1,3 @@
-
-
 <!--Button Row-->
 <div class="row">
     <div class="col-12 col-xl-8">

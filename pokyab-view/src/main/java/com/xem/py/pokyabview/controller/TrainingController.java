@@ -45,14 +45,20 @@ public class TrainingController {
     public List<LookupValue> getTrainCategoryCodes() {
         return lookupValueDAO.getLkpValuesByType("TRAIN_CATEGORY_CODE", "");
     }
+    
     @ModelAttribute("trainStatusCodes")
     public List<LookupValue> getTrainStatusCodes() {
         return lookupValueDAO.getLkpValuesByType("TRAIN_STATUS_CODE", "");
     }
     
+    @ModelAttribute("positionCodes")
+    public List<LookupValue> getPositionCodes() {
+        return lookupValueDAO.getLkpValuesByType("POSITION_CODE", "");
+    }
+    
     @ModelAttribute("training")
     public Training getTraining() {
-        logger.info("En getTraining");
+        //logger.info("En getTraining");
         return new Training();
     }
     

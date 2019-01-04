@@ -20,7 +20,7 @@
             <!--navbar-->
             <%@include file="../shared/navbar.jsp"%>
             <!--main content-->
-            <div class="content">
+            <div class="content container-fluid">
                 <!--alert message-->            
                 <%@include file="../shared/alertMessage.jsp"%>
                 <!--Load lookup_types content-->

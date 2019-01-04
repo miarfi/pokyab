@@ -5,16 +5,16 @@
             <thead>
                 <tr> 
                     <th></th><th></th>                
-                    <th><spring:message code="trainActiv.table.startTime"/></th>
-                    <th><spring:message code="trainActiv.table.endTime"/></th>                    
+                    <th><spring:message code="trainActiv.table.startTime.short"/></th>
+                    <th><spring:message code="trainActiv.table.endTime.short"/></th>                    
                     <th><spring:message code="trainActiv.table.activityNumber.short"/></th>
                     <!---->
-                    <th><spring:message code="activity.table.activityName"/></th>                  
-                    <th><spring:message code="activity.table.metricType"/></th>
-                    <th><spring:message code="activity.table.totalTime"/></th>
-                    <th><spring:message code="activity.table.uomCode"/></th>
-                    <th><spring:message code="activity.table.quantityMin"/></th>
-                    <th><spring:message code="activity.table.quantityMax"/></th>
+                    <th><spring:message code="activity.table.activityName.short"/></th>                  
+                    <th><spring:message code="activity.table.metricType.short"/></th>
+                    <th><spring:message code="activity.table.totalTime.short"/></th>
+                    <th><spring:message code="activity.table.uomCode.short"/></th>
+                    <th><spring:message code="activity.table.quantityMin.short"/></th>
+                    <th><spring:message code="activity.table.quantityMax.short"/></th>
                     <!---->
                     <th><spring:message code="trainActiv.table.monday.short"/></th>
                     <th><spring:message code="trainActiv.table.tuesday.short"/></th>

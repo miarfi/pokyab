@@ -1,16 +1,18 @@
-<div class="container">
+<!--<div class="container-fluid">-->
     
     <!--Breadcrumb row-->
-    <div class="row">            
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="${contextRoot}/home">
-                    <spring:message code="menu.navbar.home"/></a></li>
-                <li class="breadcrumb-item"><a href="${contextRoot}/teams">
-                    <spring:message code="menu.navbar.teams"/></a></li>
-                <li class="breadcrumb-item active" aria-current="page">${team.teamName}</li>
-            </ol>
-        </nav>
+    <div class="row">
+        <div class="col-12 col-md-8">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="${contextRoot}/home">
+                        <spring:message code="menu.navbar.home"/></a></li>
+                    <li class="breadcrumb-item"><a href="${contextRoot}/teams">
+                        <spring:message code="menu.navbar.teams"/></a></li>
+                    <li class="breadcrumb-item active" aria-current="page">${team.teamName}</li>
+                </ol>
+            </nav>
+        </div>
     </div>    
             
     <!--Team row-->
@@ -80,4 +82,4 @@
         </div> 
     </div>
 
-</div>            
+<!--</div>-->            

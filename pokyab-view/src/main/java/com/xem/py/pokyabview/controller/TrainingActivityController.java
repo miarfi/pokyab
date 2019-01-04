@@ -84,12 +84,14 @@ public class TrainingActivityController {
         String alertMessage = "";
         boolean daoResult = false;
         
+        logger.info(trainingActivity.toString());
+        
         //Spring Validator        
         new TrainActivValidator().validate(trainingActivity, result);
         
         if (result.hasErrors()) {
             model.addAttribute("title", "TrainingActivity");
-            model.addAttribute("userClickTrainActiv", true);             
+            model.addAttribute("userClickTrainActivity", true);             
             return "training/trainingMain";
         }
         
@@ -120,7 +122,7 @@ public class TrainingActivityController {
             alertMessage = "Actividad no encontrada"; 
         }
         logger.info("daoResult: "+daoResult);
-        return "redirect:/trainingActivities?alertMessage=" + alertMessage;
+        return "redirect:/manage/training/"+trainingActivity.getTrainingId()+"?alertMessage=" + alertMessage;
     }
 
     
