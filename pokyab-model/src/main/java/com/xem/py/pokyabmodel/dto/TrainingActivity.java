@@ -228,4 +228,11 @@ public class TrainingActivity implements Serializable {
     public int getTrainingId() {
         return trainingId;
     }
+
+    @Override
+    public String toString() {
+        return "TrainingActivity{" + "trainActId=" + trainActId + ", activityNumber=" + activityNumber + ", positionCode=" + positionCode + ", repeatFlag=" + repeatFlag + ", mondayFlag=" + mondayFlag + ", thursdayFlag=" + thursdayFlag + ", wednesdayFlag=" + wednesdayFlag + ", tuesdayFlag=" + tuesdayFlag + ", fridayFlag=" + fridayFlag + ", saturdayFlag=" + saturdayFlag + ", startTime=" + startTime + ", endTime=" + endTime + ", activityId=" + activityId + ", trainingId=" + trainingId + '}';
+    }
+    
+    
 }

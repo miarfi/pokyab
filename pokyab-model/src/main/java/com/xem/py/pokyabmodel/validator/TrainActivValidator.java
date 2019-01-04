@@ -18,12 +18,18 @@ public class TrainActivValidator implements Validator{
 
     @Override
     public void validate(Object o, Errors errors) {
-//        TrainingActivity trainingActivity = (TrainingActivity) o;
+        TrainingActivity trainingActivity = (TrainingActivity) o;
         
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "activityNumber", "common.form.int.notEmpty");
-//        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "totalWeeks", "common.form.int.notEmpty");        
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "startTime", "common.form.date.notEmpty");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "endTime", "common.form.date.notEmpty");        
-
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "activityNumber", "common.form.int.notEmpty");       
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "positionCode", "common.form.select.notEmpty"); 
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "startTime", "common.form.time.notEmpty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "endTime", "common.form.time.notEmpty");        
+        
+        if (trainingActivity.getActivityNumber() <= 0) {
+            errors.rejectValue("activityNumber", "common.form.int.greater0");
+        }
+        if (trainingActivity.getActivityId() <= 0) {
+            errors.rejectValue("activityId", "common.form.select.notEmpty");
+        }
     }
 }

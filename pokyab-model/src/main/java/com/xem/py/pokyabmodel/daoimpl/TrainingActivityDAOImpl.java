@@ -51,7 +51,7 @@ public class TrainingActivityDAOImpl implements TrainingActivityDAO {
         try {     
             //Pendiente definir valores para desactivar
             sessionFactory.getCurrentSession()
-                    .update(trainingActivity);
+                    .delete(trainingActivity);
         } catch (Exception e) {
             e.printStackTrace();
             return false;

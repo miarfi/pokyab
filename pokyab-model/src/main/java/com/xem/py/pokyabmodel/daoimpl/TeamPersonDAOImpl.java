@@ -33,9 +33,45 @@ public class TeamPersonDAOImpl implements TeamPersonDAO{
         return true;
 
     }
+    @Override
+    public boolean update(TeamPerson teamPerson) {
+        try {            
+            sessionFactory.getCurrentSession()
+                    .update(teamPerson);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
 
+    @Override
+    public boolean delete(TeamPerson teamPerson) {
+        try {                
+            sessionFactory.getCurrentSession()
+                    .delete(teamPerson);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+    
     public List<TeamPerson> getActiveTeamPersons() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String query = "FROM TeamPerson WHERE active = 'Y'";
+        return sessionFactory.getCurrentSession()
+                .createQuery(query, TeamPerson.class)
+                .getResultList();
+    }
+
+
+
+    @Override
+    public List<TeamPerson> getAllTeamPersons() {
+        String query = "FROM TeamPerson";
+        return sessionFactory.getCurrentSession()
+                .createQuery(query, TeamPerson.class)
+                .getResultList();
     }
     
 }

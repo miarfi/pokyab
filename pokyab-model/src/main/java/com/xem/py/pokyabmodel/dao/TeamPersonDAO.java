@@ -10,5 +10,8 @@ import java.util.List;
  */
 public interface TeamPersonDAO {
     boolean Add(TeamPerson teamPerson);
+    boolean update(TeamPerson teamPerson);
+    boolean delete(TeamPerson teamPerson);
     List<TeamPerson> getActiveTeamPersons();
+    List<TeamPerson> getAllTeamPersons();  
 }

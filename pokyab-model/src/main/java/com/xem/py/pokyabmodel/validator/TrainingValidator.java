@@ -23,6 +23,7 @@ public class TrainingValidator implements Validator{
         
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "trainingName", "common.form.string.notEmpty");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "description", "common.form.string.notEmpty");
+//        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "categoryCode", "common.form.select.notEmpty");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "startDate", "common.form.startDate.notEmpty");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "weeks", "common.form.int.notEmpty");
         
