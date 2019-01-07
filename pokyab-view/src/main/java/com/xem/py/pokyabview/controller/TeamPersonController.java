@@ -1,17 +1,13 @@
 
 package com.xem.py.pokyabview.controller;
 
-import com.xem.py.pokyabmodel.dao.LeagueDAO;
 import com.xem.py.pokyabmodel.dao.LookupValueDAO;
 import com.xem.py.pokyabmodel.dao.PersonDAO;
-import com.xem.py.pokyabmodel.dao.SeasonDAO;
-import com.xem.py.pokyabmodel.dao.TeamDAO;
-import com.xem.py.pokyabmodel.dto.League;
+import com.xem.py.pokyabmodel.dao.TeamPersonDAO;
 import com.xem.py.pokyabmodel.dto.LookupValue;
 import com.xem.py.pokyabmodel.dto.Person;
-import com.xem.py.pokyabmodel.dto.Season;
-import com.xem.py.pokyabmodel.dto.Team;
-import com.xem.py.pokyabmodel.validator.TeamValidator;
+import com.xem.py.pokyabmodel.dto.TeamPerson;
+import com.xem.py.pokyabmodel.validator.TeamPersonValidator;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,158 +36,139 @@ public class TeamPersonController {
     
     @Autowired
     private PersonDAO personDAO;
+    
     @Autowired
-    private TeamDAO teamDAO;
+    private TeamPersonDAO teamPersonDAO;
  
     @Autowired
     private LookupValueDAO lookupValueDAO; 
-        
-     //Beans Modal
-    @ModelAttribute("person")
-    public Person getPerson() {
-        return new Person();
-    }
-    
-  
 
     //Form Lists    
-    @ModelAttribute("leagueCategoryCodes")
+    @ModelAttribute("memberTypes")
     public List<LookupValue> getLeagueCategoryCodes() {
-        return lookupValueDAO.getLkpValuesByType("LEAGUE_CATEGORY_CODE", "");
+        return lookupValueDAO.getLkpValuesByType("MEMBER_TYPE", "");
     }  
     
-    @ModelAttribute("leagueTypes")
+    @ModelAttribute("positionCodes")
     public List<LookupValue> getLeagueTypes() {
-        return lookupValueDAO.getLkpValuesByType("LEAGUE_TYPE", "");
+        return lookupValueDAO.getLkpValuesByType("POSITION_CODE", "");
     }   
     
-    @ModelAttribute("genderCodes")
+    @ModelAttribute("phisicCodes")
     public List<LookupValue> getGenderCodes() {
-        return lookupValueDAO.getLkpValuesByType("GENDER_CODE", "");
+        return lookupValueDAO.getLkpValuesByType("PHISIC_CODE", "");
     }
     
-    @ModelAttribute("trainers")
-    public List<Person> getTrainers() {
+    @ModelAttribute("players")
+    public List<Person> getPlayers() {
         return personDAO.getActivePersons();
     }
 
 
 
-    @RequestMapping(value = {"/teams"})
+    @RequestMapping(value = {"/teamPersons"})
     public ModelAndView showAllTeams(@RequestParam(name = "alertMessage", required = false) String alertMessage) {
         ModelAndView mv = new ModelAndView("team/teamMain");
-        mv.addObject("title", "Teams");
-        mv.addObject("userClickTeams", true);
+        mv.addObject("title", "TeamPersons");
+        mv.addObject("userClickTeamPersons", true);
         mv.addObject("alertMessage", alertMessage);
         return mv;
     }
     
     //Url Mappings - Manage
-    @RequestMapping(value = {"/manage/team"})
+    @RequestMapping(value = {"/manage/teamPerson"})
     public ModelAndView showManageTeam() {
         ModelAndView mv = new ModelAndView("team/teamMain");
-        mv.addObject("title", "Team");
-        mv.addObject("userClickTeam", true);        
+        mv.addObject("title", "TeamPerson");
+        mv.addObject("userClickTeamPerson", true);        
         
-        //Init new Team
-        Team team = new Team();
-        mv.addObject("team", team);                
+        //Init new TeamPerson
+        TeamPerson teamPerson = new TeamPerson();
+        mv.addObject("teamPerson", teamPerson);                
         return mv;
     }
 
-    @RequestMapping(value = {"/manage/team/{id}"})
-    public ModelAndView showManageTeamEdit(@PathVariable int id
+    @RequestMapping(value = {"/manage/teamPerson/{id}"})
+    public ModelAndView showManageTeamPersonEdit(@PathVariable int id
         ,@RequestParam(name = "alertMessage", required = false) String alertMessage) {
-        logger.info("info.Inside showManageTeamEdit method");
+        logger.info("info.Inside showManageTeamPersonEdit method");
         ModelAndView mv = new ModelAndView("team/teamMain");
-        mv.addObject("title", "Team");
-        mv.addObject("userClickTeam", true);   
+        mv.addObject("title", "TeamPerson");
+        mv.addObject("userClickTeamPerson", true);   
         mv.addObject("alertMessage", alertMessage);
         
         //Get Team object
-        Team team = teamDAO.getTeamById(id);
-        mv.addObject("team", team);          
+        TeamPerson teamPerson = teamPersonDAO.getTeamPersonById(id);
+        mv.addObject("teamPerson", teamPerson);          
         return mv;
     }
     
-    @RequestMapping(value = {"/manage/team"}, method = RequestMethod.POST)
-    public String handleTeamSubmission(@ModelAttribute Team team,
+    @RequestMapping(value = {"/manage/teamPerson"}, method = RequestMethod.POST)
+    public String handleTeamPersonSubm(@ModelAttribute TeamPerson teamPerson,
             BindingResult result, Model model) {
-        logger.info("En handleTeamSubmission");    
+        logger.info("En handleTeamPersonSubm");    
         String alertMessage = "";
         boolean daoResult = false;
         String returnUrl;
    
         //Spring Validator        
-        new TeamValidator().validate(team, result);
+        new TeamPersonValidator().validate(teamPerson, result);
         
         if (result.hasErrors()) {
-            model.addAttribute("title", "Team");
-            model.addAttribute("userClickTeam", true);             
+            model.addAttribute("title", "TeamPerson");
+            model.addAttribute("userClickTeamPerson", true);             
             return "team/teamMain";
         }
         
-        if (team.getTeamId() == 0) {
-            daoResult = teamDAO.add(team);
-            if (daoResult) alertMessage = "Equipo agregado";
+        if (teamPerson.getTeamPersonId() == 0) {
+            daoResult = teamPersonDAO.add(teamPerson);
+            if (daoResult) alertMessage = "Persona agregado";
         } else {
-            daoResult = teamDAO.update(team);
-            if (daoResult) alertMessage = "Equipo actualizado";
+            daoResult = teamPersonDAO.update(teamPerson);
+            if (daoResult) alertMessage = "Persona actualizado";
         }       
-        if (daoResult) returnUrl = "redirect:/manage/team/"+team.getTeamId()+"?alertMessage="+alertMessage;
-        else returnUrl = "redirect:/teams?alertMessage="+alertMessage;
+        if (daoResult) returnUrl = "redirect:/manage/teamPerson/"+teamPerson.getTeamPersonId()+"?alertMessage="+alertMessage;
+        else returnUrl = "redirect:/teamPersons?alertMessage="+alertMessage;
         
         logger.info("daoResult: "+daoResult+" alertMessage: "+alertMessage);
         return returnUrl;
     }
     
-    @RequestMapping(value="/manage/team/{id}/delete", method=RequestMethod.GET)
-    public String handleTeamDelete(@PathVariable int id) {
-        logger.info("info.Inside handleTeamDelete method");
+    @RequestMapping(value="/manage/teamPerson/{id}/delete", method=RequestMethod.GET)
+    public String handleTeamPersonDelete(@PathVariable int id) {
+        logger.info("info.Inside handleTeamPersonDelete method");
         String alertMessage = "";
         boolean daoResult = false;
-        Team team = teamDAO.getTeamById(id);
-        if (team != null) {
-            logger.info("team: "+team.toString());
-            daoResult = teamDAO.delete(team);
-            if (daoResult) alertMessage = "Equipo borrado";                   
+        TeamPerson teamPerson = teamPersonDAO.getTeamPersonById(id);
+        if (teamPerson != null) {
+            logger.info("teamPerson: "+teamPerson.toString());
+            daoResult = teamPersonDAO.delete(teamPerson);
+            if (daoResult) alertMessage = "Persona borrado";                   
         } else {
-            alertMessage = "Equipo no encontrado"; 
+            alertMessage = "Persona no encontrado"; 
         }
         logger.info("daoResult: "+daoResult);
-        return "redirect:/teams?alertMessage=" + alertMessage;
+        return "redirect:/teamPersons?alertMessage=" + alertMessage;
     }
    
-    @RequestMapping(value="/manage/team/{id}/activation", method=RequestMethod.GET)
+    @RequestMapping(value="/manage/teamPerson/{id}/activation", method=RequestMethod.GET)
     @ResponseBody
-    public String handleTeamActivation(@PathVariable int id) {
-        logger.info("info.Inside handleTeamActivation method");
+    public String handleTeamPersonActiv(@PathVariable int id) {
+        logger.info("info.Inside handleTeamPersonActiv method");
         String alertMessage = "";
         boolean daoResult = false;
-        Team team = teamDAO.getTeamById(id);
-        logger.info("team:"+team.toString()); 
+        TeamPerson teamPerson = teamPersonDAO.getTeamPersonById(id);
+        logger.info("teamPerson:"+teamPerson.toString()); 
 
-        if (team != null) {
-            if (team.getActive() == 'Y') team.setActive('N');
-            else team.setActive('Y');
-            daoResult = teamDAO.update(team);
-            if (daoResult) alertMessage = "Equipo actualizada satisfactoriamente";
+        if (teamPerson != null) {
+            if (teamPerson.getActive() == 'Y') teamPerson.setActive('N');
+            else teamPerson.setActive('Y');
+            daoResult = teamPersonDAO.update(teamPerson);
+            if (daoResult) alertMessage = "Persona actualizada satisfactoriamente";
         } else {
-            alertMessage = "Equipo no encontrado"; 
+            alertMessage = "Persona no encontrado"; 
         }
         return alertMessage;
     }
-        
-    //
-    //
-    //ToDo Revisar donde dejar estos metodos y corregir
-//    @RequestMapping(value="/manage/season", method=RequestMethod.POST)
-//    public String handleSeasonSubmission(@ModelAttribute Season season) {
-//        logger.info("En handleSeasonSubmission");  
-//        String alertMessage = "";
-//        boolean daoResult = false;        
-//        daoResult = seasonDAO.ddd(season);
-//        if (daoResult) alertMessage = "Temporada Agregada";
-//        return "redirect:/manage/team?alertMessage="+alertMessage;
-//    }    
+       
 }

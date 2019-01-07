@@ -11,6 +11,7 @@ import com.xem.py.pokyabmodel.dto.LookupValue;
 import com.xem.py.pokyabmodel.dto.Person;
 import com.xem.py.pokyabmodel.dto.Season;
 import com.xem.py.pokyabmodel.dto.Team;
+import com.xem.py.pokyabmodel.dto.TeamPerson;
 import com.xem.py.pokyabmodel.validator.TeamValidator;
 import java.util.List;
 import org.slf4j.Logger;
@@ -62,7 +63,12 @@ public class TeamController {
     @ModelAttribute("season")
     public Season getSeason() {
         return new Season();
-    }    
+    }
+    
+    @ModelAttribute("teamPerson")
+    public TeamPerson getTeamPerson() {
+        return new TeamPerson();
+    }
 
     //Form Lists    
     @ModelAttribute("leagueCategoryCodes")
@@ -199,17 +205,5 @@ public class TeamController {
         }
         return alertMessage;
     }
-        
-    //
-    //
-    //ToDo Revisar donde dejar estos metodos y corregir
-//    @RequestMapping(value="/manage/season", method=RequestMethod.POST)
-//    public String handleSeasonSubmission(@ModelAttribute Season season) {
-//        logger.info("En handleSeasonSubmission");  
-//        String alertMessage = "";
-//        boolean daoResult = false;        
-//        daoResult = seasonDAO.ddd(season);
-//        if (daoResult) alertMessage = "Temporada Agregada";
-//        return "redirect:/manage/team?alertMessage="+alertMessage;
-//    }    
+          
 }

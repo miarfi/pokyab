@@ -49,17 +49,17 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="heigth" class="col-form-label col-md-8">
-                                <spring:message code="teamPerson.table.heigth"/>:</label>
+                            <label for="height" class="col-form-label col-md-8">
+                                <spring:message code="teamPerson.table.height"/>:</label>
                             <div class="col-md-8">
-                                <sf:input id="heigth" path="heigth" type="number"/>
+                                <sf:input id="height" path="height" type="number"/>
                             </div>
                         </div> 
                         <div class="form-group">
-                            <label for="weigth" class="col-form-label col-md-8">
-                                <spring:message code="teamPerson.table.weigth"/>:</label>
+                            <label for="weight" class="col-form-label col-md-8">
+                                <spring:message code="teamPerson.table.weight"/>:</label>
                             <div class="col-md-8">
-                                <sf:input id="weigth" path="weigth" type="number"/>
+                                <sf:input id="weight" path="weight" type="number"/>
                             </div>
                         </div>
                         <div class="form-group">

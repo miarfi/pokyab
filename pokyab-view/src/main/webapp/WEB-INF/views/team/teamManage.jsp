@@ -143,6 +143,9 @@
         </div>
     </div>
     
+    <!--TeamPersons-->    
+    <%@include file="teamPersons.jsp" %>
+                                
     <!--League Modal Row-->    
     <%@include file="../league/leagueModal.jsp" %>
 
@@ -154,4 +157,6 @@
     <!--Trainer Modal row-->
     <%@include file="trainerModal.jsp" %>
     
+    <!--TeamPerson Modal Row-->    
+    <%@include file="teamPersonModal.jsp" %>
 <!--</div>-->
