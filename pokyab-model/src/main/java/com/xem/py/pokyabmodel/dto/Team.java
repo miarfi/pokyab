@@ -1,5 +1,6 @@
 package com.xem.py.pokyabmodel.dto;
 
+import com.xem.py.pokyabmodel.view.TeamPersonV;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -72,7 +73,7 @@ public class Team implements Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd")    
     private Date endDate; 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "teamId")
-    private Collection<TeamPerson> teamPersonCollection;
+    private Collection<TeamPersonV> teamPersonCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "awayTeamId")
     private Collection<Match> matchCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "homeTeamId")
@@ -210,11 +211,11 @@ public class Team implements Serializable {
     }
 
     @XmlTransient
-    public Collection<TeamPerson> getTeamPersonCollection() {
+    public Collection<TeamPersonV> getTeamPersonVCollection() {
         return teamPersonCollection;
     }
 
-    public void setTeamPersonCollection(Collection<TeamPerson> teamPersonCollection) {
+    public void setTeamPersonVCollection(Collection<TeamPersonV> teamPersonCollection) {
         this.teamPersonCollection = teamPersonCollection;
     }
 

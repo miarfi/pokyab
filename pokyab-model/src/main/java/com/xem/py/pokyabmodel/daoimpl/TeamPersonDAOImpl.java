@@ -20,7 +20,7 @@ public class TeamPersonDAOImpl implements TeamPersonDAO{
     @Autowired
     private SessionFactory sessionFactory;
     
-    public boolean Add(TeamPerson teamPerson) {
+    public boolean add(TeamPerson teamPerson) {
         
         try {
             teamPerson.setActive("Y".charAt(0));
@@ -72,6 +72,15 @@ public class TeamPersonDAOImpl implements TeamPersonDAO{
         return sessionFactory.getCurrentSession()
                 .createQuery(query, TeamPerson.class)
                 .getResultList();
+    }
+
+    @Override
+    public TeamPerson getTeamPersonById(int id) {
+        String query = "FROM TeamPerson WHERE teamPersonId = :id";
+        return sessionFactory.getCurrentSession()
+                .createQuery(query, TeamPerson.class)
+                .setParameter("id", id)
+                .getSingleResult();
     }
     
 }
