@@ -13,7 +13,8 @@ public interface PersonDAO {
     boolean update(Person person);
     boolean delete(Person person);
     List<Person> getActivePersons();
-    List<Person> getAllPersons();   
+    List<Person> getAvailablePersons();   
     List<PersonV> getAllPersonsV();   
     Person getPersonById(int id);
+    
 }

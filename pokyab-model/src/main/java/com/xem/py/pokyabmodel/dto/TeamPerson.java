@@ -13,6 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlTransient;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
@@ -23,7 +24,9 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Entity
-@Table(name = "TEAM_PERSONS")
+@Table(name = "TEAM_PERSONS"
+        ,uniqueConstraints={@UniqueConstraint(columnNames={"TEAM_ID", "PERSON_ID"})}
+)
 public class TeamPerson implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -72,6 +75,9 @@ public class TeamPerson implements Serializable {
     private Collection<TrainingPerson> trainingPersonCollection;
 
     public TeamPerson() {
+        this.active = 'Y';
+        this.statusCode = "ACTIVE";
+        this.startDate = new java.sql.Date(System.currentTimeMillis());
     }
 
     public int getTeamPersonId() {
@@ -186,6 +192,11 @@ public class TeamPerson implements Serializable {
         this.teamId = teamId;
     }        
 
+    @Override
+    public String toString() {
+        return "TeamPerson{" + "teamPersonId=" + teamPersonId + ", personId=" + personId + ", memberType=" + memberType + ", positionCode=" + positionCode + ", phisicCode=" + phisicCode + ", statusCode=" + statusCode + ", age=" + age + ", height=" + height + ", weight=" + weight + ", playerNumber=" + playerNumber + ", active=" + active + ", startDate=" + startDate + ", endDate=" + endDate + ", teamId=" + teamId + '}';
+    }
+    
     @XmlTransient
     public Collection<TrainingPerson> getTrainingPersonCollection() {
         return trainingPersonCollection;

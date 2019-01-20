@@ -43,7 +43,12 @@
             <version>1.4.197</version>
         </dependency>
         
-        <!--MariaDB driver-->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.2.1</version>
+        </dependency>
+        <!--MariaDB driver Nousado-->
         <!--<dependency>
             <groupId>org.mariadb.jdbc</groupId>
             <artifactId>mariadb-java-client</artifactId>

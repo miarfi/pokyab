@@ -37,10 +37,8 @@ public class ActivityValidator implements Validator{
             errors.rejectValue("quantityMax", "common.form.int.greater0"); 
         if (activity.getQuantityMax() < activity.getQuantityMin())           
             errors.rejectValue("quantityMax", "activity.table.qtyMax.greater.qtyMin");        
-        if (activity.getEndDate() != null) {
-            if (activity.getEndDate().getTime() < activity.getStartDate().getTime()) {
+        if (activity.getEndDate() != null)
+            if (activity.getEndDate().getTime() < activity.getStartDate().getTime())
                 errors.rejectValue("endDate", "common.form.endDate.greater");
-            }
-        }
     }
 }   

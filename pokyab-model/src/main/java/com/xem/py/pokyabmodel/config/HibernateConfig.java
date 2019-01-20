@@ -40,17 +40,24 @@ public class HibernateConfig {
 	private static final String DATABASE_PASSWORD = "mariadb";*/
     
         //Mariadb
-//        SET GLOBAL time_zone = '+00:00';
-//        SET SESSION time_zone = '+00:00';
-//        SELECT @@global.time_zone, @@session.time_zone
-	private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/test";
-//	private static final String DATABASE_DRIVER = "com.mysql.jdbc.Driver";	
-        private static final String DATABASE_DRIVER = "com.mysql.cj.jdbc.Driver";	        
-        private static final String DATABASE_DIALECT = "org.hibernate.dialect.MySQL57InnoDBDialect";
-	private static final String DATABASE_USERNAME = "root";
-	private static final String DATABASE_PASSWORD = "mariadb";
+////        SET GLOBAL time_zone = '+00:00';
+////        SET SESSION time_zone = '+00:00';
+////        SELECT @@global.time_zone, @@session.time_zone
+//	private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/test";
+////	private static final String DATABASE_DRIVER = "com.mysql.jdbc.Driver";	
+//        private static final String DATABASE_DRIVER = "com.mysql.cj.jdbc.Driver";	        
+//        private static final String DATABASE_DIALECT = "org.hibernate.dialect.MySQL57InnoDBDialect";
+//	private static final String DATABASE_USERNAME = "root";
+//	private static final String DATABASE_PASSWORD = "mariadb";
         
-
+        //Postgress
+        
+	private static final String DATABASE_URL = "jdbc:postgresql://ec2-54-235-77-0.compute-1.amazonaws.com:5432/d5qt9r9t4nds4c?&ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory";
+        private static final String DATABASE_DRIVER = "org.postgresql.Driver";	        
+        private static final String DATABASE_DIALECT = "org.hibernate.dialect.PostgreSQLDialect";
+	private static final String DATABASE_USERNAME = "tiiewunwzlgyia";
+	private static final String DATABASE_PASSWORD = "2775ef15ffda98cd48cb2ac09c6e9ba1b021847acb8c1b9b388cceb5822ae633";
+        
 	@Bean("dataSource")
 	public DataSource getDataSource(){
 		BasicDataSource dataSource = new BasicDataSource();
@@ -78,7 +85,7 @@ public class HibernateConfig {
 		Properties properties = new Properties();
 		
 		properties.put("hibernate.dialect", DATABASE_DIALECT);
-		//properties.put("hibernate.show_sql", "true");
+		properties.put("hibernate.show_sql", "true");
 		properties.put("hibernate.format_sql", "true");		
 		properties.put("hibernate.hbm2ddl.auto", "update");//create|update
 		return properties;

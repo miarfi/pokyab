@@ -24,5 +24,8 @@ public class LeagueValidator implements Validator{
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "leagueType", "common.form.select.notEmpty");          
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "categoryCode", "common.form.select.notEmpty");                           
         
+        if (league.getEndDate() != null)
+            if (league.getEndDate().getTime() < league.getStartDate().getTime())
+                errors.rejectValue("endDate", "common.form.endDate.greater");
     }
 }

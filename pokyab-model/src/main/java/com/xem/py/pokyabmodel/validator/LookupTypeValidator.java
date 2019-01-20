@@ -20,10 +20,13 @@ public class LookupTypeValidator implements Validator{
 
     @Override
     public void validate(Object o, Errors errors) {
-//        LookupType lookupType = (LookupType) o;
+        LookupType lookupType = (LookupType) o;
         
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lookupType", "common.form.string.notEmpty");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "description", "common.form.string.notEmpty");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "startDate", "common.form.startDate.notEmpty");        
+        if (lookupType.getEndDate() != null)
+            if (lookupType.getEndDate().getTime() < lookupType.getStartDate().getTime())
+                errors.rejectValue("endDate", "common.form.endDate.greater");
     }    
 }

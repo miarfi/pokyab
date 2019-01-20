@@ -40,10 +40,9 @@ public class PersonValidator implements Validator{
             }
         }
         
-        if (person.getEndDate() != null) {
-            if (person.getEndDate().getTime() < person.getStartDate().getTime()) {
+        if (person.getEndDate() != null)
+            if (person.getEndDate().getTime() < person.getStartDate().getTime())
                 errors.rejectValue("endDate", "common.form.endDate.greater");
-            }
-        }
+
     }
 }

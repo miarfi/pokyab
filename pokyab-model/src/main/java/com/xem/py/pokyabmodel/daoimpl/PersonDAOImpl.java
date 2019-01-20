@@ -24,6 +24,7 @@ public class PersonDAOImpl implements PersonDAO{
     @Override    
     public boolean add(Person person) {        
         try {
+            person.setFullName();
             sessionFactory.getCurrentSession()
                           .persist(person);            
         } catch (Exception e) {
@@ -37,7 +38,8 @@ public class PersonDAOImpl implements PersonDAO{
 
     @Override
     public boolean update(Person person) {
-        try {            
+        try { 
+            person.setFullName();
             sessionFactory.getCurrentSession()
                           .update(person);            
         } catch (Exception e) {
@@ -70,8 +72,10 @@ public class PersonDAOImpl implements PersonDAO{
     }
     
     @Override
-    public List<Person> getAllPersons() {
-        String query = "FROM Person";
+    public List<Person> getAvailablePersons() {
+        String query = "FROM Person p WHERE p.active = 'Y' " +
+            " AND NOT EXISTS (FROM TeamPerson tp" +
+            " WHERE p.personId = tp.personId)";
         return sessionFactory.getCurrentSession()
                              .createQuery(query, Person.class)                                     
                              .getResultList();

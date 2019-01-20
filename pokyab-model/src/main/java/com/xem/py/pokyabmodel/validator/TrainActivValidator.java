@@ -25,11 +25,11 @@ public class TrainActivValidator implements Validator{
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "startTime", "common.form.time.notEmpty");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "endTime", "common.form.time.notEmpty");        
         
-        if (trainingActivity.getActivityNumber() <= 0) {
+        if (trainingActivity.getActivityNumber() <= 0) 
             errors.rejectValue("activityNumber", "common.form.int.greater0");
-        }
-        if (trainingActivity.getActivityId() <= 0) {
+        
+        if (trainingActivity.getActivityId() <= 0) 
             errors.rejectValue("activityId", "common.form.select.notEmpty");
-        }
+        
     }
 }

@@ -4,6 +4,8 @@ package com.xem.py.pokyabmodel.dto;
  *
  * @author arria
  */
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -34,11 +36,13 @@ public class User implements Serializable {
     @Id
     @Column(name = "USER_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int userId;
 //	@NotBlank(message = "Please enter first name!")
+    @Basic(optional = false)
     @Column(name = "FIRST_NAME")
     private String firstName;
 //	@NotBlank(message = "Please enter last name!")
+    @Basic(optional = false)
     @Column(name = "LAST_NAME")
     private String lastName;
     @Basic(optional = false)
@@ -51,24 +55,28 @@ public class User implements Serializable {
     @Column(name = "ROLE_")
     private String role;
     @Column(name = "PASSWORD")
+    @Basic(optional = false)
 //	@NotBlank(message = "Please enter password!")
+    @JsonIgnore
     private String password;
     @Transient
+    @JsonIgnore
     private String confirmPassword;
     @Basic(optional = false)
-    @Column(name = "ENABLED")
+    @Column(name = "ENABLED")    
     private boolean enabled;
-    @Basic(optional = false)
-    @Column(name = "STATUS")
-    private Character status;
+//    @Column(name = "STATUS")
+//    private Character status;
     @Basic(optional = false)
     @Column(name = "START_DATE")
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date startDate;
     @Column(name = "END_DATE")
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date endDate;
 
 //    @JoinColumn(name = "PERSON_ID", referencedColumnName = "PERSON_ID")    
@@ -77,10 +85,10 @@ public class User implements Serializable {
     private int personId;
 
     public User() {
-        this.status = 'Y';
+//        this.status = 'Y';
         this.startDate = new java.sql.Date(System.currentTimeMillis());
         this.enabled = true;
-        this.role = "ROLE_USER";
+        this.role = "NO_ROLE";
     }
 
     public String getConfirmPassword() {
@@ -91,12 +99,12 @@ public class User implements Serializable {
         this.confirmPassword = confirmPassword;
     }
 
-    public int getId() {
-        return id;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getFirstName() {
@@ -155,9 +163,9 @@ public class User implements Serializable {
         this.personId = personId;
     }
 
-    public Character getStatus() {
-        return status;
-    }
+//    public Character getStatus() {
+//        return status;
+//    }
 
     public boolean isEnabled() {
         return enabled;
@@ -167,9 +175,9 @@ public class User implements Serializable {
         this.enabled = enabled;
     }    
     
-    public void setStatus(Character status) {
-        this.status = status;
-    }
+//    public void setStatus(Character status) {
+//        this.status = status;
+//    }
 
     public Date getStartDate() {
         return startDate;
@@ -189,9 +197,6 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", contactNumber=" + contactNumber + ", role=" + role + ", password=" + password + ", confirmPassword=" + confirmPassword + ", enabled=" + enabled + ", status=" + status + ", startDate=" + startDate + ", endDate=" + endDate + ", personId=" + personId + '}';
+        return "User{" + "id=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", contactNumber=" + contactNumber + ", role=" + role + ", password=" + password + ", confirmPassword=" + confirmPassword + ", enabled=" + enabled + ", startDate=" + startDate + ", endDate=" + endDate + ", personId=" + personId + '}';
     }
-
-
-
 }

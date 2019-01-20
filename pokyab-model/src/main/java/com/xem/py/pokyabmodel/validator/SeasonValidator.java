@@ -24,5 +24,9 @@ public class SeasonValidator implements Validator{
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "seasonCode", "common.form.select.notEmpty");          
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "startDate", "common.form.date.notEmpty");                           
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "endDate", "common.form.date.notEmpty");  
+        
+        if (season.getEndDate() != null)
+            if (season.getEndDate().getTime() < season.getStartDate().getTime())
+                errors.rejectValue("endDate", "common.form.endDate.greater");
     }
 }

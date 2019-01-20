@@ -2,6 +2,7 @@ package com.xem.py.pokyabmodel.daoimpl;
 
 import com.xem.py.pokyabmodel.dao.UserDAO;
 import com.xem.py.pokyabmodel.dto.User;
+import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,11 +48,47 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public User get(int id) {
+    public User getUserById(int id) {
         try {
-            return sessionFactory.getCurrentSession().get(User.class, id);
+            return sessionFactory.getCurrentSession()
+                    .get(User.class, id);
         } catch (Exception ex) {           
             return null;
         }
     }
+
+    @Override
+    public List<User> getAllUsers() {
+        String selectQuery = "FROM User";       
+        return sessionFactory
+                .getCurrentSession()
+                .createQuery(selectQuery, User.class)                    
+                .getResultList();
+    }
+
+    @Override
+    public boolean update(User user) {
+        try {            
+            sessionFactory.getCurrentSession()
+                    .update(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean delete(User user) {
+        try {                 
+            sessionFactory.getCurrentSession()
+                    .delete(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+    
+    
 }

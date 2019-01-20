@@ -52,10 +52,10 @@ public class TeamDAOImpl implements TeamDAO
     @Override
     public boolean delete(Team team) {
         try {     
-            team.setActive('N');
+//            team.setActive('N');
             team.setEndDate(new java.sql.Date(System.currentTimeMillis()));
             sessionFactory.getCurrentSession()
-                    .update(team);
+                    .delete(team);
         } catch (Exception e) {
             e.printStackTrace();
             return false;

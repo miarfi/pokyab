@@ -27,9 +27,11 @@ public class TrainingValidator implements Validator{
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "startDate", "common.form.startDate.notEmpty");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "weeks", "common.form.int.notEmpty");
         
-        if (training.getWeeks() <= 0) {//training.getWeeks() != null || 
+        if (training.getWeeks() <= 0) //training.getWeeks() != null || 
             errors.rejectValue("weeks", "common.form.int.greater0");
-        }
+        if (training.getEndDate() != null)
+            if (training.getEndDate().getTime() < training.getStartDate().getTime())
+                errors.rejectValue("endDate", "common.form.endDate.greater");
     }
     
 }

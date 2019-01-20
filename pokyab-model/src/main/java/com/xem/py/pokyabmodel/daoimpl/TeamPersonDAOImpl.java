@@ -2,6 +2,7 @@ package com.xem.py.pokyabmodel.daoimpl;
 
 import com.xem.py.pokyabmodel.dao.TeamPersonDAO;
 import com.xem.py.pokyabmodel.dto.TeamPerson;
+import com.xem.py.pokyabmodel.view.TeamPersonV;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -57,20 +58,23 @@ public class TeamPersonDAOImpl implements TeamPersonDAO{
         return true;
     }
     
-    public List<TeamPerson> getActiveTeamPersons() {
-        String query = "FROM TeamPerson WHERE active = 'Y'";
+    @Override
+    public List<TeamPerson> getActiveTeamPersonsByTeam(int teamId) {
+        String query = "FROM TeamPerson WHERE active = 'Y' and teamId = :teamId";
         return sessionFactory.getCurrentSession()
                 .createQuery(query, TeamPerson.class)
+                .setParameter("teamId", teamId)
                 .getResultList();
     }
 
 
 
     @Override
-    public List<TeamPerson> getAllTeamPersons() {
-        String query = "FROM TeamPerson";
+    public List<TeamPersonV> getAllTeamPersonsByTeam(int teamId) {
+        String query = "FROM TeamPersonV WHERE teamId = :teamId";
         return sessionFactory.getCurrentSession()
-                .createQuery(query, TeamPerson.class)
+                .createQuery(query, TeamPersonV.class)
+                .setParameter("teamId", teamId)
                 .getResultList();
     }
 

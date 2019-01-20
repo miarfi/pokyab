@@ -171,6 +171,10 @@ public class Person implements Serializable {
     public void setFullName(String fullName) {
         this.fullName = fullName;
     }
+    
+    public void setFullName() {
+        this.fullName = this.firstName +" "+ this.lastName;
+    }
 
     public Date getDateOfBirth() {
         return dateOfBirth;

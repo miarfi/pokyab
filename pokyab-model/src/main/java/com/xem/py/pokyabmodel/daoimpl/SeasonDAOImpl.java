@@ -46,7 +46,6 @@ public class SeasonDAOImpl implements SeasonDAO{
     @Override
     public boolean delete(Season season) {
         try {     
-//            season.setActive('N');
             season.setEndDate(new java.sql.Date(System.currentTimeMillis()));
             sessionFactory.getCurrentSession()
                     .update(season);
