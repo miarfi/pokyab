@@ -72,16 +72,13 @@ public class LookupValueController {
         logger.info("lookupValue: " + lookupValue.toString());
         try {
             if (lookupValue.getLookupValueId() == 0) {
-//                lookupValue.setStartDate(new java.sql.Date(System.currentTimeMillis()));
                 daoResult = lookupValueDAO.add(lookupValue);
-                if (daoResult) {
-                    alertMessage = "Valor agregado";
-                }
+                if (daoResult)
+                    alertMessage = "Valor agregado";                
             } else {
                 daoResult = lookupValueDAO.update(lookupValue);
-                if (daoResult) {
-                    alertMessage = "Valor actualizado";
-                }
+                if (daoResult)
+                    alertMessage = "Valor actualizado";                
             }
         } catch (ConstraintViolationException  e) {
             logger.info("error: " + e.getMessage());
@@ -102,12 +99,10 @@ public class LookupValueController {
         if (lookupValue != null) {
             logger.info("lookupValue: " + lookupValue.toString());
             daoResult = lookupValueDAO.delete(lookupValue);
-            if (daoResult) {
-                alertMessage = "Valor borrado";
-            }
-        } else {
-            alertMessage = "Valor no encontrado";
-        }
+            if (daoResult)
+                alertMessage = "Valor borrado";            
+        } else
+            alertMessage = "Valor no encontrado";        
 
         logger.info("daoResult: " + daoResult + " alertMessage: " + alertMessage);
         return "redirect:/manage/lookupType/" + lookupValue.getLookupTypeId() + "?alertMessage=" + alertMessage;
@@ -123,18 +118,15 @@ public class LookupValueController {
         logger.info("lookupValue:" + lookupValue.toString());
 
         if (lookupValue != null) {
-            if (lookupValue.getActive() == 'Y') {
+            if (lookupValue.getActive() == 'Y')
                 lookupValue.setActive('N');
-            } else {
-                lookupValue.setActive('Y');
-            }
+            else
+                lookupValue.setActive('Y');            
             daoResult = lookupValueDAO.update(lookupValue);
-            if (daoResult) {
-                alertMessage = "Valor actualizada satisfactoriamente";
-            }
-        } else {
-            alertMessage = "Valor no encontrada";
-        }
+            if (daoResult)
+                alertMessage = "Valor actualizada satisfactoriamente";            
+        } else
+            alertMessage = "Valor no encontrada";        
 
         logger.info("daoResult: " + daoResult + " alertMessage: " + alertMessage);
         return alertMessage;

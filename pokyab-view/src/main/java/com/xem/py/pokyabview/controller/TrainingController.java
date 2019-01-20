@@ -172,6 +172,8 @@ public class TrainingController {
         } else {
             alertMessage = "Entrenamiento no encontrado"; 
         }
+        
+        logger.info("alertMessage "+alertMessage);
         return alertMessage;
     }
 }

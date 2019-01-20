@@ -38,13 +38,13 @@
                                     <spring:message code="trainActiv.table.activityNumber"/></label>                            
                                 <sf:hidden path="trainActId"/>
                                 <sf:hidden path="trainingId"/>
-                                <sf:input path="activityNumber" id="activityNumber" type="text" class="form-control" /> 
+                                <sf:input path="activityNumber" id="activityNumber" type="text" class="form-control" required="true"/> 
                                 <sf:errors path="activityNumber" cssClass="text-danger" element="div" />                            
                             </div>
                             <div class="form-group col-sm-6 col-md-5">
                                 <label class="col-form-label" for="activityId">
                                     <spring:message code="trainActiv.table.activity"/></label>                    
-                                <sf:select path="activityId" id="activityId" class="form-control">
+                                <sf:select path="activityId" id="activityId" class="form-control" required="true">
                                     <sf:option value="0" label="---"/>
                                     <sf:options items="${activities}" itemLabel="activityName" itemValue="activityId" />
                                 </sf:select>
@@ -53,7 +53,7 @@
                             <div class="form-group col-sm-6 col-md-5">
                                 <label class="col-form-label" for="positionCode">
                                     <spring:message code="trainActiv.table.positionType"/></label>
-                                <sf:select path="positionCode" id="positionCode" class="form-control">
+                                <sf:select path="positionCode" id="positionCode" class="form-control" required="true">
                                     <sf:option value="" label="---"/>
                                     <sf:options items="${positionCodes}" itemLabel="meaning" itemValue="lookupCode" />
                                 </sf:select>
@@ -65,7 +65,7 @@
                                 <label for="startTime" class="col-form-label">
                                     <spring:message code="trainActiv.table.startTime"/></label>
                                 <div>
-                                    <sf:input path="startTime" id="startTime" type="time" class="form-control-time"/>
+                                    <sf:input path="startTime" id="startTime" type="time" class="form-control" required="true"/>
                                     <sf:errors path="startTime" cssClass="text-danger" element="div"/>                            
                                 </div>
                             </div>   
@@ -73,7 +73,7 @@
                                 <label for="endTime" class="col-form-label">
                                     <spring:message code="trainActiv.table.endTime"/></label>
                                 <div>
-                                    <sf:input path="endTime" id="endTime" type="time" class="form-control-time"/> 
+                                    <sf:input path="endTime" id="endTime" type="time" class="form-control"/> 
                                     <sf:errors path="endTime" cssClass="text-danger" element="div"/>
                                 </div>
                             </div>

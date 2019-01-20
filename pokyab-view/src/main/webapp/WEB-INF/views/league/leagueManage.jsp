@@ -33,7 +33,7 @@
                             <label for="leagueName" class="col-form-label col-md-4">
                                 <spring:message code="league.table.leagueName"/>:</label>
                             <div class="col-md-8">
-                                <sf:input path="leagueName" id="leagueName" type="text" class="form-control"/>
+                                <sf:input path="leagueName" id="leagueName" type="text" class="form-control" required="true"/>
                                 <sf:errors path="leagueName" cssClass="text-danger" element="div" />
                             </div>
                             
@@ -43,7 +43,7 @@
                                 <spring:message code="league.table.leagueType"/>:</label>
                             <div class="col-md-8">
 <!--                                    <sf:input path="leagueType" id="leagueType" type="text" class="form-control"/>-->
-                                <sf:select path="leagueType" id="leagueType" class="form-control">
+                                <sf:select path="leagueType" id="leagueType" class="form-control" required="true">
                                     <sf:option value="" label="---"/>
                                     <sf:options items="${leagueTypes}" itemLabel="meaning" itemValue="lookupCode" />
                                 </sf:select>       
@@ -56,7 +56,7 @@
                                 <spring:message code="league.table.category"/>:</label>
                             <div class="col-md-8">
                                 <!--<sf:input path="categoryCode" id="categoryCode" type="text" class="form-control"/>-->
-                                 <sf:select path="categoryCode" id="categoryCode" class="form-control">
+                                 <sf:select path="categoryCode" id="categoryCode" class="form-control" required="true">
                                     <sf:option value="" label="---"/>
                                     <sf:options items="${teamCategoryCodes}" itemLabel="meaning" itemValue="lookupCode" />
                                 </sf:select>

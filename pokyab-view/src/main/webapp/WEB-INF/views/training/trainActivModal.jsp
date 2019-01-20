@@ -19,10 +19,10 @@
                     <div class="modal-body">                    
                         <div class="form-group">
                             <label class="col-form-label col-md-4" for="activityId">
-                                <spring:message code="trainActiv.table.activity"/>
-                            </label>
-                            <div class="col-md-8">                             				
-                                <sf:select path="activityId" id="activityId" class="form-control">
+                                <spring:message code="trainActiv.table.activity"/></label>
+                            <div class="col-md-8">
+                                <sf:hidden path="trainingId"/>                                
+                                <sf:select path="activityId" id="activityId" class="form-control" required="true">
                                     <sf:option value="0" label="---"/>
                                     <sf:options items="${activities}" itemLabel="activityName" itemValue="activityId" />
                                 </sf:select>
@@ -30,36 +30,34 @@
                         </div>
                         <div class="form-group">
                             <label class="col-form-label col-md-8" for="activityNumber">
-                                <spring:message code="trainActiv.table.activityNumber"/>
-                            </label>
+                                <spring:message code="trainActiv.table.activityNumber"/></label>
                             <div class="col-md-8">
-                                <sf:input type="text" id="activityNumber" path="activityNumber" class="form-control" /> 
+                                <sf:input type="text" id="activityNumber" path="activityNumber" class="form-control" required="true"/> 
                             </div>
                         </div>                             
                         <div class="form-group">
                             <label class="col-form-label col-md-4" for="positionCode">
                                 <spring:message code="trainActiv.table.positionType"/></label>
                             <div class="col-md-8">                            
-                                <sf:select path="positionCode" id="positionCode" class="form-control">
+                                <sf:select path="positionCode" id="positionCode" class="form-control" required="true">
                                     <sf:option value="" label="---"/>
                                     <sf:options items="${positionCodes}" itemLabel="meaning" itemValue="lookupCode" />
                                 </sf:select>
                             </div>
                         </div>                  
                         <div class="form-row col-md-8">
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-6 col-md-6">
                                 <label class="col-form-label" for="startTime">
                                     <spring:message code="trainActiv.table.startTime"/></label>
                                 <div>
-                                    <sf:input type="time" id="startTime" path="startTime" class="form-control-time" /> 
+                                    <sf:input type="time" id="startTime" path="startTime" class="form-control" required="true"/> 
                                 </div>
                             </div>   
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-6 col-md-6">
                                 <label class="col-form-label" for="endTime">
                                     <spring:message code="trainActiv.table.endTime"/></label>
                                 <div>
-                                    <sf:input type="time" id="endTime" path="endTime" class="form-control-time" /> 
-                                    <sf:hidden path="trainingId"/>
+                                    <sf:input type="time" id="endTime" path="endTime" class="form-control" required="true"/>                                    
                                 </div>
                             </div>
                         </div>

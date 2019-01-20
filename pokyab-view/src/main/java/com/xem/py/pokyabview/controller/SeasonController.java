@@ -91,7 +91,7 @@ public class SeasonController {
             daoResult = seasonDAO.update(season);
             if (daoResult) alertMessage = "Equipo actualizado";
         }       
-        if (daoResult) returnUrl = "redirect:/manage/season/"+season.getSeasonId()+"?alertMessage="+alertMessage;
+        if (daoResult) returnUrl = "redirect:/team/manage/"+season.getSeasonId()+"?alertMessage="+alertMessage;
         else returnUrl = "redirect:/seasons?alertMessage="+alertMessage;
         
         logger.info("daoResult: "+daoResult+" alertMessage: "+alertMessage);

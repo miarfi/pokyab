@@ -64,7 +64,6 @@ public class ActivityController {
         mv.addObject("title", "Activities");
         mv.addObject("userClickActivities", true);
         mv.addObject("alertMessage", alertMessage);
-
         return mv;
     }    
 
@@ -165,6 +164,8 @@ public class ActivityController {
         } else {
             alertMessage = "Actividad no encontrada"; 
         }
+        
+        logger.info("alertMessage "+alertMessage);
         return alertMessage;
     }
 }

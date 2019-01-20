@@ -48,7 +48,7 @@ public class TeamController {
     private LeagueDAO leagueDAO;  
     @Autowired
     private LookupValueDAO lookupValueDAO; 
-        
+       
      //Beans Modal
     @ModelAttribute("person")
     public Person getPerson() {
@@ -69,21 +69,44 @@ public class TeamController {
     public TeamPerson getTeamPerson() {
         return new TeamPerson();
     }
-
-    //Form Lists    
+    
+    //League modal    
     @ModelAttribute("leagueCategoryCodes")
     public List<LookupValue> getLeagueCategoryCodes() {
         return lookupValueDAO.getLkpValuesByType("LEAGUE_CATEGORY_CODE", "");
-    }  
-    
+    }      
     @ModelAttribute("leagueTypes")
     public List<LookupValue> getLeagueTypes() {
         return lookupValueDAO.getLkpValuesByType("LEAGUE_TYPE", "");
     }   
     
+    //Person modal
     @ModelAttribute("genderCodes")
     public List<LookupValue> getGenderCodes() {
         return lookupValueDAO.getLkpValuesByType("GENDER_CODE", "");
+    }
+    @ModelAttribute("personTypes")
+    public List<LookupValue> getPersonTypes() {
+        return lookupValueDAO.getLkpValuesByType("PERSON_TYPE", "");
+    }
+    
+    //TeamPerson modal
+    @ModelAttribute("memberTypes")
+    public List<LookupValue> getTeamMemberTypes() {
+        return lookupValueDAO.getLkpValuesByType("TEAM_MEMBER_TYPE", "");
+    }      
+    @ModelAttribute("positionCodes")
+    public List<LookupValue> getPositionCodes() {
+        return lookupValueDAO.getLkpValuesByType("POSITION_CODE", "");
+    }       
+    @ModelAttribute("phisicCodes")
+    public List<LookupValue> getPhisicCodes() {
+        return lookupValueDAO.getLkpValuesByType("PHISIC_CODE", "");
+    }
+    
+    @ModelAttribute("persons")
+    public List<Person> getPersons() {
+        return personDAO.getAvailablePersons();
     }
     
     @ModelAttribute("trainers")
@@ -151,7 +174,8 @@ public class TeamController {
         
         if (result.hasErrors()) {
             model.addAttribute("title", "Team");
-            model.addAttribute("userClickTeam", true);             
+            model.addAttribute("userClickTeam", true);  
+             logger.info("Errores");
             return "team/teamMain";
         }
         

@@ -41,4 +41,4 @@
         <div class="wrapper">
 
             <!--navbar-->
-           
+            <%@include file="navbar.jsp"%>

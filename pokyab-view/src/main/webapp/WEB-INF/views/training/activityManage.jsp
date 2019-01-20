@@ -35,14 +35,14 @@
                             <div class="form-group col-sm-6 col-md-5">
                                 <label for="activityName" class="col-form-label">
                                     <spring:message code="activity.table.activityName"/></label>
-                                <sf:input path="activityId" id="activityId" type="hidden"/>
-                                <sf:input path="activityName" id="activityName" type="text" class="form-control" />
+                                <sf:hidden path="activityId" id="activityId"/>
+                                <sf:input path="activityName" id="activityName" type="text" class="form-control" required="true"/>
                                 <sf:errors path="activityName" cssClass="text-danger" element="div"/>
                             </div>
                             <div class="form-group col-sm-6 col-md-5">
                                <label for="activityType" class="col-form-label">
                                    <spring:message code="activity.table.activityType"/></label>                            
-                                <sf:select path="activityType" id="activityType" class="form-control">
+                                <sf:select path="activityType" id="activityType" class="form-control" required="true">
                                     <sf:option value="" label="---"/>
                                     <sf:options items="${activityTypes}" itemLabel="meaning" itemValue="lookupCode" />
                                 </sf:select>
@@ -53,7 +53,7 @@
                             <div class="form-group col-sm-6 col-md-5">
                                 <label for="instructions" class="col-form-label">
                                     <spring:message code="activity.table.instructions"/></label>
-                                <sf:textarea path="instructions" id="instructions" class="form-control" />
+                                <sf:textarea path="instructions" id="instructions" class="form-control" required="true"/>
                                 <sf:errors path="instructions" cssClass="text-danger" element="div"/>
                             </div>                              
                             <div class="form-group col-sm-6 col-md-5">
@@ -67,7 +67,7 @@
                             <div class="form-group col-sm-5 col-md-4">
                                 <label  for="metricType" class="col-form-label">
                                     <spring:message code="activity.table.metricType"/></label>                            
-                                <sf:select path="metricType" id="metricType" class="form-control">
+                                <sf:select path="metricType" id="metricType" class="form-control" required="true">
                                     <sf:option value="" label="---"/>
                                     <sf:options items="${metricTypes}" itemLabel="meaning" itemValue="lookupCode" />
                                 </sf:select>
@@ -76,13 +76,13 @@
                             <div class="form-group col-sm-2 col-md-2">
                                 <label for="totalTime" class="col-form-label">
                                     <spring:message code="activity.table.totalTime"/></label>
-                                <sf:input path="totalTime" id="totalTime" type="number" class="form-control" /> 
+                                <sf:input path="totalTime" id="totalTime" type="number" class="form-control" required="true"/> 
                                 <sf:errors path="totalTime" cssClass="text-danger" element="div"/>                            
                             </div> 
                             <div class="form-group col-sm-5 col-md-4">
                                 <label for="uomCode" class="col-form-label">
                                     <spring:message code="activity.table.uomCode"/></label>                            
-                                <sf:select path="uomCode" id="uomCode" class="form-control">
+                                <sf:select path="uomCode" id="uomCode" class="form-control" required="true">
                                     <sf:option value="" label="---"/>
                                     <sf:options items="${uomCodes}" itemLabel="meaning" itemValue="lookupCode" />
                                 </sf:select>
@@ -106,7 +106,7 @@
                                 <label for="startDate" class="col-form-label">
                                     <spring:message code="common.field.startDate"/></label>
                                 <div>
-                                    <sf:input path="startDate" id="startDate" type="date"/>
+                                    <sf:input path="startDate" id="startDate" type="date" class="form-control" required="true"/> 
                                 </div>
                                 <sf:errors path="startDate" cssClass="text-danger" element="div"/>
                             </div> 
@@ -115,7 +115,7 @@
                                     <label for="endDate" class="col-form-label">
                                         <spring:message code="common.field.endDate"/></label>
                                     <div>
-                                        <sf:input path="endDate" id="endDate" type="date"/>
+                                        <sf:input path="endDate" id="endDate" type="date" class="form-control"/> 
                                     </div>
                                     <sf:errors path="endDate" cssClass="text-danger" element="div"/>                                
                                 </div>  

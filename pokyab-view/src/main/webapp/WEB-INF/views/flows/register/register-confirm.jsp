@@ -2,7 +2,7 @@
 
 <div class="container">    
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-md-8 col-lg-6">
             <div class="card">
                 <div class="card-header">
                     <h4><spring:message code="user.form.personal.title"/></h4>
@@ -27,9 +27,10 @@
     </div>
 
     <div class="row">
-        <div class="col-sm-4 col-sm-offset-4">
+        <div class="col-sm-offset-4 col-md-8 col-lg-6 ">
             <div class="text-center">
-                <a href="${flowExecutionUrl}&_eventId_submit" class="btn btn-lg btn-primary">Confirm</a>
+                <a href="${flowExecutionUrl}&_eventId_submit" class="btn btn-lg btn-primary">
+                    <spring:message code="common.btn.confirm"/></a>
             </div>
         </div>              
     </div>

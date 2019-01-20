@@ -33,14 +33,14 @@
                             <div class="form-group col-12 col-sm-4 col-md-5">
                                 <label for="lookupType" class="col-form-label">
                                     <spring:message code="lookupType.table.lookupType"/></label>
-                                    <sf:input path="lookupTypeId" id="lookupTypeId"  type="hidden"/>
-                                    <sf:input path="lookupType" type="text" class="form-control"/>
+                                    <sf:hidden path="lookupTypeId" id="lookupTypeId"/>
+                                    <sf:input path="lookupType" type="text" class="form-control" required="true"/>
                                     <sf:errors path="lookupType" cssClass="text-danger" element="div"/>
                             </div>
                             <div class="form-group col-12 col-sm-6 col-md-5">
                                 <label for="description" class="col-form-label">
                                     <spring:message code="lookupType.table.description"/></label>
-                                    <sf:input path="description" id="description" class="form-control"/> 
+                                    <sf:input path="description" id="description" class="form-control" required="true"/> 
                                     <sf:errors path="description" cssClass="text-danger" element="div"/>
                             </div> 
                         </div>
@@ -49,7 +49,7 @@
                                 <label for="startDate" class="col-form-label">
                                     <spring:message code="common.field.startDate"/></label>
                                 <div>
-                                    <sf:input path="startDate" id="startDate" type="date"/>
+                                    <sf:input path="startDate" id="startDate" type="date" class="form-control" required="true"/> 
                                     <sf:errors path="startDate" cssClass="text-danger" element="div" />
                                 </div>
                             </div>
@@ -57,7 +57,7 @@
                                 <label for="endDate" class="col-form-label">
                                     <spring:message code="common.field.endDate"/></label>
                                 <div>
-                                    <sf:input path="endDate" id="endDate" type="date"/>
+                                    <sf:input path="endDate" id="endDate" type="date" class="form-control"/> 
                                     <sf:errors path="endDate" cssClass="text-danger" element="div" />
                                 </div>
                             </div>
@@ -72,7 +72,7 @@
                         </div>
                         
                         <div class="form-group">								                                                        
-                            <button type="button" class="btn btn-primary">
+                            <button type="submit" class="btn btn-primary">
                                 <spring:message code="common.btn.save"/></button>
                         </div>
                     </sf:form>

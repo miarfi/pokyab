@@ -34,33 +34,40 @@ public class TeamPersonController {
         
     Logger logger = LoggerFactory.getLogger(TeamController.class);
     
-    @Autowired
-    private PersonDAO personDAO;
+    
     
     @Autowired
     private TeamPersonDAO teamPersonDAO;
  
     @Autowired
     private LookupValueDAO lookupValueDAO; 
+    
+    @Autowired
+    private PersonDAO personDAO;
 
     //Form Lists    
     @ModelAttribute("memberTypes")
-    public List<LookupValue> getLeagueCategoryCodes() {
-        return lookupValueDAO.getLkpValuesByType("MEMBER_TYPE", "");
+    public List<LookupValue> getTeamMemberTypes() {
+        return lookupValueDAO.getLkpValuesByType("TEAM_MEMBER_TYPE", "");
     }  
     
     @ModelAttribute("positionCodes")
-    public List<LookupValue> getLeagueTypes() {
+    public List<LookupValue> getPositionCodes() {
         return lookupValueDAO.getLkpValuesByType("POSITION_CODE", "");
     }   
     
     @ModelAttribute("phisicCodes")
-    public List<LookupValue> getGenderCodes() {
+    public List<LookupValue> getPhisicCodes() {
         return lookupValueDAO.getLkpValuesByType("PHISIC_CODE", "");
     }
     
-    @ModelAttribute("players")
-    public List<Person> getPlayers() {
+    @ModelAttribute("tpStatusCodes")
+    public List<LookupValue> getTPStatusCodes() {
+        return lookupValueDAO.getLkpValuesByType("TP_STATUS_CODE", "");
+    }
+    
+    @ModelAttribute("persons")
+    public List<Person> getPersons() {
         return personDAO.getActivePersons();
     }
 
@@ -97,7 +104,7 @@ public class TeamPersonController {
         mv.addObject("userClickTeamPerson", true);   
         mv.addObject("alertMessage", alertMessage);
         
-        //Get Team object
+        //Get TeamPerson object
         TeamPerson teamPerson = teamPersonDAO.getTeamPersonById(id);
         mv.addObject("teamPerson", teamPerson);          
         return mv;
@@ -111,14 +118,17 @@ public class TeamPersonController {
         boolean daoResult = false;
         String returnUrl;
    
+        logger.info(teamPerson.toString());
         //Spring Validator        
         new TeamPersonValidator().validate(teamPerson, result);
         
         if (result.hasErrors()) {
+            logger.info("Errores");
             model.addAttribute("title", "TeamPerson");
             model.addAttribute("userClickTeamPerson", true);             
             return "team/teamMain";
         }
+        
         
         if (teamPerson.getTeamPersonId() == 0) {
             daoResult = teamPersonDAO.add(teamPerson);
@@ -127,7 +137,7 @@ public class TeamPersonController {
             daoResult = teamPersonDAO.update(teamPerson);
             if (daoResult) alertMessage = "Persona actualizado";
         }       
-        if (daoResult) returnUrl = "redirect:/manage/teamPerson/"+teamPerson.getTeamPersonId()+"?alertMessage="+alertMessage;
+        if (daoResult) returnUrl = "redirect:/manage/team/"+teamPerson.getTeamId()+"?alertMessage="+alertMessage;
         else returnUrl = "redirect:/teamPersons?alertMessage="+alertMessage;
         
         logger.info("daoResult: "+daoResult+" alertMessage: "+alertMessage);

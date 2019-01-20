@@ -111,7 +111,7 @@ $(function () {
                     bSortable: false,
                     mRender: function (data, type, row) {
                         var str = '';
-                        if (data) {
+                        if (data == 'Y') {
                             str += '<label class="switch">'
                                     + '<input type="checkbox" checked="checked" value="' + row.trainingId + '"/>'
                                     + '<div class="slider round"></div></label>';
@@ -130,8 +130,8 @@ $(function () {
                 api.$('.switch input[type="checkbox"]').on('change', function () {
                     var checkbox = $(this);
                     var checked = checkbox.prop('checked');
-                    var dMsg = (checked) ? 'Quiere activar el catalogo' :
-                            'Quiere desactivar el catalogo?';
+                    var dMsg = (checked) ? 'Quiere activar el registro' :
+                            'Quiere desactivar el registro?';
                     var value = checkbox.prop('value');
 
                     bootbox.confirm({
@@ -247,7 +247,7 @@ $(function () {
                     bSortable: false,
                     mRender: function (data, type, row) {
                         var str = '';
-                        if (data) {
+                        if (data == 'Y') {
                             str += '<label class="switch">'
                                     + '<input type="checkbox" checked="checked" value="' + row.activityId + '"/>'
                                     + '<div class="slider round"></div></label>';

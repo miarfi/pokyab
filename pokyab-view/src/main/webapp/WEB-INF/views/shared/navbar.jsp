@@ -2,7 +2,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-    <a class="navbar-brand" href="#"><spring:message code="menu.navbar.home"/></a>
+    <a class="navbar-brand" href="${contextRoot}/home"><spring:message code="menu.navbar.home"/></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>    
@@ -77,7 +77,7 @@
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">	
-                        <li id="logout">
+                        <li id="profile">
                             <a href="${contextRoot}/profile">
                                 <spring:message code="menu.navbar.profile"/>
                             </a>

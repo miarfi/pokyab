@@ -23,7 +23,7 @@
                     <th><spring:message code="team.table.league"/></th>
                     <th><spring:message code="team.table.season"/></th>
                     <!--<th><spring:message code="league.table.category"/></th>-->                    
-                    <th><spring:message code="team.table.trainer"/></th>
+                    <!--<th><spring:message code="team.table.trainer"/></th>-->
                     <th><spring:message code="team.table.conceded.short"/></th>  
                     <th><spring:message code="team.table.scores.short"/></th>              
                     <th><spring:message code="team.table.played.short"/></th>   

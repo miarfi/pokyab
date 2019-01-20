@@ -19,12 +19,12 @@
                     <!--Modal Body -->
                     <div class="modal-body">                    
                         <div class="form-group">
-                            <label class="col-form-label col-md-4" for="tableName">
+                            <label class="col-form-label col-md-8" for="tableName">
                                 <spring:message code="lookupUse.table.tableName"/></label>
                             <div class="col-md-8">
-                                <sf:input path="lookupTypeId" id="lookupTypeId"  type="hidden"/>
-                                <sf:input path="lookupUseId" id="lookupUseId"  type="hidden"/>
-                                <sf:select path="tableName" id="tableName" class="form-control">
+                                <sf:hidden path="lookupTypeId" id="lookupTypeId"/>
+                                <sf:hidden path="lookupUseId" id="lookupUseId"/>
+                                <sf:select path="tableName" id="tableName" class="form-control" required="true">
                                     <sf:option value="" label="---"/>
                                     <sf:options items="${tables}" itemLabel="tableName" itemValue="tableName" />
                                 </sf:select>
@@ -32,10 +32,10 @@
                             </div>                            
                         </div>                
                         <div class="form-group">
-                            <label class="col-form-label col-md-4" for="columnName">
+                            <label class="col-form-label col-md-8" for="columnName">
                                 <spring:message code="lookupUse.table.columnName"/></label>
                             <div class="col-md-8">
-                                <sf:select path="columnName" id="columnName" class="form-control">
+                                <sf:select path="columnName" id="columnName" class="form-control" required="true">
                                     <sf:option value="" label="---"/>
                                     <!--<sf:options items="${tableColumns}" itemLabel="columnName" itemValue="columnName" />-->
                                 </sf:select>
@@ -43,7 +43,7 @@
                             </div>                            
                         </div>                         
 <!--                        <div class="form-group">
-                            <label for="required" class="form-check-label col-md-4">
+                            <label for="required" class="form-check-label col-md-8">
                                 <spring:message code="lookupUse.table.required"/>:</label>
                             <div class="form-check">
                                 <sf:checkbox path="required" id="required" value="Y" />
@@ -51,10 +51,10 @@
                             </div> 
                         </div> -->
                         <div class="form-group">
-                            <label for="startDate" class="col-form-label col-md-4">
+                            <label for="startDate" class="col-form-label col-md-8">
                                 <spring:message code="common.field.startDate"/>:</label>
-                            <div class="col-md-4">
-                                <sf:input path="startDate" id="startDate" type="date"/>
+                            <div class="col-md-8">
+                                <sf:input path="startDate" id="startDate" type="date" class="form-control" required="true"/> 
                             </div>
                         </div>                                            
                     </div>

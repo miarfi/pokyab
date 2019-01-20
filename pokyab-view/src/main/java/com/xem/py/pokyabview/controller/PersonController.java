@@ -117,9 +117,10 @@ public class PersonController {
             if (daoResult) alertMessage = "Persona modificada"; 
         }
         
-        if (!person.getFile().getOriginalFilename().equals("")) {
-            FileUploadUtility.uploadFile(request, person.getFile(), String.valueOf(person.getPersonId()));
-        }
+        if (person.getFile() != null)
+            if (!person.getFile().getOriginalFilename().equals("")) 
+                FileUploadUtility.uploadFile(request, person.getFile(), String.valueOf(person.getPersonId()));
+        
         
         if (daoResult) returnUrl = "redirect:/manage/person/"+person.getPersonId()+"?alertMessage="+alertMessage;
         else returnUrl = "redirect:/persons?alertMessage="+alertMessage;

@@ -23,21 +23,21 @@
                             <label for="lookupType" class="col-form-label col-md-4">
                                 <spring:message code="lookupType.table.lookupType"/>:</label>
                             <div class="col-md-8">
-                                <sf:input path="lookupType" id="lookupType" type="text" class="form-control"/>                                
+                                <sf:input path="lookupType" id="lookupType" type="text" class="form-control" required="true"/>                                
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="description" class="col-form-label col-md-4">
                                 <spring:message code="lookupType.table.description"/>:</label>
                             <div class="col-md-8">
-                                <sf:textarea path="description" id="description" class="form-control"/>                                 
+                                <sf:textarea path="description" id="description" class="form-control" required="true"/>                                 
                             </div>
                         </div> 
                         <div class="form-group">
                             <label for="startDate" class="col-form-label col-md-4">
                                 <spring:message code="common.field.startDate"/>:</label>
                             <div class="col-md-8">
-                                <sf:input path="startDate" id="startDate" type="date"/>                                
+                                <sf:input path="startDate" id="startDate" type="date" class="form-control" required="true"/>                                 
                             </div>
                         </div>
                         <div class="form-group">

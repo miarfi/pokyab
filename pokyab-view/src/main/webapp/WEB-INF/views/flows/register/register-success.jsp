@@ -2,7 +2,7 @@
 
 <div class="container">    
     <div class="row">
-        <div class="col-sm-offset-4 col-sm-4">
+        <div class="col-sm-offset-4 col-md-8 col-lg-6">
             <div class="text-center">		
                 <h1>Bienvenido!</h1>
                 <h3>pokyab</h3>

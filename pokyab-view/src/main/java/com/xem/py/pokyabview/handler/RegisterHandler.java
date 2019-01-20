@@ -3,7 +3,6 @@ package com.xem.py.pokyabview.handler;
 
 import com.xem.py.pokyabmodel.dao.UserDAO;
 import com.xem.py.pokyabmodel.dto.User;
-import com.xem.py.pokyabview.controller.TrainingController;
 import com.xem.py.pokyabview.model.RegisterModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,8 +20,7 @@ public class RegisterHandler {
     Logger logger = LoggerFactory.getLogger(RegisterHandler.class);
     
     @Autowired
-    UserDAO userDAO;
-    
+    UserDAO userDAO;    
      
     public RegisterModel init() {
         return new RegisterModel();

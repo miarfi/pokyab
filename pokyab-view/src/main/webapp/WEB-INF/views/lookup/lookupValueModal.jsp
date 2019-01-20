@@ -19,37 +19,37 @@
                     <!--Modal Body -->
                     <div class="modal-body">                    
                         <div class="form-group">
-                            <label for="lookupCode" class="col-form-label col-md-4">
+                            <label for="lookupCode" class="col-form-label col-md-8">
                                 <spring:message code="lookupValue.table.lookupCode"/>:</label>
                             <div class="col-md-8">
                                 <sf:hidden path="lookupTypeId"/>
-                                <sf:input path="lookupCode" id="lookupValue" type="text" class="form-control"/>
+                                <sf:input path="lookupCode" id="lookupValue" type="text" class="form-control" required="true"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="meaning" class="col-form-label col-md-4">
+                            <label for="meaning" class="col-form-label col-md-8">
                                 <spring:message code="lookupValue.table.meaning"/>:</label>
                             <div class="col-md-8">
-                                <sf:input path="meaning" id="lookupValue" type="text" class="form-control"/>
+                                <sf:input path="meaning" id="lookupValue" type="text" class="form-control" required="true"/>
                             </div>
                         </div>                         
                         <div class="form-group">
-                            <label for="description" class="col-form-label col-md-4">
+                            <label for="description" class="col-form-label col-md-8">
                                 <spring:message code="lookupValue.table.description"/>:</label>
                             <div class="col-md-8">
                                 <sf:textarea path="description" id="description" class="form-control"/> 
                             </div>
                         </div> 
                         <div class="form-group">
-                            <label for="startDate" class="col-form-label col-md-4">
+                            <label for="startDate" class="col-form-label col-md-8">
                                 <spring:message code="common.field.startDate"/>:</label>
-                            <div class="col-md-4">
-                                <sf:input path="startDate" id="startDate" type="date"/>
+                            <div class="col-md-8">
+                                <sf:input path="startDate" id="startDate" type="date" class="form-control" required="true"/> 
                             </div>
                         </div>
 <!--                        <div class="form-group">
-                            <label for="languageCode" class="col-form-label col-md-4"><spring:message code="common.field.language"/>:</label>
-                            <div class="col-md-4">
+                            <label for="languageCode" class="col-form-label col-md-8"><spring:message code="common.field.language"/>:</label>
+                            <div class="col-md-8">
                                 <sf:input path="languageCode" id="languageCode" type="text"/>
                             </div>
                         </div>                        -->                                            

@@ -34,7 +34,7 @@
                             <label for="seasonName" class="col-form-label col-md-4">
                                 <spring:message code="season.table.seasonName"/>:</label>
                             <div class="col-md-8">
-                                <sf:input path="seasonName" id="seasonName" type="text" class="form-control"/>
+                                <sf:input path="seasonName" id="seasonName" type="text" class="form-control" required="true"/>
                                 <sf:errors path="seasonName" cssClass="text-danger" element="div" />
                             </div>
                         </div>                                
@@ -42,7 +42,7 @@
                             <label for="seasonCode" class="col-form-label col-md-4">
                                 <spring:message code="season.table.seasonCode"/>:</label>
                             <div class="col-md-8">
-                                <sf:input path="seasonCode" id="seasonCode" type="text" class="form-control"/>
+                                <sf:input path="seasonCode" id="seasonCode" type="text" class="form-control" required="true"/>
                                 <sf:errors path="seasonCode" cssClass="text-danger" element="div" />
                             </div>
                         </div>
@@ -58,7 +58,7 @@
                             <label for="startDate" class="col-form-label col-md-4">
                                 <spring:message code="common.field.startDate"/>:</label>
                             <div class="col-md-4">
-                                <sf:input path="startDate" id="startDate" type="date"/>
+                                <sf:input path="startDate" id="startDate" type="date" class="form-control" required="true"/> 
                                 <sf:errors path="startDate" cssClass="text-danger" element="div" />
                             </div>
                         </div> 
@@ -66,7 +66,7 @@
                             <label for="endDate" class="col-form-label col-md-4">
                                 <spring:message code="common.field.endDate"/>:</label>
                             <div class="col-md-4">
-                                <sf:input path="endDate" id="endDate" type="date"/>
+                                <sf:input path="endDate" id="endDate" type="date" class="form-control" required="true"/> 
                                 <sf:errors path="endDate" cssClass="text-danger" element="div" />
                             </div>
                         </div>                            

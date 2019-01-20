@@ -24,7 +24,13 @@
                 <!--message-->            
                 <%@include file="../shared/alertMessage.jsp"%>
                 
-                <%@include file="users.jsp"%>
+                <c:if test="${userClickUser == true }">
+                    <%@include file="userManage.jsp"%>
+                </c:if>
+                <c:if test="${userClickUsers == true }">
+                     <%@include file="users.jsp"%>
+                </c:if>
+                
             </div>
             <!--footer-->
             <%@include file="../shared/footer.jsp"%>

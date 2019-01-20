@@ -18,39 +18,39 @@
                         <!--Modal Body -->
                         <div class="modal-body">                        
                             <div class="form-group">
-                                <label for="seasonName" class="col-form-label col-md-4">
+                                <label for="seasonName" class="col-form-label col-md-8">
                                     <spring:message code="season.table.seasonName"/>:</label>
                                 <div class="col-md-8">
-                                    <sf:input path="seasonName" id="seasonName" type="text" class="form-control"/>
+                                    <sf:input path="seasonName" id="seasonName" type="text" class="form-control" required="true"/>
                                 </div>
                             </div>                                
                             <div class="form-group">
-                                <label for="seasonCode" class="col-form-label col-md-4">
+                                <label for="seasonCode" class="col-form-label col-md-8">
                                     <spring:message code="season.table.seasonCode"/>:</label>
                                 <div class="col-md-8">
-                                    <sf:input path="seasonCode" id="seasonCode" type="text" class="form-control"/>
+                                    <sf:input path="seasonCode" id="seasonCode" type="text" class="form-control" required="true"/>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="description" class="col-form-label col-md-4">
+                                <label for="description" class="col-form-label col-md-8">
                                     <spring:message code="season.table.description"/>:</label>
                                 <div class="col-md-8">
                                     <sf:textarea path="description" id="description" class="form-control"/> 
                                 </div>
                             </div>   
                             <div class="form-row">
-                                <div class="form-group">
-                                    <label for="startDate" class="col-form-label col-md-10">
+                                <div class="form-group col-6 col-md-5">
+                                    <label for="startDate" class="col-form-label col-12">
                                         <spring:message code="common.field.startDate"/>:</label>
-                                    <div class="col-md-4">
-                                        <sf:input path="startDate" id="startDate" type="date"/>
+                                    <div class="col-12">
+                                        <sf:input path="startDate" id="startDate" type="date" class="form-control" required="true"/> 
                                     </div>
                                 </div> 
-                                <div class="form-group">
-                                    <label for="endDate" class="col-form-label col-md-10">
+                                <div class="form-group col-6 col-md-5">
+                                    <label for="endDate" class="col-form-label col-12">
                                         <spring:message code="common.field.endDate"/>:</label>
-                                    <div class="col-md-4">
-                                        <sf:input path="endDate" id="endDate" type="date"/>
+                                    <div class="col-12">
+                                        <sf:input path="endDate" id="endDate" type="date" class="form-control" required="true"/> 
                                     </div>
                                 </div>  
                             </div>

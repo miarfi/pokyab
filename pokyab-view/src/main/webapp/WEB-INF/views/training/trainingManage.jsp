@@ -34,14 +34,14 @@
                             <div class="form-group col-sm-6 col-md-5">
                                 <label for="trainingName" class="col-form-label">
                                     <spring:message code="training.table.trainingName"/></label>                            
-                                <sf:input id="trainingId" path="trainingId" type="hidden"/>
-                                <sf:input path="trainingName" id="trainingName" type="text" class="form-control"/> 
+                                <sf:hidden id="trainingId" path="trainingId"/>
+                                <sf:input path="trainingName" id="trainingName" type="text" class="form-control" required="true"/> 
                                 <sf:errors path="trainingName" cssClass="text-danger" element="div"/>                            
                             </div>
                             <div class="form-group col-sm-6 col-md-5">
                                 <label  for="categoryCode" class="col-form-label">
                                     <spring:message code="training.table.categoryCode"/></label>                            
-                                <sf:select path="categoryCode" id="categoryCode" class="form-control">
+                                <sf:select path="categoryCode" id="categoryCode" class="form-control" required="true">
                                     <sf:option value="" label="---"/>
                                     <sf:options items="${trainCategoryCodes}" itemLabel="meaning" itemValue="lookupCode" />
                                 </sf:select>
@@ -50,7 +50,7 @@
                             <div class="form-group col-sm-6 col-md-2">
                                 <label for="weeks" class="col-form-label">
                                     <spring:message code="training.table.weeks"/></label>
-                                <sf:input path="weeks" id="weeks" type="text" class="form-control" /> 
+                                <sf:input path="weeks" id="weeks" type="text" class="form-control" required="true"/> 
                                 <sf:errors path="weeks" cssClass="text-danger" element="div" />                            
                             </div> 
                         </div>
@@ -58,7 +58,7 @@
                             <div class="form-group col-sm-6 col-md-6">
                                 <label for="description" class="col-form-label">
                                     <spring:message code="training.table.description"/></label>                            
-                                <sf:textarea path="description" id="description" class="form-control"/> 
+                                <sf:textarea path="description" id="description" class="form-control" required="true"/> 
                                 <sf:errors path="description" cssClass="text-danger" element="div" />                            
                             </div>
                             <div class="form-group col-sm-6 col-md-6">
@@ -73,20 +73,20 @@
                             
                         </div>                                                     
                         <div class="form-row">
-                            <div class="form-group col-5 col-sm-4 col-md-3">
+                            <div class="form-group col-6 col-sm-4 col-md-3 col-lg-2">
                                 <label for="startDate" class="col-form-label">
                                     <spring:message code="common.field.startDate"/></label>
                                 <div>
-                                    <sf:input path="startDate" id="startDate" type="date"/>
+                                    <sf:input path="startDate" id="startDate" type="date" class="form-control" required="true"/> 
                                     <sf:errors path="startDate" cssClass="text-danger" element="div" />
                                 </div>
                             </div> 
                             <c:if test="${training.trainingId > 0 }">
-                                <div class="form-group col-5 col-sm-4 col-md-3">
+                                <div class="form-group col-6 col-sm-4 col-md-3 col-lg-2">
                                     <label for="endDate" class="col-form-label">
                                         <spring:message code="common.field.endDate"/></label>
                                     <div>
-                                        <sf:input path="endDate" id="endDate" type="date"/>
+                                        <sf:input path="endDate" id="endDate" type="date" class="form-control"/> 
                                         <sf:errors path="endDate" cssClass="text-danger" element="div" />
                                     </div>
                                 </div>   
@@ -121,7 +121,8 @@
         <div class="row">
             <div class="col-12 col-md-10 col-lg-8">
                 <div class="text-right">
-                    <br/>										
+                    <br/>	
+                    
                     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myTrainActivModal">
                         <spring:message code="training.table.btn.addTrainActiv"/>
                     </button>

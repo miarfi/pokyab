@@ -5,12 +5,16 @@ import com.xem.py.pokyabmodel.dao.LookupTypeDAO;
 import com.xem.py.pokyabmodel.dao.MessageDAO;
 import com.xem.py.pokyabmodel.dao.PersonDAO;
 import com.xem.py.pokyabmodel.dao.TeamDAO;
+import com.xem.py.pokyabmodel.dao.TeamPersonDAO;
 import com.xem.py.pokyabmodel.dao.TrainingActivityDAO;
 import com.xem.py.pokyabmodel.dao.TrainingDAO;
+import com.xem.py.pokyabmodel.dao.UserDAO;
 import com.xem.py.pokyabmodel.dto.LookupType;
 import com.xem.py.pokyabmodel.dto.Message;
+import com.xem.py.pokyabmodel.dto.User;
 import com.xem.py.pokyabmodel.view.ActivityV;
 import com.xem.py.pokyabmodel.view.PersonV;
+import com.xem.py.pokyabmodel.view.TeamPersonV;
 import com.xem.py.pokyabmodel.view.TrainingActivityV;
 import com.xem.py.pokyabmodel.view.TeamV;
 import com.xem.py.pokyabmodel.view.TrainingV;
@@ -42,11 +46,15 @@ public class JsonDataController {
         @Autowired
         private PersonDAO personDAO;
         @Autowired
+        private TeamPersonDAO teamPersonDAO;        
+        @Autowired
 	private ActivityDAO activityDAO;
         @Autowired
 	private TrainingDAO trainingDAO;        
         @Autowired
 	private TrainingActivityDAO trainingActivityDAO; 
+        @Autowired
+        private UserDAO userDAO;
         
         @RequestMapping("/admin/all/messages")
 	@ResponseBody
@@ -76,6 +84,13 @@ public class JsonDataController {
             return teamDAO.getAllTeamsV();
 	}
         
+        @RequestMapping("/admin/all/{id}/teamPersons")
+	@ResponseBody
+	public List<TeamPersonV> getAdminTeamPersons(@PathVariable int id){
+            logger.info("info.Inside getAdminTeamPersons method");
+            return teamPersonDAO.getAllTeamPersonsByTeam(id);
+	}
+        
         @RequestMapping("/admin/all/trainings")
 	@ResponseBody
 	public List<TrainingV> getAdminTrainings(){
@@ -96,5 +111,12 @@ public class JsonDataController {
 	public List<TrainingActivityV> getAdminTrainActivities(@PathVariable int id){
             logger.info("info.Inside getAdminTrainActivities method");
             return trainingActivityDAO.getAllTrainActivVByTrainId(id);
-	}        
+	}  
+        
+        @RequestMapping("/admin/all/users")
+	@ResponseBody
+	public List<User> getAllUsers(){
+            logger.info("info.Inside getAllUsers method");
+            return userDAO.getAllUsers();
+	} 
 }
