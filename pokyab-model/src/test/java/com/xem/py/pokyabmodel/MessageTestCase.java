@@ -16,9 +16,7 @@ public class MessageTestCase {
 	private static AnnotationConfigApplicationContext context;
 	private static MessageDAO messageDAO;
 	private Message message = null;
-
-	
-	
+		
 	@BeforeClass
 	public static void init() {
 		context = new AnnotationConfigApplicationContext();
@@ -27,6 +25,7 @@ public class MessageTestCase {
 		
 		messageDAO = (MessageDAO) context.getBean("messageDAO");
 	}
+        
         
         
         @Test 

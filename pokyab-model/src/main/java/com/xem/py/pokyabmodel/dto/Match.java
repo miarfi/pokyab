@@ -1,6 +1,5 @@
 package com.xem.py.pokyabmodel.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -11,13 +10,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlTransient;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 /**
@@ -26,7 +25,9 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Entity
-@Table(name = "MATCHS")
+@Table(name = "MATCHS"
+ ,uniqueConstraints={@UniqueConstraint(columnNames={"SEASON_ID", "AWAY_TEAM_ID", "HOME_TEAM_ID"})}
+)
 public class Match implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -40,8 +41,8 @@ public class Match implements Serializable {
     @Column(name = "MATCH_TYPE_CODE")
     private String matchTypeCode;
     @Column(name = "MATCH_DATE")
-    @Temporal(TemporalType.TIMESTAMP)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    @Temporal(TemporalType.TIMESTAMP)       
+    @DateTimeFormat(pattern = "yyyy-MM-dd") 
     private Date matchDate;
     @Column(name = "MATCH_TIME")
     private String matchTime;
@@ -56,35 +57,40 @@ public class Match implements Serializable {
     private short homeScore;
     @Column(name = "AWAY_SCORE")
     private short awayScore;
-    @JoinColumn(name = "LEAGUE_ID", referencedColumnName = "LEAGUE_ID")
-    @ManyToOne(optional = false)
-    private League leagueId;
-    @JoinColumn(name = "SEASON_ID", referencedColumnName = "SEASON_ID")
-    @ManyToOne(optional = false)
-    private Season seasonId;
-    @JoinColumn(name = "AWAY_TEAM_ID", referencedColumnName = "TEAM_ID")
-    @ManyToOne(optional = false)
-    private Team awayTeamId;
-    @JoinColumn(name = "HOME_TEAM_ID", referencedColumnName = "TEAM_ID")
-    @ManyToOne(optional = false)
-    private Team homeTeamId;
-    @JoinColumn(name = "WINNER_TEAM_ID", referencedColumnName = "TEAM_ID")
-    @ManyToOne
-    private Team winnerTeamId;
+//    @JoinColumn(name = "LEAGUE_ID", referencedColumnName = "LEAGUE_ID")
+//    @ManyToOne(optional = false)
+//    private League leagueId;
+//    @JoinColumn(name = "SEASON_ID", referencedColumnName = "SEASON_ID")
+//    @ManyToOne(optional = false)
+//    private Season seasonId;
+//    @JoinColumn(name = "AWAY_TEAM_ID", referencedColumnName = "TEAM_ID")
+//    @ManyToOne(optional = false)
+//    private Team awayTeamId;
+//    @JoinColumn(name = "HOME_TEAM_ID", referencedColumnName = "TEAM_ID")
+//    @ManyToOne(optional = false)
+//    private Team homeTeamId;
+//    @JoinColumn(name = "WINNER_TEAM_ID", referencedColumnName = "TEAM_ID")
+//    @ManyToOne
+//    private Team winner;
+    @Column(name = "LEAGUE_ID")
+    private int leagueId;
+    @Column(name = "SEASON_ID")
+    private int seasonId;
+    @Column(name = "AWAY_TEAM_ID")
+    private int awayTeamId;
+    @Column(name = "HOME_TEAM_ID")
+    private int homeTeamId;
+    @Column(name = "WINNER")
+    private String winner;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "matchId")
     private Collection<MatchPlayer> matchPlayerCollection;
 
     public Match() {
+        this.status = "PLANNED";
+        this.winner = "HOME";
     }
 
-//    public Match(int matchId) {
-//        this.matchId = matchId;
-//    }
-//
-//    public Match(int matchId, String status) {
-//        this.matchId = matchId;
-//        this.status = status;
-//    }
 
     public int getMatchId() {
         return matchId;
@@ -165,46 +171,86 @@ public class Match implements Serializable {
     public void setAwayScore(short awayScore) {
         this.awayScore = awayScore;
     }
-
-    public League getLeagueId() {
+    
+    public int getLeagueId() {
         return leagueId;
     }
 
-    public void setLeagueId(League leagueId) {
+    public void setLeagueId(int leagueId) {
         this.leagueId = leagueId;
     }
 
-    public Season getSeasonId() {
+    public int getSeasonId() {
         return seasonId;
     }
 
-    public void setSeasonId(Season seasonId) {
+    public void setSeasonId(int seasonId) {
         this.seasonId = seasonId;
     }
 
-    public Team getAwayTeamId() {
+    public int getAwayTeamId() {
         return awayTeamId;
     }
 
-    public void setAwayTeamId(Team awayTeamId) {
+    public void setAwayTeamId(int awayTeamId) {
         this.awayTeamId = awayTeamId;
     }
 
-    public Team getHomeTeamId() {
+    public int getHomeTeamId() {
         return homeTeamId;
     }
 
-    public void setHomeTeamId(Team homeTeamId) {
+    public void setHomeTeamId(int homeTeamId) {
         this.homeTeamId = homeTeamId;
     }
 
-    public Team getWinnerTeamId() {
-        return winnerTeamId;
+    public String getWinner() {
+        return winner;
     }
 
-    public void setWinnerTeamId(Team winnerTeamId) {
-        this.winnerTeamId = winnerTeamId;
+    public void setWinner(String winner) {    
+        this.winner = winner;
     }
+
+//    public League getLeagueId() {
+//        return leagueId;
+//    }
+//
+//    public void setLeagueId(League leagueId) {
+//        this.leagueId = leagueId;
+//    }
+//
+//    public Season getSeasonId() {
+//        return seasonId;
+//    }
+//
+//    public void setSeasonId(Season seasonId) {
+//        this.seasonId = seasonId;
+//    }
+//
+//    public Team getAwayTeamId() {
+//        return awayTeamId;
+//    }
+//
+//    public void setAwayTeamId(Team awayTeamId) {
+//        this.awayTeamId = awayTeamId;
+//    }
+//
+//    public Team getHomeTeamId() {
+//        return homeTeamId;
+//    }
+//
+//    public void setHomeTeamId(Team homeTeamId) {
+//        this.homeTeamId = homeTeamId;
+//    }
+//
+//    public Team getWinnerTeamId() {
+//        return winner;
+//    }
+//
+//    public void setWinnerTeamId(Team winner) {
+//        this.winner = winner;
+//    }
 
     @XmlTransient
     public Collection<MatchPlayer> getMatchPlayerCollection() {

@@ -6,7 +6,7 @@ import com.xem.py.pokyabmodel.dto.TrainingActivity;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
-import javax.persistence.Basic;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -41,7 +41,6 @@ public class TrainingV implements Serializable {
     private String goals;   
     @Column(name = "WEEKS")
     private short weeks;
-    @Basic(optional = false)
     @Column(name = "DAYS")
     private short days;    
     @Column(name = "STATUS_CODE")

@@ -40,6 +40,7 @@ public class LookupValue implements Serializable {
     private String meaning;
     @Column(name = "DESCRIPTION", length = 250)
     private String description;
+    @Basic(optional = false) 
     @Column(name = "LANGUAGE_CODE", length = 30)
     private String languageCode;        
     @Basic(optional = false)    

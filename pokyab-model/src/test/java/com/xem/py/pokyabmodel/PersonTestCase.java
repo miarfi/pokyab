@@ -15,7 +15,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  */
 public class PersonTestCase {
   
-    private static AnnotationConfigApplicationContext context;
+        private static AnnotationConfigApplicationContext context;
 	private static PersonDAO personDAO;
 	private Person person = null;
 
@@ -32,7 +32,7 @@ public class PersonTestCase {
         
         
         @Test 
-        public void addMessage(){
+        public void addPerson(){
             person = new Person();
 
             person.setFirstName("pedro");
@@ -46,10 +46,7 @@ public class PersonTestCase {
 //            person.setStartDate(date);
             person.setStartDate(new Date(System.currentTimeMillis()));
             person.setPersonType("PLAYER");            
-                   
-            
-            
-           
+                                                   
             assertEquals("Failed to add person!", true,  personDAO.add(person));
         }
 

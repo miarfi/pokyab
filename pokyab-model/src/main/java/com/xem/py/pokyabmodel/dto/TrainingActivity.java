@@ -35,12 +35,8 @@ public class TrainingActivity implements Serializable {
     private short activityNumber;
     @Column(name = "POSITION_CODE")
     private String positionCode;
-    @Basic(optional = false)
-    //Todo Renombrar en modelo db
     @Column(name = "TOTAL_WEEKS")
-    private short weeks;
-    //@Basic(optional = false)
-    //Todo Renombrar en modelo db
+    private short weeks;    
     @Column(name = "TOTAL_DAYS")
     private short days;
     @Column(name = "REPEAT_FLAG")

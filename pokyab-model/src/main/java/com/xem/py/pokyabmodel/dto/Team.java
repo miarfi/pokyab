@@ -7,6 +7,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,10 +15,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlTransient;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -37,7 +40,7 @@ public class Team implements Serializable {
     @Basic(optional = false)
     @Column(name = "TEAM_ID")
     private int teamId;
-    @Basic(optional = false)
+//    @Basic(optional = false)
     @Column(name = "TRAINER_PER_ID")
     private int trainerPerId;
     @Basic(optional = false)
@@ -71,14 +74,14 @@ public class Team implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "yyyy-MM-dd")    
     private Date endDate; 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "teamId")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "teamId")//cascade = CascadeType.ALL
     private Collection<TeamPerson> teamPersonCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "awayTeamId")
-    private Collection<Match> matchCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "homeTeamId")
-    private Collection<Match> matchCollection1;
-    @OneToMany(mappedBy = "winnerTeamId")
-    private Collection<Match> matchCollection2;    
+    @OneToMany( mappedBy = "awayTeamId")
+    private Collection<Match> awayMatchCollection;
+    @OneToMany( mappedBy = "homeTeamId")
+    private Collection<Match> homeMatchCollection;
+//    @OneToMany(mappedBy = "winnerTeamId")
+//    private Collection<Match> matchCollection2;    
 //    @JoinColumn(name = "LEAGUE_ID", referencedColumnName = "LEAGUE_ID")
 //    @ManyToOne(optional = false)
 //    private League leagueId;
@@ -89,9 +92,14 @@ public class Team implements Serializable {
     private int leagueId;   
     @Column(name = "SEASON_ID")
     private int seasonId;    
+//    @Column(name = "TRAINING_ID")
+//    private int traningId;   
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "teamId")
     private Collection<TrainingPerson> trainingPersonCollection;
 
+    @Transient
+    private MultipartFile file;
+    
     public Team() {
         this.active = 'Y';
         this.startDate = new java.sql.Date(System.currentTimeMillis());
@@ -219,31 +227,31 @@ public class Team implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Match> getMatchCollection() {
-        return matchCollection;
+    public Collection<Match> getAwayMatchCollection() {
+        return awayMatchCollection;
     }
 
-    public void setMatchCollection(Collection<Match> matchCollection) {
-        this.matchCollection = matchCollection;
-    }
-
-    @XmlTransient
-    public Collection<Match> getMatchCollection1() {
-        return matchCollection1;
-    }
-
-    public void setMatchCollection1(Collection<Match> matchCollection1) {
-        this.matchCollection1 = matchCollection1;
+    public void setAwayMatchCollection(Collection<Match> awayMatchCollection) {
+        this.awayMatchCollection = awayMatchCollection;
     }
 
     @XmlTransient
-    public Collection<Match> getMatchCollection2() {
-        return matchCollection2;
+    public Collection<Match> getHomeMatchCollection() {
+        return homeMatchCollection;
     }
 
-    public void setMatchCollection2(Collection<Match> matchCollection2) {
-        this.matchCollection2 = matchCollection2;
+    public void setHomeMatchCollection(Collection<Match> homeMatchCollection) {
+        this.homeMatchCollection = homeMatchCollection;
     }
+
+//    @XmlTransient
+//    public Collection<Match> getMatchCollection2() {
+//        return matchCollection2;
+//    }
+//
+//    public void setMatchCollection2(Collection<Match> matchCollection2) {
+//        this.matchCollection2 = matchCollection2;
+//    }
 
 //    public League getLeagueId() {
 //        return leagueId;
@@ -276,6 +284,14 @@ public class Team implements Serializable {
     public void setSeasonId(int seasonId) {
         this.seasonId = seasonId;
     }
+
+//    public int getTraningId() {
+//        return traningId;
+//    }
+//
+//    public void setTraningId(int traningId) {
+//        this.traningId = traningId;
+//    }
     
     @XmlTransient
     public Collection<TrainingPerson> getTrainingPersonCollection() {
@@ -285,5 +301,18 @@ public class Team implements Serializable {
     public void setTrainingPersonCollection(Collection<TrainingPerson> trainingPersonCollection) {
         this.trainingPersonCollection = trainingPersonCollection;
     }
+    
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    public void setFile(MultipartFile file) {
+        this.file = file;
+    }
+
+    @Override
+    public String toString() {
+        return "Team{" + "teamId=" + teamId + ", trainerPerId=" + trainerPerId + ", teamName=" + teamName + ", groupNumber=" + groupNumber + ", wins=" + wins + ", draws=" + draws + ", losts=" + losts + ", points=" + points + ", scores=" + scores + ", conceded=" + conceded + ", matchesPlayed=" + matchesPlayed + ", active=" + active + ", startDate=" + startDate + ", endDate=" + endDate + ", leagueId=" + leagueId + ", seasonId=" + seasonId + '}';
+    }        
 
 }

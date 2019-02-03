@@ -53,6 +53,7 @@ public class LookupType implements Serializable {
     @Basic(optional = false)
     @Column(name = "ACTIVE")
     private Character active;
+    @Basic(optional = false)
     @Column(name = "SYSTEM_FLAG")
     private Character systemFlag;
     @Basic(optional = false)

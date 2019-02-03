@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 import org.hibernate.annotations.Immutable;
 import org.springframework.stereotype.Component;
 
@@ -45,9 +46,11 @@ public class TeamV implements Serializable {
     private Character active;
     @Column(name = "START_DATE")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date startDate;
     @Column(name = "END_DATE")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date endDate; 
     //
     @Column(name = "LEAGUE_NAME")

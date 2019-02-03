@@ -17,15 +17,15 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Entity
-@Table(name = "CONTACTS")
-public class Contact implements Serializable {
+@Table(name = "CONTACT_POINTS")
+public class ContactPoint implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "CONTACT_ID")
-    private int contactId;
+    @Column(name = "CONTACT_POINT_ID")
+    private int contactPointId;
     @Basic(optional = false)
     @Column(name = "OWNER_TABLE_NAME")
     private String ownerTableName;
@@ -38,40 +38,25 @@ public class Contact implements Serializable {
     @Basic(optional = false)
     @Column(name = "USE_TYPE")
     private String useType;
-    @Column(name = "PHONE_NUMBER")
-    private String phoneNumber;
-    @Column(name = "EMAIL_ADDRESS")
-    private String emailAddress;
+    @Basic(optional = false)
+    @Column(name = "CONTACT_VALUE")
+    private String contactValue;
     @Basic(optional = false)
     @Column(name = "ACTIVE")
     private Character active;
-    @Basic(optional = false)
     @Column(name = "PRIMARY_BY_TYPE")
     private Character primaryByType;
 
-    public Contact() {
+    public ContactPoint() {
+        this.active = 'Y';
     }
 
-//    public Contact(Long contactId) {
-//        this.contactId = contactId;
-//    }
-//
-//    public Contact(Long contactId, String ownerTableName, long ownerTableId, String contactType, String useType, Character active, Character primaryByType) {
-//        this.contactId = contactId;
-//        this.ownerTableName = ownerTableName;
-//        this.ownerTableId = ownerTableId;
-//        this.contactType = contactType;
-//        this.useType = useType;
-//        this.active = active;
-//        this.primaryByType = primaryByType;
-//    }
-
-    public int getContactId() {
-        return contactId;
+    public int getContactPointId() {
+        return contactPointId;
     }
 
-    public void setContactId(int contactId) {
-        this.contactId = contactId;
+    public void setContactPointId(int contactPointId) {
+        this.contactPointId = contactPointId;
     }
 
     public String getOwnerTableName() {
@@ -106,20 +91,12 @@ public class Contact implements Serializable {
         this.useType = useType;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getContactValue() {
+        return contactValue;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getEmailAddress() {
-        return emailAddress;
-    }
-
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
+    public void setContactValue(String contactValue) {
+        this.contactValue = contactValue;
     }
 
     public Character getActive() {

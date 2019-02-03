@@ -55,7 +55,6 @@ public class Activity implements Serializable {
     private long totalTime;
     @Column(name = "WAIT_TIME")
     private short waitTime;
-//    @Basic(optional = false)
     @Column(name = "REPETITIONS")
     private short repetitions;
     @Basic(optional = false)

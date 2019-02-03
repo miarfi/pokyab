@@ -37,6 +37,14 @@ public class TeamValidator implements Validator{
             if (team.getEndDate().getTime() < team.getStartDate().getTime())
                 errors.rejectValue("endDate", "common.form.endDate.greater");
             
-        
+        if (team.getFile() != null && !team.getFile().getOriginalFilename().equals("") ) {
+            if (!(team.getFile().getContentType().equals("image/jpeg")
+                    || team.getFile().getContentType().equals("image/png")
+                    || team.getFile().getContentType().equals("image/gif"))) {
+
+                errors.rejectValue("file", "common.form.file.notImage");
+                return;
+            }
+        }
     }
 }
