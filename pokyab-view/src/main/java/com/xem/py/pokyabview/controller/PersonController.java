@@ -101,7 +101,8 @@ public class PersonController {
         logger.info("person:"+person.toString());
         
         //Spring Validator        
-        new PersonValidator().validate(person, result);
+        new PersonValidator().validate(person, result);        
+        logger.info("Errores"+result.getErrorCount());
         
         if (result.hasErrors()) {
             model.addAttribute("title", "Persona");
@@ -117,10 +118,11 @@ public class PersonController {
             if (daoResult) alertMessage = "Persona modificada"; 
         }
         
+        logger.info("Antes de FileUploadUtility ");
         if (person.getFile() != null)
             if (!person.getFile().getOriginalFilename().equals("")) 
-                FileUploadUtility.uploadFile(request, person.getFile(), String.valueOf(person.getPersonId()));
-        
+                FileUploadUtility.uploadFile(request, person.getFile(), "person_"+String.valueOf(person.getPersonId()));
+        logger.info("Despues de FileUploadUtility ");
         
         if (daoResult) returnUrl = "redirect:/manage/person/"+person.getPersonId()+"?alertMessage="+alertMessage;
         else returnUrl = "redirect:/persons?alertMessage="+alertMessage;
@@ -139,9 +141,9 @@ public class PersonController {
             logger.info("person: "+person.toString());
             daoResult = personDAO.delete(person);
             if (daoResult) alertMessage = "Persona borrada";                   
-        } else {
+        } else 
             alertMessage = "Persona no encontrada"; 
-        }
+        
         logger.info("daoResult: "+daoResult);
         return "redirect:/persons?alertMessage=" + alertMessage;
     }
@@ -160,10 +162,9 @@ public class PersonController {
             else person.setActive('Y');
             daoResult = personDAO.update(person);
             if (daoResult) alertMessage = "Persona actualizada satisfactoriamente";
-        } else {
+        } else 
             alertMessage = "Persona no encontrada"; 
-        }
+        
         return alertMessage;
     }
-
 }

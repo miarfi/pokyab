@@ -50,7 +50,11 @@
                 <!-- Load de contact content -->
                 <c:if test="${userClickContact == true }">
                    <%@include file="contact.jsp" %>
-                </c:if>     
+                </c:if>
+                <!-- Load de home content -->
+                 <c:if test="${userClickHome == true }">
+                   <%@include file="home.jsp" %>
+                </c:if>
                                                                                    
             </div>
                 

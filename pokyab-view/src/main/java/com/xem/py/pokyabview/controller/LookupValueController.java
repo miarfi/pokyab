@@ -4,10 +4,12 @@ import com.xem.py.pokyabmodel.dao.LookupValueDAO;
 import com.xem.py.pokyabmodel.dto.LookupValue;
 import com.xem.py.pokyabmodel.validator.LookupValueValidator;
 import java.util.List;
-import org.hibernate.exception.ConstraintViolationException;
+//import javax.ejb.EJBTransactionRolledbackException;
+import javax.persistence.RollbackException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -80,8 +82,20 @@ public class LookupValueController {
                 if (daoResult)
                     alertMessage = "Valor actualizado";                
             }
-        } catch (ConstraintViolationException  e) {
-            logger.info("error: " + e.getMessage());
+        } catch (RollbackException e) {
+            logger.info("error1: " + e.getMessage());
+            daoResult = false;
+            alertMessage = "Error en db";
+        } catch (org.hibernate.exception.ConstraintViolationException  e){
+            logger.info("error2: " + e.getMessage());
+            daoResult = false;
+            alertMessage = "Error en db";
+//        } catch (EJBTransactionRolledbackException e){
+//            logger.info("error3: " + e.getMessage());
+//            daoResult = false;
+//            alertMessage = "Error en db";
+        } catch(DataIntegrityViolationException e) {
+            logger.info("error4: " + e.getMessage());
             daoResult = false;
             alertMessage = "Error en db";
         }

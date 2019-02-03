@@ -14,22 +14,29 @@
                     <spring:message code="menu.navbar.teams"/>
                 <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
+<!--            <li class="nav-item">
                 <a class="nav-link" href="${contextRoot}/persons">
                     <spring:message code="menu.navbar.persons"/>
                 </a>
-            </li>             
+            </li>             -->
             <li class="nav-item">
                 <a class="nav-link" href="${contextRoot}/trainings">
                     <spring:message code="menu.navbar.trainings"/>
                 </a>
             </li>  
-            
+            <li class="nav-item">
+                <a class="nav-link" href="${contextRoot}/matchs">
+                    <spring:message code="menu.navbar.matchs"/>
+                </a>
+            </li> 
+            <security:authorize access="hasRole('ROLE_ADMIN')">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <spring:message code="menu.navbar.catalog"/>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="${contextRoot}/persons">
+                    <spring:message code="menu.navbar.persons"/></a>
                   <a class="dropdown-item" href="${contextRoot}/lookupTypes">
                       <spring:message code="menu.navbar.lookupTypes"/></a>                  
                   <div class="dropdown-divider"></div>
@@ -40,8 +47,7 @@
                   <a class="dropdown-item" href="${contextRoot}/seasons">
                       <spring:message code="menu.navbar.seasons"/></a>                      
                 </div>
-            </li>
-            
+            </li>            
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <spring:message code="menu.navbar.admon"/>
@@ -53,7 +59,8 @@
                   <a class="dropdown-item" href="#">
                       </a>                                      
                 </div>
-            </li>           
+            </li>     
+            </security:authorize>
         </ul>
          
         <ul class="nav navbar-nav navbar-right">

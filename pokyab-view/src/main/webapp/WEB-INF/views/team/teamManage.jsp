@@ -13,8 +13,7 @@
                     <li class="breadcrumb-item active" aria-current="page">${team.teamName}</li>
                 </ol>
             </nav>
-<!--        Current Locale : ${pageContext.response.locale}            
-        <hr/>-->
+
         </div>
     </div>    
             
@@ -32,8 +31,21 @@
                         modelAttribute="team" 
                         action="${contextRoot}/manage/team" 
                         method="POST"
-                        class="form-horizonal">
-
+                        class="form-horizonal"
+                        enctype="multipart/form-data">
+                        <div class="form-row">
+                            <div>
+                                <img class="rounded" src="${images}/team_${team.teamId}.jpg" alt=""> 
+                            </div>
+                            <div class="form-group col-sm-6 col-md-5">
+                                <label for="file" class="col-form-label">
+                                    <spring:message code="common.field.file.upload"/></label>
+                                <div>
+                                    <sf:input path="file" id="file" type="file" class="form-control"/>
+                                    <sf:errors path="file" cssClass="text-danger" element="div"/>
+				</div>
+                            </div> 
+                        </div>
                         <div class="form-row">
                             <div class="form-group col-sm-5 col-md-4">
                                 <label for="teamName" class="col-form-label">

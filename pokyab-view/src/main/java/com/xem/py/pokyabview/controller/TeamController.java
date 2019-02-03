@@ -6,14 +6,18 @@ import com.xem.py.pokyabmodel.dao.LookupValueDAO;
 import com.xem.py.pokyabmodel.dao.PersonDAO;
 import com.xem.py.pokyabmodel.dao.SeasonDAO;
 import com.xem.py.pokyabmodel.dao.TeamDAO;
+import com.xem.py.pokyabmodel.dao.TrainingDAO;
 import com.xem.py.pokyabmodel.dto.League;
 import com.xem.py.pokyabmodel.dto.LookupValue;
 import com.xem.py.pokyabmodel.dto.Person;
 import com.xem.py.pokyabmodel.dto.Season;
 import com.xem.py.pokyabmodel.dto.Team;
 import com.xem.py.pokyabmodel.dto.TeamPerson;
+import com.xem.py.pokyabmodel.dto.Training;
 import com.xem.py.pokyabmodel.validator.TeamValidator;
+import com.xem.py.pokyabview.util.FileUploadUtility;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +49,9 @@ public class TeamController {
     @Autowired
     private SeasonDAO seasonDAO;
     @Autowired
-    private LeagueDAO leagueDAO;  
+    private LeagueDAO leagueDAO;
+    @Autowired
+    private TrainingDAO trainingDAO;  
     @Autowired
     private LookupValueDAO lookupValueDAO; 
        
@@ -64,6 +70,7 @@ public class TeamController {
     public Season getSeason() {
         return new Season();
     }
+    
     
     @ModelAttribute("teamPerson")
     public TeamPerson getTeamPerson() {
@@ -104,15 +111,16 @@ public class TeamController {
         return lookupValueDAO.getLkpValuesByType("PHISIC_CODE", "");
     }
     
+    //Lovs
     @ModelAttribute("persons")
     public List<Person> getPersons() {
         return personDAO.getAvailablePersons();
     }
     
-    @ModelAttribute("trainers")
-    public List<Person> getTrainers() {
-        return personDAO.getActivePersons();
-    }
+//    @ModelAttribute("trainers")
+//    public List<Person> getTrainers() {
+//        return personDAO.getActivePersons();
+//    }
 
     @ModelAttribute("leagues")
     public List<League> getLeagues() {
@@ -122,6 +130,11 @@ public class TeamController {
     @ModelAttribute("seasons")
     public List<Season> getSeasons() {
         return seasonDAO.getActiveSeasons();
+    }
+    
+    @ModelAttribute("trainings")
+    public List<Training> getTrainings() {
+        return trainingDAO.getActiveTrainings();
     }
 
     @RequestMapping(value = {"/teams"})
@@ -162,20 +175,20 @@ public class TeamController {
     }
     
     @RequestMapping(value = {"/manage/team"}, method = RequestMethod.POST)
-    public String handleTeamSubmission(@ModelAttribute Team team,
-            BindingResult result, Model model) {
+    public String handleTeamSubmission(@ModelAttribute Team team
+            ,HttpServletRequest request, BindingResult result, Model model ) {
         logger.info("En handleTeamSubmission");    
         String alertMessage = "";
         boolean daoResult = false;
         String returnUrl;
    
         //Spring Validator        
-        new TeamValidator().validate(team, result);
+        new TeamValidator().validate(team, result);        
+        logger.info("Errores"+result.getErrorCount());
         
         if (result.hasErrors()) {
             model.addAttribute("title", "Team");
-            model.addAttribute("userClickTeam", true);  
-             logger.info("Errores");
+            model.addAttribute("userClickTeam", true);             
             return "team/teamMain";
         }
         
@@ -186,6 +199,13 @@ public class TeamController {
             daoResult = teamDAO.update(team);
             if (daoResult) alertMessage = "Equipo actualizado";
         }       
+        
+        logger.info("Antes de FileUploadUtility ");
+        if (team.getFile() != null)
+            if (!team.getFile().getOriginalFilename().equals("")) 
+                FileUploadUtility.uploadFile(request, team.getFile(), "team_"+String.valueOf(team.getTeamId()));
+        
+        logger.info("Despues de FileUploadUtility ");
         if (daoResult) returnUrl = "redirect:/manage/team/"+team.getTeamId()+"?alertMessage="+alertMessage;
         else returnUrl = "redirect:/teams?alertMessage="+alertMessage;
         

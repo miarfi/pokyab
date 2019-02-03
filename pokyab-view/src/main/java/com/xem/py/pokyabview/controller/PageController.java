@@ -38,6 +38,7 @@ public class PageController {
     public ModelAndView index(@RequestParam(name="logout",required=false)String logout) {
         ModelAndView mv = new ModelAndView("page");
         mv.addObject("greeting", "Bienvenido a Pokyab");
+        mv.addObject("userClickHome", true);
         
         if(logout!=null) {
             mv.addObject("message", "You have successfully logged out!");			

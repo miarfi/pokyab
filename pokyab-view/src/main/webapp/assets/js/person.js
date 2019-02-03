@@ -136,3 +136,19 @@ if ($table.length) {
     });
 }
 
+
+$('#makeEditable').SetEditable({
+    $addButton: $('#but_add')
+});
+
+$('#makeEditable').SetEditable({
+    $addButton: $('#but_add'),
+    columnsEd: null  // Ex.: "1,2,3,4,5"
+});
+
+$('#makeEditable').SetEditable({
+  onEdit: function() {}, 
+  onDelete: function() {}, 
+  onBeforeDelete: function() {},
+  onAdd: function() {} 
+});
