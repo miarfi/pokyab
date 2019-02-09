@@ -132,5 +132,7 @@
             </div>
         </div>
     </div>
-                        
+             
+                                
+    <%@include  file="contactPoints.jsp"%>                                
 <!--</div>-->

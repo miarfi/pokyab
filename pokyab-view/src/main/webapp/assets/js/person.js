@@ -137,18 +137,47 @@ if ($table.length) {
 }
 
 
-$('#makeEditable').SetEditable({
-    $addButton: $('#but_add')
-});
+$table = $('#contactPointsListTable');
 
-$('#makeEditable').SetEditable({
-    $addButton: $('#but_add'),
-    columnsEd: null  // Ex.: "1,2,3,4,5"
-});
+if ($table.length) {
 
-$('#makeEditable').SetEditable({
-  onEdit: function() {}, 
-  onDelete: function() {}, 
-  onBeforeDelete: function() {},
-  onAdd: function() {} 
-});
+    console.log('Inside js personsListTable');
+    console.log('jsonUrl: ' + jsonUrl);
+    $table.DataTable({
+//        "pagingType": "numbers",
+        "language": {
+            "loadingRecords": "Cargando...",
+            "lengthMenu": "Mostrar _MENU_ por p&aacute;gina",
+            "zeroRecords": "No se encontraron datos",
+            "info": "Mostrar p&aacute;gina _PAGE_ de _PAGES_",
+            "infoEmpty": "Ning&uacute;n registro disponible",
+            "infoFiltered": "(filtro de _MAX_ total registros)",
+            "search": "Buscar",
+            "paginate": {
+                "first": "Primero",
+                "last": "Ultimo",
+                "next": "Siguiente",
+                "previous": "Anterior"
+            }
+        },        
+        lengthMenu: [[10, 20, 50, -1], ['10 registros', '20 registros', '50 registros', 'Todos']],
+        pageLength: 10
+    });
+}
+
+
+//$('#makeEditable').SetEditable({
+//    $addButton: $('#but_add')
+//});
+//
+//$('#makeEditable').SetEditable({
+//    $addButton: $('#but_add'),
+//    columnsEd: null  // Ex.: "1,2,3,4,5"
+//});
+//
+//$('#makeEditable').SetEditable({
+//  onEdit: function() {}, 
+//  onDelete: function() {}, 
+//  onBeforeDelete: function() {},
+//  onAdd: function() {} 
+//});

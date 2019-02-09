@@ -16,8 +16,7 @@
                 "info": "Mostrar p&aacute;gina _PAGE_ de _PAGES_",
                 "infoEmpty": "Ning&uacute;n registro disponible",
                 "infoFiltered": "(filtro de _MAX_ total registros)",
-                "search": "Buscar",
-                "pagingType": "full_numbers",
+                "search": "Buscar",                
                 "paginate": {
                     "first": "Primero",
                     "last": "Ultimo",
@@ -25,6 +24,7 @@
                     "previous": "Anterior"
                 }
             },
+            pagingType: "full_numbers",
             lengthMenu: [[10, 20, 50, -1], ['10 registros', '20 registros', '50 registros', 'Todos']],
             pageLength: 10,
             ajax: {

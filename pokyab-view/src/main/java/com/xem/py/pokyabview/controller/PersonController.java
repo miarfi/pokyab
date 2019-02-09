@@ -1,11 +1,13 @@
 
 package com.xem.py.pokyabview.controller;
 
+import com.xem.py.pokyabmodel.dao.ContactPointDAO;
 import com.xem.py.pokyabmodel.dao.LookupValueDAO;
 import com.xem.py.pokyabmodel.dao.PersonDAO;
 import com.xem.py.pokyabmodel.dto.LookupValue;
 import com.xem.py.pokyabmodel.dto.Person;
 import com.xem.py.pokyabmodel.validator.PersonValidator;
+import com.xem.py.pokyabmodel.view.ContactPointV;
 import com.xem.py.pokyabview.util.FileUploadUtility;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -35,6 +37,8 @@ public class PersonController {
     
     @Autowired
     private PersonDAO personDAO;  
+    @Autowired
+    private ContactPointDAO contactPointDAO;  
     @Autowired
     private LookupValueDAO lookupValueDAO; 
     
@@ -72,7 +76,8 @@ public class PersonController {
         
         //Init new Person
         Person person = new Person();
-        mv.addObject("person", person);                
+        mv.addObject("person", person);    
+        
         return mv;
     }
     
@@ -87,7 +92,13 @@ public class PersonController {
         
         //Get Person object
         Person person = personDAO.getPersonById(id);
-        mv.addObject("person", person);        
+        mv.addObject("person", person);    
+        
+        //Get ContactPoint object
+        List<ContactPointV> contactPoints =   contactPointDAO.getContactPointByOwnerId(id, "PERSON");
+        mv.addObject("contactPoints", contactPoints); 
+        logger.info("contactPoints: "+contactPoints.size());
+        
         return mv;
     }    
     
