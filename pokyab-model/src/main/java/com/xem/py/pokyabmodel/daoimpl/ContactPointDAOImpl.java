@@ -83,4 +83,14 @@ public class ContactPointDAOImpl implements ContactPointDAO{
                 .setParameter("id", id)
                 .getSingleResult();
     }
+    
+    @Override
+      public List<ContactPointV> getContactPointByOwnerId(int ownerTableId, String ownerTableName) {
+        String query = "FROM ContactPointV WHERE ownerTableId = :ownerTableId AND ownerTableName = :ownerTableName";
+        return sessionFactory.getCurrentSession()
+                .createQuery(query, ContactPointV.class)
+                .setParameter("ownerTableId", ownerTableId)
+                .setParameter("ownerTableName", ownerTableName)
+                .getResultList();
+    }
 }

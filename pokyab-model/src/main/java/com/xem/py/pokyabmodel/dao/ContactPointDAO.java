@@ -14,5 +14,6 @@ public interface ContactPointDAO {
     boolean delete(ContactPoint contactPoint);
     List<ContactPoint> getActiveContactPoints();     
     List<ContactPointV> getAllContactPointsV();   
-    ContactPoint getContactPointById(int id);  
+    public ContactPoint getContactPointById(int id);
+    List<ContactPointV> getContactPointByOwnerId(int ownerTableId, String ownerTableName);  
 }
