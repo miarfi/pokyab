@@ -56,34 +56,35 @@ public class ContactPointController {
         return mv;
     }
     
-    @RequestMapping(value={"/manage/contactPoint"})
-    public ModelAndView showManageContactPoint() {
-        ModelAndView mv = new ModelAndView("contactPoint/contactPointMain");
-        mv.addObject("title", "ContactPoint");
-        mv.addObject("userClickContactPoint", true);        
-        
-        //Init new ContactPoint
-        ContactPoint contactPoint = new ContactPoint();
-        mv.addObject("contactPoint", contactPoint);                
-        return mv;
-    }
+//    @RequestMapping(value={"/manage/contactPoint"})
+//    public ModelAndView showManageContactPoint() {
+//        ModelAndView mv = new ModelAndView("contactPoint/contactPointMain");
+//        mv.addObject("title", "ContactPoint");
+//        mv.addObject("userClickContactPoint", true);        
+//        
+//        //Init new ContactPoint
+//        ContactPoint contactPoint = new ContactPoint();
+//        mv.addObject("contactPoint", contactPoint);                
+//        return mv;
+//    }
+//    
+//    @RequestMapping(value = {"/manage/contactPoint/{id}"})
+//    public ModelAndView showManageContactPointEdit(@PathVariable int id
+//        ,@RequestParam(name = "alertMessage", required = false) String alertMessage) {
+//        logger.info("En showManageContactPointEdit");
+//        ModelAndView mv = new ModelAndView("contactPoint/contactPointMain");
+//        mv.addObject("title", "ContactPoint");
+//        mv.addObject("userClickContactPoint", true);
+//        mv.addObject("alertMessage", alertMessage);
+//        
+//        //Get ContactPoint object
+//        ContactPoint contactPoint = contactPointDAO.getContactPointById(id);
+//        mv.addObject("contactPoint", contactPoint);        
+//        return mv;
+//    }    
     
-    @RequestMapping(value = {"/manage/contactPoint/{id}"})
-    public ModelAndView showManageContactPointEdit(@PathVariable int id
-        ,@RequestParam(name = "alertMessage", required = false) String alertMessage) {
-        logger.info("En showManageContactPointEdit");
-        ModelAndView mv = new ModelAndView("contactPoint/contactPointMain");
-        mv.addObject("title", "ContactPoint");
-        mv.addObject("userClickContactPoint", true);
-        mv.addObject("alertMessage", alertMessage);
-        
-        //Get ContactPoint object
-        ContactPoint contactPoint = contactPointDAO.getContactPointById(id);
-        mv.addObject("contactPoint", contactPoint);        
-        return mv;
-    }    
-    
-    @RequestMapping(value="/manage/contactPoint", method=RequestMethod.POST)
+    @RequestMapping(value="/manage/contactPoint", method=RequestMethod.GET)//POST
+    @ResponseBody
     public String handleContactPointSubmission(@ModelAttribute ContactPoint contactPoint
             ,HttpServletRequest request,BindingResult result, Model model) {
         logger.info("info.Inside handleContactPointSubmission method");
@@ -93,14 +94,14 @@ public class ContactPointController {
         logger.info("contactPoint:"+contactPoint.toString());
         
         //Spring Validator        
-        new ContactPointValidator().validate(contactPoint, result);        
-        logger.info("Errores"+result.getErrorCount());
-        
-        if (result.hasErrors()) {
-            model.addAttribute("title", "Punto de Contacto");
-            model.addAttribute("userClickContactPoint", true);             
-            return "contactPoint/contactPointMain";
-        }
+//        new ContactPointValidator().validate(contactPoint, result);        
+//        logger.info("Errores"+result.getErrorCount());
+//        
+//        if (result.hasErrors()) {
+//            model.addAttribute("title", "Punto de Contacto");
+//            model.addAttribute("userClickContactPoint", true);             
+//            return "contactPoint/contactPointMain";
+//        }
         
         if (contactPoint.getContactPointId() == 0) {
             daoResult = contactPointDAO.add(contactPoint);
@@ -114,10 +115,13 @@ public class ContactPointController {
         else returnUrl = "redirect:/contactPoints?alertMessage="+alertMessage;
         
         logger.info("daoResult: "+daoResult+" alertMessage: "+alertMessage);
-        return returnUrl;
+//        return returnUrl;
+        return alertMessage;
+        
     }
     
     @RequestMapping(value="/manage/contactPoint/{id}/delete", method=RequestMethod.GET)
+    @ResponseBody
     public String handleContactPointDelete(@PathVariable int id) {
         logger.info("info.Inside handleContactPointDelete method");
         String alertMessage = "";
@@ -131,7 +135,8 @@ public class ContactPointController {
             alertMessage = "Punto de Contacto no encontrado"; 
         
         logger.info("daoResult: "+daoResult);
-        return "redirect:/contactPoints?alertMessage=" + alertMessage;
+        //return "redirect:/contactPoints?alertMessage=" + alertMessage;
+        return alertMessage;
     }
    
     @RequestMapping(value="/manage/contactPoint/{id}/activation", method=RequestMethod.GET)

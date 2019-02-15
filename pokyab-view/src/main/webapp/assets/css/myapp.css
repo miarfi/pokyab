@@ -9,13 +9,13 @@ html {
 }
 
 body {
-    padding-top: 54px;
+    padding-top: 10px;/*54px*/
     height: 100%;
 }
 
 @media ( min-width : 992px) {
     body {
-        padding-top: 56px;
+        padding-top: 10px;/*56px;*/
     }
 }
 /*     
@@ -26,20 +26,21 @@ body {
     footer {
         margin: 0;
     }
-    .wrapper {
+*/    .wrapper {
         min-height: 100%;
         position: relative;
-    }
+    }/*
     .content {
         padding-bottom: 60px;
     }
 
-    footer class
+*/    
+    /*footer class*/
     .footer {
         position: relative;
-        bottom: 15px;
+        bottom: 10px;/*15px*/
         height: 60px;
-    }
+    }/*
 
     .dataTableImg{
         width:100px;
@@ -120,7 +121,7 @@ body {
     }
 /*}*/
 
-/*Font Awesome*/
+    /*Font Awesome*/
     fas fa-edit{
         font-size: 34px !important;
     }
