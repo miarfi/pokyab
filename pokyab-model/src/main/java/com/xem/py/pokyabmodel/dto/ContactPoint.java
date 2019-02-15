@@ -114,4 +114,11 @@ public class ContactPoint implements Serializable {
     public void setPrimaryByType(Character primaryByType) {
         this.primaryByType = primaryByType;
     }  
+
+    @Override
+    public String toString() {
+        return "ContactPoint{" + "contactPointId=" + contactPointId + ", ownerTableName=" + ownerTableName + ", ownerTableId=" + ownerTableId + ", contactType=" + contactType + ", useType=" + useType + ", contactValue=" + contactValue + ", active=" + active + ", primaryByType=" + primaryByType + '}';
+    }
+    
+    
 }
