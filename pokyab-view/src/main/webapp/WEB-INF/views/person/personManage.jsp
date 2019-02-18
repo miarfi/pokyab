@@ -34,10 +34,10 @@
                         class="form-horizonal"
                         enctype="multipart/form-data">
                         <div class="form-row">   
-                            <div class="form-group col-sm-5 col-md-4">
+                            <div class="form-group col-sm-4 col-md-4 col-lg-3">
                                 <img class="img-fluid d-block mx-auto" src="${images}/person_${person.personId}.jpg" alt=""> 
                             </div>
-                            <div class="form-group col-sm-5 col-md-4">
+                            <div class="form-group col-sm-4 col-md-4 col-lg-3">
                                 <label for="file" class="col-form-label">
                                     <spring:message code="common.field.file.upload"/></label>
                                 <div>
@@ -47,14 +47,14 @@
                             </div>                             
                         </div>
                         <div class="form-row">
-                            <div class="form-group col-sm-5 col-md-4">
+                            <div class="form-group col-sm-4 col-md-4 col-lg-3">
                                 <label for="firstName" class="col-form-label">
                                     <spring:message code="person.table.firstName"/></label>                                
                                 <sf:hidden id="personId" path="personId"/>
                                 <sf:input path="firstName" id="firstName" type="text" class="form-control" required="true"/>
                                 <sf:errors path="firstName" cssClass="text-danger" element="div" />                                
                             </div>
-                            <div class="form-group col-sm-5 col-md-4">
+                            <div class="form-group col-sm-4 col-md-4 col-lg-3">
                                 <label for="lastName" class="col-form-label">
                                     <spring:message code="person.table.lastName"/></label>                                
                                 <sf:input path="lastName" id="lastName" type="text" class="form-control" required="true"/>
@@ -62,7 +62,7 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group col-sm-5 col-md-4">
+                            <div class="form-group col-sm-4 col-md-4 col-lg-3">
                                 <label for="genderCode" class="col-form-label">
                                     <spring:message code="person.table.genderCode"/></label>                                                               
                                 <sf:select path="genderCode" id="genderCode" class="form-control" required="true">
@@ -71,7 +71,7 @@
                                 </sf:select>                                
                                 <sf:errors path="genderCode" cssClass="text-danger" element="div" />                                
                             </div>  
-                            <div class="form-group col-sm-5 col-md-4">
+                            <div class="form-group col-sm-4 col-md-4 col-lg-3">
                                 <label for="personType" class="col-form-label">
                                     <spring:message code="person.table.personType"/></label>                                                               
                                 <sf:select path="personType" id="personType" class="form-control" required="true">
@@ -82,7 +82,7 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group col-sm-4 col-md-3">
+                            <div class="form-group col-sm-4 col-md-4 col-lg-3">
                                 <label for="maritalStatusCode" class="col-form-label">
                                     <spring:message code="person.table.maritalStatusCode"/></label>                               
                                 <sf:select path="maritalStatusCode" id="maritalStatusCode" class="form-control">
@@ -119,8 +119,7 @@
                                         <sf:errors path="endDate" cssClass="text-danger" element="div" />
                                     </div>
                                 </div>   
-                            </c:if>
-                            
+                            </c:if>                            
                         </div>
                         
                         <div class="form-group">								                                                        
@@ -128,6 +127,10 @@
                                 <spring:message code="common.btn.save"/></button>
                         </div>                                       
                     </sf:form>                    
+                
+                    
+                    
+                
                 </div>                
             </div>
         </div>
