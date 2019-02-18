@@ -15,4 +15,5 @@ public interface LocationDAO {
     List<Location> getActiveLocations();
     List<LocationV> getAllLocationsV();   
     Location getLocationById(int id); 
+    List<LocationV> getLocationsByOwnerId(int ownerTableId, String ownerTableName);
 }

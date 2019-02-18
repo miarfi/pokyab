@@ -85,7 +85,7 @@ public class ContactPointDAOImpl implements ContactPointDAO{
     }
     
     @Override
-      public List<ContactPointV> getContactPointByOwnerId(int ownerTableId, String ownerTableName) {
+    public List<ContactPointV> getContactPointByOwnerId(int ownerTableId, String ownerTableName) {
         String query = "FROM ContactPointV WHERE ownerTableId = :ownerTableId AND ownerTableName = :ownerTableName";
         return sessionFactory.getCurrentSession()
                 .createQuery(query, ContactPointV.class)

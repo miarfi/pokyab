@@ -38,7 +38,7 @@ public class Location implements Serializable {
     @Basic(optional = false)
     @Column(name = "OWNER_TABLE_ID")
     private int ownerTableId;
-    @Basic(optional = false)
+//    @Basic(optional = false)
     @Column(name = "LOCATION_TYPE")
     private String locationType;    
     @Column(name = "NAME")
