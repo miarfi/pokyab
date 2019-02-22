@@ -72,7 +72,7 @@ public class Location implements Serializable {
     private String betweenStreet2;
     @Column(name = "REFERENCE")
     private String reference;
-    @Basic(optional = false)
+//    @Basic(optional = false)
     @Column(name = "VALIDATE_SEPOMEX")
     private Character validateSepomex;    
     @Column(name = "PRIMARY_BY_TYPE")
@@ -93,6 +93,7 @@ public class Location implements Serializable {
     public Location() {
         this.active = 'Y';
         this.startDate = new java.sql.Date(System.currentTimeMillis());
+//        this.locationType = "SHIP_TO";
     }
 
     public int getLocationId() {

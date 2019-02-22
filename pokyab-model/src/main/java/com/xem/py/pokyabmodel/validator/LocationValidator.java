@@ -21,7 +21,10 @@ public class LocationValidator implements Validator{
         Location location = (Location) o;
         
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "ownerTableName", "common.form.string.notEmpty");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "ownerTableId", "common.form.int.notEmpty");                
+//ToDo
+//Source to convert from must be an instance of [@javax.persistence.Basic @javax.persistence.Column int]; 
+//instead it was a [java.lang.Long]
+//        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "ownerTableId", "common.form.int.notEmpty");                
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "locationType", "common.form.select.notEmpty");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "address1", "common.form.string.notEmpty");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "state", "common.form.string.notEmpty"); 

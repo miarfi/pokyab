@@ -95,4 +95,14 @@ public class LocationDAOImpl implements LocationDAO{
                 .setParameter("ownerTableName", ownerTableName)
                 .getResultList();
     }
+    
+    @Override
+    public Location getPrimLocationByOwnerId(int ownerTableId, String ownerTableName) {
+        String query = "FROM Location WHERE ownerTableId = :ownerTableId AND ownerTableName = :ownerTableName AND primaryByType = 'Y'";
+        return sessionFactory.getCurrentSession()
+                .createQuery(query, Location.class)
+                .setParameter("ownerTableId", ownerTableId)
+                .setParameter("ownerTableName", ownerTableName)
+                .getSingleResult();
+    }
 }
