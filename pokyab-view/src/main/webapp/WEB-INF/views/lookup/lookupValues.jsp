@@ -20,12 +20,14 @@
                         <c:forEach items="${lookupType.lookupValueCollection}" var="lookupValue">
                             <tr>
                                 <td>
-                                    <a href="${contextRoot}/manage/lookupValue/${lookupValue.lookupValueId}">
+                                    <a href="${contextRoot}/manage/lookupValue/${lookupValue.lookupValueId}"
+                                       title="<spring:message code="common.a.title.edit"/>">
                                         <i class="fas fa-edit"></i>                                       
                                     </a>                                    
                                 </td>
                                 <td>
-                                    <a href="${contextRoot}/manage/lookupValue/${lookupValue.lookupValueId}/delete" class="confirmation">
+                                    <a href="${contextRoot}/manage/lookupValue/${lookupValue.lookupValueId}/delete" class="confirmation"
+                                       title="<spring:message code="common.a.title.delete"/>">
                                         <i class="fas fa-trash"></i>                                        
                                     </a>                                    
                                 </td>

@@ -14,7 +14,9 @@
 <html>
     <!--head-->
     <%@include file="../shared/head.jsp"%>
-
+    <script>
+        window.currentPage = "lookupType";
+    </script>
     <body>        
         <div class="wrapper">
             <!--navbar-->

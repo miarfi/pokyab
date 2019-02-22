@@ -14,7 +14,10 @@
 <html>
     <!--head-->
     <%@include file="../shared/head.jsp"%>
-
+    <script>
+        window.currentPage = "contactPoint";
+    </script>
+        
     <body>        
         <div class="wrapper">
             <!--navbar-->

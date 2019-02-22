@@ -28,8 +28,7 @@ $(function () {
     if ($alert.length) {
         setTimeout(function () {
             $alert.fadeOut('slow');
-        }, 5000
-                );
+        }, 5000 );
     }
 
     //bootbox class=confirmation 
@@ -89,8 +88,8 @@ $(function () {
                 console.log('value: '+value);
                 if (confirmed) {
 
-                    //Post update person
-                    var activationUrl = window.contextRoot + '/manage/lookupValue/' + value + '/activation';
+                    //Post activate
+                    var activationUrl = window.contextRoot + '/manage/'+window.currentPage+'/' + value + '/activation';
                     console.log('activationUrl: ' + activationUrl);
                     $.ajax({
                         type: 'GET',

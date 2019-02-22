@@ -11,6 +11,8 @@
         <script>
             window.menu = '${title}';
             window.contextRoot = '${contextRoot}';
+            window.commonATitleEdit = '<spring:message code="common.a.title.edit"/>';
+            window.commonATitleDelete = '<spring:message code="common.a.title.delete"/>';
         </script>
         
         <link href="${css}/bs/bootstrap.css" rel="stylesheet" type="text/css"/>

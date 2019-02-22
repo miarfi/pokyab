@@ -2,13 +2,17 @@
 package com.xem.py.pokyabview.controller;
 
 import com.xem.py.pokyabmodel.dao.ContactPointDAO;
+import com.xem.py.pokyabmodel.dao.LocationDAO;
 import com.xem.py.pokyabmodel.dao.LookupValueDAO;
 import com.xem.py.pokyabmodel.dao.PersonDAO;
+import com.xem.py.pokyabmodel.dto.Location;
 import com.xem.py.pokyabmodel.dto.LookupValue;
 import com.xem.py.pokyabmodel.dto.Person;
 import com.xem.py.pokyabmodel.validator.PersonValidator;
 import com.xem.py.pokyabmodel.view.ContactPointV;
+import com.xem.py.pokyabmodel.view.LocationV;
 import com.xem.py.pokyabview.util.FileUploadUtility;
+import java.util.Iterator;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
@@ -41,6 +45,15 @@ public class PersonController {
     private ContactPointDAO contactPointDAO;  
     @Autowired
     private LookupValueDAO lookupValueDAO; 
+    @Autowired
+    private LocationDAO locationDAO;  
+    
+    //Location Modal
+    @ModelAttribute("location")
+    public Location getLookupType() {
+        logger.info("En getLookupType");
+        return new Location();
+    }
     
     //Form Lists
     @ModelAttribute("personTypes")
@@ -94,11 +107,27 @@ public class PersonController {
         Person person = personDAO.getPersonById(id);
         mv.addObject("person", person);    
         
-        //Get ContactPoint object
+        //Get ContactPoints list
         List<ContactPointV> contactPoints =   contactPointDAO.getContactPointByOwnerId(id, "PERSON");
         mv.addObject("contactPoints", contactPoints); 
         logger.info("contactPoints: "+contactPoints.size());
         
+        //Get Locations list
+        List<LocationV> locations =   locationDAO.getLocationsByOwnerId(id, "PERSON");
+        mv.addObject("locations", locations); 
+        logger.info("locations: "+locations.size());
+
+        //Get Primary Loc
+        Location location = null ;
+        try {
+            location = locationDAO.getPrimLocationByOwnerId(id, "PERSON"); 
+            logger.info("locationId: "+location.getLocationId()); 
+        } catch (Exception e) {
+            logger.info("No se encontro la ubicación primaria "); 
+            location = new Location();
+        }
+        mv.addObject("location", location); 
+                        
         return mv;
     }    
     

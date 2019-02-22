@@ -87,15 +87,15 @@ public class LocationController {
         String returnUrl = "";
         logger.info("location:"+location.toString());
         
-        //Spring Validator        
-        new LocationValidator().validate(location, result);        
-        logger.info("Errores"+result.getErrorCount());
-        
-        if (result.hasErrors()) {
-            model.addAttribute("title", "Direccion");
-            model.addAttribute("userClickLocation", true);             
-            return "location/locationMain";
-        }
+//        //Spring Validator        
+//        new LocationValidator().validate(location, result);        
+//        logger.info("Errores"+result.getErrorCount());
+//        
+//        if (result.hasErrors()) {
+//            model.addAttribute("title", "Direccion");
+//            model.addAttribute("userClickLocation", true);             
+//            return "location/locationMain";
+//        }
         
         if (location.getLocationId() == 0) {
             daoResult = locationDAO.add(location);
@@ -106,7 +106,8 @@ public class LocationController {
         }
         
                
-        if (daoResult) returnUrl = "redirect:/manage/location/"+location.getLocationId()+"?alertMessage="+alertMessage;
+        if (daoResult) returnUrl = "redirect:/manage/person"//+location.getOwnerTableName()
+                +"/"+location.getOwnerTableId()+"?alertMessage="+alertMessage;
         else returnUrl = "redirect:/locations?alertMessage="+alertMessage;
         
         logger.info("daoResult: "+daoResult+" alertMessage: "+alertMessage);

@@ -39,8 +39,8 @@ if ($table.length) {
                 bSortable: false,
                 mRender: function (data, type, row) {
                     var str = '';
-                    str += '<a href="' + window.contextRoot + '/manage/person/'
-                            + data + '"><i class="fas fa-edit"></i></a>';
+                    str += '<a href="' + window.contextRoot + '/manage/person/'+ data + '"'
+                            +' title="'+window.commonATitleEdit+'"><i class="fas fa-edit"></i></a>';
                     return str;
                 }
             },
@@ -49,8 +49,8 @@ if ($table.length) {
                 bSortable: false,
                 mRender: function (data, type, row) {
                     var str = '';
-                    str += '<a href="' + window.contextRoot + '/manage/person/'
-                            + data + '/delete" class="confirmation"><i class="fas fa-trash"></i></a>';
+                    str += '<a href="' + window.contextRoot + '/manage/person/'+ data + '/delete"'
+                            +' title="'+ window.commonATitleDelete+'" class="confirmation"><i class="fas fa-trash"></i></a>';
                     return str;
                 }
             },
@@ -191,10 +191,10 @@ if ($table.length) {
 //                '</td><td>'+                
                 '<a href="#" class="undo" title="Cancelar" data-toggle="tooltip">' +
                 '<i class="fas fa-undo"></i></a></td>' +                 
-                '<td><input type="text" class="form-control" name="contactType" id="contactType"></td>' +
+//                '<td><input type="text" class="form-control" name="contactType" id="contactType"></td>' +
                 '<td><input type="text" class="form-control" name="useType" id="useType"></td>' +
                 '<td><input type="text" class="form-control" name="contactValue" id="contactValue"></td>' +
-                '<td><input type="text" class="form-control" name="primaryByType" id="primaryByType"></td>' +
+//                '<td><input type="text" class="form-control" name="primaryByType" id="primaryByType"></td>' +
 //                '<td></td>' +
 //                '<td>' + actions + '</td>' +
                 '</tr>';
@@ -206,9 +206,12 @@ if ($table.length) {
     // Add row on add button click
     $(document).on("click", ".add", function () {
         console.log('En click add');
+        var href = $(this).attr('href');
+        $(this).removeAttr("href");
+        console.log('href: ' + href);
         var empty = false;
         var input = $(this).parents("tr").find('input[type="text"]');
-        var jsonData = '"ownerTableId: "1", ownerTableName : "PERSON"';
+//        var jsonData = '"ownerTableId: "1", ownerTableName : "PERSON"';var jsonData = '"ownerTableId: "1", ownerTableName : "PERSON"';
         
         var dataArray = {
 //            "ownerTableId" : 1,
@@ -216,13 +219,14 @@ if ($table.length) {
         };
         dataArray = {"ownerTableId" : 1};
         dataArray[ "ownerTableName"] = "PERSON" ;
+        dataArray[ "contactType"] = "PHONE" ;
         
         input.each(function () {
             var val = $(this).val();
             var name = $(this).attr('name');
             console.log('val:'+val+ ' name:'+name);
             
-            jsonData = jsonData + ',' + name + ' : "'+val+'"';                                    
+//            jsonData = jsonData + ',' + name + ' : "'+val+'"';                                    
             dataArray[name] = val;  
 
 
@@ -236,9 +240,17 @@ if ($table.length) {
         $(this).parents("tr").find(".error").first().focus();
         
         if (!empty) {
-            console.log('Antes de POST cp.add: '+jsonData);
-            //Call Post Add ContactPoint           
+//            console.log('Antes de POST cp.add: '+jsonData);
+            //Call Post Add ContactPoint    
             var activationUrl = window.contextRoot + '/manage/contactPoint/';
+            if (href === "#") {
+                //activationUrl = window.contextRoot + '/manage/contactPoint/';
+                dataArray["contactPointId"] = href;
+            }
+//            else {
+//                activationUrl = href;
+//            }            
+            console.log('contextRoot: ' + window.contextRoot);
             console.log('activationUrl: ' + activationUrl);
             $.ajax({
                 type: 'GET',

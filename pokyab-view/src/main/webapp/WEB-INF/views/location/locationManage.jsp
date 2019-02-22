@@ -1,21 +1,21 @@
-                    <sf:form 
-                        id="LocationForm"
-                        modelAttribute="Location" 
-                        action="${contextRoot}/manage/Location" 
+<sf:form 
+                        id="locationForm"
+                        modelAttribute="location" 
+                        action="${contextRoot}/manage/location" 
                         method="POST"
                         class="form-horizonal">
                         
                         <div class="form-row">
                             <div class="form-group col-sm-4 col-md-4 col-lg-3">
                                 <label for="address1" class="col-form-label">
-                                    <spring:message code="Location.table.address1"/></label>                                
+                                    <spring:message code="location.table.address1"/></label>                                
                                 <sf:hidden id="LocationId" path="LocationId"/>
                                 <sf:input path="address1" id="address1" type="text" class="form-control" required="true"/>
                                 <sf:errors path="address1" cssClass="text-danger" element="div" />                                
                             </div>
                             <div class="form-group col-sm-4 col-md-4 col-lg-3">
                                 <label for="state" class="col-form-label">
-                                    <spring:message code="Location.table.state"/></label>                                
+                                    <spring:message code="location.table.state"/></label>                                
                                 <sf:input path="state" id="state" type="text" class="form-control" required="true"/>
                                 <sf:errors path="state" cssClass="text-danger" element="div" />                                
                             </div>
@@ -24,13 +24,13 @@
                         <div class="form-row">
                             <div class="form-group col-sm-4 col-md-4 col-lg-3">
                                 <label for="country" class="col-form-label">
-                                    <spring:message code="Location.table.country"/></label>                                                                
+                                    <spring:message code="location.table.country"/></label>                                                                
                                 <sf:input path="country" id="country" type="text" class="form-control" required="true"/>
                                 <sf:errors path="country" cssClass="text-danger" element="div" />                                
                             </div>
                             <div class="form-group col-sm-4 col-md-4 col-lg-3">
                                 <label for="postalCode" class="col-form-label">
-                                    <spring:message code="Location.table.postalCode"/></label>                                
+                                    <spring:message code="location.table.postalCode"/></label>                                
                                 <sf:input path="postalCode" id="postalCode" type="text" class="form-control" required="true"/>
                                 <sf:errors path="postalCode" cssClass="text-danger" element="div" />                                
                             </div>
